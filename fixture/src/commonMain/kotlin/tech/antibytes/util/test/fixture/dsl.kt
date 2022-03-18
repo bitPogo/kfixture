@@ -7,7 +7,7 @@
 package tech.antibytes.util.test.fixture
 
 fun kotlinFixture(
-    configurator: (PublicApi.Configuration) -> Unit = {}
+    configurator: PublicApi.Configuration.() -> Unit = {}
 ): PublicApi.Fixture {
     val configuration = Configuration()
 
