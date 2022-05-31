@@ -7,7 +7,6 @@
 package tech.antibytes.kfixture.generator.primitive
 
 import tech.antibytes.kfixture.PublicApi
-import tech.antibytes.kfixture.generator.primitive.UnitGenerator
 import kotlin.js.JsName
 import kotlin.test.Test
 import kotlin.test.assertSame

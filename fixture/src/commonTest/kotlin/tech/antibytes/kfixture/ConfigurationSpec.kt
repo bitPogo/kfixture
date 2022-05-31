@@ -11,9 +11,18 @@ import co.touchlab.stately.isolate.IsolateState
 import kotlinx.atomicfu.AtomicRef
 import kotlinx.atomicfu.atomic
 import kotlinx.atomicfu.update
-import tech.antibytes.kfixture.mock.GeneratorFactoryStub
+import tech.antibytes.kfixture.generator.array.BooleanArrayGenerator
 import tech.antibytes.kfixture.generator.array.ByteArrayGenerator
+import tech.antibytes.kfixture.generator.array.CharArrayGenerator
+import tech.antibytes.kfixture.generator.array.DoubleArrayGenerator
+import tech.antibytes.kfixture.generator.array.FloatArrayGenerator
+import tech.antibytes.kfixture.generator.array.IntArrayGenerator
+import tech.antibytes.kfixture.generator.array.LongArrayGenerator
+import tech.antibytes.kfixture.generator.array.ShortArrayGenerator
 import tech.antibytes.kfixture.generator.array.UByteArrayGenerator
+import tech.antibytes.kfixture.generator.array.UIntArrayGenerator
+import tech.antibytes.kfixture.generator.array.ULongArrayGenerator
+import tech.antibytes.kfixture.generator.array.UShortArrayGenerator
 import tech.antibytes.kfixture.generator.primitive.AnyGenerator
 import tech.antibytes.kfixture.generator.primitive.BooleanGenerator
 import tech.antibytes.kfixture.generator.primitive.CharGenerator
@@ -27,6 +36,7 @@ import tech.antibytes.kfixture.generator.primitive.UIntegerGenerator
 import tech.antibytes.kfixture.generator.primitive.ULongGenerator
 import tech.antibytes.kfixture.generator.primitive.UShortGenerator
 import tech.antibytes.kfixture.generator.primitive.UnitGenerator
+import tech.antibytes.kfixture.mock.GeneratorFactoryStub
 import tech.antibytes.kfixture.qualifier.named
 import kotlin.js.JsName
 import kotlin.random.Random
@@ -86,20 +96,30 @@ class ConfigurationSpec {
         val seed = 23
         val mapping = mapOf(
             boolean to BooleanGenerator::class,
+            booleanArray to BooleanArrayGenerator::class,
             short to ShortGenerator::class,
+            shortArray to ShortArrayGenerator::class,
             int to IntegerGenerator::class,
+            intArray to IntArrayGenerator::class,
             char to CharGenerator::class,
+            charArray to CharArrayGenerator::class,
             float to FloatGenerator::class,
+            floatArray to FloatArrayGenerator::class,
             long to LongGenerator::class,
+            longArray to LongArrayGenerator::class,
             double to DoubleGenerator::class,
+            doubleArray to DoubleArrayGenerator::class,
             string to StringGenerator::class,
             uShort to UShortGenerator::class,
+            uShortArray to UShortArrayGenerator::class,
             uInt to UIntegerGenerator::class,
+            uIntArray to UIntArrayGenerator::class,
             uLong to ULongGenerator::class,
+            uLongArray to ULongArrayGenerator::class,
             byteArray to ByteArrayGenerator::class,
             uByteArray to UByteArrayGenerator::class,
             any to AnyGenerator::class,
-            unit to UnitGenerator::class
+            unit to UnitGenerator::class,
         )
 
         // When

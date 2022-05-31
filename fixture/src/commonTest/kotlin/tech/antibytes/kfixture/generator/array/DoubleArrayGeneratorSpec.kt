@@ -58,7 +58,7 @@ class DoubleArrayGeneratorSpec {
                 size
             }
         }
-        val floatPoints = expectedFloatPoints.toMutableList()
+        val floatPoints = expectedFloatPoints.toSharedMutableList()
         random.access { stub ->
             (stub as RandomStub).nextByteArray = { arraySize -> ByteArray(arraySize) }
         }

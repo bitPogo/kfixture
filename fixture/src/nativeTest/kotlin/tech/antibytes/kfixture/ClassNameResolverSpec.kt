@@ -6,7 +6,6 @@
 
 package tech.antibytes.kfixture
 
-import tech.antibytes.kfixture.resolveClassName
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

@@ -19,34 +19,34 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
-class UShortArrayGeneratorSpec {
+class BooleanArrayGeneratorSpec {
+    private val fixture = Random(0)
     private val random = IsolateState { RandomStub() }
     private val range: AtomicRef<Pair<Int, Int>?> = atomic(null)
 
     @AfterTest
     fun tearDown() {
         random.access { it.clear() }
-        range.update { null }
+        range.getAndSet(null)
     }
 
     @Test
     @Suppress("UNCHECKED_CAST")
     @JsName("fn0")
     fun `It fulfils Generator`() {
-        val generator: Any = UShortArrayGenerator(random as IsolateState<Random>)
+        val generator: Any = BooleanArrayGenerator(random as IsolateState<Random>)
 
         assertTrue(generator is PublicApi.Generator<*>)
     }
 
-    @OptIn(ExperimentalUnsignedTypes::class)
     @Test
     @Suppress("UNCHECKED_CAST")
     @JsName("fn1")
-    fun `Given generate is called it returns a UShortArray`() {
+    fun `Given generate is called it returns a BooleanArray`() {
         // Given
         val size = 23
-        val expected = UShortArray(size)
-        val generator = UShortArrayGenerator(random as IsolateState<Random>)
+        val generator = BooleanArrayGenerator(random as IsolateState<Random>)
+        val expected = List(size) { fixture.nextBoolean() }
 
         random.access { stub ->
             (stub as RandomStub).nextIntRanged = { from, to ->
@@ -54,9 +54,9 @@ class UShortArrayGeneratorSpec {
                 size
             }
         }
-
+        val values = expected.toSharedMutableList()
         random.access { stub ->
-            (stub as RandomStub).nextByteArray = { arraySize -> ByteArray(arraySize) }
+            (stub as RandomStub).nextBoolean = { values.removeAt(0) }
         }
 
         // When
@@ -68,7 +68,7 @@ class UShortArrayGeneratorSpec {
             expected = range.value
         )
         assertTrue(
-            expected.contentEquals(result)
+            expected.toTypedArray().toBooleanArray().contentEquals(result)
         )
     }
 }

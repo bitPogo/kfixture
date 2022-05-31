@@ -7,7 +7,6 @@
 package tech.antibytes.kfixture.qualifier
 
 import tech.antibytes.kfixture.PublicApi
-import tech.antibytes.kfixture.qualifier.TypeQualifier
 import tech.antibytes.kfixture.resolveClassName
 import kotlin.js.JsName
 import kotlin.test.Test

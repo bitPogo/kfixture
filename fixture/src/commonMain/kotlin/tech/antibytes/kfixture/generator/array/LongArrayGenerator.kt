@@ -10,23 +10,23 @@ import co.touchlab.stately.isolate.IsolateState
 import tech.antibytes.kfixture.PublicApi
 import kotlin.random.Random
 
-internal class FloatArrayGenerator(
+internal class LongArrayGenerator(
     val random: IsolateState<Random>
-) : PublicApi.Generator<FloatArray> {
-    private fun generateFloatArray(size: Int): FloatArray {
+) : PublicApi.Generator<LongArray> {
+    private fun generateLongArray(size: Int): LongArray {
         val raw = random.access { it.nextBytes(size) }
-        val fixture = FloatArray(size)
+        val fixture = LongArray(size)
 
         repeat(size) { idx ->
-            fixture[idx] = raw[idx].toInt() + random.access { it.nextFloat() }
+            fixture[idx] = raw[idx].toLong()
         }
 
         return fixture
     }
 
-    override fun generate(): FloatArray {
+    override fun generate(): LongArray {
         val size = random.access { it.nextInt(1, 100) }
 
-        return generateFloatArray(size)
+        return generateLongArray(size)
     }
 }

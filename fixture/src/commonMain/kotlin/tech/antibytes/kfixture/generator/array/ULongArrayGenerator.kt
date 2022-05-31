@@ -9,24 +9,25 @@ package tech.antibytes.kfixture.generator.array
 import co.touchlab.stately.isolate.IsolateState
 import tech.antibytes.kfixture.PublicApi
 import kotlin.random.Random
+import kotlin.random.nextUBytes
 
-internal class FloatArrayGenerator(
+internal class ULongArrayGenerator(
     val random: IsolateState<Random>
-) : PublicApi.Generator<FloatArray> {
-    private fun generateFloatArray(size: Int): FloatArray {
-        val raw = random.access { it.nextBytes(size) }
-        val fixture = FloatArray(size)
+) : PublicApi.Generator<ULongArray> {
+    private fun generateULongArray(size: Int): ULongArray {
+        val raw = random.access { it.nextUBytes(size) }
+        val fixture = ULongArray(size)
 
         repeat(size) { idx ->
-            fixture[idx] = raw[idx].toInt() + random.access { it.nextFloat() }
+            fixture[idx] = raw[idx].toULong()
         }
 
         return fixture
     }
 
-    override fun generate(): FloatArray {
+    override fun generate(): ULongArray {
         val size = random.access { it.nextInt(1, 100) }
 
-        return generateFloatArray(size)
+        return generateULongArray(size)
     }
 }

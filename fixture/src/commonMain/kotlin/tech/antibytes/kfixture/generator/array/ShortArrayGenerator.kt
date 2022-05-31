@@ -26,7 +26,7 @@ internal class ShortArrayGenerator(
 
     override fun generate(): ShortArray {
         val size = random.access { it.nextInt(1, 100) }
-        
+
         return generateShortArray(size)
     }
 }

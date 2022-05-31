@@ -26,7 +26,7 @@ internal class IntArrayGenerator(
 
     override fun generate(): IntArray {
         val size = random.access { it.nextInt(1, 100) }
-        
+
         return generateIntArray(size)
     }
 }

@@ -19,34 +19,33 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
-class UShortArrayGeneratorSpec {
+class ULongArrayGeneratorSpec {
     private val random = IsolateState { RandomStub() }
     private val range: AtomicRef<Pair<Int, Int>?> = atomic(null)
 
     @AfterTest
     fun tearDown() {
         random.access { it.clear() }
-        range.update { null }
+        range.getAndSet(null)
     }
 
     @Test
     @Suppress("UNCHECKED_CAST")
     @JsName("fn0")
     fun `It fulfils Generator`() {
-        val generator: Any = UShortArrayGenerator(random as IsolateState<Random>)
+        val generator: Any = ULongArrayGenerator(random as IsolateState<Random>)
 
         assertTrue(generator is PublicApi.Generator<*>)
     }
 
-    @OptIn(ExperimentalUnsignedTypes::class)
     @Test
     @Suppress("UNCHECKED_CAST")
     @JsName("fn1")
-    fun `Given generate is called it returns a UShortArray`() {
+    fun `Given generate is called it returns a ULongArray`() {
         // Given
         val size = 23
-        val expected = UShortArray(size)
-        val generator = UShortArrayGenerator(random as IsolateState<Random>)
+        val expected = ULongArray(size)
+        val generator = ULongArrayGenerator(random as IsolateState<Random>)
 
         random.access { stub ->
             (stub as RandomStub).nextIntRanged = { from, to ->
@@ -54,13 +53,12 @@ class UShortArrayGeneratorSpec {
                 size
             }
         }
-
         random.access { stub ->
             (stub as RandomStub).nextByteArray = { arraySize -> ByteArray(arraySize) }
         }
 
         // When
-        val result = generator.generate()
+        val result: ULongArray = generator.generate()
 
         // Then
         assertEquals(

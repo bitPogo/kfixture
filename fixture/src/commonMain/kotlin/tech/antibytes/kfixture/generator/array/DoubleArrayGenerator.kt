@@ -26,7 +26,7 @@ internal class DoubleArrayGenerator(
 
     override fun generate(): DoubleArray {
         val size = random.access { it.nextInt(1, 100) }
-        
+
         return generateDoubleArray(size)
     }
 }

@@ -14,11 +14,10 @@ internal class CharArrayGenerator(
     val random: IsolateState<Random>
 ) : PublicApi.Generator<CharArray> {
     private fun generateCharArray(size: Int): CharArray {
-        val raw = random.access { it.nextBytes(size) }
         val fixture = CharArray(size)
 
         repeat(size) { idx ->
-            fixture[idx] = raw[idx].toInt().toChar()
+            fixture[idx] = random.access { it.nextInt(33, 126).toChar() }
         }
 
         return fixture
@@ -26,7 +25,7 @@ internal class CharArrayGenerator(
 
     override fun generate(): CharArray {
         val size = random.access { it.nextInt(1, 100) }
-        
+
         return generateCharArray(size)
     }
 }
