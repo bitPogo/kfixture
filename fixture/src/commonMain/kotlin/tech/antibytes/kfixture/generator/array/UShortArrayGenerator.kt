@@ -9,24 +9,25 @@ package tech.antibytes.kfixture.generator.array
 import co.touchlab.stately.isolate.IsolateState
 import tech.antibytes.kfixture.PublicApi
 import kotlin.random.Random
+import kotlin.random.nextUBytes
 
-internal class CharArrayGenerator(
+internal class UShortArrayGenerator(
     val random: IsolateState<Random>
-) : PublicApi.Generator<CharArray> {
-    private fun generateCharArray(size: Int): CharArray {
-        val raw = random.access { it.nextBytes(size) }
-        val fixture = CharArray(size)
+) : PublicApi.Generator<UShortArray> {
+    private fun generateUShortArray(size: Int): UShortArray {
+        val raw = random.access { it.nextUBytes(size) }
+        val fixture = UShortArray(size)
 
         repeat(size) { idx ->
-            fixture[idx] = raw[idx].toInt().toChar()
+            fixture[idx] = raw[idx].toUShort()
         }
 
         return fixture
     }
 
-    override fun generate(): CharArray {
+    override fun generate(): UShortArray {
         val size = random.access { it.nextInt(1, 100) }
-        
-        return generateCharArray(size)
+
+        return generateUShortArray(size)
     }
 }

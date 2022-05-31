@@ -13,7 +13,7 @@ import kotlin.random.Random
 internal class ShortArrayGenerator(
     val random: IsolateState<Random>
 ) : PublicApi.Generator<ShortArray> {
-    private fun generateIntArray(size: Int): ShortArray {
+    private fun generateShortArray(size: Int): ShortArray {
         val raw = random.access { it.nextBytes(size) }
         val fixture = ShortArray(size)
 
@@ -27,6 +27,6 @@ internal class ShortArrayGenerator(
     override fun generate(): ShortArray {
         val size = random.access { it.nextInt(1, 100) }
         
-        return generateIntArray(size)
+        return generateShortArray(size)
     }
 }
