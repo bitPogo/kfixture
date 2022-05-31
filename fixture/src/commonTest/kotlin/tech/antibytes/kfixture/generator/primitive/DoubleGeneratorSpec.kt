@@ -38,8 +38,10 @@ class DoubleGeneratorSpec {
     @JsName("fn1")
     fun `Given generate is called it returns a Double`() {
         // Given
-        val expected = 23.23
-        random.access { it.nextDouble = { expected } }
+        val expected = 23
+        val expectedFloat = 0.23
+        random.access { it.nextDouble = { expectedFloat } }
+        random.access { it.nextInt = { expected } }
 
         val generator = DoubleGenerator(random as IsolateState<Random>)
 
@@ -49,7 +51,7 @@ class DoubleGeneratorSpec {
         // Then
         assertEquals(
             actual = result,
-            expected = expected
+            expected = expected + expectedFloat
         )
     }
 }

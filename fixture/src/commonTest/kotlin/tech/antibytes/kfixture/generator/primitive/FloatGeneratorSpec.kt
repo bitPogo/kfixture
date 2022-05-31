@@ -39,7 +39,9 @@ class FloatGeneratorSpec {
     fun `Given generate is called it returns a Float`() {
         // Given
         val expected = 23
-        random.access { it.nextFloat = { expected.toFloat() } }
+        val expectedFloat = 0.23
+        random.access { it.nextFloat = { expectedFloat.toFloat() } }
+        random.access { it.nextInt = { expected } }
 
         val generator = FloatGenerator(random as IsolateState<Random>)
 
@@ -49,7 +51,7 @@ class FloatGeneratorSpec {
         // Then
         assertEquals(
             actual = result,
-            expected = expected.toFloat()
+            expected = (expected + expectedFloat).toFloat()
         )
     }
 }
