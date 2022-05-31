@@ -9,6 +9,7 @@ package tech.antibytes.gradle.util.test.dependency
 object GradlePlugin {
     const val dependency = "tech.antibytes.gradle-plugins:antibytes-dependency:${Version.gradle.antibytes}"
     const val publishing = "tech.antibytes.gradle-plugins:antibytes-publishing:${Version.gradle.antibytes}"
+    const val versioning = "tech.antibytes.gradle-plugins:antibytes-versioning:${Version.gradle.antibytes}"
     const val coverage = "tech.antibytes.gradle-plugins:antibytes-coverage:${Version.gradle.antibytes}"
     const val projectConfig = "tech.antibytes.gradle-plugins:antibytes-configuration:${Version.gradle.antibytes}"
     const val runtimeConfig = "tech.antibytes.gradle-plugins:antibytes-runtime-configuration:${Version.gradle.antibytes}"

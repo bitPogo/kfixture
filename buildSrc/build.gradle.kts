@@ -6,6 +6,7 @@
 
 import tech.antibytes.gradle.util.test.dependency.Dependency
 import tech.antibytes.gradle.util.test.dependency.addCustomRepositories
+import tech.antibytes.gradle.util.test.dependency.ensureKotlinVersion
 
 plugins {
     `kotlin-dsl`
@@ -20,9 +21,12 @@ repositories {
     addCustomRepositories()
 }
 
+ensureKotlinVersion("1.5.31")
+
 dependencies {
     implementation(Dependency.gradle.dependency)
     implementation(Dependency.gradle.publishing)
+    implementation(Dependency.gradle.versioning)
     implementation(Dependency.gradle.coverage)
     implementation(Dependency.gradle.spotless)
     implementation(Dependency.gradle.projectConfig)
