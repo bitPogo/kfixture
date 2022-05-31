@@ -4,14 +4,14 @@
  * Use of this source code is governed by Apache v2.0
  */
 
-import tech.antibytes.gradle.util.test.dependency.Dependency
-import tech.antibytes.gradle.util.test.dependency.addCustomRepositories
-import tech.antibytes.gradle.util.test.dependency.ensureKotlinVersion
+import tech.antibytes.gradle.kfixture.dependency.Dependency
+import tech.antibytes.gradle.kfixture.dependency.addCustomRepositories
+import tech.antibytes.gradle.kfixture.dependency.ensureKotlinVersion
 
 plugins {
     `kotlin-dsl`
 
-    id("tech.antibytes.gradle.util.test.dependency")
+    id("tech.antibytes.gradle.kfixture.dependency")
 }
 
 repositories {

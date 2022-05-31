@@ -11,7 +11,7 @@ pluginManagement {
     }
 }
 
-includeBuild("gradlePlugin/test-utils-dependency")
+includeBuild("gradlePlugin/kfixture-dependency")
 
 include(
     ":fixture"
