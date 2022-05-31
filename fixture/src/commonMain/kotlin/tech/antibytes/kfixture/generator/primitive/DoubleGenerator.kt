@@ -13,5 +13,5 @@ import kotlin.random.Random
 internal class DoubleGenerator(
     val random: IsolateState<Random>
 ) : PublicApi.Generator<Double> {
-    override fun generate(): Double = random.access { it.nextDouble() }
+    override fun generate(): Double = random.access { it.nextDouble() + it.nextInt() }
 }

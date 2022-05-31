@@ -13,5 +13,7 @@ import kotlin.random.Random
 internal class FloatGenerator(
     val random: IsolateState<Random>
 ) : PublicApi.Generator<Float> {
-    override fun generate(): Float = random.access { it.nextFloat() }
+    override fun generate(): Float = random.access {
+        it.nextFloat() + it.nextInt()
+    }
 }
