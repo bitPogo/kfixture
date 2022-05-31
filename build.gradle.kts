@@ -5,16 +5,16 @@
  */
 
 import tech.antibytes.gradle.dependency.Version
-import tech.antibytes.gradle.util.test.config.FixturePublishingConfiguration
-import tech.antibytes.gradle.util.test.dependency.addCustomRepositories
-import tech.antibytes.gradle.util.test.dependency.ensureKotlinVersion
+import tech.antibytes.gradle.kfixture.config.FixturePublishingConfiguration
+import tech.antibytes.gradle.kfixture.dependency.addCustomRepositories
+import tech.antibytes.gradle.kfixture.dependency.ensureKotlinVersion
 
 plugins {
-    id("tech.antibytes.gradle.util.test.dependency")
+    id("tech.antibytes.gradle.kfixture.dependency")
 
     id("tech.antibytes.gradle.dependency")
 
-    id("tech.antibytes.gradle.util.test.script.quality-spotless")
+    id("tech.antibytes.gradle.kfixture.script.quality-spotless")
 
     id("org.owasp.dependencycheck")
 

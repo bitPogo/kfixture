@@ -5,7 +5,8 @@
  */
 
 import tech.antibytes.gradle.dependency.Dependency
-import tech.antibytes.gradle.util.test.config.FixtureConfiguration
+import tech.antibytes.gradle.kfixture.config.FixtureConfiguration
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("org.jetbrains.kotlin.multiplatform")
@@ -196,7 +197,7 @@ kotlin {
     }
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+tasks.withType<KotlinCompile> {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
