@@ -13,10 +13,6 @@ pluginManagement {
 
 includeBuild("gradlePlugin/test-utils-dependency")
 
-plugins {
-    id("com.gradle.enterprise") version("3.7")
-}
-
 include(
     ":fixture"
 )
@@ -29,4 +25,4 @@ buildCache {
     }
 }
 
-rootProject.name = "kotlin-fixtures-kmp"
+rootProject.name = "kfixture"

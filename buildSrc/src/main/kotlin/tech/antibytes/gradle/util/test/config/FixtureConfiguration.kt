@@ -10,7 +10,7 @@ import tech.antibytes.gradle.publishing.api.PackageConfiguration
 import tech.antibytes.gradle.publishing.api.PomConfiguration
 
 object FixtureConfiguration {
-    const val group = "tech.antibytes.kotlin-fixtures-kmp"
+    const val group = "tech.antibytes.kfixture"
 
     val publishing = Publishing
 
@@ -18,7 +18,7 @@ object FixtureConfiguration {
         val packageConfiguration = PackageConfiguration(
             pom = PomConfiguration(
                 name = "fixture",
-                description = "Convenience tools for generated fixtures for Kotlin Multiplatform.",
+                description = "Convenience tools for generated dummy test values for Kotlin Multiplatform.",
                 year = 2022,
                 url = "https://$gitHubRepositoryPath"
             ),

@@ -32,6 +32,12 @@ atomicfu {
     dependenciesVersion = "0.17.1"
 }
 
+android {
+    defaultConfig {
+        minSdk = libs.versions.minSdk.get().toInt()
+    }
+}
+
 kotlin {
     android()
 
@@ -43,19 +49,11 @@ kotlin {
     jvm()
 
     ios()
+    iosSimulatorArm64()
 
     linuxX64()
 
     sourceSets {
-        removeAll { sourceSet ->
-            setOf(
-                "androidAndroidTestRelease",
-                "androidTestFixtures",
-                "androidTestFixturesDebug",
-                "androidTestFixturesRelease",
-            ).contains(sourceSet.name)
-        }
-
         all {
             languageSettings.apply {
                 optIn("kotlin.ExperimentalUnsignedTypes")
@@ -85,9 +83,17 @@ kotlin {
                 implementation(Dependency.multiplatform.kotlin.android)
             }
         }
+        val androidAndroidTestRelease by getting
+        val androidTestFixtures by getting
+        val androidTestFixturesDebug by getting
+        val androidTestFixturesRelease by getting
         val androidTest by getting {
+            dependsOn(androidAndroidTestRelease)
+            dependsOn(androidTestFixtures)
+            dependsOn(androidTestFixturesDebug)
+            dependsOn(androidTestFixturesRelease)
+
             dependencies {
-                dependsOn(commonTest)
                 implementation(Dependency.multiplatform.test.jvm)
                 implementation(Dependency.multiplatform.test.junit)
             }
@@ -180,5 +186,18 @@ kotlin {
                 dependsOn(darwinTest)
             }
         }
+
+        val iosSimulatorArm64Main by getting {
+            dependsOn(iosMain)
+        }
+        val iosSimulatorArm64Test by getting {
+            dependsOn(iosTest)
+        }
+    }
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 }

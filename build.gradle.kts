@@ -7,6 +7,7 @@
 import tech.antibytes.gradle.dependency.Version
 import tech.antibytes.gradle.util.test.config.FixturePublishingConfiguration
 import tech.antibytes.gradle.util.test.dependency.addCustomRepositories
+import tech.antibytes.gradle.util.test.dependency.ensureKotlinVersion
 
 plugins {
     id("tech.antibytes.gradle.util.test.dependency")
@@ -33,22 +34,10 @@ allprojects {
         jcenter()
     }
 
-    configurations.all {
-        resolutionStrategy.eachDependency {
-            if (requested.group == "org.jetbrains.kotlin" && requested.name == "kotlin-stdlib-jdk8" && requested.version == "1.6.0") {
-                useVersion(Version.kotlin.stdlib)
-                because("Avoid resolution conflicts")
-            }
-
-            if (requested.group == "org.jetbrains.kotlin" && requested.name == "kotlin-stdlib-jdk8" && requested.version == "1.5.30") {
-                useVersion(Version.kotlin.stdlib)
-                because("Avoid resolution conflicts")
-            }
-        }
-    }
+    ensureKotlinVersion(Version.kotlin.language)
 }
 
 tasks.named<Wrapper>("wrapper") {
-    gradleVersion = "7.2"
+    gradleVersion = "7.4.2"
     distributionType = Wrapper.DistributionType.ALL
 }
