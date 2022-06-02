@@ -12,19 +12,18 @@ import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.resolveClassName
 import kotlin.reflect.KClass
 
+// see: https://github.com/InsertKoinIO/koin/blob/48e532798d53d02cfcb4420db86bf5bfa7c01428/core/koin-core/src/commonMain/kotlin/org/koin/core/qualifier/Qualifier.kt#L30
 fun named(value: String): PublicApi.Qualifier = StringQualifier(value)
 
 fun <E : Enum<E>> named(value: E): PublicApi.Qualifier {
     return StringQualifier(
-        value.toString().toLowerCase()
+        value.toString().lowercase()
     )
 }
 
-internal fun resolveQualifier(vararg qualifiers: PublicApi.Qualifier): String {
-    return qualifiers
-        .map { qualifier -> qualifier.value }
-        .joinToString(SEPARATOR)
-}
+internal fun resolveQualifier(
+    vararg qualifiers: PublicApi.Qualifier
+): String = qualifiers.joinToString(SEPARATOR) { qualifier -> qualifier.value }
 
 @InternalAPI
 @PublishedApi

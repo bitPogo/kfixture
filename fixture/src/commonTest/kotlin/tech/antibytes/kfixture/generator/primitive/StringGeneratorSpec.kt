@@ -17,6 +17,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
+@Suppress("USELESS_CAST")
 class StringGeneratorSpec {
     private val random = IsolateState { RandomStub() }
 
