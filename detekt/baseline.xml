@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>MagicNumber:Dangerfile.df.kts$1000</ID>
+    <ID>MagicNumber:Dangerfile.df.kts$20</ID>
+    <ID>MagicNumber:Dangerfile.df.kts$2000</ID>
+    <ID>MagicNumber:Dangerfile.df.kts$500</ID>
+    <ID>MagicNumber:settings.gradle.kts$30</ID>
+    <ID>MaxLineLength:Dangerfile.df.kts$val</ID>
+    <ID>MaxLineLength:Fixture.kt$inline</ID>
+    <ID>MaxLineLength:GradlePlugin.kt$GradlePlugin$const val runtimeConfig = "tech.antibytes.gradle-plugins:antibytes-runtime-configuration:${Version.Gradle.antibytes}"</ID>
+    <ID>MaxLineLength:build.gradle.kts$config = files("$projectDir/detekt/config.yml")</ID>
+    <ID>TooManyFunctions:Fixture.kt$tech.antibytes.kfixture.Fixture.kt</ID>
+    <ID>UnusedPrivateMember:build.gradle.kts$val androidMain by getting { dependencies { dependsOn(commonMain) implementation(Dependency.multiplatform.kotlin.android) } }</ID>
+    <ID>UnusedPrivateMember:build.gradle.kts$val androidTest by getting { dependsOn(androidAndroidTestRelease) dependsOn(androidTestFixtures) dependsOn(androidTestFixturesDebug) dependsOn(androidTestFixturesRelease) dependencies { implementation(Dependency.multiplatform.test.jvm) implementation(Dependency.multiplatform.test.junit) } }</ID>
+    <ID>UnusedPrivateMember:build.gradle.kts$val iosSimulatorArm64Main by getting { dependsOn(iosMain) }</ID>
+    <ID>UnusedPrivateMember:build.gradle.kts$val iosSimulatorArm64Test by getting { dependsOn(iosTest) }</ID>
+    <ID>UnusedPrivateMember:build.gradle.kts$val jsMain by getting { dependencies { dependsOn(commonMain) implementation(Dependency.multiplatform.kotlin.js) implementation(Dependency.js.nodejs) } }</ID>
+    <ID>UnusedPrivateMember:build.gradle.kts$val jsTest by getting { dependencies { dependsOn(commonTest) implementation(Dependency.multiplatform.test.js) } }</ID>
+    <ID>UnusedPrivateMember:build.gradle.kts$val jvmMain by getting { dependencies { dependsOn(commonMain) implementation(Dependency.multiplatform.kotlin.jdk8) } }</ID>
+    <ID>UnusedPrivateMember:build.gradle.kts$val jvmTest by getting { dependencies { dependsOn(commonTest) implementation(Dependency.multiplatform.test.jvm) implementation(Dependency.multiplatform.test.junit) } }</ID>
+    <ID>UnusedPrivateMember:build.gradle.kts$val linuxX64Main by getting { dependencies { dependsOn(otherMain) } }</ID>
+    <ID>UnusedPrivateMember:build.gradle.kts$val linuxX64Test by getting { dependencies { dependsOn(otherTest) } }</ID>
+  </CurrentIssues>
+</SmellBaseline>

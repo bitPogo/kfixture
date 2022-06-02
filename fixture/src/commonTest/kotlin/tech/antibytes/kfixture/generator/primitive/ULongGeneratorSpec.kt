@@ -20,7 +20,6 @@ import kotlin.test.assertTrue
 
 class ULongGeneratorSpec {
     private val random = IsolateState { RandomStub() }
-    private val range: AtomicRef<Pair<Int, Int>?> = atomic(null)
 
     @AfterTest
     fun tearDown() {

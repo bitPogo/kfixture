@@ -8,6 +8,8 @@ package tech.antibytes.kfixture
 
 import co.touchlab.stately.isolate.IsolateState
 import kotlinx.atomicfu.atomic
+import tech.antibytes.kfixture.FixtureContract.Companion.COLLECTION_LOWER_BOUND
+import tech.antibytes.kfixture.FixtureContract.Companion.COLLECTION_UPPER_BOUND
 import tech.antibytes.kfixture.qualifier.resolveId
 import kotlin.jvm.JvmName
 import kotlin.random.Random
@@ -47,7 +49,7 @@ inline fun <reified T> PublicApi.Fixture.fixture(
     )
 
     return when {
-        !generators.containsKey(id) -> throw RuntimeException("Missing Generator for ClassID ($id).")
+        !generators.containsKey(id) -> throw IllegalStateException("Missing Generator for ClassID ($id).")
         returnNull -> null as T
         else -> generators[id]!!.generate() as T
     }
@@ -57,7 +59,7 @@ inline fun <reified T> PublicApi.Fixture.mutableListFixture(
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null
 ): MutableList<T> {
-    val actualSize = size ?: random.access { it.nextInt(1, 10) }
+    val actualSize = size ?: random.access { it.nextInt(COLLECTION_LOWER_BOUND, COLLECTION_UPPER_BOUND) }
 
     val list = mutableListOf<T>()
 
@@ -182,7 +184,7 @@ inline fun <reified Key, reified Value> PublicApi.Fixture.mapFixture(
     valueQualifier: PublicApi.Qualifier? = null,
     size: Int? = null
 ): Map<Key, Value> {
-    val actualSize = size ?: random.access { it.nextInt(1, 10) }
+    val actualSize = size ?: random.access { it.nextInt(COLLECTION_LOWER_BOUND, COLLECTION_UPPER_BOUND) }
 
     val list = mutableListOf<Pair<Key, Value>>()
 
@@ -233,7 +235,7 @@ inline fun <reified T> PublicApi.Fixture.mutableSetFixture(
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null
 ): MutableSet<T> {
-    val actualSize = size ?: random.access { it.nextInt(1, 10) }
+    val actualSize = size ?: random.access { it.nextInt(COLLECTION_LOWER_BOUND, COLLECTION_UPPER_BOUND) }
 
     val set = mutableSetOf<T>()
 

@@ -7,6 +7,8 @@
 package tech.antibytes.kfixture.generator.array
 
 import co.touchlab.stately.isolate.IsolateState
+import tech.antibytes.kfixture.FixtureContract.Companion.ARRAY_LOWER_BOUND
+import tech.antibytes.kfixture.FixtureContract.Companion.ARRAY_UPPER_BOUND
 import tech.antibytes.kfixture.PublicApi
 import kotlin.random.Random
 
@@ -14,7 +16,7 @@ internal class BooleanArrayGenerator(
     val random: IsolateState<Random>
 ) : PublicApi.Generator<BooleanArray> {
     override fun generate(): BooleanArray {
-        val size = random.access { it.nextInt(1, 100) }
+        val size = random.access { it.nextInt(ARRAY_LOWER_BOUND, ARRAY_UPPER_BOUND) }
         val array = BooleanArray(size)
 
         repeat(size) { idx ->
