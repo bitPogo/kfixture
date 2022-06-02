@@ -7,6 +7,11 @@
 import tech.antibytes.gradle.dependency.Dependency
 import tech.antibytes.gradle.kfixture.config.FixtureConfiguration
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import tech.antibytes.gradle.coverage.api.JvmJacocoConfiguration
+import tech.antibytes.gradle.coverage.api.AndroidJacocoConfiguration
+import tech.antibytes.gradle.coverage.api.JacocoVerificationRule
+import tech.antibytes.gradle.coverage.CoverageApiContract.JacocoCounter
+import tech.antibytes.gradle.coverage.CoverageApiContract.JacocoMeasurement
 
 plugins {
     id("org.jetbrains.kotlin.multiplatform")
@@ -27,6 +32,41 @@ antiBytesPublishing {
     packageConfiguration = FixtureConfiguration.publishing.packageConfiguration
     repositoryConfiguration = FixtureConfiguration.publishing.repositories
     versioning = FixtureConfiguration.publishing.versioning
+}
+
+antiBytesCoverage {
+    val branchCoverage = JacocoVerificationRule(
+        counter = JacocoCounter.BRANCH,
+        measurement = JacocoMeasurement.COVERED_RATIO,
+        minimum = BigDecimal(0.95)
+    )
+
+    val instructionCoverage = JacocoVerificationRule(
+        counter = JacocoCounter.INSTRUCTION,
+        measurement = JacocoMeasurement.COVERED_RATIO,
+        minimum = BigDecimal(0.95)
+    )
+
+    val jvmCoverage = JvmJacocoConfiguration.createJvmKmpConfiguration(
+        project,
+        classFilter = setOf("**/FixtureKt*"), // Inline Function cannot be covered
+        verificationRules = setOf(
+            branchCoverage,
+            instructionCoverage
+        ),
+    )
+
+    val androidCoverage = AndroidJacocoConfiguration.createAndroidLibraryKmpConfiguration(
+        project,
+        classFilter = setOf("**/FixtureKt*"), // Inline Function cannot be covered
+        verificationRules = setOf(
+            branchCoverage,
+            instructionCoverage
+        ),
+    )
+
+    configurations["jvm"] = jvmCoverage
+    configurations["android"] = androidCoverage
 }
 
 atomicfu {
