@@ -2,6 +2,7 @@
 <SmellBaseline>
   <ManuallySuppressedIssues/>
   <CurrentIssues>
+    <ID>ArrayPrimitive:ArrayFixtureSpec.kt$ArrayFixtureSpec$Array&lt;Int></ID>
     <ID>MagicNumber:Dangerfile.df.kts$1000</ID>
     <ID>MagicNumber:Dangerfile.df.kts$20</ID>
     <ID>MagicNumber:Dangerfile.df.kts$2000</ID>

@@ -10,13 +10,13 @@ import co.touchlab.stately.isolate.IsolateState
 import kotlinx.atomicfu.atomic
 import tech.antibytes.kfixture.Fixture
 import tech.antibytes.kfixture.PublicApi
-import tech.antibytes.kfixture.arrayFixture
 import tech.antibytes.kfixture.fixture
 import tech.antibytes.kfixture.int
 import tech.antibytes.kfixture.mock.GeneratorStub
 import tech.antibytes.kfixture.mock.RandomStub
 import tech.antibytes.kfixture.qualifier.StringQualifier
 import tech.antibytes.kfixture.resolveClassName
+import tech.antibytes.kfixture.sequenceFixture
 import kotlin.js.JsName
 import kotlin.random.Random
 import kotlin.test.AfterTest
@@ -26,7 +26,7 @@ import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
 
 @Suppress("USELESS_CAST")
-class ArrayFixtureSpec {
+class SequenceFixtureSpec {
     private val random = IsolateState { RandomStub() }
     private val capturedMinimum = atomic(-1)
     private val capturedMaximum = atomic(-1)
@@ -43,14 +43,13 @@ class ArrayFixtureSpec {
     @JsName("fn0")
     fun `It fulfils Fixture`() {
         val fixture: Any = Fixture(random as IsolateState<Random>, emptyMap())
-
         assertTrue(fixture is PublicApi.Fixture)
     }
 
     @Test
     @Suppress("UNCHECKED_CAST")
     @JsName("fn6")
-    fun `Given arrayFixture is called it fails if the Type has no corresponding Generator`() {
+    fun `Given sequenceFixture is called it fails if the Type has no corresponding Generator`() {
         // Given
         val expected = 23
         val generator = GeneratorStub<Int>()
@@ -65,7 +64,7 @@ class ArrayFixtureSpec {
         // Then
         val error = assertFailsWith<RuntimeException> {
             // When
-            fixture.arrayFixture<Int>()
+            fixture.sequenceFixture<Int>().toList()
         }
 
         assertEquals(
@@ -77,7 +76,7 @@ class ArrayFixtureSpec {
     @Test
     @Suppress("UNCHECKED_CAST")
     @JsName("fn7")
-    fun `Given arrayFixture is called it returns a Fixture for the derived Type`() {
+    fun `Given sequenceFixture is called it returns a Fixture for the derived Type`() {
         // Given
         val size = 5
         val expected = 23
@@ -98,10 +97,10 @@ class ArrayFixtureSpec {
         val fixture = Fixture(random as IsolateState<Random>, mapOf(int to generator))
 
         // When
-        val result: Any = fixture.arrayFixture<Int>()
+        val result: Any = fixture.sequenceFixture<Int>()
 
         // Then
-        assertTrue(result is Array<*>)
+        assertTrue(result is Sequence<*>)
         assertEquals(
             actual = capturedMinimum.value,
             expected = 1
@@ -111,18 +110,17 @@ class ArrayFixtureSpec {
             expected = 10
         )
         assertEquals(
-            actual = result.size,
+            actual = result.toList().size,
             expected = size
         )
-        assertTrue(
-            result.contentDeepEquals(
-                arrayOf(
-                    expected,
-                    expected,
-                    expected,
-                    expected,
-                    expected
-                )
+        assertEquals(
+            actual = result.toList(),
+            expected = listOf(
+                expected,
+                expected,
+                expected,
+                expected,
+                expected
             )
         )
     }
@@ -130,7 +128,7 @@ class ArrayFixtureSpec {
     @Test
     @Suppress("UNCHECKED_CAST")
     @JsName("fn8")
-    fun `Given arrayFixture is called it returns a Fixture while respecting nullability`() {
+    fun `Given sequenceFixture is called it returns a Fixture while respecting nullability`() {
         // Given
         val size = 5
         val expected = 23
@@ -153,7 +151,7 @@ class ArrayFixtureSpec {
         val fixture = Fixture(random as IsolateState<Random>, mapOf(int to generator))
 
         // When
-        val result = fixture.arrayFixture<Int?>()
+        val result = fixture.sequenceFixture<Int?>()
 
         // Then
         assertEquals(
@@ -165,18 +163,17 @@ class ArrayFixtureSpec {
             expected = 10
         )
         assertEquals(
-            actual = result.size,
+            actual = result.toList().size,
             expected = size
         )
-        assertTrue(
-            result.contentDeepEquals(
-                arrayOf<Int?>(
-                    null,
-                    null,
-                    null,
-                    null,
-                    null
-                )
+        assertEquals(
+            actual = result.toList(),
+            expected = listOf(
+                null,
+                null,
+                null,
+                null,
+                null
             )
         )
     }
@@ -184,7 +181,7 @@ class ArrayFixtureSpec {
     @Test
     @Suppress("UNCHECKED_CAST")
     @JsName("fn9")
-    fun `Given arrayFixture is called with a qualifier it returns a Fixture for the derrived Type`() {
+    fun `Given sequenceFixture is called with a qualifier it returns a Fixture for the derrived Type`() {
         // Given
         val size = 5
         val expected = 23
@@ -200,18 +197,17 @@ class ArrayFixtureSpec {
         val fixture = Fixture(random as IsolateState<Random>, mapOf("q:$qualifier:$int" to generator))
 
         // When
-        val result = fixture.arrayFixture<Int>(StringQualifier(qualifier))
+        val result = fixture.sequenceFixture<Int>(StringQualifier(qualifier))
 
         // Then
-        assertTrue(
-            result.contentDeepEquals(
-                arrayOf(
-                    expected,
-                    expected,
-                    expected,
-                    expected,
-                    expected
-                )
+        assertEquals(
+            actual = result.toList(),
+            expected = listOf(
+                expected,
+                expected,
+                expected,
+                expected,
+                expected
             )
         )
     }
@@ -219,7 +215,7 @@ class ArrayFixtureSpec {
     @Test
     @Suppress("UNCHECKED_CAST")
     @JsName("fn10")
-    fun `Given arrayFixture is called with a size it returns a Fixture for the derived Type in the given size`() {
+    fun `Given sequenceFixture is called with a size it returns a Fixture for the derived Type in the given size`() {
         // Given
         val size = 5
         val expected = 23
@@ -234,18 +230,17 @@ class ArrayFixtureSpec {
         val fixture = Fixture(random as IsolateState<Random>, mapOf(int to generator))
 
         // When
-        val result = fixture.arrayFixture<Int>(size = size)
+        val result = fixture.sequenceFixture<Int>(size = size)
 
         // Then
-        assertTrue(
-            result.contentDeepEquals(
-                arrayOf(
-                    expected,
-                    expected,
-                    expected,
-                    expected,
-                    expected
-                )
+        assertEquals(
+            actual = result.toList(),
+            expected = listOf(
+                expected,
+                expected,
+                expected,
+                expected,
+                expected
             )
         )
     }
@@ -253,7 +248,7 @@ class ArrayFixtureSpec {
     @Test
     @Suppress("UNCHECKED_CAST")
     @JsName("fn11")
-    fun `Given fixture is called with a size it returns a Fixture for the derived Array Type in the given size`() {
+    fun `Given fixture is called with a size it returns a Fixture for the derived Sequence Type in the given size`() {
         // Given
         val size = 5
         val expected = 23
@@ -268,20 +263,19 @@ class ArrayFixtureSpec {
         val fixture = Fixture(random as IsolateState<Random>, mapOf(int to generator))
 
         // When
-        val result: Array<Int> = fixture.fixture(
-            type = Array::class
+        val result: Sequence<Int> = fixture.fixture(
+            type = Sequence::class
         )
 
         // Then
-        assertTrue(
-            result.contentDeepEquals(
-                arrayOf(
-                    expected,
-                    expected,
-                    expected,
-                    expected,
-                    expected
-                )
+        assertEquals(
+            actual = result.toList(),
+            expected = listOf(
+                expected,
+                expected,
+                expected,
+                expected,
+                expected
             )
         )
     }

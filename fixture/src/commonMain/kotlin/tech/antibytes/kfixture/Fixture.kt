@@ -142,7 +142,6 @@ inline fun <reified C : Collection<T>, reified T> PublicApi.Fixture.fixture(
     size = size
 ) as C
 
-
 inline fun <reified T> PublicApi.Fixture.arrayFixture(
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null
@@ -161,6 +160,30 @@ inline fun <reified T> PublicApi.Fixture.fixture(
     qualifier = qualifier,
     size = size
 )
+
+inline fun <reified T> PublicApi.Fixture.sequenceFixture(
+    qualifier: PublicApi.Qualifier? = null,
+    size: Int? = null
+): Sequence<T> {
+    val actualSize = determineCollectionSize(size)
+
+    return sequence {
+        repeat(actualSize) {
+            yield(fixture(qualifier))
+        }
+    }
+}
+
+@Suppress("UNUSED_PARAMETER")
+@JvmName("sequenceFixtureAlias")
+inline fun <reified C : Sequence<T>, reified T> PublicApi.Fixture.fixture(
+    type: KClass<Sequence<*>>,
+    qualifier: PublicApi.Qualifier? = null,
+    size: Int? = null,
+): C = sequenceFixture<T>(
+    qualifier = qualifier,
+    size = size
+) as C
 
 inline fun <reified First, reified Second> PublicApi.Fixture.pairFixture(
     keyQualifier: PublicApi.Qualifier? = null,
