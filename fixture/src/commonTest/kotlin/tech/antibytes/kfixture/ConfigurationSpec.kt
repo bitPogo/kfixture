@@ -25,6 +25,7 @@ import tech.antibytes.kfixture.generator.array.ULongArrayGenerator
 import tech.antibytes.kfixture.generator.array.UShortArrayGenerator
 import tech.antibytes.kfixture.generator.primitive.AnyGenerator
 import tech.antibytes.kfixture.generator.primitive.BooleanGenerator
+import tech.antibytes.kfixture.generator.primitive.ByteGenerator
 import tech.antibytes.kfixture.generator.primitive.CharGenerator
 import tech.antibytes.kfixture.generator.primitive.DoubleGenerator
 import tech.antibytes.kfixture.generator.primitive.FloatGenerator
@@ -32,6 +33,7 @@ import tech.antibytes.kfixture.generator.primitive.IntegerGenerator
 import tech.antibytes.kfixture.generator.primitive.LongGenerator
 import tech.antibytes.kfixture.generator.primitive.ShortGenerator
 import tech.antibytes.kfixture.generator.primitive.StringGenerator
+import tech.antibytes.kfixture.generator.primitive.UByteGenerator
 import tech.antibytes.kfixture.generator.primitive.UIntegerGenerator
 import tech.antibytes.kfixture.generator.primitive.ULongGenerator
 import tech.antibytes.kfixture.generator.primitive.UShortGenerator
@@ -116,7 +118,9 @@ class ConfigurationSpec {
             uIntArray to UIntArrayGenerator::class,
             uLong to ULongGenerator::class,
             uLongArray to ULongArrayGenerator::class,
+            byte to ByteGenerator::class,
             byteArray to ByteArrayGenerator::class,
+            uByte to UByteGenerator::class,
             uByteArray to UByteArrayGenerator::class,
             any to AnyGenerator::class,
             unit to UnitGenerator::class,

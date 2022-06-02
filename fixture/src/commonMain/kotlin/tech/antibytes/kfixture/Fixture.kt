@@ -61,13 +61,9 @@ inline fun <reified T> PublicApi.Fixture.mutableListFixture(
 ): MutableList<T> {
     val actualSize = size ?: random.access { it.nextInt(COLLECTION_LOWER_BOUND, COLLECTION_UPPER_BOUND) }
 
-    val list = mutableListOf<T>()
-
-    repeat(actualSize) {
-        list.add(fixture(qualifier))
+    return MutableList(actualSize) {
+        fixture(qualifier)
     }
-
-    return list
 }
 
 @Suppress("UNUSED_PARAMETER")
@@ -186,13 +182,9 @@ inline fun <reified Key, reified Value> PublicApi.Fixture.mapFixture(
 ): Map<Key, Value> {
     val actualSize = size ?: random.access { it.nextInt(COLLECTION_LOWER_BOUND, COLLECTION_UPPER_BOUND) }
 
-    val list = mutableListOf<Pair<Key, Value>>()
-
-    repeat(actualSize) {
-        list.add(pairFixture(keyQualifier, valueQualifier))
-    }
-
-    return list.toMap()
+    return MutableList<Pair<Key, Value>>(actualSize) {
+        pairFixture(keyQualifier, valueQualifier)
+    }.toMap()
 }
 
 @Suppress("UNUSED_PARAMETER")

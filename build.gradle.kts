@@ -61,6 +61,7 @@ tasks.withType<Detekt>().configureEach {
         "**/.gradle/**",
         "**/.idea/**",
         "**/build/**",
+        "**/buildSrc/**",
         ".github/**",
         "gradle/**",
         "**/gradle/**",
@@ -68,7 +69,7 @@ tasks.withType<Detekt>().configureEach {
         "**/test/resources/**",
         "**/build.gradle.kts",
         "**/settings.gradle.kts",
-        "**/Dangerfile.df.kts"
+        "**/Dangerfile.df.kts",
     )
 
     reports {
