@@ -4,12 +4,12 @@
  * Use of this source code is governed by Apache v2.0
  */
 
+import io.gitlab.arturbosch.detekt.Detekt
+import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
 import tech.antibytes.gradle.dependency.Version
 import tech.antibytes.gradle.kfixture.config.FixturePublishingConfiguration
 import tech.antibytes.gradle.kfixture.dependency.addCustomRepositories
 import tech.antibytes.gradle.kfixture.dependency.ensureKotlinVersion
-import io.gitlab.arturbosch.detekt.Detekt
-import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
 
 plugins {
     id("tech.antibytes.gradle.kfixture.dependency")

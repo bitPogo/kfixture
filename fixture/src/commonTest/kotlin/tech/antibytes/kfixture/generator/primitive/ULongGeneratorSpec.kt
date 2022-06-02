@@ -7,8 +7,6 @@
 package tech.antibytes.kfixture.generator.primitive
 
 import co.touchlab.stately.isolate.IsolateState
-import kotlinx.atomicfu.AtomicRef
-import kotlinx.atomicfu.atomic
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.mock.RandomStub
 import kotlin.js.JsName

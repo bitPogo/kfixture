@@ -7,6 +7,7 @@
 package tech.antibytes.kfixture
 
 import co.touchlab.stately.isolate.IsolateState
+import tech.antibytes.kfixture.PublicApi.Generator
 import tech.antibytes.kfixture.generator.array.BooleanArrayGenerator
 import tech.antibytes.kfixture.generator.array.ByteArrayGenerator
 import tech.antibytes.kfixture.generator.array.CharArrayGenerator
@@ -32,7 +33,6 @@ import tech.antibytes.kfixture.generator.primitive.UIntegerGenerator
 import tech.antibytes.kfixture.generator.primitive.ULongGenerator
 import tech.antibytes.kfixture.generator.primitive.UShortGenerator
 import tech.antibytes.kfixture.generator.primitive.UnitGenerator
-import tech.antibytes.kfixture.PublicApi.Generator
 import tech.antibytes.kfixture.qualifier.resolveId
 import kotlin.random.Random
 import kotlin.reflect.KClass

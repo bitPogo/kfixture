@@ -7,7 +7,6 @@
 package tech.antibytes.kfixture.generator.primitive
 
 import co.touchlab.stately.isolate.IsolateState
-import tech.antibytes.kfixture.FixtureContract
 import tech.antibytes.kfixture.FixtureContract.Companion.CHAR_LOWER_BOUND
 import tech.antibytes.kfixture.FixtureContract.Companion.CHAR_UPPER_BOUND
 import tech.antibytes.kfixture.FixtureContract.Companion.STRING_LOWER_BOUND
