@@ -44,7 +44,7 @@ class QualifierSpec {
         assertTrue(result is StringQualifier)
         assertEquals(
             actual = result.value,
-            expected = "${FixtureContract.QUALIFIER_PREFIX}${id.toString().toLowerCase()}"
+            expected = "${FixtureContract.QUALIFIER_PREFIX}${id.toString().lowercase()}"
         )
     }
 
