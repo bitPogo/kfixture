@@ -38,6 +38,14 @@ internal inline fun <reified T> IsolateState<Random>.returnNull(): Boolean {
     }
 }
 
+@InternalAPI
+@PublishedApi
+internal fun PublicApi.Fixture.determineCollectionSize(
+    size: Int?
+): Int {
+    return size ?: random.access { it.nextInt(COLLECTION_LOWER_BOUND, COLLECTION_UPPER_BOUND) }
+}
+
 inline fun <reified T> PublicApi.Fixture.fixture(
     qualifier: PublicApi.Qualifier? = null
 ): T {
@@ -59,7 +67,7 @@ inline fun <reified T> PublicApi.Fixture.mutableListFixture(
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null
 ): MutableList<T> {
-    val actualSize = size ?: random.access { it.nextInt(COLLECTION_LOWER_BOUND, COLLECTION_UPPER_BOUND) }
+    val actualSize = determineCollectionSize(size)
 
     return MutableList(actualSize) {
         fixture(qualifier)
@@ -134,6 +142,26 @@ inline fun <reified C : Collection<T>, reified T> PublicApi.Fixture.fixture(
     size = size
 ) as C
 
+
+inline fun <reified T> PublicApi.Fixture.arrayFixture(
+    qualifier: PublicApi.Qualifier? = null,
+    size: Int? = null
+): Array<T> = mutableListFixture<T>(
+    qualifier = qualifier,
+    size = size
+).toTypedArray()
+
+@Suppress("UNUSED_PARAMETER")
+@JvmName("arrayListFixtureAlias")
+inline fun <reified T> PublicApi.Fixture.fixture(
+    type: KClass<Array<*>>,
+    qualifier: PublicApi.Qualifier? = null,
+    size: Int? = null,
+): Array<T> = arrayFixture(
+    qualifier = qualifier,
+    size = size
+)
+
 inline fun <reified First, reified Second> PublicApi.Fixture.pairFixture(
     keyQualifier: PublicApi.Qualifier? = null,
     valueQualifier: PublicApi.Qualifier? = null,
@@ -180,7 +208,7 @@ inline fun <reified Key, reified Value> PublicApi.Fixture.mapFixture(
     valueQualifier: PublicApi.Qualifier? = null,
     size: Int? = null
 ): Map<Key, Value> {
-    val actualSize = size ?: random.access { it.nextInt(COLLECTION_LOWER_BOUND, COLLECTION_UPPER_BOUND) }
+    val actualSize = determineCollectionSize(size)
 
     return MutableList<Pair<Key, Value>>(actualSize) {
         pairFixture(keyQualifier, valueQualifier)
@@ -227,7 +255,7 @@ inline fun <reified T> PublicApi.Fixture.mutableSetFixture(
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null
 ): MutableSet<T> {
-    val actualSize = size ?: random.access { it.nextInt(COLLECTION_LOWER_BOUND, COLLECTION_UPPER_BOUND) }
+    val actualSize = determineCollectionSize(size)
 
     val set = mutableSetOf<T>()
 
