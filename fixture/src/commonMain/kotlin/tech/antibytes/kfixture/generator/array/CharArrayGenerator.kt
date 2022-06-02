@@ -7,6 +7,10 @@
 package tech.antibytes.kfixture.generator.array
 
 import co.touchlab.stately.isolate.IsolateState
+import tech.antibytes.kfixture.FixtureContract.Companion.ARRAY_LOWER_BOUND
+import tech.antibytes.kfixture.FixtureContract.Companion.ARRAY_UPPER_BOUND
+import tech.antibytes.kfixture.FixtureContract.Companion.CHAR_LOWER_BOUND
+import tech.antibytes.kfixture.FixtureContract.Companion.CHAR_UPPER_BOUND
 import tech.antibytes.kfixture.PublicApi
 import kotlin.random.Random
 
@@ -17,14 +21,14 @@ internal class CharArrayGenerator(
         val fixture = CharArray(size)
 
         repeat(size) { idx ->
-            fixture[idx] = random.access { it.nextInt(33, 126).toChar() }
+            fixture[idx] = random.access { it.nextInt(CHAR_LOWER_BOUND, CHAR_UPPER_BOUND).toChar() }
         }
 
         return fixture
     }
 
     override fun generate(): CharArray {
-        val size = random.access { it.nextInt(1, 100) }
+        val size = random.access { it.nextInt(ARRAY_LOWER_BOUND, ARRAY_UPPER_BOUND) }
 
         return generateCharArray(size)
     }

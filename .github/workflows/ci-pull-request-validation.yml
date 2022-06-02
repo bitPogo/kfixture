@@ -29,16 +29,23 @@ jobs:
         with:
           fetch-depth: 0
           ref: ${{ github.head_ref }}
+
       - uses: actions/setup-java@v2
         with:
           distribution: 'adopt' # See 'Supported distributions' for available options
           java-version: '11'
+
       - name: Cleanup
         run: ./gradlew clean
+
       - name: Lint
         run: ./gradlew spotlessCheck
+
+      - name: Static Analysis
+        run: ./gradlew detekt
+
       - name: Build
         run: ./gradlew build
+
       - name: Publish to Development Repository
         run: ./gradlew publishDevelopment
-

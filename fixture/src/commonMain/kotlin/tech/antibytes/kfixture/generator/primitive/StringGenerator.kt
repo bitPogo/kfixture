@@ -7,6 +7,10 @@
 package tech.antibytes.kfixture.generator.primitive
 
 import co.touchlab.stately.isolate.IsolateState
+import tech.antibytes.kfixture.FixtureContract.Companion.CHAR_LOWER_BOUND
+import tech.antibytes.kfixture.FixtureContract.Companion.CHAR_UPPER_BOUND
+import tech.antibytes.kfixture.FixtureContract.Companion.STRING_LOWER_BOUND
+import tech.antibytes.kfixture.FixtureContract.Companion.STRING_UPPER_BOUND
 import tech.antibytes.kfixture.PublicApi
 import kotlin.random.Random
 
@@ -14,11 +18,11 @@ internal class StringGenerator(
     val random: IsolateState<Random>
 ) : PublicApi.Generator<String> {
     override fun generate(): String {
-        val length = random.access { it.nextInt(1, 10) }
+        val length = random.access { it.nextInt(STRING_LOWER_BOUND, STRING_UPPER_BOUND) }
         val chars = ByteArray(length)
 
         for (idx in 0 until length) {
-            chars[idx] = random.access { it.nextInt(33, 126).toByte() }
+            chars[idx] = random.access { it.nextInt(CHAR_LOWER_BOUND, CHAR_UPPER_BOUND).toByte() }
         }
 
         return chars.decodeToString()

@@ -7,6 +7,7 @@
 package tech.antibytes.kfixture
 
 import co.touchlab.stately.isolate.IsolateState
+import tech.antibytes.kfixture.PublicApi.Generator
 import tech.antibytes.kfixture.generator.array.BooleanArrayGenerator
 import tech.antibytes.kfixture.generator.array.ByteArrayGenerator
 import tech.antibytes.kfixture.generator.array.CharArrayGenerator
@@ -41,7 +42,7 @@ internal class Configuration(
 ) : FixtureContract.Configuration {
     private val customGenerators: MutableMap<String, PublicApi.GeneratorFactory<out Any>> = mutableMapOf()
 
-    private fun initializeDefaultsGenerators(random: IsolateState<Random>): Map<String, PublicApi.Generator<out Any>> {
+    private fun initializeDefaultsGenerators(random: IsolateState<Random>): Map<String, Generator<out Any>> {
         return mapOf(
             resolveClassName(Boolean::class) to BooleanGenerator(random),
             resolveClassName(BooleanArray::class) to BooleanArrayGenerator(random),
@@ -71,8 +72,8 @@ internal class Configuration(
         )
     }
 
-    private fun initializeCustomGenerators(random: IsolateState<Random>): MutableMap<String, PublicApi.Generator<out Any>> {
-        val initializedGenerators: MutableMap<String, PublicApi.Generator<out Any>> = mutableMapOf()
+    private fun initializeCustomGenerators(random: IsolateState<Random>): MutableMap<String, Generator<out Any>> {
+        val initializedGenerators: MutableMap<String, Generator<out Any>> = mutableMapOf()
         customGenerators.forEach { (key, factory) ->
             initializedGenerators[key] = factory.getInstance(random)
         }
