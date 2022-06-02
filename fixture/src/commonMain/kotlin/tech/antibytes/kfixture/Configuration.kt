@@ -22,6 +22,7 @@ import tech.antibytes.kfixture.generator.array.ULongArrayGenerator
 import tech.antibytes.kfixture.generator.array.UShortArrayGenerator
 import tech.antibytes.kfixture.generator.primitive.AnyGenerator
 import tech.antibytes.kfixture.generator.primitive.BooleanGenerator
+import tech.antibytes.kfixture.generator.primitive.ByteGenerator
 import tech.antibytes.kfixture.generator.primitive.CharGenerator
 import tech.antibytes.kfixture.generator.primitive.DoubleGenerator
 import tech.antibytes.kfixture.generator.primitive.FloatGenerator
@@ -29,6 +30,7 @@ import tech.antibytes.kfixture.generator.primitive.IntegerGenerator
 import tech.antibytes.kfixture.generator.primitive.LongGenerator
 import tech.antibytes.kfixture.generator.primitive.ShortGenerator
 import tech.antibytes.kfixture.generator.primitive.StringGenerator
+import tech.antibytes.kfixture.generator.primitive.UByteGenerator
 import tech.antibytes.kfixture.generator.primitive.UIntegerGenerator
 import tech.antibytes.kfixture.generator.primitive.ULongGenerator
 import tech.antibytes.kfixture.generator.primitive.UShortGenerator
@@ -59,6 +61,7 @@ internal class Configuration(
             resolveClassName(Double::class) to DoubleGenerator(random),
             resolveClassName(DoubleArray::class) to DoubleArrayGenerator(random),
             resolveClassName(String::class) to StringGenerator(random),
+            resolveClassName(Byte::class) to ByteGenerator(random),
             resolveClassName(ByteArray::class) to ByteArrayGenerator(random),
             resolveClassName(UShort::class) to UShortGenerator(random),
             resolveClassName(UShortArray::class) to UShortArrayGenerator(random),
@@ -66,6 +69,7 @@ internal class Configuration(
             resolveClassName(UIntArray::class) to UIntArrayGenerator(random),
             resolveClassName(ULong::class) to ULongGenerator(random),
             resolveClassName(ULongArray::class) to ULongArrayGenerator(random),
+            resolveClassName(UByte::class) to UByteGenerator(random),
             resolveClassName(UByteArray::class) to UByteArrayGenerator(random),
             resolveClassName(Any::class) to AnyGenerator,
             resolveClassName(Unit::class) to UnitGenerator

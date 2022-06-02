@@ -27,7 +27,9 @@ expect val uInt: String
 expect val uIntArray: String
 expect val uLong: String
 expect val uLongArray: String
+expect val byte: String
 expect val byteArray: String
+expect val uByte: String
 expect val uByteArray: String
 expect val any: String
 expect val unit: String
