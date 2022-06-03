@@ -6,7 +6,6 @@
 
 package tech.antibytes.kfixture
 
-@Repeatable
 @Retention(AnnotationRetention.SOURCE)
 @MustBeDocumented
-annotation class InternalAPI(val message: String = "Only for internal usage.")
+internal annotation class InternalAPI(val message: String = "Only for internal usage.")

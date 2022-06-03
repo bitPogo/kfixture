@@ -7,10 +7,10 @@
 package tech.antibytes.kfixture.generator.array
 
 import co.touchlab.stately.isolate.IsolateState
-import tech.antibytes.kfixture.FixtureContract.Companion.ARRAY_LOWER_BOUND
-import tech.antibytes.kfixture.FixtureContract.Companion.ARRAY_UPPER_BOUND
-import tech.antibytes.kfixture.FixtureContract.Companion.CHAR_LOWER_BOUND
-import tech.antibytes.kfixture.FixtureContract.Companion.CHAR_UPPER_BOUND
+import tech.antibytes.kfixture.FixtureContract.ARRAY_LOWER_BOUND
+import tech.antibytes.kfixture.FixtureContract.ARRAY_UPPER_BOUND
+import tech.antibytes.kfixture.FixtureContract.CHAR_LOWER_BOUND
+import tech.antibytes.kfixture.FixtureContract.CHAR_UPPER_BOUND
 import tech.antibytes.kfixture.PublicApi
 import kotlin.random.Random
 

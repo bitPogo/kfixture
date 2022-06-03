@@ -10,30 +10,31 @@ import co.touchlab.stately.isolate.IsolateState
 import kotlin.random.Random
 import kotlin.reflect.KClass
 
-interface PublicApi {
-    interface Generator<T : Any> {
-        fun generate(): T
+public interface PublicApi {
+    public interface Generator<T : Any> {
+        public fun generate(): T
     }
 
-    interface GeneratorFactory<T : Any> {
-        fun getInstance(random: IsolateState<Random>): Generator<T>
+    public interface GeneratorFactory<T : Any> {
+        public fun getInstance(random: IsolateState<Random>): Generator<T>
     }
 
-    interface Qualifier {
-        val value: String
+    public interface Qualifier {
+        public val value: String
     }
 
-    interface Configuration {
-        var seed: Int
-        fun <T : Any> addGenerator(
+    public interface Configuration {
+        public var seed: Int
+
+        public fun <T : Any> addGenerator(
             clazz: KClass<T>,
             factory: GeneratorFactory<T>,
             qualifier: Qualifier? = null
         ): Configuration
     }
 
-    interface Fixture {
-        val random: IsolateState<Random>
-        val generators: Map<String, Generator<out Any>>
+    public interface Fixture {
+        public val random: IsolateState<Random>
+        public val generators: Map<String, Generator<out Any>>
     }
 }

@@ -11,7 +11,7 @@ import tech.antibytes.kfixture.PublicApi
 import kotlin.random.Random
 import kotlin.random.nextULong
 
-class ULongGenerator(
+internal class ULongGenerator(
     val random: IsolateState<Random>
 ) : PublicApi.Generator<ULong> {
     override fun generate(): ULong = random.access { it.nextULong() }

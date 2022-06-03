@@ -8,8 +8,8 @@ package tech.antibytes.kfixture
 
 import co.touchlab.stately.isolate.IsolateState
 import kotlinx.atomicfu.atomic
-import tech.antibytes.kfixture.FixtureContract.Companion.COLLECTION_LOWER_BOUND
-import tech.antibytes.kfixture.FixtureContract.Companion.COLLECTION_UPPER_BOUND
+import tech.antibytes.kfixture.FixtureContract.COLLECTION_LOWER_BOUND
+import tech.antibytes.kfixture.FixtureContract.COLLECTION_UPPER_BOUND
 import tech.antibytes.kfixture.qualifier.resolveId
 import kotlin.jvm.JvmName
 import kotlin.random.Random
@@ -46,7 +46,7 @@ internal fun PublicApi.Fixture.determineCollectionSize(
     return size ?: random.access { it.nextInt(COLLECTION_LOWER_BOUND, COLLECTION_UPPER_BOUND) }
 }
 
-inline fun <reified T> PublicApi.Fixture.fixture(
+public inline fun <reified T> PublicApi.Fixture.fixture(
     qualifier: PublicApi.Qualifier? = null
 ): T {
     val returnNull = random.returnNull<T>()
@@ -63,7 +63,7 @@ inline fun <reified T> PublicApi.Fixture.fixture(
     }
 }
 
-inline fun <reified T> PublicApi.Fixture.mutableListFixture(
+public inline fun <reified T> PublicApi.Fixture.mutableListFixture(
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null
 ): MutableList<T> {
@@ -76,7 +76,7 @@ inline fun <reified T> PublicApi.Fixture.mutableListFixture(
 
 @Suppress("UNUSED_PARAMETER")
 @JvmName("mutableListFixtureAlias")
-inline fun <reified C : MutableList<T>, reified T> PublicApi.Fixture.fixture(
+public inline fun <reified C : MutableList<T>, reified T> PublicApi.Fixture.fixture(
     type: KClass<MutableList<*>>,
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null,
@@ -85,7 +85,7 @@ inline fun <reified C : MutableList<T>, reified T> PublicApi.Fixture.fixture(
     size = size
 ) as C
 
-inline fun <reified T> PublicApi.Fixture.listFixture(
+public inline fun <reified T> PublicApi.Fixture.listFixture(
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null
 ): List<T> = mutableListFixture(
@@ -95,7 +95,7 @@ inline fun <reified T> PublicApi.Fixture.listFixture(
 
 @Suppress("UNUSED_PARAMETER")
 @JvmName("listFixtureAlias")
-inline fun <reified C : List<T>, reified T> PublicApi.Fixture.fixture(
+public inline fun <reified C : List<T>, reified T> PublicApi.Fixture.fixture(
     type: KClass<List<*>>,
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null,
@@ -104,7 +104,7 @@ inline fun <reified C : List<T>, reified T> PublicApi.Fixture.fixture(
     size = size
 ) as C
 
-inline fun <reified T> PublicApi.Fixture.mutableCollectionFixture(
+public inline fun <reified T> PublicApi.Fixture.mutableCollectionFixture(
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null
 ): MutableCollection<T> = mutableListFixture(
@@ -114,7 +114,7 @@ inline fun <reified T> PublicApi.Fixture.mutableCollectionFixture(
 
 @Suppress("UNUSED_PARAMETER")
 @JvmName("mutableCollectionFixtureAlias")
-inline fun <reified C : MutableCollection<T>, reified T> PublicApi.Fixture.fixture(
+public inline fun <reified C : MutableCollection<T>, reified T> PublicApi.Fixture.fixture(
     type: KClass<MutableCollection<*>>,
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null,
@@ -123,7 +123,7 @@ inline fun <reified C : MutableCollection<T>, reified T> PublicApi.Fixture.fixtu
     size = size
 ) as C
 
-inline fun <reified T> PublicApi.Fixture.collectionFixture(
+public inline fun <reified T> PublicApi.Fixture.collectionFixture(
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null
 ): MutableCollection<T> = mutableListFixture(
@@ -133,7 +133,7 @@ inline fun <reified T> PublicApi.Fixture.collectionFixture(
 
 @Suppress("UNUSED_PARAMETER")
 @JvmName("collectionFixtureAlias")
-inline fun <reified C : Collection<T>, reified T> PublicApi.Fixture.fixture(
+public inline fun <reified C : Collection<T>, reified T> PublicApi.Fixture.fixture(
     type: KClass<Collection<*>>,
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null,
@@ -142,7 +142,7 @@ inline fun <reified C : Collection<T>, reified T> PublicApi.Fixture.fixture(
     size = size
 ) as C
 
-inline fun <reified T> PublicApi.Fixture.arrayFixture(
+public inline fun <reified T> PublicApi.Fixture.arrayFixture(
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null
 ): Array<T> = mutableListFixture<T>(
@@ -152,7 +152,7 @@ inline fun <reified T> PublicApi.Fixture.arrayFixture(
 
 @Suppress("UNUSED_PARAMETER")
 @JvmName("arrayListFixtureAlias")
-inline fun <reified T> PublicApi.Fixture.fixture(
+public inline fun <reified T> PublicApi.Fixture.fixture(
     type: KClass<Array<*>>,
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null,
@@ -161,7 +161,7 @@ inline fun <reified T> PublicApi.Fixture.fixture(
     size = size
 )
 
-inline fun <reified T> PublicApi.Fixture.sequenceFixture(
+public inline fun <reified T> PublicApi.Fixture.sequenceFixture(
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null
 ): Sequence<T> {
@@ -176,7 +176,7 @@ inline fun <reified T> PublicApi.Fixture.sequenceFixture(
 
 @Suppress("UNUSED_PARAMETER")
 @JvmName("sequenceFixtureAlias")
-inline fun <reified C : Sequence<T>, reified T> PublicApi.Fixture.fixture(
+public inline fun <reified C : Sequence<T>, reified T> PublicApi.Fixture.fixture(
     type: KClass<Sequence<*>>,
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null,
@@ -185,14 +185,14 @@ inline fun <reified C : Sequence<T>, reified T> PublicApi.Fixture.fixture(
     size = size
 ) as C
 
-inline fun <reified First, reified Second> PublicApi.Fixture.pairFixture(
+public inline fun <reified First, reified Second> PublicApi.Fixture.pairFixture(
     keyQualifier: PublicApi.Qualifier? = null,
     valueQualifier: PublicApi.Qualifier? = null,
 ): Pair<First, Second> = fixture<First>(keyQualifier) to fixture(valueQualifier)
 
 @Suppress("UNUSED_PARAMETER")
 @JvmName("pairFixtureAlias")
-inline fun <reified C : Pair<First, Second>, reified First, reified Second> PublicApi.Fixture.fixture(
+public inline fun <reified C : Pair<First, Second>, reified First, reified Second> PublicApi.Fixture.fixture(
     type: KClass<Pair<*, *>>,
     keyQualifier: PublicApi.Qualifier? = null,
     valueQualifier: PublicApi.Qualifier? = null,
@@ -201,7 +201,7 @@ inline fun <reified C : Pair<First, Second>, reified First, reified Second> Publ
     valueQualifier = valueQualifier,
 ) as C
 
-inline fun <reified First, reified Second, reified Third> PublicApi.Fixture.tripleFixture(
+public inline fun <reified First, reified Second, reified Third> PublicApi.Fixture.tripleFixture(
     firstQualifier: PublicApi.Qualifier? = null,
     secondQualifier: PublicApi.Qualifier? = null,
     thirdQualifier: PublicApi.Qualifier? = null,
@@ -215,7 +215,7 @@ inline fun <reified First, reified Second, reified Third> PublicApi.Fixture.trip
 
 @Suppress("UNUSED_PARAMETER")
 @JvmName("tripleFixtureAlias")
-inline fun <reified C : Triple<First, Second, Third>, reified First, reified Second, reified Third> PublicApi.Fixture.fixture(
+public inline fun <reified C : Triple<First, Second, Third>, reified First, reified Second, reified Third> PublicApi.Fixture.fixture(
     type: KClass<Triple<*, *, *>>,
     firstQualifier: PublicApi.Qualifier? = null,
     secondQualifier: PublicApi.Qualifier? = null,
@@ -226,7 +226,7 @@ inline fun <reified C : Triple<First, Second, Third>, reified First, reified Sec
     thirdQualifier = thirdQualifier,
 ) as C
 
-inline fun <reified Key, reified Value> PublicApi.Fixture.mapFixture(
+public inline fun <reified Key, reified Value> PublicApi.Fixture.mapFixture(
     keyQualifier: PublicApi.Qualifier? = null,
     valueQualifier: PublicApi.Qualifier? = null,
     size: Int? = null
@@ -240,7 +240,7 @@ inline fun <reified Key, reified Value> PublicApi.Fixture.mapFixture(
 
 @Suppress("UNUSED_PARAMETER")
 @JvmName("mapFixtureAlias")
-inline fun <reified C : Map<Key, Value>, reified Key, reified Value> PublicApi.Fixture.fixture(
+public inline fun <reified C : Map<Key, Value>, reified Key, reified Value> PublicApi.Fixture.fixture(
     type: KClass<Map<*, *>>,
     keyQualifier: PublicApi.Qualifier? = null,
     valueQualifier: PublicApi.Qualifier? = null,
@@ -251,7 +251,7 @@ inline fun <reified C : Map<Key, Value>, reified Key, reified Value> PublicApi.F
     size = size,
 ) as C
 
-inline fun <reified Key, reified Value> PublicApi.Fixture.mutableMapFixture(
+public inline fun <reified Key, reified Value> PublicApi.Fixture.mutableMapFixture(
     keyQualifier: PublicApi.Qualifier? = null,
     valueQualifier: PublicApi.Qualifier? = null,
     size: Int? = null
@@ -263,7 +263,7 @@ inline fun <reified Key, reified Value> PublicApi.Fixture.mutableMapFixture(
 
 @Suppress("UNUSED_PARAMETER")
 @JvmName("mutableMapFixtureAlias")
-inline fun <reified C : MutableMap<Key, Value>, reified Key, reified Value> PublicApi.Fixture.fixture(
+public inline fun <reified C : MutableMap<Key, Value>, reified Key, reified Value> PublicApi.Fixture.fixture(
     type: KClass<MutableMap<*, *>>,
     keyQualifier: PublicApi.Qualifier? = null,
     valueQualifier: PublicApi.Qualifier? = null,
@@ -274,7 +274,7 @@ inline fun <reified C : MutableMap<Key, Value>, reified Key, reified Value> Publ
     size = size,
 ) as C
 
-inline fun <reified T> PublicApi.Fixture.mutableSetFixture(
+public inline fun <reified T> PublicApi.Fixture.mutableSetFixture(
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null
 ): MutableSet<T> {
@@ -291,7 +291,7 @@ inline fun <reified T> PublicApi.Fixture.mutableSetFixture(
 
 @Suppress("UNUSED_PARAMETER")
 @JvmName("mutableSetFixtureAlias")
-inline fun <reified C : MutableSet<T>, reified T> PublicApi.Fixture.fixture(
+public inline fun <reified C : MutableSet<T>, reified T> PublicApi.Fixture.fixture(
     type: KClass<MutableSet<*>>,
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null,
@@ -300,14 +300,14 @@ inline fun <reified C : MutableSet<T>, reified T> PublicApi.Fixture.fixture(
     size = size
 ) as C
 
-inline fun <reified T> PublicApi.Fixture.setFixture(
+public inline fun <reified T> PublicApi.Fixture.setFixture(
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null
 ): Set<T> = mutableSetFixture(qualifier, size)
 
 @Suppress("UNUSED_PARAMETER")
 @JvmName("setFixtureAlias")
-inline fun <reified C : Set<T>, reified T> PublicApi.Fixture.fixture(
+public inline fun <reified C : Set<T>, reified T> PublicApi.Fixture.fixture(
     type: KClass<Set<*>>,
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null,
