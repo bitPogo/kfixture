@@ -10,7 +10,7 @@ import co.touchlab.stately.isolate.IsolateState
 import tech.antibytes.kfixture.PublicApi
 import kotlin.random.Random
 
-class LongGenerator(
+internal class LongGenerator(
     val random: IsolateState<Random>
 ) : PublicApi.Generator<Long> {
     override fun generate(): Long = random.access { it.nextLong() }

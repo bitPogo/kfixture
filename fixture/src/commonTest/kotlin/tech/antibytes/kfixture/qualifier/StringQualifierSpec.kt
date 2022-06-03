@@ -6,7 +6,7 @@
 
 package tech.antibytes.kfixture.qualifier
 
-import tech.antibytes.kfixture.FixtureContract.Companion.QUALIFIER_PREFIX
+import tech.antibytes.kfixture.FixtureContract.QUALIFIER_PREFIX
 import tech.antibytes.kfixture.PublicApi
 import kotlin.js.JsName
 import kotlin.test.Test

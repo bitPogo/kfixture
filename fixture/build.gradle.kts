@@ -24,6 +24,9 @@ plugins {
     id("tech.antibytes.gradle.coverage")
 
     id("kotlinx-atomicfu")
+
+    // Pin API
+    id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.10.0"
 }
 
 group = FixtureConfiguration.group
@@ -80,6 +83,8 @@ android {
 }
 
 kotlin {
+    explicitApi()
+
     android()
 
     js(IR) {

@@ -6,7 +6,7 @@
 
 package tech.antibytes.kfixture
 
-fun kotlinFixture(
+public fun kotlinFixture(
     configurator: PublicApi.Configuration.() -> Unit = {}
 ): PublicApi.Fixture {
     val configuration = Configuration()
