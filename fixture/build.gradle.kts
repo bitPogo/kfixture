@@ -12,6 +12,8 @@ import tech.antibytes.gradle.coverage.api.AndroidJacocoConfiguration
 import tech.antibytes.gradle.coverage.api.JacocoVerificationRule
 import tech.antibytes.gradle.coverage.CoverageApiContract.JacocoCounter
 import tech.antibytes.gradle.coverage.CoverageApiContract.JacocoMeasurement
+import tech.antibytes.gradle.publishing.api.DocumentationConfiguration
+import org.jetbrains.dokka.gradle.DokkaTask
 
 plugins {
     id("org.jetbrains.kotlin.multiplatform")
@@ -25,16 +27,23 @@ plugins {
 
     id("kotlinx-atomicfu")
 
+    id("org.jetbrains.dokka") version "1.6.10"
+
     // Pin API
     id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.10.0"
 }
 
 group = FixtureConfiguration.group
+val dokkaDir = buildDir.resolve("dokka")
 
 antiBytesPublishing {
     packageConfiguration = FixtureConfiguration.publishing.packageConfiguration
     repositoryConfiguration = FixtureConfiguration.publishing.repositories
     versioning = FixtureConfiguration.publishing.versioning
+    documentation = DocumentationConfiguration(
+        tasks = setOf("dokkaHtml"),
+        outputDir = dokkaDir
+    )
 }
 
 antiBytesCoverage {
@@ -245,5 +254,24 @@ kotlin {
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+}
+
+tasks.withType<DokkaTask>(DokkaTask::class.java).configureEach {
+    outputDirectory.set(buildDir.resolve("dokka"))
+
+    moduleName.set("KFixture")
+    offlineMode.set(true)
+    suppressObviousFunctions.set(true)
+
+    dokkaSourceSets {
+        configureEach {
+            reportUndocumented.set(true)
+            skipEmptyPackages.set(true)
+            jdkVersion.set(8)
+            noStdlibLink.set(false)
+            noJdkLink.set(false)
+            noAndroidSdkLink.set(false)
+        }
     }
 }

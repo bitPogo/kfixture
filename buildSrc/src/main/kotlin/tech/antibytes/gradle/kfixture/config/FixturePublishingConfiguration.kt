@@ -35,7 +35,7 @@ open class FixturePublishingConfiguration {
         id = githubOwner,
         name = githubOwner,
         url = "https://$host/$githubOwner",
-        email = "solascriptura001+antibytes@gmail.com"
+        email = "bitpogo@antibytes.tech"
     )
 
     protected val sourceControl = SourceControlConfiguration(
