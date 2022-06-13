@@ -6,7 +6,6 @@
 
 package tech.antibytes.kfixture.generator.array
 
-import co.touchlab.stately.isolate.IsolateState
 import kotlinx.atomicfu.AtomicRef
 import kotlinx.atomicfu.atomic
 import kotlinx.atomicfu.update
@@ -21,12 +20,12 @@ import kotlin.test.assertTrue
 
 class BooleanArrayGeneratorSpec {
     private val fixture = Random(0)
-    private val random = IsolateState { RandomStub() }
+    private val random = RandomStub()
     private val range: AtomicRef<Pair<Int, Int>?> = atomic(null)
 
     @AfterTest
     fun tearDown() {
-        random.access { it.clear() }
+        random.clear()
         range.getAndSet(null)
     }
 
@@ -34,7 +33,7 @@ class BooleanArrayGeneratorSpec {
     @Suppress("UNCHECKED_CAST")
     @JsName("fn0")
     fun `It fulfils Generator`() {
-        val generator: Any = BooleanArrayGenerator(random as IsolateState<Random>)
+        val generator: Any = BooleanArrayGenerator(random)
 
         assertTrue(generator is PublicApi.Generator<*>)
     }
@@ -45,19 +44,15 @@ class BooleanArrayGeneratorSpec {
     fun `Given generate is called it returns a BooleanArray`() {
         // Given
         val size = 23
-        val generator = BooleanArrayGenerator(random as IsolateState<Random>)
+        val generator = BooleanArrayGenerator(random)
         val expected = List(size) { fixture.nextBoolean() }
 
-        random.access { stub ->
-            (stub as RandomStub).nextIntRanged = { from, to ->
-                range.update { Pair(from, to) }
-                size
-            }
+        random.nextIntRanged = { from, to ->
+            range.update { Pair(from, to) }
+            size
         }
         val values = expected.toSharedMutableList()
-        random.access { stub ->
-            (stub as RandomStub).nextBoolean = { values.removeAt(0) }
-        }
+        random.nextBoolean = { values.removeAt(0) }
 
         // When
         val result = generator.generate()

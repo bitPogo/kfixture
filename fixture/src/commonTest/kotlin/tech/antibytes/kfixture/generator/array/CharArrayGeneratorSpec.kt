@@ -8,7 +8,6 @@ package tech.antibytes.kfixture.generator.array
 
 import co.touchlab.stately.collections.IsoMutableList
 import co.touchlab.stately.collections.sharedMutableListOf
-import co.touchlab.stately.isolate.IsolateState
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.mock.RandomStub
 import kotlin.js.JsName
@@ -20,12 +19,12 @@ import kotlin.test.assertTrue
 
 class CharArrayGeneratorSpec {
     private val fixture = Random(0)
-    private val random = IsolateState { RandomStub() }
+    private val random = RandomStub()
     private val range: IsoMutableList<Pair<Int, Int>> = sharedMutableListOf()
 
     @AfterTest
     fun tearDown() {
-        random.access { it.clear() }
+        random.clear()
         range.clear()
     }
 
@@ -33,7 +32,7 @@ class CharArrayGeneratorSpec {
     @Suppress("UNCHECKED_CAST")
     @JsName("fn0")
     fun `It fulfils Generator`() {
-        val generator: Any = CharArrayGenerator(random as IsolateState<Random>)
+        val generator: Any = CharArrayGenerator(random)
 
         assertTrue(generator is PublicApi.Generator<*>)
     }
@@ -44,20 +43,17 @@ class CharArrayGeneratorSpec {
     fun `Given generate is called it returns a CharArray`() {
         // Given
         val size = 23
-        val generator = CharArrayGenerator(random as IsolateState<Random>)
+        val generator = CharArrayGenerator(random)
         val expected = List(size) { fixture.nextInt().toChar() }
 
         val values = expected.toSharedMutableList().also { it.add(0, size.toChar()) }
-        random.access { stub ->
-            (stub as RandomStub).nextIntRanged = { from, to ->
-                range.add(Pair(from, to))
+        random.nextIntRanged = { from, to ->
+            range.add(Pair(from, to))
 
-                values.removeAt(0).code
-            }
+            values.removeAt(0).code
         }
-        random.access { stub ->
-            (stub as RandomStub).nextInt = { values.removeAt(0).code }
-        }
+
+        random.nextInt = { values.removeAt(0).code }
 
         // When
         val result: CharArray = generator.generate()

@@ -7,10 +7,10 @@
 package tech.antibytes.kfixture
 
 import co.touchlab.stately.isFrozen
-import co.touchlab.stately.isolate.IsolateState
 import kotlinx.atomicfu.AtomicRef
 import kotlinx.atomicfu.atomic
 import kotlinx.atomicfu.update
+import tech.antibytes.kfixture.generator.RandomWrapper
 import tech.antibytes.kfixture.generator.array.BooleanArrayGenerator
 import tech.antibytes.kfixture.generator.array.ByteArrayGenerator
 import tech.antibytes.kfixture.generator.array.CharArrayGenerator
@@ -85,8 +85,9 @@ class ConfigurationSpec {
         val fixture = Configuration(seed).build()
 
         // Then
+        assertTrue(fixture.random is RandomWrapper)
         assertEquals(
-            actual = fixture.random.access { it.nextDouble() },
+            actual = fixture.random.nextDouble(),
             expected = Random(seed).nextDouble()
         )
     }
@@ -174,10 +175,12 @@ class ConfigurationSpec {
 
         if (!TestGenerator.lastRandom.isFrozen) {
             assertEquals(
-                actual = TestGenerator.lastRandom.access { it.nextDouble() },
+                actual = TestGenerator.lastRandom.nextDouble(),
                 expected = Random(seed).nextDouble()
             )
         }
+
+        assertTrue(TestGenerator.lastRandom is RandomWrapper)
     }
 
     @Test
@@ -236,15 +239,15 @@ private class TestGenerator : PublicApi.Generator<TestClass> {
     override fun generate(): TestClass = TestClass()
 
     companion object : PublicApi.GeneratorFactory<TestClass> {
-        private val _lastRandom: AtomicRef<IsolateState<Random>?> = atomic(null)
+        private val _lastRandom: AtomicRef<Random?> = atomic(null)
 
-        var lastRandom: IsolateState<Random>
+        var lastRandom: Random
             get() = _lastRandom.value!!
             set(value) {
                 _lastRandom.update { value }
             }
 
-        override fun getInstance(random: IsolateState<Random>): PublicApi.Generator<TestClass> {
+        override fun getInstance(random: Random): PublicApi.Generator<TestClass> {
             return TestGenerator().also {
                 lastRandom = random
             }

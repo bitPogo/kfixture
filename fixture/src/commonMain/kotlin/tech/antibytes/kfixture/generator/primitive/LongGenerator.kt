@@ -6,12 +6,11 @@
 
 package tech.antibytes.kfixture.generator.primitive
 
-import co.touchlab.stately.isolate.IsolateState
 import tech.antibytes.kfixture.PublicApi
 import kotlin.random.Random
 
 internal class LongGenerator(
-    val random: IsolateState<Random>
+    val random: Random
 ) : PublicApi.Generator<Long> {
-    override fun generate(): Long = random.access { it.nextLong() }
+    override fun generate(): Long = random.nextLong()
 }

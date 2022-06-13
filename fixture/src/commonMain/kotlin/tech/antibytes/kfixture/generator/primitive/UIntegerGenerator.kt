@@ -6,13 +6,12 @@
 
 package tech.antibytes.kfixture.generator.primitive
 
-import co.touchlab.stately.isolate.IsolateState
 import tech.antibytes.kfixture.PublicApi
 import kotlin.random.Random
 import kotlin.random.nextUInt
 
 internal class UIntegerGenerator(
-    val random: IsolateState<Random>
+    val random: Random
 ) : PublicApi.Generator<UInt> {
-    override fun generate(): UInt = random.access { it.nextUInt() }
+    override fun generate(): UInt = random.nextUInt()
 }

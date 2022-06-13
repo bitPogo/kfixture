@@ -6,29 +6,27 @@
 
 package tech.antibytes.kfixture.generator.primitive
 
-import co.touchlab.stately.isolate.IsolateState
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.mock.RandomStub
 import kotlin.js.JsName
-import kotlin.random.Random
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 class DoubleGeneratorSpec {
-    private val random = IsolateState { RandomStub() }
+    private val random = RandomStub()
 
     @AfterTest
     fun tearDown() {
-        random.access { it.clear() }
+        random.clear()
     }
 
     @Test
     @Suppress("UNCHECKED_CAST")
     @JsName("fn0")
     fun `It fulfils Generator`() {
-        val generator: Any = DoubleGenerator(random as IsolateState<Random>)
+        val generator: Any = DoubleGenerator(random)
 
         assertTrue(generator is PublicApi.Generator<*>)
     }
@@ -40,10 +38,10 @@ class DoubleGeneratorSpec {
         // Given
         val expected = 23
         val expectedFloat = 0.23
-        random.access { it.nextDouble = { expectedFloat } }
-        random.access { it.nextInt = { expected } }
+        random.nextDouble = { expectedFloat }
+        random.nextInt = { expected }
 
-        val generator = DoubleGenerator(random as IsolateState<Random>)
+        val generator = DoubleGenerator(random)
 
         // When
         val result = generator.generate()

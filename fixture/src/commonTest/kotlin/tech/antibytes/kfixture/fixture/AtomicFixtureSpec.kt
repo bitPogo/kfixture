@@ -6,7 +6,6 @@
 
 package tech.antibytes.kfixture.fixture
 
-import co.touchlab.stately.isolate.IsolateState
 import kotlinx.atomicfu.atomic
 import kotlinx.atomicfu.update
 import tech.antibytes.kfixture.Fixture
@@ -18,7 +17,6 @@ import tech.antibytes.kfixture.mock.RandomStub
 import tech.antibytes.kfixture.qualifier.StringQualifier
 import tech.antibytes.kfixture.resolveClassName
 import kotlin.js.JsName
-import kotlin.random.Random
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -28,13 +26,13 @@ import kotlin.test.assertTrue
 
 @Suppress("USELESS_CAST")
 class AtomicFixtureSpec {
-    private val random = IsolateState { RandomStub() }
+    private val random = RandomStub()
     private val capturedMinimum = atomic(-1)
     private val capturedMaximum = atomic(-1)
 
     @AfterTest
     fun tearDown() {
-        random.access { it.clear() }
+        random.clear()
         capturedMinimum.getAndSet(-1)
         capturedMaximum.getAndSet(-1)
     }
@@ -43,7 +41,7 @@ class AtomicFixtureSpec {
     @Suppress("UNCHECKED_CAST")
     @JsName("fn0")
     fun `It fulfils Fixture`() {
-        val fixture: Any = Fixture(random as IsolateState<Random>, emptyMap())
+        val fixture: Any = Fixture(random, emptyMap())
 
         assertTrue(fixture is PublicApi.Fixture)
     }
@@ -60,7 +58,7 @@ class AtomicFixtureSpec {
         // Ensure stable names since reified is in play
         resolveClassName(Int::class)
 
-        val fixture = Fixture(random as IsolateState<Random>, emptyMap())
+        val fixture = Fixture(random, emptyMap())
 
         // Then
         val error = assertFailsWith<RuntimeException> {
@@ -86,7 +84,7 @@ class AtomicFixtureSpec {
         // Ensure stable names since reified is in play
         resolveClassName(Int::class)
 
-        val fixture = Fixture(random as IsolateState<Random>, mapOf(int to generator))
+        val fixture = Fixture(random, mapOf(int to generator))
 
         // When
         val result: Int = fixture.fixture()
@@ -106,13 +104,13 @@ class AtomicFixtureSpec {
         val expected = 23
         val generator = GeneratorStub<Int>()
 
-        random.access { it.nextBoolean = { true } }
+        random.nextBoolean = { true }
         generator.generate = { expected }
 
         // Ensure stable names since reified is in play
         resolveClassName(Int::class)
 
-        val fixture = Fixture(random as IsolateState<Random>, mapOf(int to generator))
+        val fixture = Fixture(random, mapOf(int to generator))
 
         // When
         val result: Int? = fixture.fixture()
@@ -135,7 +133,7 @@ class AtomicFixtureSpec {
         resolveClassName(Int::class)
 
         val fixture = Fixture(
-            random as IsolateState<Random>,
+            random,
             mapOf("q:$qualifier:$int" to generator)
         )
 
@@ -157,13 +155,13 @@ class AtomicFixtureSpec {
         val expected = 23
         val generator = GeneratorStub<Int>()
         generator.generate = { expected }
-        random.access { it.nextIntRanged = { _, _ -> 2 } }
+        random.nextIntRanged = { _, _ -> 2 }
 
         // Ensure stable names since reified is in play
         resolveClassName(Int::class)
 
         val fixture = Fixture(
-            random as IsolateState<Random>,
+            random,
             mapOf(int to generator)
         )
 
@@ -186,13 +184,13 @@ class AtomicFixtureSpec {
         val qualifier = "test"
         val generator = GeneratorStub<Int>()
         generator.generate = { expected }
-        random.access { it.nextIntRanged = { _, _ -> 2 } }
+        random.nextIntRanged = { _, _ -> 2 }
 
         // Ensure stable names since reified is in play
         resolveClassName(Int::class)
 
         val fixture = Fixture(
-            random as IsolateState<Random>,
+            random,
             mapOf("q:$qualifier:$int" to generator)
         )
 
@@ -211,16 +209,14 @@ class AtomicFixtureSpec {
     @JsName("fn7")
     fun `Given fixture is called with Iterable it returns a random picked item out of it`() {
         // Given
-        random.access {
-            it.nextIntRanged = { givenLower, givenUpper ->
-                capturedMinimum.update { givenLower }
-                capturedMaximum.update { givenUpper }
-                1
-            }
+        random.nextIntRanged = { givenLower, givenUpper ->
+            capturedMinimum.update { givenLower }
+            capturedMaximum.update { givenUpper }
+            1
         }
 
         val fixture = Fixture(
-            random as IsolateState<Random>,
+            random,
             emptyMap()
         )
 
