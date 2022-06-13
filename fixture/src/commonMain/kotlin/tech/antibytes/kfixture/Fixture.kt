@@ -26,6 +26,21 @@ internal class Fixture(
 
 @InternalAPI
 @PublishedApi
+internal val numberTypes: List<KClass<*>> = listOf(
+    Byte::class,
+    Short::class,
+    Int::class,
+    Float::class,
+    Long::class,
+    Double::class,
+)
+
+@InternalAPI
+@PublishedApi
+internal const val LIST_LOWER_BOUND: Int = 0
+
+@InternalAPI
+@PublishedApi
 internal inline fun <reified T> isNullable(): Boolean = null is T
 
 @InternalAPI
@@ -46,15 +61,55 @@ internal fun PublicApi.Fixture.determineCollectionSize(
     return size ?: random.access { it.nextInt(COLLECTION_LOWER_BOUND, COLLECTION_UPPER_BOUND) }
 }
 
+@InternalAPI
+@PublishedApi
+internal fun PublicApi.Fixture.pickAnListIndex(
+    list: List<*>
+): Int {
+    return random.access { it.nextInt(LIST_LOWER_BOUND, list.size) }
+}
+
+@InternalAPI
+@PublishedApi
+internal fun PublicApi.Fixture.chooseNumberType(
+    qualifier: PublicApi.Qualifier?
+): String {
+    val typeIdx = pickAnListIndex(numberTypes)
+
+    return resolveId(
+        numberTypes[typeIdx],
+        qualifier
+    )
+}
+
+@InternalAPI
+@PublishedApi
+internal inline fun <reified T> PublicApi.Fixture.resolveIdentifier(
+    qualifier: PublicApi.Qualifier?
+): String {
+    return if (T::class == Number::class) {
+        chooseNumberType(qualifier)
+    } else {
+        resolveId(
+            T::class as KClass<*>,
+            qualifier
+        )
+    }
+}
+
+public fun <T> PublicApi.Fixture.fixture(
+    iterable: Iterable<T>
+): T {
+    val values = iterable.toList()
+
+    return values[pickAnListIndex(values)]
+}
+
 public inline fun <reified T> PublicApi.Fixture.fixture(
     qualifier: PublicApi.Qualifier? = null
 ): T {
     val returnNull = random.returnNull<T>()
-
-    val id = resolveId(
-        T::class as KClass<*>,
-        qualifier
-    )
+    val id = resolveIdentifier<T>(qualifier)
 
     return when {
         !generators.containsKey(id) -> throw IllegalStateException("Missing Generator for ClassID ($id).")

@@ -8,6 +8,7 @@ package tech.antibytes.kfixture.fixture
 
 import co.touchlab.stately.isolate.IsolateState
 import kotlinx.atomicfu.atomic
+import kotlinx.atomicfu.update
 import tech.antibytes.kfixture.Fixture
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.fixture
@@ -123,7 +124,7 @@ class AtomicFixtureSpec {
     @Test
     @Suppress("UNCHECKED_CAST")
     @JsName("fn4")
-    fun `Given fixture is called with a qualifier it returns a Fixture for the derrived Type`() {
+    fun `Given fixture is called with a qualifier it returns a Fixture for the derived Type`() {
         // Given
         val expected = 23
         val qualifier = "test"
@@ -145,6 +146,99 @@ class AtomicFixtureSpec {
         assertEquals(
             actual = result,
             expected = expected
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn5")
+    fun `Given fixture is called it returns a type for a Number Type`() {
+        // Given
+        val expected = 23
+        val generator = GeneratorStub<Int>()
+        generator.generate = { expected }
+        random.access { it.nextIntRanged = { _, _ -> 2 } }
+
+        // Ensure stable names since reified is in play
+        resolveClassName(Int::class)
+
+        val fixture = Fixture(
+            random as IsolateState<Random>,
+            mapOf(int to generator)
+        )
+
+        // When
+        val result: Number = fixture.fixture()
+
+        // Then
+        assertEquals(
+            actual = result,
+            expected = expected
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn6")
+    fun `Given fixture is called with a qualifier it returns a type for a Number Type`() {
+        // Given
+        val expected = 23
+        val qualifier = "test"
+        val generator = GeneratorStub<Int>()
+        generator.generate = { expected }
+        random.access { it.nextIntRanged = { _, _ -> 2 } }
+
+        // Ensure stable names since reified is in play
+        resolveClassName(Int::class)
+
+        val fixture = Fixture(
+            random as IsolateState<Random>,
+            mapOf("q:$qualifier:$int" to generator)
+        )
+
+        // When
+        val result: Number = fixture.fixture(StringQualifier(qualifier))
+
+        // Then
+        assertEquals(
+            actual = result,
+            expected = expected
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn7")
+    fun `Given fixture is called with Iterable it returns a random picked item out of it`() {
+        // Given
+        random.access {
+            it.nextIntRanged = { givenLower, givenUpper ->
+                capturedMinimum.update { givenLower }
+                capturedMaximum.update { givenUpper }
+                1
+            }
+        }
+
+        val fixture = Fixture(
+            random as IsolateState<Random>,
+            emptyMap()
+        )
+
+        // When
+        val result = fixture.fixture(0..23)
+
+        // Then
+        assertEquals(
+            actual = result,
+            expected = 1
+        )
+        assertEquals(
+            actual = capturedMinimum.value,
+            expected = 0
+        )
+        assertEquals(
+            actual = capturedMaximum.value,
+            expected = 24
         )
     }
 }
