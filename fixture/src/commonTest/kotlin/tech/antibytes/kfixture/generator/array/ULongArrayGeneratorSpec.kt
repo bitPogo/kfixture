@@ -54,7 +54,7 @@ class ULongArrayGeneratorSpec {
             }
         }
         random.access { stub ->
-            (stub as RandomStub).nextByteArray = { arraySize -> ByteArray(arraySize) }
+            (stub as RandomStub).nextBytesArray = { arraySize -> ByteArray(arraySize) }
         }
 
         // When
