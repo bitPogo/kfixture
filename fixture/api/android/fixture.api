@@ -33,7 +33,10 @@ public abstract interface class tech/antibytes/kfixture/FixtureContract$Configur
 }
 
 public final class tech/antibytes/kfixture/FixtureKt {
+	public static final fun chooseNumberType (Ltech/antibytes/kfixture/PublicApi$Fixture;Ltech/antibytes/kfixture/PublicApi$Qualifier;)Ljava/lang/String;
 	public static final fun determineCollectionSize (Ltech/antibytes/kfixture/PublicApi$Fixture;Ljava/lang/Integer;)I
+	public static final fun fixture (Ltech/antibytes/kfixture/PublicApi$Fixture;Ljava/lang/Iterable;)Ljava/lang/Object;
+	public static final fun pickAnListIndex (Ltech/antibytes/kfixture/PublicApi$Fixture;Ljava/util/List;)I
 }
 
 public abstract interface class tech/antibytes/kfixture/PublicApi {
