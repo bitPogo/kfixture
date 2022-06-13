@@ -6,7 +6,6 @@
 
 package tech.antibytes.kfixture
 
-import co.touchlab.stately.isolate.IsolateState
 import kotlinx.atomicfu.atomic
 import tech.antibytes.kfixture.FixtureContract.COLLECTION_LOWER_BOUND
 import tech.antibytes.kfixture.FixtureContract.COLLECTION_UPPER_BOUND
@@ -16,7 +15,7 @@ import kotlin.random.Random
 import kotlin.reflect.KClass
 
 internal class Fixture(
-    override val random: IsolateState<Random>,
+    override val random: Random,
     generators: Map<String, PublicApi.Generator<out Any>>
 ) : PublicApi.Fixture {
     private val _generators = atomic(generators)
@@ -45,9 +44,9 @@ internal inline fun <reified T> isNullable(): Boolean = null is T
 
 @InternalAPI
 @PublishedApi
-internal inline fun <reified T> IsolateState<Random>.returnNull(): Boolean {
+internal inline fun <reified T> Random.returnNull(): Boolean {
     return if (isNullable<T>()) {
-        access { it.nextBoolean() }
+        nextBoolean()
     } else {
         false
     }
@@ -58,7 +57,7 @@ internal inline fun <reified T> IsolateState<Random>.returnNull(): Boolean {
 internal fun PublicApi.Fixture.determineCollectionSize(
     size: Int?
 ): Int {
-    return size ?: random.access { it.nextInt(COLLECTION_LOWER_BOUND, COLLECTION_UPPER_BOUND) }
+    return size ?: random.nextInt(COLLECTION_LOWER_BOUND, COLLECTION_UPPER_BOUND)
 }
 
 @InternalAPI
@@ -66,7 +65,7 @@ internal fun PublicApi.Fixture.determineCollectionSize(
 internal fun PublicApi.Fixture.pickAnListIndex(
     list: List<*>
 ): Int {
-    return random.access { it.nextInt(LIST_LOWER_BOUND, list.size) }
+    return random.nextInt(LIST_LOWER_BOUND, list.size)
 }
 
 @InternalAPI

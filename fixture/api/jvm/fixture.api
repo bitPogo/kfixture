@@ -47,7 +47,7 @@ public final class tech/antibytes/kfixture/PublicApi$Configuration$DefaultImpls 
 
 public abstract interface class tech/antibytes/kfixture/PublicApi$Fixture {
 	public abstract fun getGenerators ()Ljava/util/Map;
-	public abstract fun getRandom ()Lco/touchlab/stately/isolate/IsolateState;
+	public abstract fun getRandom ()Lkotlin/random/Random;
 }
 
 public abstract interface class tech/antibytes/kfixture/PublicApi$Generator {
@@ -55,7 +55,7 @@ public abstract interface class tech/antibytes/kfixture/PublicApi$Generator {
 }
 
 public abstract interface class tech/antibytes/kfixture/PublicApi$GeneratorFactory {
-	public abstract fun getInstance (Lco/touchlab/stately/isolate/IsolateState;)Ltech/antibytes/kfixture/PublicApi$Generator;
+	public abstract fun getInstance (Lkotlin/random/Random;)Ltech/antibytes/kfixture/PublicApi$Generator;
 }
 
 public abstract interface class tech/antibytes/kfixture/PublicApi$Qualifier {

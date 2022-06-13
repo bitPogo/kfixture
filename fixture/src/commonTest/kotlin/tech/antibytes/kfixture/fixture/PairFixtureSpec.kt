@@ -6,7 +6,6 @@
 
 package tech.antibytes.kfixture.fixture
 
-import co.touchlab.stately.isolate.IsolateState
 import kotlinx.atomicfu.atomic
 import tech.antibytes.kfixture.Fixture
 import tech.antibytes.kfixture.PublicApi
@@ -18,7 +17,6 @@ import tech.antibytes.kfixture.pairFixture
 import tech.antibytes.kfixture.qualifier.StringQualifier
 import tech.antibytes.kfixture.resolveClassName
 import kotlin.js.JsName
-import kotlin.random.Random
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -27,13 +25,13 @@ import kotlin.test.assertTrue
 
 @Suppress("USELESS_CAST")
 class PairFixtureSpec {
-    private val random = IsolateState { RandomStub() }
+    private val random = RandomStub()
     private val capturedMinimum = atomic(-1)
     private val capturedMaximum = atomic(-1)
 
     @AfterTest
     fun tearDown() {
-        random.access { it.clear() }
+        random.clear()
         capturedMinimum.getAndSet(-1)
         capturedMaximum.getAndSet(-1)
     }
@@ -42,7 +40,7 @@ class PairFixtureSpec {
     @Suppress("UNCHECKED_CAST")
     @JsName("fn0")
     fun `It fulfils Fixture`() {
-        val fixture: Any = Fixture(random as IsolateState<Random>, emptyMap())
+        val fixture: Any = Fixture(random, emptyMap())
 
         assertTrue(fixture is PublicApi.Fixture)
     }
@@ -59,7 +57,7 @@ class PairFixtureSpec {
         // Ensure stable names since reified is in play
         resolveClassName(Int::class)
 
-        val fixture = Fixture(random as IsolateState<Random>, emptyMap())
+        val fixture = Fixture(random, emptyMap())
 
         // Then
         val error = assertFailsWith<RuntimeException> {
@@ -85,7 +83,7 @@ class PairFixtureSpec {
         // Ensure stable names since reified is in play
         resolveClassName(Int::class)
 
-        val fixture = Fixture(random as IsolateState<Random>, mapOf(int to generator))
+        val fixture = Fixture(random, mapOf(int to generator))
 
         // When
         val result = fixture.pairFixture<Int, Int>()
@@ -106,12 +104,12 @@ class PairFixtureSpec {
         val generator = GeneratorStub<Int>()
 
         generator.generate = { expected }
-        random.access { it.nextBoolean = { true } }
+        random.nextBoolean = { true }
 
         // Ensure stable names since reified is in play
         resolveClassName(Int::class)
 
-        val fixture = Fixture(random as IsolateState<Random>, mapOf(int to generator))
+        val fixture = Fixture(random, mapOf(int to generator))
 
         // When
         val result = fixture.pairFixture<Int, Int?>()
@@ -138,7 +136,7 @@ class PairFixtureSpec {
         resolveClassName(Int::class)
 
         val fixture = Fixture(
-            random as IsolateState<Random>,
+            random,
             mapOf(
                 "q:$keyQualifier:$int" to generator,
                 "q:$valueQualifier:$int" to generator,
@@ -173,7 +171,7 @@ class PairFixtureSpec {
         resolveClassName(Int::class)
 
         val fixture = Fixture(
-            random as IsolateState<Random>,
+            random,
             mapOf(
                 "q:$keyQualifier:$int" to generator,
                 "q:$valueQualifier:$int" to generator,

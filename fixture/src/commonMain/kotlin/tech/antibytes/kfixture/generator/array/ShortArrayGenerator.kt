@@ -6,17 +6,16 @@
 
 package tech.antibytes.kfixture.generator.array
 
-import co.touchlab.stately.isolate.IsolateState
 import tech.antibytes.kfixture.FixtureContract.ARRAY_LOWER_BOUND
 import tech.antibytes.kfixture.FixtureContract.ARRAY_UPPER_BOUND
 import tech.antibytes.kfixture.PublicApi
 import kotlin.random.Random
 
 internal class ShortArrayGenerator(
-    val random: IsolateState<Random>
+    val random: Random
 ) : PublicApi.Generator<ShortArray> {
     private fun generateShortArray(size: Int): ShortArray {
-        val raw = random.access { it.nextBytes(size) }
+        val raw = random.nextBytes(size)
         val fixture = ShortArray(size)
 
         repeat(size) { idx ->
@@ -27,7 +26,7 @@ internal class ShortArrayGenerator(
     }
 
     override fun generate(): ShortArray {
-        val size = random.access { it.nextInt(ARRAY_LOWER_BOUND, ARRAY_UPPER_BOUND) }
+        val size = random.nextInt(ARRAY_LOWER_BOUND, ARRAY_UPPER_BOUND)
 
         return generateShortArray(size)
     }

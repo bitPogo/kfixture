@@ -6,33 +6,31 @@
 
 package tech.antibytes.kfixture.generator.primitive
 
-import co.touchlab.stately.isolate.IsolateState
 import kotlinx.atomicfu.AtomicRef
 import kotlinx.atomicfu.atomic
 import kotlinx.atomicfu.update
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.mock.RandomStub
 import kotlin.js.JsName
-import kotlin.random.Random
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 class CharGeneratorSpec {
-    private val random = IsolateState { RandomStub() }
+    private val random = RandomStub()
     private val range: AtomicRef<Pair<Int, Int>?> = atomic(null)
 
     @AfterTest
     fun tearDown() {
-        random.access { it.clear() }
+        random.clear()
     }
 
     @Test
     @Suppress("UNCHECKED_CAST")
     @JsName("fn0")
     fun `It fulfils Generator`() {
-        val generator: Any = CharGenerator(random as IsolateState<Random>)
+        val generator: Any = CharGenerator(random)
 
         assertTrue(generator is PublicApi.Generator<*>)
     }
@@ -44,14 +42,12 @@ class CharGeneratorSpec {
         // Given
         val expected = 100
 
-        random.access { stub ->
-            stub.nextIntRanged = { from, to ->
-                range.update { Pair(from, to) }
-                expected
-            }
+        random.nextIntRanged = { from, to ->
+            range.update { Pair(from, to) }
+            expected
         }
 
-        val generator = CharGenerator(random as IsolateState<Random>)
+        val generator = CharGenerator(random)
 
         // When
         val result = generator.generate()

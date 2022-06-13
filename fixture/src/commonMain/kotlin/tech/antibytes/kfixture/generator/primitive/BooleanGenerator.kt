@@ -6,12 +6,11 @@
 
 package tech.antibytes.kfixture.generator.primitive
 
-import co.touchlab.stately.isolate.IsolateState
 import tech.antibytes.kfixture.PublicApi
 import kotlin.random.Random
 
 internal class BooleanGenerator(
-    val random: IsolateState<Random>
+    val random: Random
 ) : PublicApi.Generator<Boolean> {
-    override fun generate(): Boolean = random.access { it.nextBoolean() }
+    override fun generate(): Boolean = random.nextBoolean()
 }

@@ -6,29 +6,27 @@
 
 package tech.antibytes.kfixture.generator.primitive
 
-import co.touchlab.stately.isolate.IsolateState
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.mock.RandomStub
 import kotlin.js.JsName
-import kotlin.random.Random
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 class ULongGeneratorSpec {
-    private val random = IsolateState { RandomStub() }
+    private val random = RandomStub()
 
     @AfterTest
     fun tearDown() {
-        random.access { it.clear() }
+        random.clear()
     }
 
     @Test
     @Suppress("UNCHECKED_CAST")
     @JsName("fn0")
     fun `It fulfils Generator`() {
-        val generator: Any = ULongGenerator(random as IsolateState<Random>)
+        val generator: Any = ULongGenerator(random)
 
         assertTrue(generator is PublicApi.Generator<*>)
     }
@@ -39,9 +37,9 @@ class ULongGeneratorSpec {
     fun `Given generate is called it returns a ULong`() {
         // Given
         val expected: Long = 23
-        random.access { it.nextLong = { expected } }
+        random.nextLong = { expected }
 
-        val generator = ULongGenerator(random as IsolateState<Random>)
+        val generator = ULongGenerator(random)
 
         // When
         val result = generator.generate()

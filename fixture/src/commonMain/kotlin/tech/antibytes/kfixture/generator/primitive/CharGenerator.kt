@@ -6,14 +6,13 @@
 
 package tech.antibytes.kfixture.generator.primitive
 
-import co.touchlab.stately.isolate.IsolateState
 import tech.antibytes.kfixture.FixtureContract.CHAR_LOWER_BOUND
 import tech.antibytes.kfixture.FixtureContract.CHAR_UPPER_BOUND
 import tech.antibytes.kfixture.PublicApi
 import kotlin.random.Random
 
 internal class CharGenerator(
-    val random: IsolateState<Random>
+    val random: Random
 ) : PublicApi.Generator<Char> {
-    override fun generate(): Char = random.access { it.nextInt(CHAR_LOWER_BOUND, CHAR_UPPER_BOUND).toChar() }
+    override fun generate(): Char = random.nextInt(CHAR_LOWER_BOUND, CHAR_UPPER_BOUND).toChar()
 }

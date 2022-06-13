@@ -6,12 +6,11 @@
 
 package tech.antibytes.kfixture.generator.primitive
 
-import co.touchlab.stately.isolate.IsolateState
 import tech.antibytes.kfixture.PublicApi
 import kotlin.random.Random
 
 internal class IntegerGenerator(
-    val random: IsolateState<Random>
+    val random: Random
 ) : PublicApi.Generator<Int> {
-    override fun generate(): Int = random.access { it.nextInt() }
+    override fun generate(): Int = random.nextInt()
 }

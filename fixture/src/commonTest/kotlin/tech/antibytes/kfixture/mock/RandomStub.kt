@@ -48,7 +48,7 @@ class RandomStub(
     override fun nextBoolean(): Boolean {
         return nextBoolean?.invoke() ?: throw RuntimeException("No SideEffect for nextBoolean!")
     }
-    
+
     override fun nextInt(): Int {
         return nextInt?.invoke() ?: throw RuntimeException("No SideEffect for nextInt!")
     }
