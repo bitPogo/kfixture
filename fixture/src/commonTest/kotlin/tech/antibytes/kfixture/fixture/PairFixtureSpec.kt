@@ -180,8 +180,8 @@ class PairFixtureSpec {
 
         // When
         val result: Pair<Int, Int> = fixture.fixture(
-            keyQualifier = StringQualifier(keyQualifier),
-            valueQualifier = StringQualifier(valueQualifier),
+            firstQualifier = StringQualifier(keyQualifier),
+            secondQualifier = StringQualifier(valueQualifier),
             type = Pair::class
         )
 

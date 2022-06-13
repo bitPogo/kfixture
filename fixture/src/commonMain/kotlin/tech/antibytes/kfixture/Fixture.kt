@@ -104,6 +104,12 @@ public fun <T> PublicApi.Fixture.fixture(
     return values[pickAnListIndex(values)]
 }
 
+/**
+ * Creates a value for a given type, excluding generics like List or Array.
+ * @param T - the type which is supposed to be created.
+ * @param qualifier - a optional qualifier for a special flavour of a type.
+ * @throws IllegalStateException - if the no matching Generator was found for the given type.
+ */
 public inline fun <reified T> PublicApi.Fixture.fixture(
     qualifier: PublicApi.Qualifier? = null
 ): T {
@@ -117,6 +123,13 @@ public inline fun <reified T> PublicApi.Fixture.fixture(
     }
 }
 
+/**
+ * Creates a MutableList of values for a given type.
+ * @param T - the type which is supposed to be created.
+ * @param qualifier - a optional qualifier for a special flavour of a type.
+ * @param size - the size of the List.
+ * @throws IllegalStateException - if the no matching Generator was found for the given type.
+ */
 public inline fun <reified T> PublicApi.Fixture.mutableListFixture(
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null
@@ -130,6 +143,15 @@ public inline fun <reified T> PublicApi.Fixture.mutableListFixture(
 
 @Suppress("UNUSED_PARAMETER")
 @JvmName("mutableListFixtureAlias")
+/**
+ * Creates a MutableList of values for a given type.
+ * @param T - the type which is supposed to be created.
+ * @param C - the enclosing List.
+ * @param type - the identifying type of the generic.
+ * @param qualifier - a optional qualifier for a special flavour of a type.
+ * @param size - the size of the List.
+ * @throws IllegalStateException - if the no matching Generator was found for the given type.
+ */
 public inline fun <reified C : MutableList<T>, reified T> PublicApi.Fixture.fixture(
     type: KClass<MutableList<*>>,
     qualifier: PublicApi.Qualifier? = null,
@@ -139,6 +161,13 @@ public inline fun <reified C : MutableList<T>, reified T> PublicApi.Fixture.fixt
     size = size
 ) as C
 
+/**
+ * Creates a List of values for a given type.
+ * @param T - the type which is supposed to be created.
+ * @param qualifier - a optional qualifier for a special flavour of a type.
+ * @param size - the size of the List.
+ * @throws IllegalStateException - if the no matching Generator was found for the given type.
+ */
 public inline fun <reified T> PublicApi.Fixture.listFixture(
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null
@@ -149,6 +178,15 @@ public inline fun <reified T> PublicApi.Fixture.listFixture(
 
 @Suppress("UNUSED_PARAMETER")
 @JvmName("listFixtureAlias")
+/**
+ * Creates a List of values for a given type.
+ * @param T - the type which is supposed to be created.
+ * @param C - the enclosing List.
+ * @param type - the identifying type of the generic.
+ * @param qualifier - a optional qualifier for a special flavour of a type.
+ * @param size - the size of the List.
+ * @throws IllegalStateException - if the no matching Generator was found for the given type.
+ */
 public inline fun <reified C : List<T>, reified T> PublicApi.Fixture.fixture(
     type: KClass<List<*>>,
     qualifier: PublicApi.Qualifier? = null,
@@ -158,6 +196,13 @@ public inline fun <reified C : List<T>, reified T> PublicApi.Fixture.fixture(
     size = size
 ) as C
 
+/**
+ * Creates a MutableCollection of values for a given type.
+ * @param T - the type which is supposed to be created.
+ * @param qualifier - a optional qualifier for a special flavour of a type.
+ * @param size - the size of the Collection.
+ * @throws IllegalStateException - if the no matching Generator was found for the given type.
+ */
 public inline fun <reified T> PublicApi.Fixture.mutableCollectionFixture(
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null
@@ -168,6 +213,15 @@ public inline fun <reified T> PublicApi.Fixture.mutableCollectionFixture(
 
 @Suppress("UNUSED_PARAMETER")
 @JvmName("mutableCollectionFixtureAlias")
+/**
+ * Creates a MutableCollection of values for a given type.
+ * @param T - the type which is supposed to be created.
+ * @param C - the enclosing Collection.
+ * @param type - the identifying type of the generic.
+ * @param qualifier - a optional qualifier for a special flavour of a type.
+ * @param size - the size of the Collection.
+ * @throws IllegalStateException - if the no matching Generator was found for the given type.
+ */
 public inline fun <reified C : MutableCollection<T>, reified T> PublicApi.Fixture.fixture(
     type: KClass<MutableCollection<*>>,
     qualifier: PublicApi.Qualifier? = null,
@@ -177,6 +231,13 @@ public inline fun <reified C : MutableCollection<T>, reified T> PublicApi.Fixtur
     size = size
 ) as C
 
+/**
+ * Creates an Collection of values for a given type.
+ * @param T - the type which is supposed to be created.
+ * @param qualifier - a optional qualifier for a special flavour of a type.
+ * @param size - the size of the Collection.
+ * @throws IllegalStateException - if the no matching Generator was found for the given type.
+ */
 public inline fun <reified T> PublicApi.Fixture.collectionFixture(
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null
@@ -187,6 +248,15 @@ public inline fun <reified T> PublicApi.Fixture.collectionFixture(
 
 @Suppress("UNUSED_PARAMETER")
 @JvmName("collectionFixtureAlias")
+/**
+ * Creates an Collection of values for a given type.
+ * @param T - the type which is supposed to be created.
+ * @param C - the enclosing Collection.
+ * @param type - the identifying type of the generic.
+ * @param qualifier - a optional qualifier for a special flavour of a type.
+ * @param size - the size of the Collection.
+ * @throws IllegalStateException - if the no matching Generator was found for the given type.
+ */
 public inline fun <reified C : Collection<T>, reified T> PublicApi.Fixture.fixture(
     type: KClass<Collection<*>>,
     qualifier: PublicApi.Qualifier? = null,
@@ -196,6 +266,13 @@ public inline fun <reified C : Collection<T>, reified T> PublicApi.Fixture.fixtu
     size = size
 ) as C
 
+/**
+ * Creates a Array of values for a given type.
+ * @param T - the type which is supposed to be created.
+ * @param qualifier - a optional qualifier for a special flavour of a type.
+ * @param size - the size of the Array.
+ * @throws IllegalStateException - if the no matching Generator was found for the given type.
+ */
 public inline fun <reified T> PublicApi.Fixture.arrayFixture(
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null
@@ -206,6 +283,14 @@ public inline fun <reified T> PublicApi.Fixture.arrayFixture(
 
 @Suppress("UNUSED_PARAMETER")
 @JvmName("arrayListFixtureAlias")
+/**
+ * Creates a Array of values for a given type.
+ * @param T - the type which is supposed to be created.
+ * @param type - the identifying type of the generic.
+ * @param qualifier - a optional qualifier for a special flavour of a type.
+ * @param size - the size of the Array.
+ * @throws IllegalStateException - if the no matching Generator was found for the given type.
+ */
 public inline fun <reified T> PublicApi.Fixture.fixture(
     type: KClass<Array<*>>,
     qualifier: PublicApi.Qualifier? = null,
@@ -215,6 +300,13 @@ public inline fun <reified T> PublicApi.Fixture.fixture(
     size = size
 )
 
+/**
+ * Creates a Sequence of values for a given type.
+ * @param T - the type which is supposed to be created.
+ * @param qualifier - a optional qualifier for a special flavour of a type.
+ * @param size - the size of the Sequence.
+ * @throws IllegalStateException - if the no matching Generator was found for the given type.
+ */
 public inline fun <reified T> PublicApi.Fixture.sequenceFixture(
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null
@@ -230,6 +322,15 @@ public inline fun <reified T> PublicApi.Fixture.sequenceFixture(
 
 @Suppress("UNUSED_PARAMETER")
 @JvmName("sequenceFixtureAlias")
+/**
+ * Creates a Sequence of values for a given type.
+ * @param T - the type which is supposed to be created.
+ * @param C - the enclosing Sequence.
+ * @param type - the identifying type of the generic.
+ * @param qualifier - a optional qualifier for a special flavour of a type.
+ * @param size - the size of the Sequence.
+ * @throws IllegalStateException - if the no matching Generator was found for the given type.
+ */
 public inline fun <reified C : Sequence<T>, reified T> PublicApi.Fixture.fixture(
     type: KClass<Sequence<*>>,
     qualifier: PublicApi.Qualifier? = null,
@@ -239,22 +340,50 @@ public inline fun <reified C : Sequence<T>, reified T> PublicApi.Fixture.fixture
     size = size
 ) as C
 
+/**
+ * Creates a Pair of values for given types.
+ * @param First - the type which is supposed to be created for the first value.
+ * @param Second - the type which is supposed to be created for the second value.
+ * @param firstQualifier - a optional qualifier for a special flavour of a type of the first value.
+ * @param secondQualifier - a optional qualifier for a special flavour of a type of the second value.
+ * @throws IllegalStateException - if the no matching Generator was found for the given type.
+ */
 public inline fun <reified First, reified Second> PublicApi.Fixture.pairFixture(
-    keyQualifier: PublicApi.Qualifier? = null,
-    valueQualifier: PublicApi.Qualifier? = null,
-): Pair<First, Second> = fixture<First>(keyQualifier) to fixture(valueQualifier)
+    firstQualifier: PublicApi.Qualifier? = null,
+    secondQualifier: PublicApi.Qualifier? = null,
+): Pair<First, Second> = fixture<First>(firstQualifier) to fixture(secondQualifier)
 
 @Suppress("UNUSED_PARAMETER")
 @JvmName("pairFixtureAlias")
+/**
+ * Creates a Pair of values for given types.
+ * @param First - the type which is supposed to be created for the first value.
+ * @param Second - the type which is supposed to be created for the second value.
+ * @param C - the enclosing Pair.
+ * @param type - the identifying type of the generic.
+ * @param firstQualifier - a optional qualifier for a special flavour of a type of the first value.
+ * @param secondQualifier - a optional qualifier for a special flavour of a type of the second value.
+ * @throws IllegalStateException - if the no matching Generator was found for the given type.
+ */
 public inline fun <reified C : Pair<First, Second>, reified First, reified Second> PublicApi.Fixture.fixture(
     type: KClass<Pair<*, *>>,
-    keyQualifier: PublicApi.Qualifier? = null,
-    valueQualifier: PublicApi.Qualifier? = null,
+    firstQualifier: PublicApi.Qualifier? = null,
+    secondQualifier: PublicApi.Qualifier? = null,
 ): C = pairFixture<First, Second>(
-    keyQualifier = keyQualifier,
-    valueQualifier = valueQualifier,
+    firstQualifier = firstQualifier,
+    secondQualifier = secondQualifier,
 ) as C
 
+/**
+ * Creates a Triple of values for given types.
+ * @param First - the type which is supposed to be created for the first value.
+ * @param Second - the type which is supposed to be created for the second value.
+ * @param Third - the type which is supposed to be created for the third value.
+ * @param firstQualifier - a optional qualifier for a special flavour of a type of the first value.
+ * @param secondQualifier - a optional qualifier for a special flavour of a type of the second value.
+ * @param thirdQualifier - a optional qualifier for a special flavour of a type of the third value.
+ * @throws IllegalStateException - if the no matching Generator was found for the given type.
+ */
 public inline fun <reified First, reified Second, reified Third> PublicApi.Fixture.tripleFixture(
     firstQualifier: PublicApi.Qualifier? = null,
     secondQualifier: PublicApi.Qualifier? = null,
@@ -269,6 +398,18 @@ public inline fun <reified First, reified Second, reified Third> PublicApi.Fixtu
 
 @Suppress("UNUSED_PARAMETER")
 @JvmName("tripleFixtureAlias")
+/**
+ * Creates a Triple of values for given types.
+ * @param First - the type which is supposed to be created for the first value.
+ * @param Second - the type which is supposed to be created for the second value.
+ * @param Third - the type which is supposed to be created for the third value.
+ * @param C - the enclosing Triple.
+ * @param type - the identifying type of the generic.
+ * @param firstQualifier - a optional qualifier for a special flavour of a type of the first value.
+ * @param secondQualifier - a optional qualifier for a special flavour of a type of the second value.
+ * @param thirdQualifier - a optional qualifier for a special flavour of a type of the third value.
+ * @throws IllegalStateException - if the no matching Generator was found for the given type.
+ */
 public inline fun <reified C : Triple<First, Second, Third>, reified First, reified Second, reified Third> PublicApi.Fixture.fixture(
     type: KClass<Triple<*, *, *>>,
     firstQualifier: PublicApi.Qualifier? = null,
@@ -280,6 +421,15 @@ public inline fun <reified C : Triple<First, Second, Third>, reified First, reif
     thirdQualifier = thirdQualifier,
 ) as C
 
+/**
+ * Creates a Map of values for given types.
+ * @param Key - the type which is supposed to be created for the key value.
+ * @param Value - the type which is supposed to be created for the value.
+ * @param keyQualifier - a optional qualifier for a special flavour of a type of the key value.
+ * @param valueQualifier - a optional qualifier for a special flavour of a type of the value.
+ * @param size - the size of the Map.
+ * @throws IllegalStateException - if the no matching Generator was found for the given type.
+ */
 public inline fun <reified Key, reified Value> PublicApi.Fixture.mapFixture(
     keyQualifier: PublicApi.Qualifier? = null,
     valueQualifier: PublicApi.Qualifier? = null,
@@ -294,6 +444,17 @@ public inline fun <reified Key, reified Value> PublicApi.Fixture.mapFixture(
 
 @Suppress("UNUSED_PARAMETER")
 @JvmName("mapFixtureAlias")
+/**
+ * Creates a Map of values for given types.
+ * @param Key - the type which is supposed to be created for the key value.
+ * @param Value - the type which is supposed to be created for the value.
+ * @param C - the enclosing Map.
+ * @param type - the identifying type of the generic.
+ * @param keyQualifier - a optional qualifier for a special flavour of a type of the key value.
+ * @param valueQualifier - a optional qualifier for a special flavour of a type of the value.
+ * @param size - the size of the Map.
+ * @throws IllegalStateException - if the no matching Generator was found for the given type.
+ */
 public inline fun <reified C : Map<Key, Value>, reified Key, reified Value> PublicApi.Fixture.fixture(
     type: KClass<Map<*, *>>,
     keyQualifier: PublicApi.Qualifier? = null,
@@ -305,6 +466,15 @@ public inline fun <reified C : Map<Key, Value>, reified Key, reified Value> Publ
     size = size,
 ) as C
 
+/**
+ * Creates a MutableMap of values for given types.
+ * @param Key - the type which is supposed to be created for the key value.
+ * @param Value - the type which is supposed to be created for the value.
+ * @param keyQualifier - a optional qualifier for a special flavour of a type of the key value.
+ * @param valueQualifier - a optional qualifier for a special flavour of a type of the value.
+ * @param size - the size of the Map.
+ * @throws IllegalStateException - if the no matching Generator was found for the given type.
+ */
 public inline fun <reified Key, reified Value> PublicApi.Fixture.mutableMapFixture(
     keyQualifier: PublicApi.Qualifier? = null,
     valueQualifier: PublicApi.Qualifier? = null,
@@ -317,6 +487,17 @@ public inline fun <reified Key, reified Value> PublicApi.Fixture.mutableMapFixtu
 
 @Suppress("UNUSED_PARAMETER")
 @JvmName("mutableMapFixtureAlias")
+/**
+ * Creates a MutableMap of values for given types.
+ * @param Key - the type which is supposed to be created for the key value.
+ * @param Value - the type which is supposed to be created for the value.
+ * @param C - the enclosing Map.
+ * @param type - the identifying type of the generic.
+ * @param keyQualifier - a optional qualifier for a special flavour of a type of the key value.
+ * @param valueQualifier - a optional qualifier for a special flavour of a type of the value.
+ * @param size - the size of the Map.
+ * @throws IllegalStateException - if the no matching Generator was found for the given type.
+ */
 public inline fun <reified C : MutableMap<Key, Value>, reified Key, reified Value> PublicApi.Fixture.fixture(
     type: KClass<MutableMap<*, *>>,
     keyQualifier: PublicApi.Qualifier? = null,
@@ -328,6 +509,13 @@ public inline fun <reified C : MutableMap<Key, Value>, reified Key, reified Valu
     size = size,
 ) as C
 
+/**
+ * Creates a MutableSet of values for given types.
+ * @param T - the type which is supposed to be created for the value.
+ * @param qualifier - a optional qualifier for a special flavour of a type of the value.
+ * @param size - the size of the Set.
+ * @throws IllegalStateException - if the no matching Generator was found for the given type.
+ */
 public inline fun <reified T> PublicApi.Fixture.mutableSetFixture(
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null
@@ -345,6 +533,15 @@ public inline fun <reified T> PublicApi.Fixture.mutableSetFixture(
 
 @Suppress("UNUSED_PARAMETER")
 @JvmName("mutableSetFixtureAlias")
+/**
+ * Creates a MutableSet of values for given types.
+ * @param T - the type which is supposed to be created for the value.
+ * @param C - the enclosing Set.
+ * @param type - the identifying type of the generic.
+ * @param qualifier - a optional qualifier for a special flavour of a type of the value.
+ * @param size - the size of the Set.
+ * @throws IllegalStateException - if the no matching Generator was found for the given type.
+ */
 public inline fun <reified C : MutableSet<T>, reified T> PublicApi.Fixture.fixture(
     type: KClass<MutableSet<*>>,
     qualifier: PublicApi.Qualifier? = null,
@@ -354,6 +551,13 @@ public inline fun <reified C : MutableSet<T>, reified T> PublicApi.Fixture.fixtu
     size = size
 ) as C
 
+/**
+ * Creates a Set of values for given types.
+ * @param T - the type which is supposed to be created for the value.
+ * @param qualifier - a optional qualifier for a special flavour of a type of the value.
+ * @param size - the size of the Set.
+ * @throws IllegalStateException - if the no matching Generator was found for the given type.
+ */
 public inline fun <reified T> PublicApi.Fixture.setFixture(
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null
@@ -361,6 +565,15 @@ public inline fun <reified T> PublicApi.Fixture.setFixture(
 
 @Suppress("UNUSED_PARAMETER")
 @JvmName("setFixtureAlias")
+/**
+ * Creates a Set of values for given types.
+ * @param T - the type which is supposed to be created for the value.
+ * @param C - the enclosing Set.
+ * @param type - the identifying type of the generic.
+ * @param qualifier - a optional qualifier for a special flavour of a type of the value.
+ * @param size - the size of the Set.
+ * @throws IllegalStateException - if the no matching Generator was found for the given type.
+ */
 public inline fun <reified C : Set<T>, reified T> PublicApi.Fixture.fixture(
     type: KClass<Set<*>>,
     qualifier: PublicApi.Qualifier? = null,

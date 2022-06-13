@@ -13,8 +13,19 @@ import tech.antibytes.kfixture.resolveClassName
 import kotlin.reflect.KClass
 
 // see: https://github.com/InsertKoinIO/koin/blob/48e532798d53d02cfcb4420db86bf5bfa7c01428/core/koin-core/src/commonMain/kotlin/org/koin/core/qualifier/Qualifier.kt#L30
+/**
+ * Factory for Qualifiers based on Strings
+ * @param value - String which is referring to a special flavour.
+ * @return Qualifier
+ */
 public fun named(value: String): PublicApi.Qualifier = StringQualifier(value)
 
+/**
+ * Factory for Qualifiers based on enum types
+ * @param E - the enum member it is based.
+ * @param value - enum member which is referring to a special flavour.
+ * @return Qualifier
+ */
 public fun <E : Enum<E>> named(value: E): PublicApi.Qualifier {
     return StringQualifier(
         value.toString().lowercase()
