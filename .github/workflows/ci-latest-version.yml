@@ -33,5 +33,13 @@ jobs:
 
       - name: Build
         run: ./gradlew build
+
+      - name: Publish documentation
+        env:
+          GRGIT_USER: ${{ github.actor }}
+          GRGIT_PASS: ${{ secrets.GITHUB_TOKEN }}
+        run: ./gradlew --no-daemon --stacktrace mkdocsPublish
+
+
       - name: Publish to Snapshot Repository
         run: ./gradlew publishSnapshot --no-parallel
