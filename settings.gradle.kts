@@ -14,7 +14,8 @@ pluginManagement {
 includeBuild("gradlePlugin/kfixture-dependency")
 
 include(
-    ":fixture"
+    ":core",
+    ":docs"
 )
 
 buildCache {
