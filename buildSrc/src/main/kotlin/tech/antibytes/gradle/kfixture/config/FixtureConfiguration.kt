@@ -18,7 +18,7 @@ object FixtureConfiguration {
         val packageConfiguration = PackageConfiguration(
             pom = PomConfiguration(
                 name = "fixture",
-                description = "Convenience tools for generated dummy test values for Kotlin Multiplatform.",
+                description = "A tool to generate randomized test values for Kotlin Multiplatform.",
                 year = 2022,
                 url = "https://$gitHubRepositoryPath"
             ),
