@@ -15,6 +15,8 @@ jobs:
       PACKAGE_REGISTRY_UPLOAD_TOKEN: ${{ secrets.PACKAGE_REGISTRY_UPLOAD_TOKEN }}
       MAVEN_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASS }}
       MAVEN_KEY: ${{ secrets.MAVEN_GPG_KEY }}
+      OSSR_USERNAME: ${{ secrets.OSSR_USERNAME }}
+      OSSR_PASSWORD: ${{ secrets.OSSR_PASSWORD }}
 
     steps:
       - name: Display runner context
@@ -37,3 +39,6 @@ jobs:
 
       - name: Publish to Release Repository
         run: ./gradlew publishRelease --stacktrace --no-parallel
+
+      - name: Publish to Maven Central
+        run: ./gradlew publishMavenCentral --stacktrace --no-parallel

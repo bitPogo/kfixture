@@ -21,8 +21,11 @@ open class FixturePublishingConfiguration {
     private val key = System.getenv("MAVEN_KEY") ?: ""
     private val passphrase = System.getenv("MAVEN_PASSPHRASE") ?: ""
 
+    private val nexusUsername = System.getenv("OSSR_USERNAME") ?: ""
+    private val nexusPassword = System.getenv("OSSR_PASSWORD") ?: ""
+
     private val githubOwner = "bitPogo"
-    private val githubRepository = "kotlin-fixtures-kmp"
+    private val githubRepository = "kfixture"
 
     private val host = "github.com"
     private val path = "$githubOwner/$githubRepository"
@@ -51,10 +54,10 @@ open class FixturePublishingConfiguration {
 
     val repositories = setOf(
         MavenRepositoryConfiguration(
-            name = "GitHubPackageRegistry",
-            url = "https://maven.pkg.github.com/$path",
-            username = username,
-            password = password
+            name = "MavenCentral",
+            url = "https://oss.sonatype.org/service/local/staging/deploy/maven2",
+            username = nexusUsername,
+            password = nexusPassword
         ),
         GitRepositoryConfiguration(
             name = "Development",
