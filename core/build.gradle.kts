@@ -44,6 +44,7 @@ antiBytesPublishing {
         tasks = setOf("dokkaHtml"),
         outputDir = dokkaDir
     )
+    signingConfiguration = FixtureConfiguration.publishing.signing
 }
 
 antiBytesCoverage {

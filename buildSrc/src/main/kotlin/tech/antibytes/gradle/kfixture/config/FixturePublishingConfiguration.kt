@@ -10,12 +10,17 @@ import tech.antibytes.gradle.publishing.api.DeveloperConfiguration
 import tech.antibytes.gradle.publishing.api.GitRepositoryConfiguration
 import tech.antibytes.gradle.publishing.api.LicenseConfiguration
 import tech.antibytes.gradle.publishing.api.MavenRepositoryConfiguration
+import tech.antibytes.gradle.publishing.api.MemorySigningConfiguration
 import tech.antibytes.gradle.publishing.api.SourceControlConfiguration
 import tech.antibytes.gradle.versioning.api.VersioningConfiguration
 
 open class FixturePublishingConfiguration {
     private val username = System.getenv("PACKAGE_REGISTRY_UPLOAD_USERNAME")?.toString() ?: ""
     private val password = System.getenv("PACKAGE_REGISTRY_UPLOAD_TOKEN")?.toString() ?: ""
+
+    private val key = System.getenv("MAVEN_KEY") ?: ""
+    private val passphrase = System.getenv("MAVEN_PASSPHRASE") ?: ""
+
     private val githubOwner = "bitPogo"
     private val githubRepository = "kotlin-fixtures-kmp"
 
@@ -76,6 +81,11 @@ open class FixturePublishingConfiguration {
 
     val versioning = VersioningConfiguration(
         featurePrefixes = listOf("feature")
+    )
+
+    val signing = MemorySigningConfiguration(
+        key = key,
+        password = passphrase,
     )
 
     companion object {
