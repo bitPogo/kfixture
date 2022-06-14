@@ -186,7 +186,7 @@ class MySpec {
 
     @Test
     fun myAwesomeTest() {
-        val value: String = fixture.fixture()
+        val value = fixture.somethingFixture()
         ...
     }
 }
@@ -208,7 +208,7 @@ class MySpec {
     private val fixture = kotlinFixture()
 
     private inline fun <reified T> Fixture.somethingFixture(
-        qualifier: Qualifier
+        qualifier: Qualifier? = null
     ): Something {
         val id = resolveGeneratorId(
             T::class,
@@ -224,7 +224,7 @@ class MySpec {
 
     @Test
     fun myAwesomeTest() {
-        val value: String = fixture.fixture()
+        val value = fixture.somethingFixture(qualifiedBy("me"))
         ...
     }
 }
