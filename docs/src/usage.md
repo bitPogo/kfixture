@@ -1,7 +1,7 @@
 # Usage
 
 ## Getting started
-Just add the following to your projects `build.gralde.kts`:
+Assuming you are using MavenCentral already as repository, you just add the following into your projects `build.gralde.kts`:
 ```kotlin
 testImplementation("tech.antibytes.kfixture:core:$KFixtureVersion")
 ```
