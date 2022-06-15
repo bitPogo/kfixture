@@ -16,7 +16,7 @@ import kotlin.reflect.KClass
 public interface PublicApi {
     /**
      * Generator of value for specific type.
-     * @param T - the type which the Generator is referring to.
+     * @param T the type which the Generator is referring to.
      * @author Matthias Geisler
      */
     public interface Generator<T : Any> {
@@ -29,7 +29,7 @@ public interface PublicApi {
 
     /**
      * Factory of a Generator
-     * @param T - the type which the Generator is referring to.
+     * @param T the type which the Generator is referring to.
      * @see Generator
      * @author Matthias Geisler
      */
@@ -68,11 +68,11 @@ public interface PublicApi {
         /**
          * Adds a custom Generator to Fixture Generator.
          * However build in types cannot be overridden.
-         * @param T - the type which the Generator is referring to.
-         * @param clazz - a KClass the generator is referring to.
-         * @param factory - the Factory for the Generator.
-         * @param qualifier - optional Qualifier which can be to differ between flavours of the same type.
-         * @return Configuration - the current instance of the Configuration.
+         * @param T the type which the Generator is referring to.
+         * @param clazz a KClass the generator is referring to.
+         * @param factory the Factory for the Generator.
+         * @param qualifier optional Qualifier which can be to differ between flavours of the same type.
+         * @return Configuration the current instance of the Configuration.
          * @see Generator
          * @see GeneratorFactory
          * @see Qualifier
