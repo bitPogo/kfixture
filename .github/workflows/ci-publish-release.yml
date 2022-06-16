@@ -37,8 +37,8 @@ jobs:
       - name: Build
         run: ./gradlew build
 
-      - name: Publish to Release Repository
-        run: ./gradlew publishRelease --stacktrace --no-parallel
-
       - name: Publish to Maven Central
         run: ./gradlew publishMavenCentral --stacktrace --no-parallel
+
+      - name: Publish to Release Repository
+        run: ./gradlew publishRelease --stacktrace --no-parallel
