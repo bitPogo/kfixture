@@ -11,20 +11,12 @@ Tired of writing potato or 42 for your test values? - KFixture is a (limited) ex
 The project is heavily influenced by [appmattus kotlinfixture](https://github.com/appmattus/kotlinfixture) and was started to ease a bit testing on KMP.
 If you want to know more take a look into the [Documentation](https://bitpogo.github.io/kfixture/).
 
-## Dependencies
+## Requirements
 
-KMock has the following dependencies:
-
-* [AndroidGradlePlugin (AGP) 7.2.1](https://developer.android.com/studio/releases/gradle-plugin)
 * [Kotlin 1.6.10](https://kotlinlang.org/docs/releases.html)
 * [AtomicFu 0.17.1](https://github.com/Kotlin/kotlinx.atomicfu)
 * [Touchlab's Stately 1.2.1](https://github.com/touchlab/Stately)
-* [Gradle 7.4.2](https://gradle.org/)
-
-## Additional Requirements
-
 * Android 6.0 (API 21) to Android 12 (API 31)
-* [Java 11](https://adoptopenjdk.net/?variant=openjdk11&jvmVariant=hotspot)
 
 ## Changelog
 
