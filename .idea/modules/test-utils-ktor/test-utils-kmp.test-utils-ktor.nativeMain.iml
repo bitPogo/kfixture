@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":test-utils-ktor:nativeMain" external.linked.project.path="$MODULE_DIR$/../../../test-utils-ktor" external.root.project.path="$MODULE_DIR$/../../.." external.system.id="GRADLE" external.system.module.group="tech.antibytes.test-utils-kmp" external.system.module.type="sourceSet" external.system.module.version="c6cf43d-change-assertions-SNAPSHOT" type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="kotlin-language" name="Kotlin">
+      <configuration version="4" platform="Common (experimental) " allPlatforms="Native []/Native [ios_arm64]/Native [ios_x64]/Native [linux_x64]" useProjectSettings="false" isTestModule="false" externalProjectId=":test-utils-ktor" isHmppProject="true" pureKotlinSourceFolders="$MODULE_DIR$/../../../test-utils-ktor/src/androidDebug/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-ktor/src/debug/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-ktor/src/debug/java;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-ktor/src/androidDebugAndroidTest/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-ktor/src/androidDebugUnitTest/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-ktor/src/androidRelease/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-ktor/src/release/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-ktor/src/release/java;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-ktor/src/androidReleaseUnitTest/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-ktor/src/iosArm64Main/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-ktor/src/iosArm64Main/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-ktor/src/iosX64Main/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-ktor/src/iosX64Main/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-ktor/src/jsMain/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-ktor/build/externals/test-utils-kmp-test-utils-ktor/src;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-ktor/src/jsTest/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-ktor/src/jvmMain/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-ktor/src/jvmTest/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-ktor/src/linuxX64Main/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-ktor/src/linuxX64Main/kotlin">
+        <dependsOnModuleNames>:test-utils-ktor:commonMain</dependsOnModuleNames>
+        <newMppModelJpsModuleKind>SOURCE_SET_HOLDER</newMppModelJpsModuleKind>
+        <compilerSettings />
+        <compilerArguments>
+          <option name="languageVersion" value="1.6" />
+          <option name="apiVersion" value="1.6" />
+          <option name="pluginOptions">
+            <array />
+          </option>
+          <option name="pluginClasspaths">
+            <array>
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-scripting-jvm/1.6.10/dbe683647dcb04cda92fe4423acb741a2f144a69/kotlin-scripting-jvm-1.6.10.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-scripting-common/1.6.10/b3b71fd93878f2b4f19d099ac6430c67549a1c77/kotlin-scripting-common-1.6.10.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.6.10/b8af3fe6f1ca88526914929add63cf5e7c5049af/kotlin-stdlib-1.6.10.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.6.10/c118700e3a33c8a0d9adc920e9dec0831171925/kotlin-stdlib-common-1.6.10.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-script-runtime/1.6.10/d0a7ff2e2500ef497ed0214ae40ad3c8387a6164/kotlin-script-runtime-1.6.10.jar" />
+            </array>
+          </option>
+          <option name="multiPlatform" value="true" />
+        </compilerArguments>
+      </configuration>
+    </facet>
+    <facet type="android" name="Android">
+      <configuration>
+        <option name="SELECTED_BUILD_VARIANT" value="debug" />
+        <option name="ASSEMBLE_TASK_NAME" value="assembleDebug" />
+        <option name="COMPILE_JAVA_TASK_NAME" value="compileDebugSources" />
+        <afterSyncTasks>
+          <task>generateDebugSources</task>
+        </afterSyncTasks>
+        <option name="ALLOW_USER_CONFIGURATION" value="false" />
+        <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/androidMain/AndroidManifest.xml" />
+        <option name="RES_FOLDER_RELATIVE_PATH" value="/src/androidMain/res" />
+        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/../../../test-utils-ktor/src/androidMain/res;file://$MODULE_DIR$/../../../test-utils-ktor/src/androidMain/resources;file://$MODULE_DIR$/../../../test-utils-ktor/src/debug/res;file://$MODULE_DIR$/../../../test-utils-ktor/src/androidDebug/res;file://$MODULE_DIR$/../../../test-utils-ktor/build/generated/res/rs/debug;file://$MODULE_DIR$/../../../test-utils-ktor/build/generated/res/resValues/debug" />
+        <option name="TEST_RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/../../../test-utils-ktor/src/androidTest/res;file://$MODULE_DIR$/../../../test-utils-ktor/src/androidAndroidTest/res;file://$MODULE_DIR$/../../../test-utils-ktor/src/androidTestDebug/res;file://$MODULE_DIR$/../../../test-utils-ktor/src/androidAndroidTestDebug/res;file://$MODULE_DIR$/../../../test-utils-ktor/build/generated/res/rs/androidTest/debug;file://$MODULE_DIR$/../../../test-utils-ktor/build/generated/res/resValues/androidTest/debug" />
+        <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets" />
+        <option name="PROJECT_TYPE" value="1" />
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../test-utils-ktor/src/nativeMain/kotlin" />
+    <content url="file://$MODULE_DIR$/../../../test-utils-ktor/src/nativeMain/resources" />
+    <orderEntry type="jdk" jdkName="Android API 31 Platform" jdkType="Android SDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" scope="PROVIDED" name="Kotlin/Native 1.6.10 - stdlib" level="project" />
+    <orderEntry type="module" module-name="test-utils-kmp.test-utils-ktor.commonMain" />
+    <orderEntry type="library" name="Gradle: io.ktor:ktor-client-mock:commonMain:1.6.7" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$USER_HOME$/.konan/kotlin-native-prebuilt-macos-x86_64-1.6.10/klib/commonized/1.6.10/(ios_arm64, ios_x64, linux_x64)/org.jetbrains.kotlin.native.platform.iconv" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Gradle: io.ktor:ktor-client-core:commonMain:1.6.7">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../.gradle/kotlin/sourceSetMetadata/test-utils-ktor.test-utils-kmp/commonMain/implementation/io.ktor-ktor-client-core/io.ktor-ktor-client-core-commonMain.klib!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-client-core/1.6.7/cd8dbd3a519cb324c192480a419b3fb9da72d4b2/ktor-client-core-1.6.7-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$USER_HOME$/.konan/kotlin-native-prebuilt-macos-x86_64-1.6.10/klib/commonized/1.6.10/(ios_arm64, ios_x64, linux_x64)/org.jetbrains.kotlin.native.platform.posix" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Gradle: co.touchlab:stately-iso-collections:commonMain:1.2.1">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../.gradle/kotlin/sourceSetMetadata/test-utils-ktor.test-utils-kmp/commonMain/implementation/co.touchlab-stately-iso-collections/co.touchlab-stately-iso-collections-commonMain.klib!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/co.touchlab/stately-iso-collections/1.2.1/b78802fa00b533d2ee9f50d3d282299fe62e7fca/stately-iso-collections-1.2.1-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$USER_HOME$/.konan/kotlin-native-prebuilt-macos-x86_64-1.6.10/klib/commonized/1.6.10/(ios_arm64, ios_x64, linux_x64)/org.jetbrains.kotlin.native.platform.zlib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$USER_HOME$/.konan/kotlin-native-prebuilt-macos-x86_64-1.6.10/klib/commonized/1.6.10/(ios_arm64, ios_x64, linux_x64)/org.jetbrains.kotlin.native.platform.builtin" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Gradle: io.ktor:ktor-http:commonMain:1.6.7">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../.gradle/kotlin/sourceSetMetadata/test-utils-ktor.test-utils-kmp/commonMain/implementation/io.ktor-ktor-http/io.ktor-ktor-http-commonMain.klib!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-http/1.6.7/f8d13144078daf322dc8e40aafacca0e9f8203d7/ktor-http-1.6.7-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-core:commonMain:1.5.2-native-mt">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../.gradle/kotlin/sourceSetMetadata/test-utils-ktor.test-utils-kmp/commonMain/implementation/org.jetbrains.kotlinx-kotlinx-coroutines-core/org.jetbrains.kotlinx-kotlinx-coroutines-core-commonMain.klib!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-core/1.5.2-native-mt/ea10f0f0f615c217bfb24744586db79f3204f3bc/kotlinx-coroutines-core-1.5.2-native-mt-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="Gradle: io.ktor:ktor-client-core:posixMain:1.6.7" level="project" />
+    <orderEntry type="module-library">
+      <library name="Gradle: io.ktor:ktor-http-cio:commonMain:1.6.7">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../.gradle/kotlin/sourceSetMetadata/test-utils-ktor.test-utils-kmp/commonMain/implementation/io.ktor-ktor-http-cio/io.ktor-ktor-http-cio-commonMain.klib!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-http-cio/1.6.7/1c4851934fbfafc38d7d44100e34d598a27dce4e/ktor-http-cio-1.6.7-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Gradle: co.touchlab:stately-isolate:commonMain:1.2.1">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../.gradle/kotlin/sourceSetMetadata/test-utils-ktor.test-utils-kmp/commonMain/implementation/co.touchlab-stately-isolate/co.touchlab-stately-isolate-commonMain.klib!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/co.touchlab/stately-isolate/1.2.1/b71227a89bfc1f509017bb48bc857e6e9dbc0f91/stately-isolate-1.2.1-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Gradle: io.ktor:ktor-utils:commonMain:1.6.7">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../.gradle/kotlin/sourceSetMetadata/test-utils-ktor.test-utils-kmp/commonMain/implementation/io.ktor-ktor-utils/io.ktor-ktor-utils-commonMain.klib!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-utils/1.6.7/2c8488a61b53394911c95353fdc6889898f13f66/ktor-utils-1.6.7-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.6.10" level="project" />
+    <orderEntry type="library" name="Gradle: io.ktor:ktor-http:posixMain:1.6.7" level="project" />
+    <orderEntry type="module-library">
+      <library name="Gradle: io.ktor:ktor-io:commonMain:1.6.7">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../.gradle/kotlin/sourceSetMetadata/test-utils-ktor.test-utils-kmp/commonMain/implementation/io.ktor-ktor-io/io.ktor-ktor-io-commonMain.klib!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-io/1.6.7/74e7b4c59e5e01f2bfd132ee0264005a6c3c3097/ktor-io-1.6.7-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-core:concurrentMain:1.5.2-native-mt">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../.gradle/kotlin/sourceSetMetadata/test-utils-ktor.test-utils-kmp/nativeMain/implementation/org.jetbrains.kotlinx-kotlinx-coroutines-core/org.jetbrains.kotlinx-kotlinx-coroutines-core-concurrentMain.klib!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-core/1.5.2-native-mt/ea10f0f0f615c217bfb24744586db79f3204f3bc/kotlinx-coroutines-core-1.5.2-native-mt-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-core:nativeMain:1.5.2-native-mt" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlinx:atomicfu:commonMain:0.17.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlinx:atomicfu:nativeInterop:0.17.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlinx:atomicfu:nativeMain:0.17.0" level="project" />
+    <orderEntry type="library" name="Gradle: io.ktor:ktor-http-cio:posixMain:1.6.7" level="project" />
+    <orderEntry type="module-library">
+      <library name="Gradle: co.touchlab:stately-isolate:nativeCommonMain:1.2.1">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../.gradle/kotlin/sourceSetMetadata/test-utils-ktor.test-utils-kmp/nativeMain/implementation/co.touchlab-stately-isolate/co.touchlab-stately-isolate-nativeCommonMain.klib!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/co.touchlab/stately-isolate/1.2.1/b71227a89bfc1f509017bb48bc857e6e9dbc0f91/stately-isolate-1.2.1-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="Gradle: io.ktor:ktor-utils:posixMain:1.6.7" level="project" />
+    <orderEntry type="library" name="Gradle: io.ktor:ktor-utils:utilsInterop:1.6.7" level="project" />
+    <orderEntry type="module-library">
+      <library name="Gradle: co.touchlab:stately-concurrency:commonMain:1.2.1">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../.gradle/kotlin/sourceSetMetadata/test-utils-ktor.test-utils-kmp/nativeMain/implementation/co.touchlab-stately-concurrency/co.touchlab-stately-concurrency-commonMain.klib!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/co.touchlab/stately-concurrency/1.2.1/fd8b865ec53177a3219d5b12db4793d6f0f7da5c/stately-concurrency-1.2.1-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Gradle: co.touchlab:stately-concurrency:nativeCommonMain:1.2.1">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../.gradle/kotlin/sourceSetMetadata/test-utils-ktor.test-utils-kmp/nativeMain/implementation/co.touchlab-stately-concurrency/co.touchlab-stately-concurrency-nativeCommonMain.klib!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/co.touchlab/stately-concurrency/1.2.1/fd8b865ec53177a3219d5b12db4793d6f0f7da5c/stately-concurrency-1.2.1-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Gradle: co.touchlab:stately-common:commonMain:1.2.1">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../.gradle/kotlin/sourceSetMetadata/test-utils-ktor.test-utils-kmp/nativeMain/implementation/co.touchlab-stately-common/co.touchlab-stately-common-commonMain.klib!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/co.touchlab/stately-common/1.2.1/29fcd3b3ba8c8d41784b27f6bfb14da2edba6e1e/stately-common-1.2.1-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Gradle: co.touchlab:stately-common:nativeCommonMain:1.2.1">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../.gradle/kotlin/sourceSetMetadata/test-utils-ktor.test-utils-kmp/nativeMain/implementation/co.touchlab-stately-common/co.touchlab-stately-common-nativeCommonMain.klib!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/co.touchlab/stately-common/1.2.1/29fcd3b3ba8c8d41784b27f6bfb14da2edba6e1e/stately-common-1.2.1-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="Gradle: io.ktor:ktor-io:bitsMain:1.6.7" level="project" />
+    <orderEntry type="library" name="Gradle: io.ktor:ktor-io:posixMain:1.6.7" level="project" />
+    <orderEntry type="library" name="Gradle: io.ktor:ktor-io:socketsMain:1.6.7" level="project" />
+  </component>
+</module>

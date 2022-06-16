@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="test-util-ktor-jvm">
+    <output-path>$PROJECT_DIR$/test-util-ktor/build/libs</output-path>
+    <root id="archive" name="test-util-ktor-jvm.jar">
+      <element id="module-output" name="test-utils-kmp.test-util-ktor.jvmMain" />
+    </root>
+  </artifact>
+</component>

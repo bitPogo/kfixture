@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":test-utils-annotations:jsTest" external.linked.project.path="$MODULE_DIR$/../../../test-utils-annotations" external.root.project.path="$MODULE_DIR$/../../.." external.system.id="GRADLE" external.system.module.group="tech.antibytes.test-utils-kmp" external.system.module.type="sourceSet" external.system.module.version="c6cf43d-change-assertions-SNAPSHOT" type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="android" name="Android">
+      <configuration>
+        <option name="SELECTED_BUILD_VARIANT" value="debug" />
+        <option name="ASSEMBLE_TASK_NAME" value="assembleDebug" />
+        <option name="COMPILE_JAVA_TASK_NAME" value="compileDebugSources" />
+        <afterSyncTasks>
+          <task>generateDebugSources</task>
+        </afterSyncTasks>
+        <option name="ALLOW_USER_CONFIGURATION" value="false" />
+        <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/androidMain/AndroidManifest.xml" />
+        <option name="RES_FOLDER_RELATIVE_PATH" value="/src/androidMain/res" />
+        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/../../../test-utils-annotations/src/androidMain/res;file://$MODULE_DIR$/../../../test-utils-annotations/src/androidMain/resources;file://$MODULE_DIR$/../../../test-utils-annotations/src/debug/res;file://$MODULE_DIR$/../../../test-utils-annotations/src/androidDebug/res;file://$MODULE_DIR$/../../../test-utils-annotations/build/generated/res/rs/debug;file://$MODULE_DIR$/../../../test-utils-annotations/build/generated/res/resValues/debug" />
+        <option name="TEST_RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/../../../test-utils-annotations/src/androidTest/res;file://$MODULE_DIR$/../../../test-utils-annotations/src/androidAndroidTest/res;file://$MODULE_DIR$/../../../test-utils-annotations/src/androidTestDebug/res;file://$MODULE_DIR$/../../../test-utils-annotations/src/androidAndroidTestDebug/res;file://$MODULE_DIR$/../../../test-utils-annotations/build/generated/res/rs/androidTest/debug;file://$MODULE_DIR$/../../../test-utils-annotations/build/generated/res/resValues/androidTest/debug" />
+        <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets" />
+        <option name="PROJECT_TYPE" value="1" />
+      </configuration>
+    </facet>
+    <facet type="kotlin-language" name="Kotlin">
+      <configuration version="4" platform="JavaScript " allPlatforms="JS []" useProjectSettings="false" isTestModule="true" externalProjectId=":test-utils-annotations" isHmppProject="true" pureKotlinSourceFolders="$MODULE_DIR$/../../../test-utils-annotations/src/androidDebug/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-annotations/src/debug/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-annotations/src/debug/java;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-annotations/src/androidDebugAndroidTest/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-annotations/src/androidDebugUnitTest/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-annotations/src/androidRelease/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-annotations/src/release/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-annotations/src/release/java;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-annotations/src/androidReleaseUnitTest/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-annotations/src/iosArm64Main/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-annotations/src/iosArm64Main/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-annotations/src/iosX64Main/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-annotations/src/iosX64Main/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-annotations/src/jsMain/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-annotations/build/externals/test-utils-kmp-test-utils-annotations/src;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-annotations/src/jsTest/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-annotations/src/jvmMain/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-annotations/src/jvmTest/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-annotations/src/linuxX64Main/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-annotations/src/linuxX64Main/kotlin">
+        <dependsOnModuleNames>:test-utils-annotations:commonTest</dependsOnModuleNames>
+        <sourceSets>
+          <sourceSet>test-utils-kmp.test-utils-annotations.commonTest</sourceSet>
+          <sourceSet>test-utils-kmp.test-utils-annotations.jsMain</sourceSet>
+          <sourceSet>test-utils-kmp.test-utils-annotations.commonMain</sourceSet>
+        </sourceSets>
+        <newMppModelJpsModuleKind>COMPILATION_AND_SOURCE_SET_HOLDER</newMppModelJpsModuleKind>
+        <externalSystemTestTasks>
+          <externalSystemTestTask>jsNodeTest|:test-utils-annotations|js</externalSystemTestTask>
+          <externalSystemTestTask>jsBrowserTest|:test-utils-annotations|js</externalSystemTestTask>
+        </externalSystemTestTasks>
+        <compilerSettings>
+          <option name="additionalArguments" value="-Xir-module-name=tech.antibytes.test-utils-kmp:test-utils-annotations_test -Xir-only -Xir-per-module-output-name=test-utils-kmp-test-utils-annotations-test -Xir-produce-klib-dir" />
+        </compilerSettings>
+        <compilerArguments>
+          <option name="outputFile" value="$MODULE_DIR$/../../../test-utils-annotations/build/classes/kotlin/js/test" />
+          <option name="noStdlib" value="true" />
+          <option name="sourceMap" value="true" />
+          <option name="sourceMapEmbedSources" value="never" />
+          <option name="metaInfo" value="true" />
+          <option name="target" value="v5" />
+          <option name="moduleKind" value="umd" />
+          <option name="main" value="call" />
+          <option name="languageVersion" value="1.6" />
+          <option name="apiVersion" value="1.4" />
+          <option name="pluginOptions">
+            <array />
+          </option>
+          <option name="pluginClasspaths">
+            <array>
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-scripting-jvm/1.6.10/dbe683647dcb04cda92fe4423acb741a2f144a69/kotlin-scripting-jvm-1.6.10.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-scripting-common/1.6.10/b3b71fd93878f2b4f19d099ac6430c67549a1c77/kotlin-scripting-common-1.6.10.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.6.10/b8af3fe6f1ca88526914929add63cf5e7c5049af/kotlin-stdlib-1.6.10.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.6.10/c118700e3a33c8a0d9adc920e9dec0831171925/kotlin-stdlib-common-1.6.10.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-script-runtime/1.6.10/d0a7ff2e2500ef497ed0214ae40ad3c8387a6164/kotlin-script-runtime-1.6.10.jar" />
+            </array>
+          </option>
+          <option name="multiPlatform" value="true" />
+          <option name="errors">
+            <ArgumentParseErrors />
+          </option>
+        </compilerArguments>
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+    <output-test url="file://$MODULE_DIR$/../../../test-utils-annotations/build/classes/kotlin/js/test" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../test-utils-annotations/src/jsTest/kotlin">
+      <sourceFolder url="file://$MODULE_DIR$/../../../test-utils-annotations/src/jsTest/kotlin" type="kotlin-test" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../test-utils-annotations/src/jsTest/resources" />
+    <orderEntry type="jdk" jdkName="Android API 31 Platform" jdkType="Android SDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="test-utils-kmp.test-utils-annotations.commonMain" scope="TEST" />
+    <orderEntry type="module" module-name="test-utils-kmp.test-utils-annotations.commonTest" scope="TEST" production-on-test="" />
+    <orderEntry type="module" module-name="test-utils-kmp.test-utils-annotations.jsMain" scope="TEST" />
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../../../test-utils-annotations/build/classes/kotlin/js/main" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-test-common:1.6.10" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-test-annotations-common:1.6.10" level="project" />
+    <orderEntry type="module-library" scope="RUNTIME">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../../../test-utils-annotations/build/processedResources/js/main" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="test-utils-kmp.test-utils-fixture.jsMain" scope="TEST" />
+    <orderEntry type="module" module-name="test-utils-kmp.test-utils-fixture.commonMain" scope="TEST" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-js:1.4.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.6.10" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-test-js:1.6.10" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlinx:kotlinx-nodejs:klib:0.0.7" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains:annotations:13.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-js:1.6.10" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: co.touchlab:stately-isolate-js:klib:1.2.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlinx:atomicfu-js:klib:0.17.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: co.touchlab:stately-concurrency-js:klib:1.2.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: co.touchlab:stately-common-js:klib:1.2.1" level="project" />
+  </component>
+  <component name="TestModuleProperties" production-module="test-utils-kmp.test-utils-annotations.jsMain" />
+</module>

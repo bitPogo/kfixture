@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel target="11">
+      <module name="kfixture.fixture.commonMain" target="1.8" />
+      <module name="kfixture.fixture.commonTest" target="1.8" />
+      <module name="kfixture.fixture.jvmMain" target="1.8" />
+      <module name="kfixture.fixture.jvmTest" target="1.8" />
+      <module name="kotlin-fixtures-kmp.fixture.commonMain" target="1.8" />
+      <module name="kotlin-fixtures-kmp.fixture.commonTest" target="1.8" />
+      <module name="kotlin-fixtures-kmp.fixture.jvmMain" target="1.8" />
+      <module name="kotlin-fixtures-kmp.fixture.jvmTest" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

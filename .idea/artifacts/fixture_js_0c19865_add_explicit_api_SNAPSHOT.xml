@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="fixture-js-0c19865-add-explicit-api-SNAPSHOT">
+    <output-path>$PROJECT_DIR$/fixture/build/libs</output-path>
+    <root id="archive" name="fixture-js-0c19865-add-explicit-api-SNAPSHOT.jar">
+      <element id="module-output" name="kfixture.fixture.jsMain" />
+    </root>
+  </artifact>
+</component>

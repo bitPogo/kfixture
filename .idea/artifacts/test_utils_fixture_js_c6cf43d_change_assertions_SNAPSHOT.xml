@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="test-utils-fixture-js-c6cf43d-change-assertions-SNAPSHOT">
+    <output-path>$PROJECT_DIR$/test-utils-fixture/build/libs</output-path>
+    <root id="archive" name="test-utils-fixture-js-c6cf43d-change-assertions-SNAPSHOT.jar">
+      <element id="module-output" name="test-utils-kmp.test-utils-fixture.jsMain" />
+    </root>
+  </artifact>
+</component>

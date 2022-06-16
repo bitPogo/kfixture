@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2b49f0d9-a2d2-4eec-ba4b-8365e0064560" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$/fixture">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Class" />
+      </list>
+    </option>
+  </component>
+  <component name="KotlinMultiplatform" konanHome="$USER_HOME$/.konan/kotlin-native-prebuilt-macos-x86_64-1.6.10">
+    <allAvailableExecutables>
+      <executable target="linux_x64" targetName="linuxX64" execName="test" projectPrefix=":core:" isTest="true">
+        <variants>
+          <variant name="Debug" gradleTask=":core:linkDebugTestLinuxX64" file="$PROJECT_DIR$/core/build/bin/linuxX64/debugTest/test.kexe">
+            <params workingDirectory="" programParameters="">
+              <environmentVariables />
+            </params>
+          </variant>
+        </variants>
+      </executable>
+      <executable target="ios_arm64" targetName="iosArm64" execName="test" projectPrefix=":core:" isTest="true">
+        <variants>
+          <variant name="Debug" gradleTask=":core:linkDebugTestIosArm64" file="$PROJECT_DIR$/core/build/bin/iosArm64/debugTest/test.kexe">
+            <params workingDirectory="" programParameters="">
+              <environmentVariables />
+            </params>
+          </variant>
+        </variants>
+      </executable>
+      <executable target="ios_simulator_arm64" targetName="iosSimulatorArm64" execName="test" projectPrefix=":core:" isTest="true">
+        <variants>
+          <variant name="Debug" gradleTask=":core:linkDebugTestIosSimulatorArm64" file="$PROJECT_DIR$/core/build/bin/iosSimulatorArm64/debugTest/test.kexe">
+            <params workingDirectory="" programParameters="">
+              <environmentVariables />
+            </params>
+          </variant>
+        </variants>
+      </executable>
+      <executable target="ios_x64" targetName="iosX64" execName="test" projectPrefix=":core:" isTest="true">
+        <variants>
+          <variant name="Debug" gradleTask=":core:linkDebugTestIosX64" file="$PROJECT_DIR$/core/build/bin/iosX64/debugTest/test.kexe">
+            <params workingDirectory="" programParameters="">
+              <environmentVariables />
+            </params>
+          </variant>
+        </variants>
+      </executable>
+    </allAvailableExecutables>
+  </component>
+  <component name="ProjectId" id="26WmptuZ3EBSfCh4Bo4cPlXzp1G" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
+    <property name="cidr.known.project.marker" value="true" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/fixture/src/commonMain/kotlin/tech/antibytes/kfixture" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/fixture/src/androidAndroidTest/kotlin" />
+      <recent name="$PROJECT_DIR$/gradlePlugin/test-utils-dependency/src/main/kotlin/tech/antibytes/gradle/util/test/dependency" />
+      <recent name="$PROJECT_DIR$/gradle" />
+      <recent name="$PROJECT_DIR$/buildSrc" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/docs/src/assets" />
+      <recent name="$PROJECT_DIR$/fixture/src/androidAndroidTest/kotlin/tech/antibytes/kfixture" />
+      <recent name="$PROJECT_DIR$/fixture/src/androidTest/kotlin/tech/antibytes/kfixture" />
+      <recent name="$PROJECT_DIR$/fixture/src/nativeTest/kotlin/tech/antibytes/kfixture" />
+      <recent name="$PROJECT_DIR$/fixture/src/jvmTest/kotlin/tech/antibytes/kfixture" />
+    </key>
+    <key name="CreateKotlinClassDialog.RecentsKey">
+      <recent name="tech.antibytes.kfixture.fixture.generator.array" />
+    </key>
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="tech.antibytes.kfixture.generator" />
+      <recent name="tech.antibytes.kfixture.generator.array" />
+      <recent name="tech.antibytes.kfixture" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="tech.antibytes.kfixture" />
+    </key>
+    <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="tech.antibytes.gradle.kfixture.dependency" />
+      <recent name="tech.antibytes.kfixture.fixture" />
+      <recent name="tech.antibytes.kfixture.generator.primitive" />
+      <recent name="tech.antibytes.kfixture.generator.array" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Gradle.BooleanArrayGeneratorSpec">
+    <configuration name="BooleanArrayGeneratorSpec" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/core" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;tech.antibytes.kfixture.generator.array.BooleanArrayGeneratorSpec&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":core:cleanIosX64Test" />
+            <option value=":core:iosX64Test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="ConfigurationSpec" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/fixture" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;tech.antibytes.kfixture.ConfigurationSpec&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":fixture:cleanJvmTest" />
+            <option value=":fixture:jvmTest" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="RandomWrapperSpec" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/fixture" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;tech.antibytes.kfixture.generator.RandomWrapperSpec&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":fixture:cleanJvmTest" />
+            <option value=":fixture:jvmTest" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="RandomWrapperSpec.Given nextBytes is called with an Int it delegates the call to the wrapped random generator" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/fixture" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;tech.antibytes.kfixture.generator.RandomWrapperSpec.Given nextBytes is called with an Int it delegates the call to the wrapped random generator&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":fixture:cleanJvmTest" />
+            <option value=":fixture:jvmTest" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="SequenceFixtureSpec" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/fixture" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;tech.antibytes.kfixture.fixture.SequenceFixtureSpec&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":fixture:cleanJvmTest" />
+            <option value=":fixture:jvmTest" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.BooleanArrayGeneratorSpec" />
+        <item itemvalue="Gradle.ConfigurationSpec" />
+        <item itemvalue="Gradle.RandomWrapperSpec" />
+        <item itemvalue="Gradle.RandomWrapperSpec.Given nextBytes is called with an Int it delegates the call to the wrapped random generator" />
+        <item itemvalue="Gradle.RandomWrapperSpec.Given nextBytes is called with an Int it delegates the call to the wrapped random generator" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2b49f0d9-a2d2-4eec-ba4b-8365e0064560" name="Default Changelist" comment="" />
+      <created>1647547902993</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1647547902993</updated>
+    </task>
+    <servers />
+  </component>
+</project>

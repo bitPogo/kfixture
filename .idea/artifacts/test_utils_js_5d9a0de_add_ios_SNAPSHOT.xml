@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="test-utils-js-5d9a0de-add-ios-SNAPSHOT">
+    <output-path>$PROJECT_DIR$/test-utils/build/libs</output-path>
+    <root id="archive" name="test-utils-js-5d9a0de-add-ios-SNAPSHOT.jar">
+      <element id="module-output" name="test-utils-kmp.test-utils.jsMain" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,658 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id="test-utils-kmp:buildSrc" external.linked.project.path="$MODULE_DIR$/../../buildSrc" external.root.project.path="$MODULE_DIR$/../.." external.system.id="GRADLE" external.system.module.group="" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="java-gradle" name="Java-Gradle">
+      <configuration>
+        <option name="BUILDABLE" value="true" />
+      </configuration>
+    </facet>
+    <facet type="android-gradle" name="Android-Gradle">
+      <configuration>
+        <option name="GRADLE_PROJECT_PATH" value=":" />
+        <option name="LAST_SUCCESSFUL_SYNC_AGP_VERSION" />
+        <option name="LAST_KNOWN_AGP_VERSION" />
+      </configuration>
+    </facet>
+    <facet type="kotlin-language" name="Kotlin">
+      <configuration version="4" platform="JVM 1.8" allPlatforms="JVM [1.8]" useProjectSettings="false">
+        <compilerSettings>
+          <option name="additionalArguments" value="-Xallow-no-source-files -java-parameters -Xjsr305=strict -Xjvm-default=all -XXLanguage:+DisableCompatibilityModeForNewInference" />
+        </compilerSettings>
+        <compilerArguments>
+          <option name="destination" value="$MODULE_DIR$/../../buildSrc/build/classes/kotlin/main" />
+          <option name="classpath" value="$USER_HOME$/.gradle/caches/7.2/generated-gradle-jars/gradle-api-7.2.jar:/Users/d4l000126/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/groovy-3.0.8.jar:/Users/d4l000126/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/groovy-ant-3.0.8.jar:/Users/d4l000126/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/groovy-astbuilder-3.0.8.jar:/Users/d4l000126/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/groovy-console-3.0.8.jar:/Users/d4l000126/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/groovy-datetime-3.0.8.jar:/Users/d4l000126/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/groovy-dateutil-3.0.8.jar:/Users/d4l000126/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/groovy-groovydoc-3.0.8.jar:/Users/d4l000126/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/groovy-json-3.0.8.jar:/Users/d4l000126/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/groovy-nio-3.0.8.jar:/Users/d4l000126/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/groovy-sql-3.0.8.jar:/Users/d4l000126/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/groovy-templates-3.0.8.jar:/Users/d4l000126/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/groovy-test-3.0.8.jar:/Users/d4l000126/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/groovy-xml-3.0.8.jar:/Users/d4l000126/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/javaparser-core-3.17.0.jar:/Users/d4l000126/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/kotlin-stdlib-1.5.21.jar:/Users/d4l000126/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/kotlin-stdlib-common-1.5.21.jar:/Users/d4l000126/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/kotlin-stdlib-jdk7-1.5.21.jar:/Users/d4l000126/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/kotlin-stdlib-jdk8-1.5.21.jar:/Users/d4l000126/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/kotlin-reflect-1.5.21.jar:/Users/d4l000126/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/gradle-installation-beacon-7.2.jar:/Users/d4l000126/.gradle/caches/7.2/generated-gradle-jars/gradle-kotlin-dsl-extensions-7.2.jar:/Users/d4l000126/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/gradle-kotlin-dsl-7.2.jar:/Users/d4l000126/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/gradle-kotlin-dsl-tooling-models-7.2.jar:/Users/d4l000126/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk8/1.5.21/6b3de2a43405a65502728047db37a98a0c7e72f0/kotlin-stdlib-jdk8-1.5.21.jar:/Users/d4l000126/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-reflect/1.5.21/802f1f39735ae1eb2b75714a40fa19bb2e687e96/kotlin-reflect-1.5.21.jar:/Users/d4l000126/.gradle/caches/modules-2/files-2.1/tech.antibytes.gradle-plugins/antibytes-dependency/ed855ae/e4aecda2700679870c49f8f818d85149e38ae664/antibytes-dependency-ed855ae.jar:/Users/d4l000126/.gradle/caches/modules-2/files-2.1/tech.antibytes.gradle-plugins/antibytes-publishing/ed855ae/9d727824ed632d12ccacc07c13bf7e6995a62a0a/antibytes-publishing-ed855ae.jar:/Users/d4l000126/.gradle/caches/modules-2/files-2.1/tech.antibytes.gradle-plugins/antibytes-coverage/ed855ae/e452ccd1985bb8d2609d612a5f7e329cb4b65056/antibytes-coverage-ed855ae.jar:/Users/d4l000126/.gradle/caches/modules-2/files-2.1/com.diffplug.spotless/spotless-plugin-gradle/6.3.0/ae17aa93578a129d65a8d4a8bb00151d3023aaef/spotless-plugin-gradle-6.3.0.jar:/Users/d4l000126/.gradle/caches/modules-2/files-2.1/tech.antibytes.gradle-plugins/antibytes-configuration/ed855ae/f824444be5972152d958387f7827cb07bf55de68/antibytes-configuration-ed855ae.jar:/Users/d4l000126/.gradle/caches/modules-2/files-2.1/tech.antibytes.gradle-plugins/antibytes-runtime-configuration/ed855ae/1d4bbb0613d40463d298c1c398bfe10c1a7adda6/antibytes-runtime-configuration-ed855ae.jar:/Users/d4l000126/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.5.21/f059658740a4b3a3461aba9681457615332bae1c/kotlin-stdlib-jdk7-1.5.21.jar:/Users/d4l000126/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.5.21/2f537cad7e9eeb9da73738c8812e1e4cf9b62e4e/kotlin-stdlib-1.5.21.jar:/Users/d4l000126/.gradle/caches/modules-2/files-2.1/com.diffplug.spotless/spotless-lib-extra/2.23.0/5de53d50115111c3ff5d149af0ac9defa96ab5b9/spotless-lib-extra-2.23.0.jar:/Users/d4l000126/.gradle/caches/modules-2/files-2.1/com.diffplug.spotless/spotless-lib/2.23.0/c7355c0665e0790fe3daaf24019642bd70f8ec14/spotless-lib-2.23.0.jar:/Users/d4l000126/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar:/Users/d4l000126/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.5.21/cc8bf3586fd2ebcf234058b9440bb406e62dfacb/kotlin-stdlib-common-1.5.21.jar" />
+          <option name="noStdlib" value="true" />
+          <option name="noReflect" value="true" />
+          <option name="moduleName" value="buildSrc" />
+          <option name="languageVersion" value="1.4" />
+          <option name="apiVersion" value="1.4" />
+          <option name="pluginOptions">
+            <array>
+              <option value="plugin:org.jetbrains.kotlin.samWithReceiver:annotation=org.gradle.api.HasImplicitReceiver" />
+            </array>
+          </option>
+          <option name="pluginClasspaths">
+            <array>
+              <option value="$USER_HOME$/.gradle/caches/7.2/generated-gradle-jars/gradle-api-7.2.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin-api/1.5.21/59a0fcaa48b6e58760fd09ad2cb3654ca805c60f/kotlin-gradle-plugin-api-1.5.21.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin-model/1.5.21/a38c82c0bbfe6596f1040fefa9e16b4c41a75087/kotlin-gradle-plugin-model-1.5.21.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-native-utils/1.5.21/80f0557b39761ccf0310037b5fdcf82c2a535446/kotlin-native-utils-1.5.21.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-project-model/1.5.21/1f240b049e768b66b8f2b6214c854de7e3713183/kotlin-project-model-1.5.21.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-script-runtime/1.5.21/96d49e89873fde985750af354b6eabb60cfa999b/kotlin-script-runtime-1.5.21.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-scripting-common/1.5.21/5d271f9e7e7191902f8c0d45c600f5b57a284036/kotlin-scripting-common-1.5.21.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-scripting-jvm/1.5.21/8143908a15163e634fecb87013ed4a139170b032/kotlin-scripting-jvm-1.5.21.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.5.21/cc8bf3586fd2ebcf234058b9440bb406e62dfacb/kotlin-stdlib-common-1.5.21.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.5.21/2f537cad7e9eeb9da73738c8812e1e4cf9b62e4e/kotlin-stdlib-1.5.21.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-util-io/1.5.21/d3db0a0411ed0d914ceabf8c91595a03e7a85d20/kotlin-util-io-1.5.21.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-core/1.3.8/f62be6d4cbf27781c2969867b4ed952f38378492/kotlinx-coroutines-core-1.3.8.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar" />
+              <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/gradle-installation-beacon-7.2.jar" />
+              <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/gradle-kotlin-dsl-7.2.jar" />
+              <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/gradle-kotlin-dsl-tooling-models-7.2.jar" />
+              <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/groovy-3.0.8.jar" />
+              <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/groovy-ant-3.0.8.jar" />
+              <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/groovy-astbuilder-3.0.8.jar" />
+              <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/groovy-console-3.0.8.jar" />
+              <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/groovy-datetime-3.0.8.jar" />
+              <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/groovy-dateutil-3.0.8.jar" />
+              <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/groovy-groovydoc-3.0.8.jar" />
+              <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/groovy-json-3.0.8.jar" />
+              <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/groovy-nio-3.0.8.jar" />
+              <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/groovy-sql-3.0.8.jar" />
+              <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/groovy-templates-3.0.8.jar" />
+              <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/groovy-test-3.0.8.jar" />
+              <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/groovy-xml-3.0.8.jar" />
+              <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/javaparser-core-3.17.0.jar" />
+              <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/kotlin-reflect-1.5.21.jar" />
+              <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/kotlin-stdlib-1.5.21.jar" />
+              <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/kotlin-stdlib-common-1.5.21.jar" />
+              <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/kotlin-stdlib-jdk7-1.5.21.jar" />
+              <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-7.2-all/260hg96vuh6ex27h9vo47iv4d/gradle-7.2/lib/kotlin-stdlib-jdk8-1.5.21.jar" />
+              <option value="$KOTLIN_BUNDLED$/lib/sam-with-receiver-compiler-plugin.jar" />
+            </array>
+          </option>
+          <option name="errors">
+            <ArgumentParseErrors />
+          </option>
+        </compilerArguments>
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../../buildSrc/build/classes/java/main" />
+    <output-test url="file://$MODULE_DIR$/../../buildSrc/build/classes/java/test" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../buildSrc">
+      <sourceFolder url="file://$MODULE_DIR$/../../buildSrc/src/main/kotlin" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/../../buildSrc/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/../../buildSrc/build" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../buildSrc/build/generated-sources/kotlin-dsl-accessors/kotlin">
+      <sourceFolder url="file://$MODULE_DIR$/../../buildSrc/build/generated-sources/kotlin-dsl-accessors/kotlin" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../buildSrc/build/generated-sources/kotlin-dsl-external-plugin-spec-builders/kotlin">
+      <sourceFolder url="file://$MODULE_DIR$/../../buildSrc/build/generated-sources/kotlin-dsl-external-plugin-spec-builders/kotlin" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../buildSrc/build/generated-sources/kotlin-dsl-plugins/kotlin">
+      <sourceFolder url="file://$MODULE_DIR$/../../buildSrc/build/generated-sources/kotlin-dsl-plugins/kotlin" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.21" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.jetbrains.kotlin:kotlin-reflect:1.5.21" level="project" />
+    <orderEntry type="library" name="Gradle: tech.antibytes.gradle-plugins:antibytes-dependency:ed855ae" level="project" />
+    <orderEntry type="library" name="Gradle: tech.antibytes.gradle-plugins:antibytes-publishing:ed855ae" level="project" />
+    <orderEntry type="library" name="Gradle: tech.antibytes.gradle-plugins:antibytes-coverage:ed855ae" level="project" />
+    <orderEntry type="library" name="Gradle: com.diffplug.spotless:spotless-plugin-gradle:6.3.0" level="project" />
+    <orderEntry type="library" name="Gradle: tech.antibytes.gradle-plugins:antibytes-configuration:ed855ae" level="project" />
+    <orderEntry type="library" name="Gradle: tech.antibytes.gradle-plugins:antibytes-runtime-configuration:ed855ae" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.5.21" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.5.21" level="project" />
+    <orderEntry type="library" name="Gradle: com.diffplug.spotless:spotless-lib-extra:2.23.0" level="project" />
+    <orderEntry type="library" name="Gradle: com.diffplug.spotless:spotless-lib:2.23.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains:annotations:13.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.5.21" level="project" />
+    <orderEntry type="library" name="Gradle: gradle-api-7.2" level="project" />
+    <orderEntry type="library" name="Gradle: groovy-3.0.8" level="project" />
+    <orderEntry type="library" name="Gradle: groovy-ant-3.0.8" level="project" />
+    <orderEntry type="library" name="Gradle: groovy-astbuilder-3.0.8" level="project" />
+    <orderEntry type="library" name="Gradle: groovy-console-3.0.8" level="project" />
+    <orderEntry type="library" name="Gradle: groovy-datetime-3.0.8" level="project" />
+    <orderEntry type="library" name="Gradle: groovy-dateutil-3.0.8" level="project" />
+    <orderEntry type="library" name="Gradle: groovy-groovydoc-3.0.8" level="project" />
+    <orderEntry type="library" name="Gradle: groovy-json-3.0.8" level="project" />
+    <orderEntry type="library" name="Gradle: groovy-nio-3.0.8" level="project" />
+    <orderEntry type="library" name="Gradle: groovy-sql-3.0.8" level="project" />
+    <orderEntry type="library" name="Gradle: groovy-templates-3.0.8" level="project" />
+    <orderEntry type="library" name="Gradle: groovy-test-3.0.8" level="project" />
+    <orderEntry type="library" name="Gradle: groovy-xml-3.0.8" level="project" />
+    <orderEntry type="library" name="Gradle: javaparser-core-3.17.0" level="project" />
+    <orderEntry type="library" name="Gradle: kotlin-stdlib-1.5.21" level="project" />
+    <orderEntry type="library" name="Gradle: kotlin-stdlib-common-1.5.21" level="project" />
+    <orderEntry type="library" name="Gradle: kotlin-stdlib-jdk7-1.5.21" level="project" />
+    <orderEntry type="library" name="Gradle: kotlin-stdlib-jdk8-1.5.21" level="project" />
+    <orderEntry type="library" name="Gradle: kotlin-reflect-1.5.21" level="project" />
+    <orderEntry type="library" name="Gradle: gradle-installation-beacon-7.2" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: gradle-kotlin-dsl-extensions-7.2" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: gradle-kotlin-dsl-7.2" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: gradle-kotlin-dsl-tooling-models-7.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: tech.antibytes.gradle-plugins:antibytes-gradle-utils:ed855ae" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.squareup:kotlinpoet:1.10.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.pinterest:ktlint:0.44.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlin:kotlin-annotation-processing-gradle:1.6.10" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlin:kotlin-android-extensions:1.6.10" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlin:kotlin-compiler-runner:1.6.10" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.pinterest.ktlint:ktlint-reporter-baseline:0.44.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.pinterest.ktlint:ktlint-reporter-checkstyle:0.44.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.pinterest.ktlint:ktlint-reporter-json:0.44.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.pinterest.ktlint:ktlint-reporter-html:0.44.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.pinterest.ktlint:ktlint-reporter-plain:0.44.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.pinterest.ktlint:ktlint-reporter-sarif:0.44.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.pinterest.ktlint:ktlint-ruleset-experimental:0.44.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.pinterest.ktlint:ktlint-ruleset-standard:0.44.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.pinterest.ktlint:ktlint-ruleset-test:0.44.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.pinterest.ktlint:ktlint-core:0.44.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlin:kotlin-compiler-embeddable:1.6.10" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android.tools.build:gradle:7.1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android.tools.lint:lint-model:30.1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android.tools.build:builder:7.1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android.tools.build:manifest-merger:30.1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android.tools:sdk-common:30.1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.dokka:dokka-core:1.4.32" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.mockk:mockk:1.12.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.appmattus.fixture:fixture:1.2.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.mockk:mockk-agent-jvm:1.12.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.mockk:mockk-dsl-jvm:1.12.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.owasp:dependency-check-gradle:6.5.3" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.owasp:dependency-check-core:6.5.3" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.owasp:dependency-check-utils:6.5.3" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.fasterxml.jackson.module:jackson-module-afterburner:2.13.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.13.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.13.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.sonatype.ossindex:ossindex-service-client:1.8.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.sonatype.ossindex:ossindex-service-api:1.8.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.13.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.13.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.fasterxml.jackson.module:jackson-module-kotlin:2.13.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlin:kotlin-reflect:1.6.10" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlinx:atomicfu-gradle-plugin:0.17.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.github.ben-manes:gradle-versions-plugin:0.42.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.palantir.gradle.gitversion:gradle-git-version:0.12.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.eclipse.jgit:org.eclipse.jgit:6.0.0.202111291000-r" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jacoco:org.jacoco.core:0.8.7" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.diffplug.durian:durian-io:1.2.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.diffplug.durian:durian-collect:1.2.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.diffplug.durian:durian-core:1.2.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlin:kotlin-gradle-plugin-api:1.6.10" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlin:kotlin-gradle-plugin-model:1.6.10" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlin:kotlin-util-klib:1.6.10" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlin:kotlin-klib-commonizer-api:1.6.10" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlin:kotlin-tooling-metadata:1.6.10" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlin:kotlin-project-model:1.6.10" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android.tools:sdklib:30.1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android.tools:repository:30.1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android.tools.analytics-library:tracker:30.1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android.tools.analytics-library:shared:30.1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: androidx.databinding:databinding-compiler-common:7.1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android.tools.utp:android-test-plugin-result-listener-gradle-proto:30.1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android.tools.build.jetifier:jetifier-processor:1.0.0-beta09" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android.tools.build.jetifier:jetifier-core:1.0.0-beta09" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android.tools.build:bundletool:1.8.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.google.protobuf:protobuf-java-util:3.10.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.grpc:grpc-netty:1.21.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.grpc:grpc-core:1.21.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: net.gpedro.integrations.slack:slack-webhook:1.4.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.moandjiezana.toml:toml4j:0.7.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.google.code.gson:gson:2.8.6" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android.tools.build:aaptcompiler:7.1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android.tools.analytics-library:crash:30.1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android.tools.build:gradle-api:7.1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android.tools.build:builder-test-api:7.1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.grpc:grpc-protobuf:1.21.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android.tools.ddms:ddmlib:30.1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android.tools.layoutlib:layoutlib-api:30.1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android.tools:dvlib:30.1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android.tools:common:30.1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.google.jimfs:jimfs:1.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.grpc:grpc-stub:1.21.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.grpc:grpc-protobuf-lite:1.21.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.grpc:grpc-api:1.21.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android.tools.build:apkzlib:7.1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.eclipse.packager:packager-rpm:0.17.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.google.guava:guava:31.0.1-jre" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: de.undercouch:gradle-download-task:4.1.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.github.gundy:semver4j:0.16.4:nodeps" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlin:kotlin-scripting-compiler-embeddable:1.6.10" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlin:kotlin-scripting-compiler-impl-embeddable:1.6.10" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlinx:atomicfu-transformer:0.17.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android.tools.utp:android-test-plugin-host-retention-proto:30.1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android.tools.build:builder-model:7.1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.github.microutils:kotlin-logging-jvm:2.1.21" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlin:kotlin-daemon-client:1.6.10" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.5.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.3.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.github.detekt.sarif4k:sarif4k:0.0.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.mockk:mockk-common:1.12.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains:markdown-jvm:0.2.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.mockk:mockk-agent-common:1.12.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.mockk:mockk-agent-api:1.12.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.mockk:mockk-dsl:1.12.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.1.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.1.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.6.10" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android.tools.build:aapt2-proto:7.1.2-7984345" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: androidx.databinding:databinding-common:7.1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android.databinding:baseLibrary:7.1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android.tools.utp:android-device-provider-ddmlib-proto:30.1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android.tools.utp:android-device-provider-gradle-proto:30.1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android.tools.utp:android-test-plugin-host-additional-test-output-proto:30.1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android.tools.utp:android-test-plugin-host-coverage-proto:30.1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android.tools.build:transform-api:2.0.0-deprecated-use-gradle-api" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.apache.httpcomponents:httpmime:4.5.6" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: commons-io:commons-io:2.11.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.ow2.asm:asm-commons:9.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.ow2.asm:asm-util:9.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.ow2.asm:asm-analysis:9.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.ow2.asm:asm-tree:9.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.ow2.asm:asm:9.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.bouncycastle:bcpkix-jdk15on:1.56" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.glassfish.jaxb:jaxb-runtime:2.3.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: net.sf.jopt-simple:jopt-simple:4.9" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.squareup:javapoet:1.10.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.google.crypto.tink:tink:1.3.0-rc2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android.tools.analytics-library:protos:30.1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.google.protobuf:protobuf-java:3.10.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.google.testing.platform:core-proto:0.0.8-alpha07" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.tensorflow:tensorflow-lite-metadata:0.1.0-rc2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.google.flatbuffers:flatbuffers-java:1.12.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.thoughtworks.xstream:xstream:1.4.17" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.github.shyiko.klob:klob:0.2.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: info.picocli:picocli:3.9.6" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.googlecode.javaewah:JavaEWAH:1.1.13" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.slf4j:slf4j-simple:1.8.0-alpha2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: us.springett:cpe-parser:2.0.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.apache.velocity:velocity-engine-core:2.3" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: ch.qos.logback:logback-classic:1.2.9" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.slf4j:jcl-over-slf4j:1.7.28" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.slf4j:slf4j-api:1.8.0-alpha2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.googlecode.concurrent-trees:concurrent-trees:2.6.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.codehaus.groovy:groovy-xml:3.0.9" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlin:kotlin-native-utils:1.6.10" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlin:kotlin-util-io:1.6.10" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.google.guava:failureaccess:1.0.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.google.code.findbugs:jsr305:3.0.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.checkerframework:checker-qual:3.12.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.google.errorprone:error_prone_annotations:2.7.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.google.j2objc:j2objc-annotations:1.3" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlin:kotlin-script-runtime:1.6.10" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlin:kotlin-daemon-embeddable:1.6.10" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.intellij.deps:trove4j:1.0.20181211" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: net.java.dev.jna:jna-platform:5.6.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: net.java.dev.jna:jna:5.6.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlin:kotlin-build-common:1.6.10" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlin:kotlin-scripting-jvm:1.6.10" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlin:kotlin-scripting-common:1.6.10" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.6.10" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.mozilla:rhino:1.7.10" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.bouncycastle:bcprov-jdk15on:1.56" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.google.dagger:dagger:2.28.3" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: javax.inject:javax.inject:1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: net.sf.kxml:kxml2:2.3.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: xerces:xercesImpl:2.12.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.apache.commons:commons-compress:1.21" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.apache.httpcomponents:httpclient:4.5.6" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.apache.httpcomponents:httpcore:4.4.10" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.sun.activation:javax.activation:1.2.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android:signflinger:7.1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android:zipflinger:7.1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android.tools:annotations:30.1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.antlr:antlr4:4.5.3" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.googlecode.juniversalchardet:juniversalchardet:1.0.3" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jvnet.staxex:stax-ex:1.8.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: jakarta.xml.bind:jakarta.xml.bind-api:2.3.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.glassfish.jaxb:txw2:2.3.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.sun.istack:istack-commons-runtime:3.0.8" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.sun.xml.fastinfoset:FastInfoset:1.2.16" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: jakarta.activation:jakarta.activation-api:1.2.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.google.auto.value:auto-value-annotations:1.6.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.bitbucket.b_c:jose4j:0.7.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jdom:jdom2:2.0.6" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.opencensus:opencensus-contrib-grpc-metrics:0.21.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.opencensus:opencensus-api:0.21.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.google.android:annotations:4.1.1.4" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.netty:netty-codec-http2:4.1.34.Final" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.netty:netty-handler-proxy:4.1.34.Final" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.google.api.grpc:proto-google-common-protos:1.12.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.json:json:20180813" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jsoup:jsoup:1.14.3" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: commons-codec:commons-codec:1.15" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: it.unimi.dsi:fastutil:8.4.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.googlecode.json-simple:json-simple:1.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.android.tools.build:apksig:7.1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.squareup:javawriter:2.5.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.github.x-stream:mxparser:1.2.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.anarres.jdiagnostics:jdiagnostics:1.0.7" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.whitesource:pecoff4j:0.0.2.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.apache.commons:commons-jcs-core:2.2.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.github.package-url:packageurl-java:1.4.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.vdurmont:semver4j:3.1.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.apache.commons:commons-collections4:4.4" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.apache.commons:commons-text:1.9" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.apache.commons:commons-lang3:3.12.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.apache.commons:commons-dbcp2:2.9.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.apache.lucene:lucene-analyzers-common:8.11.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.apache.lucene:lucene-queryparser:8.11.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.apache.lucene:lucene-core:8.11.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.h2database:h2:1.4.199" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.glassfish:javax.json:1.1.4" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.h3xstream.retirejs:retirejs-core:3.0.3" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.hankcs:aho-corasick-double-array-trie:1.2.3" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: commons-validator:commons-validator:1.7" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: commons-beanutils:commons-beanutils:1.9.4" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.ec4j.core:ec4j-core:0.3.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.github.classgraph:classgraph:4.8.117" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.codehaus.groovy:groovy:3.0.9" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: xml-apis:xml-apis:1.4.01" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: commons-logging:commons-logging:1.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.grpc:grpc-context:1.21.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.codehaus.mojo:animal-sniffer-annotations:1.17" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.netty:netty-codec-http:4.1.34.Final" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.netty:netty-handler:4.1.34.Final" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.netty:netty-codec-socks:4.1.34.Final" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.netty:netty-codec:4.1.34.Final" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.netty:netty-transport:4.1.34.Final" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.netty:netty-buffer:4.1.34.Final" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.netty:netty-resolver:4.1.34.Final" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.netty:netty-common:4.1.34.Final" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.fasterxml.woodstox:woodstox-core:6.2.7" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.codehaus.woodstox:stax2-api:4.2.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: xmlpull:xmlpull:1.1.3.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.apache.commons:commons-pool2:2.10.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.apache.lucene:lucene-queries:8.11.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.apache.lucene:lucene-sandbox:8.11.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.vaadin.external.google:android-json:0.0.20131108.vaadin1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.esotericsoftware:minlog:1.3.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.github.spullara.mustache.java:compiler:0.9.6" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: joda-time:joda-time:2.10.4" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: commons-digester:commons-digester:2.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: commons-collections:commons-collections:3.2.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.eclipse.packager:packager-core:0.17.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.tukaani:xz:1.8" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: ch.qos.logback:logback-core:1.2.9" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.objenesis:objenesis:3.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: net.bytebuddy:byte-buddy:1.12.5" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: net.bytebuddy:byte-buddy-agent:1.12.5" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.github.toolfactory:jvm-driver:4.0.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: javax.ws.rs:javax.ws.rs-api:2.0.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.sonatype.goodies:package-url-java:1.1.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.github.toolfactory:narcissus:1.0.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.tools.build:gradle:7.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.pinterest:ktlint:0.44.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.squareup:kotlinpoet:1.10.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.tools.lint:lint-model:30.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.tools.build:builder:7.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.tools.build:manifest-merger:30.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.tools:sdk-common:30.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.tools:sdklib:30.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.tools:repository:30.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.tools.build:gradle-api:7.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.tools.build:builder-test-api:7.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.tools.ddms:ddmlib:30.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.tools.build:aaptcompiler:7.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.tools.analytics-library:tracker:30.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.tools.analytics-library:shared:30.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.databinding:databinding-compiler-common:7.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.tools.utp:android-test-plugin-host-retention-proto:30.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.dokka:dokka-core:1.4.32" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.tools.build:builder-model:7.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.pinterest.ktlint:ktlint-reporter-baseline:0.44.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.pinterest.ktlint:ktlint-reporter-checkstyle:0.44.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.pinterest.ktlint:ktlint-reporter-json:0.44.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.pinterest.ktlint:ktlint-reporter-html:0.44.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.pinterest.ktlint:ktlint-reporter-plain:0.44.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.pinterest.ktlint:ktlint-reporter-sarif:0.44.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.pinterest.ktlint:ktlint-ruleset-experimental:0.44.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.pinterest.ktlint:ktlint-ruleset-standard:0.44.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.pinterest.ktlint:ktlint-ruleset-test:0.44.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.pinterest.ktlint:ktlint-core:0.44.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: tech.antibytes.gradle-plugins:antibytes-gradle-utils:ed855ae" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.appmattus.fixture:fixture:1.2.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.tools.layoutlib:layoutlib-api:30.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.tools:dvlib:30.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.tools:common:30.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.github.microutils:kotlin-logging-jvm:2.1.21" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-compiler-runner:1.6.10" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-daemon-client:1.6.10" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.5.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-annotation-processing-gradle:1.6.10" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-android-extensions:1.6.10" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-compiler-embeddable:1.6.10" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.mockk:mockk:1.12.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.mockk:mockk-agent-jvm:1.12.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.mockk:mockk-dsl-jvm:1.12.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.owasp:dependency-check-gradle:6.5.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.owasp:dependency-check-core:6.5.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.owasp:dependency-check-utils:6.5.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.fasterxml.jackson.module:jackson-module-afterburner:2.13.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.13.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.13.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.sonatype.ossindex:ossindex-service-client:1.8.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.sonatype.ossindex:ossindex-service-api:1.8.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.13.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.13.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.fasterxml.jackson.module:jackson-module-kotlin:2.13.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-reflect:1.6.10" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlinx:atomicfu-gradle-plugin:0.17.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlinx:atomicfu-transformer:0.17.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.tools.build.jetifier:jetifier-processor:1.0.0-beta09" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.tools.build.jetifier:jetifier-core:1.0.0-beta09" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.3.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.github.detekt.sarif4k:sarif4k:0.0.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.mockk:mockk-common:1.12.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains:markdown-jvm:0.2.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.mockk:mockk-agent-common:1.12.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.mockk:mockk-agent-api:1.12.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.mockk:mockk-dsl:1.12.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.1.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.1.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.6.10" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.github.ben-manes:gradle-versions-plugin:0.42.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.palantir.gradle.gitversion:gradle-git-version:0.12.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.eclipse.jgit:org.eclipse.jgit:6.0.0.202111291000-r" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jacoco:org.jacoco.core:0.8.7" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.diffplug.durian:durian-io:1.2.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.diffplug.durian:durian-collect:1.2.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.diffplug.durian:durian-core:1.2.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.6.10" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-gradle-plugin-api:1.6.10" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-gradle-plugin-model:1.6.10" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-util-klib:1.6.10" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-klib-commonizer-api:1.6.10" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-tooling-metadata:1.6.10" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-project-model:1.6.10" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.tools.utp:android-test-plugin-result-listener-gradle-proto:30.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.tools.build:bundletool:1.8.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.protobuf:protobuf-java-util:3.10.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.grpc:grpc-netty:1.21.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.grpc:grpc-core:1.21.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: net.gpedro.integrations.slack:slack-webhook:1.4.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.moandjiezana.toml:toml4j:0.7.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.code.gson:gson:2.8.6" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.tools.analytics-library:crash:30.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.grpc:grpc-protobuf:1.21.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.jimfs:jimfs:1.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.grpc:grpc-stub:1.21.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.grpc:grpc-protobuf-lite:1.21.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.grpc:grpc-api:1.21.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.tools.build:apkzlib:7.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.eclipse.packager:packager-rpm:0.17.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.guava:guava:31.0.1-jre" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: de.undercouch:gradle-download-task:4.1.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.github.gundy:semver4j:0.16.4:nodeps" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-scripting-compiler-embeddable:1.6.10" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-scripting-compiler-impl-embeddable:1.6.10" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.tools.build:aapt2-proto:7.1.2-7984345" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.databinding:databinding-common:7.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.databinding:baseLibrary:7.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.tools.utp:android-device-provider-ddmlib-proto:30.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.tools.utp:android-device-provider-gradle-proto:30.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.tools.utp:android-test-plugin-host-additional-test-output-proto:30.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.tools.utp:android-test-plugin-host-coverage-proto:30.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.tools.build:transform-api:2.0.0-deprecated-use-gradle-api" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.apache.httpcomponents:httpmime:4.5.6" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: commons-io:commons-io:2.11.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.ow2.asm:asm-commons:9.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.ow2.asm:asm-util:9.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.ow2.asm:asm-analysis:9.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.ow2.asm:asm-tree:9.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.ow2.asm:asm:9.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.bouncycastle:bcpkix-jdk15on:1.56" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.glassfish.jaxb:jaxb-runtime:2.3.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: net.sf.jopt-simple:jopt-simple:4.9" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.squareup:javapoet:1.10.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.crypto.tink:tink:1.3.0-rc2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.tools.analytics-library:protos:30.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.protobuf:protobuf-java:3.10.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.testing.platform:core-proto:0.0.8-alpha07" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.tensorflow:tensorflow-lite-metadata:0.1.0-rc2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.flatbuffers:flatbuffers-java:1.12.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.thoughtworks.xstream:xstream:1.4.17" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.github.shyiko.klob:klob:0.2.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: info.picocli:picocli:3.9.6" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.googlecode.javaewah:JavaEWAH:1.1.13" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.slf4j:slf4j-simple:1.8.0-alpha2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: us.springett:cpe-parser:2.0.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.apache.velocity:velocity-engine-core:2.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: ch.qos.logback:logback-classic:1.2.9" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.slf4j:jcl-over-slf4j:1.7.28" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.slf4j:slf4j-api:1.8.0-alpha2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.googlecode.concurrent-trees:concurrent-trees:2.6.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.codehaus.groovy:groovy-xml:3.0.9" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-native-utils:1.6.10" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-util-io:1.6.10" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.guava:failureaccess:1.0.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.code.findbugs:jsr305:3.0.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.checkerframework:checker-qual:3.12.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.errorprone:error_prone_annotations:2.7.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.j2objc:j2objc-annotations:1.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-script-runtime:1.6.10" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-daemon-embeddable:1.6.10" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.intellij.deps:trove4j:1.0.20181211" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: net.java.dev.jna:jna-platform:5.6.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: net.java.dev.jna:jna:5.6.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-build-common:1.6.10" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-scripting-jvm:1.6.10" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-scripting-common:1.6.10" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.mozilla:rhino:1.7.10" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.bouncycastle:bcprov-jdk15on:1.56" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.dagger:dagger:2.28.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: javax.inject:javax.inject:1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: net.sf.kxml:kxml2:2.3.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: xerces:xercesImpl:2.12.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.apache.commons:commons-compress:1.21" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.apache.httpcomponents:httpclient:4.5.6" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.apache.httpcomponents:httpcore:4.4.10" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.sun.activation:javax.activation:1.2.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android:signflinger:7.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android:zipflinger:7.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.tools:annotations:30.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.antlr:antlr4:4.5.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.googlecode.juniversalchardet:juniversalchardet:1.0.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jvnet.staxex:stax-ex:1.8.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: jakarta.xml.bind:jakarta.xml.bind-api:2.3.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.glassfish.jaxb:txw2:2.3.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.sun.istack:istack-commons-runtime:3.0.8" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.sun.xml.fastinfoset:FastInfoset:1.2.16" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: jakarta.activation:jakarta.activation-api:1.2.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.auto.value:auto-value-annotations:1.6.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.bitbucket.b_c:jose4j:0.7.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jdom:jdom2:2.0.6" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.opencensus:opencensus-contrib-grpc-metrics:0.21.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.opencensus:opencensus-api:0.21.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.android:annotations:4.1.1.4" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.netty:netty-codec-http2:4.1.34.Final" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.netty:netty-handler-proxy:4.1.34.Final" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.api.grpc:proto-google-common-protos:1.12.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.json:json:20180813" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jsoup:jsoup:1.14.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: commons-codec:commons-codec:1.15" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: it.unimi.dsi:fastutil:8.4.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.googlecode.json-simple:json-simple:1.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.android.tools.build:apksig:7.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.squareup:javawriter:2.5.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.github.x-stream:mxparser:1.2.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.anarres.jdiagnostics:jdiagnostics:1.0.7" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.whitesource:pecoff4j:0.0.2.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.apache.commons:commons-jcs-core:2.2.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.github.package-url:packageurl-java:1.4.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.vdurmont:semver4j:3.1.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.apache.commons:commons-collections4:4.4" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.apache.commons:commons-text:1.9" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.apache.commons:commons-lang3:3.12.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.apache.commons:commons-dbcp2:2.9.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.apache.lucene:lucene-analyzers-common:8.11.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.apache.lucene:lucene-queryparser:8.11.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.apache.lucene:lucene-core:8.11.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.h2database:h2:1.4.199" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.glassfish:javax.json:1.1.4" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.h3xstream.retirejs:retirejs-core:3.0.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.hankcs:aho-corasick-double-array-trie:1.2.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: commons-validator:commons-validator:1.7" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: commons-beanutils:commons-beanutils:1.9.4" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.ec4j.core:ec4j-core:0.3.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.github.classgraph:classgraph:4.8.117" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.codehaus.groovy:groovy:3.0.9" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: xml-apis:xml-apis:1.4.01" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: commons-logging:commons-logging:1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.grpc:grpc-context:1.21.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.codehaus.mojo:animal-sniffer-annotations:1.17" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.netty:netty-codec-http:4.1.34.Final" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.netty:netty-handler:4.1.34.Final" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.netty:netty-codec-socks:4.1.34.Final" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.netty:netty-codec:4.1.34.Final" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.netty:netty-transport:4.1.34.Final" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.netty:netty-buffer:4.1.34.Final" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.netty:netty-resolver:4.1.34.Final" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.netty:netty-common:4.1.34.Final" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.fasterxml.woodstox:woodstox-core:6.2.7" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.codehaus.woodstox:stax2-api:4.2.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: xmlpull:xmlpull:1.1.3.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.apache.commons:commons-pool2:2.10.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.apache.lucene:lucene-queries:8.11.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.apache.lucene:lucene-sandbox:8.11.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.vaadin.external.google:android-json:0.0.20131108.vaadin1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.esotericsoftware:minlog:1.3.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.github.spullara.mustache.java:compiler:0.9.6" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: joda-time:joda-time:2.10.4" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: commons-digester:commons-digester:2.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: commons-collections:commons-collections:3.2.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.eclipse.packager:packager-core:0.17.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.tukaani:xz:1.8" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: ch.qos.logback:logback-core:1.2.9" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.objenesis:objenesis:3.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: net.bytebuddy:byte-buddy:1.12.5" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: net.bytebuddy:byte-buddy-agent:1.12.5" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.github.toolfactory:jvm-driver:4.0.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: javax.ws.rs:javax.ws.rs-api:2.0.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.sonatype.goodies:package-url-java:1.1.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.github.toolfactory:narcissus:1.0.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: gradle-test-kit-7.2" level="project" />
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../../buildSrc/build/pluginUnderTestMetadata" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+  </component>
+</module>

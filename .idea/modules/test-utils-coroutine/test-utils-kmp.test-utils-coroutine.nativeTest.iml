@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":test-utils-coroutine:nativeTest" external.linked.project.path="$MODULE_DIR$/../../../test-utils-coroutine" external.root.project.path="$MODULE_DIR$/../../.." external.system.id="GRADLE" external.system.module.group="tech.antibytes.test-utils-kmp" external.system.module.type="sourceSet" external.system.module.version="c6cf43d-change-assertions-SNAPSHOT" type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="android" name="Android">
+      <configuration>
+        <option name="SELECTED_BUILD_VARIANT" value="debug" />
+        <option name="ASSEMBLE_TASK_NAME" value="assembleDebug" />
+        <option name="COMPILE_JAVA_TASK_NAME" value="compileDebugSources" />
+        <afterSyncTasks>
+          <task>generateDebugSources</task>
+        </afterSyncTasks>
+        <option name="ALLOW_USER_CONFIGURATION" value="false" />
+        <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/androidMain/AndroidManifest.xml" />
+        <option name="RES_FOLDER_RELATIVE_PATH" value="/src/androidMain/res" />
+        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/../../../test-utils-coroutine/src/androidMain/res;file://$MODULE_DIR$/../../../test-utils-coroutine/src/androidMain/resources;file://$MODULE_DIR$/../../../test-utils-coroutine/src/debug/res;file://$MODULE_DIR$/../../../test-utils-coroutine/src/androidDebug/res;file://$MODULE_DIR$/../../../test-utils-coroutine/build/generated/res/rs/debug;file://$MODULE_DIR$/../../../test-utils-coroutine/build/generated/res/resValues/debug" />
+        <option name="TEST_RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/../../../test-utils-coroutine/src/androidTest/res;file://$MODULE_DIR$/../../../test-utils-coroutine/src/androidAndroidTest/res;file://$MODULE_DIR$/../../../test-utils-coroutine/src/androidTestDebug/res;file://$MODULE_DIR$/../../../test-utils-coroutine/src/androidAndroidTestDebug/res;file://$MODULE_DIR$/../../../test-utils-coroutine/build/generated/res/rs/androidTest/debug;file://$MODULE_DIR$/../../../test-utils-coroutine/build/generated/res/resValues/androidTest/debug" />
+        <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets" />
+        <option name="PROJECT_TYPE" value="1" />
+      </configuration>
+    </facet>
+    <facet type="kotlin-language" name="Kotlin">
+      <configuration version="4" platform="Common (experimental) " allPlatforms="Native []/Native [ios_arm64]/Native [ios_x64]/Native [linux_x64]" useProjectSettings="false" isTestModule="true" externalProjectId=":test-utils-coroutine" isHmppProject="true" pureKotlinSourceFolders="$MODULE_DIR$/../../../test-utils-coroutine/src/androidDebug/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-coroutine/src/debug/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-coroutine/src/debug/java;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-coroutine/src/androidDebugAndroidTest/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-coroutine/src/androidDebugUnitTest/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-coroutine/src/androidRelease/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-coroutine/src/release/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-coroutine/src/release/java;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-coroutine/src/androidReleaseUnitTest/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-coroutine/src/iosArm64Main/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-coroutine/src/iosArm64Main/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-coroutine/src/iosX64Main/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-coroutine/src/iosX64Main/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-coroutine/src/jsMain/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-coroutine/build/externals/test-utils-kmp-test-utils-coroutine/src;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-coroutine/src/jsTest/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-coroutine/src/jvmMain/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-coroutine/src/jvmTest/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-coroutine/src/linuxX64Main/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-coroutine/src/linuxX64Main/kotlin">
+        <dependsOnModuleNames>:test-utils-coroutine:commonTest</dependsOnModuleNames>
+        <newMppModelJpsModuleKind>SOURCE_SET_HOLDER</newMppModelJpsModuleKind>
+        <externalSystemTestTasks>
+          <externalSystemTestTask>iosX64Test|:test-utils-coroutine|iosX64</externalSystemTestTask>
+        </externalSystemTestTasks>
+        <compilerSettings>
+          <option name="additionalArguments" value="-opt-in kotlin.ExperimentalCoroutinesApi,kotlin.RequiresOptIn" />
+        </compilerSettings>
+        <compilerArguments>
+          <option name="languageVersion" value="1.6" />
+          <option name="apiVersion" value="1.6" />
+          <option name="pluginOptions">
+            <array />
+          </option>
+          <option name="pluginClasspaths">
+            <array>
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-scripting-jvm/1.6.10/dbe683647dcb04cda92fe4423acb741a2f144a69/kotlin-scripting-jvm-1.6.10.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-scripting-common/1.6.10/b3b71fd93878f2b4f19d099ac6430c67549a1c77/kotlin-scripting-common-1.6.10.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.6.10/b8af3fe6f1ca88526914929add63cf5e7c5049af/kotlin-stdlib-1.6.10.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.6.10/c118700e3a33c8a0d9adc920e9dec0831171925/kotlin-stdlib-common-1.6.10.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-script-runtime/1.6.10/d0a7ff2e2500ef497ed0214ae40ad3c8387a6164/kotlin-script-runtime-1.6.10.jar" />
+            </array>
+          </option>
+          <option name="multiPlatform" value="true" />
+        </compilerArguments>
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../test-utils-coroutine/src/nativeTest/kotlin" />
+    <content url="file://$MODULE_DIR$/../../../test-utils-coroutine/src/nativeTest/resources" />
+    <orderEntry type="jdk" jdkName="Android API 31 Platform" jdkType="Android SDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" scope="PROVIDED" name="Kotlin/Native 1.6.10 - stdlib" level="project" />
+    <orderEntry type="module" module-name="test-utils-kmp.test-utils-coroutine.commonMain" scope="TEST" />
+    <orderEntry type="module" module-name="test-utils-kmp.test-utils-coroutine.commonTest" scope="TEST" production-on-test="" />
+    <orderEntry type="module" module-name="test-utils-kmp.test-utils-coroutine.nativeMain" scope="TEST" />
+    <orderEntry type="module" module-name="test-utils-kmp.test-utils-fixture.commonMain" scope="TEST" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.6.10" level="project" />
+    <orderEntry type="module-library" scope="TEST">
+      <library name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-core:commonMain:1.6.0-native-mt">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../.gradle/kotlin/sourceSetMetadata/test-utils-coroutine.test-utils-kmp/commonMain/implementation/org.jetbrains.kotlinx-kotlinx-coroutines-core/org.jetbrains.kotlinx-kotlinx-coroutines-core-commonMain.klib!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-core/1.6.0-native-mt/44aa18fcd740237d9790c68763a0e5975987496d/kotlinx-coroutines-core-1.6.0-native-mt-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="file://$USER_HOME$/.konan/kotlin-native-prebuilt-macos-x86_64-1.6.10/klib/commonized/1.6.10/(ios_arm64, ios_x64, linux_x64)/org.jetbrains.kotlin.native.platform.iconv" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="test-utils-kmp.test-utils.commonMain" scope="TEST" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-test-common:1.6.10" level="project" />
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="file://$USER_HOME$/.konan/kotlin-native-prebuilt-macos-x86_64-1.6.10/klib/commonized/1.6.10/(ios_arm64, ios_x64, linux_x64)/org.jetbrains.kotlin.native.platform.posix" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="test-utils-kmp.test-utils-annotations.commonMain" scope="TEST" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-test-annotations-common:1.6.10" level="project" />
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="file://$USER_HOME$/.konan/kotlin-native-prebuilt-macos-x86_64-1.6.10/klib/commonized/1.6.10/(ios_arm64, ios_x64, linux_x64)/org.jetbrains.kotlin.native.platform.zlib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library name="Gradle: co.touchlab:stately-concurrency:commonMain:1.2.1">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../.gradle/kotlin/sourceSetMetadata/test-utils-coroutine.test-utils-kmp/commonTest/implementation/co.touchlab-stately-concurrency/co.touchlab-stately-concurrency-commonMain.klib!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/co.touchlab/stately-concurrency/1.2.1/fd8b865ec53177a3219d5b12db4793d6f0f7da5c/stately-concurrency-1.2.1-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="file://$USER_HOME$/.konan/kotlin-native-prebuilt-macos-x86_64-1.6.10/klib/commonized/1.6.10/(ios_arm64, ios_x64, linux_x64)/org.jetbrains.kotlin.native.platform.builtin" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-core:concurrentMain:1.6.0-native-mt">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../.gradle/kotlin/sourceSetMetadata/test-utils-coroutine.test-utils-kmp/nativeMain/implementation/org.jetbrains.kotlinx-kotlinx-coroutines-core/org.jetbrains.kotlinx-kotlinx-coroutines-core-concurrentMain.klib!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-core/1.6.0-native-mt/44aa18fcd740237d9790c68763a0e5975987496d/kotlinx-coroutines-core-1.6.0-native-mt-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-core:nativeMain:1.6.0-native-mt">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../.gradle/kotlin/sourceSetMetadata/test-utils-coroutine.test-utils-kmp/nativeMain/implementation/org.jetbrains.kotlinx-kotlinx-coroutines-core/org.jetbrains.kotlinx-kotlinx-coroutines-core-nativeMain.klib!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-core/1.6.0-native-mt/44aa18fcd740237d9790c68763a0e5975987496d/kotlinx-coroutines-core-1.6.0-native-mt-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library name="Gradle: org.jetbrains.kotlinx:atomicfu:commonMain:0.17.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../.gradle/kotlin/sourceSetMetadata/test-utils-coroutine.test-utils-kmp/nativeMain/implementation/org.jetbrains.kotlinx-atomicfu/org.jetbrains.kotlinx-atomicfu-commonMain.klib!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/atomicfu/0.17.0/dcef5be61c225f1e12b228f23db9bcae613726f/atomicfu-0.17.0-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library name="Gradle: org.jetbrains.kotlinx:atomicfu:nativeInterop:0.17.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../.gradle/kotlin/sourceSetMetadata/test-utils-coroutine.test-utils-kmp/nativeMain/implementation/org.jetbrains.kotlinx-atomicfu/org.jetbrains.kotlinx-atomicfu-nativeInterop.klib!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/atomicfu/0.17.0/dcef5be61c225f1e12b228f23db9bcae613726f/atomicfu-0.17.0-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library name="Gradle: org.jetbrains.kotlinx:atomicfu:nativeMain:0.17.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../.gradle/kotlin/sourceSetMetadata/test-utils-coroutine.test-utils-kmp/nativeMain/implementation/org.jetbrains.kotlinx-atomicfu/org.jetbrains.kotlinx-atomicfu-nativeMain.klib!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/atomicfu/0.17.0/dcef5be61c225f1e12b228f23db9bcae613726f/atomicfu-0.17.0-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+  </component>
+  <component name="TestModuleProperties" production-module="test-utils-kmp.test-utils-coroutine.nativeMain" />
+</module>

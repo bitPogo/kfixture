@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="fixture-jvm-e3a4a4a-SNAPSHOT">
+    <output-path>$PROJECT_DIR$/fixture/build/libs</output-path>
+    <root id="archive" name="fixture-jvm-e3a4a4a-SNAPSHOT.jar" />
+  </artifact>
+</component>

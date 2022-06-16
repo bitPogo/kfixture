@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":test-utils-freeze-checks:commonMain" external.linked.project.path="$MODULE_DIR$/../../../test-utils-freeze-checks" external.root.project.path="$MODULE_DIR$/../../.." external.system.id="GRADLE" external.system.module.group="test-utils-kmp" external.system.module.type="sourceSet" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="kotlin-language" name="Kotlin">
+      <configuration version="4" platform="Common (experimental) " allPlatforms="JS []/JVM [1.8]/Native []/Native [general]" useProjectSettings="false" isTestModule="false" externalProjectId=":test-utils-freeze-checks" isHmppProject="true" pureKotlinSourceFolders="$MODULE_DIR$/../../../test-utils-freeze-checks/src/androidDebug/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-freeze-checks/src/debug/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-freeze-checks/src/debug/java;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-freeze-checks/src/androidDebugAndroidTest/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-freeze-checks/src/androidDebugUnitTest/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-freeze-checks/src/androidRelease/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-freeze-checks/src/release/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-freeze-checks/src/release/java;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-freeze-checks/src/androidReleaseUnitTest/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-freeze-checks/src/iosArm64Main/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-freeze-checks/src/iosArm64Main/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-freeze-checks/src/iosX64Main/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-freeze-checks/src/iosX64Main/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-freeze-checks/src/jsMain/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-freeze-checks/build/externals/test-utils-kmp-test-utils-freeze-checks/src;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-freeze-checks/src/jsTest/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-freeze-checks/src/jvmMain/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-freeze-checks/src/jvmTest/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-freeze-checks/src/linuxX64Main/kotlin;/Users/d4l000126/projects/own/test-utils-kmp/test-utils-freeze-checks/src/linuxX64Main/kotlin">
+        <newMppModelJpsModuleKind>SOURCE_SET_HOLDER</newMppModelJpsModuleKind>
+        <compilerSettings />
+        <compilerArguments>
+          <option name="languageVersion" value="1.6" />
+          <option name="apiVersion" value="1.6" />
+          <option name="pluginOptions">
+            <array />
+          </option>
+          <option name="pluginClasspaths">
+            <array>
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-scripting-jvm/1.6.10/dbe683647dcb04cda92fe4423acb741a2f144a69/kotlin-scripting-jvm-1.6.10.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-scripting-common/1.6.10/b3b71fd93878f2b4f19d099ac6430c67549a1c77/kotlin-scripting-common-1.6.10.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.6.10/b8af3fe6f1ca88526914929add63cf5e7c5049af/kotlin-stdlib-1.6.10.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.6.10/c118700e3a33c8a0d9adc920e9dec0831171925/kotlin-stdlib-common-1.6.10.jar" />
+              <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-script-runtime/1.6.10/d0a7ff2e2500ef497ed0214ae40ad3c8387a6164/kotlin-script-runtime-1.6.10.jar" />
+            </array>
+          </option>
+          <option name="multiPlatform" value="true" />
+        </compilerArguments>
+      </configuration>
+    </facet>
+    <facet type="android" name="Android">
+      <configuration>
+        <option name="SELECTED_BUILD_VARIANT" value="debug" />
+        <option name="ASSEMBLE_TASK_NAME" value="assembleDebug" />
+        <option name="COMPILE_JAVA_TASK_NAME" value="compileDebugSources" />
+        <afterSyncTasks>
+          <task>generateDebugSources</task>
+        </afterSyncTasks>
+        <option name="ALLOW_USER_CONFIGURATION" value="false" />
+        <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/androidMain/AndroidManifest.xml" />
+        <option name="RES_FOLDER_RELATIVE_PATH" value="/src/androidMain/res" />
+        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/../../../test-utils-freeze-checks/src/androidMain/res;file://$MODULE_DIR$/../../../test-utils-freeze-checks/src/androidMain/resources;file://$MODULE_DIR$/../../../test-utils-freeze-checks/src/debug/res;file://$MODULE_DIR$/../../../test-utils-freeze-checks/src/androidDebug/res;file://$MODULE_DIR$/../../../test-utils-freeze-checks/build/generated/res/rs/debug;file://$MODULE_DIR$/../../../test-utils-freeze-checks/build/generated/res/resValues/debug" />
+        <option name="TEST_RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/../../../test-utils-freeze-checks/src/androidTest/res;file://$MODULE_DIR$/../../../test-utils-freeze-checks/src/androidAndroidTest/res;file://$MODULE_DIR$/../../../test-utils-freeze-checks/src/androidTestDebug/res;file://$MODULE_DIR$/../../../test-utils-freeze-checks/src/androidAndroidTestDebug/res;file://$MODULE_DIR$/../../../test-utils-freeze-checks/build/generated/res/rs/androidTest/debug;file://$MODULE_DIR$/../../../test-utils-freeze-checks/build/generated/res/resValues/androidTest/debug" />
+        <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets" />
+        <option name="PROJECT_TYPE" value="1" />
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../test-utils-freeze-checks/src/commonMain/kotlin">
+      <sourceFolder url="file://$MODULE_DIR$/../../../test-utils-freeze-checks/src/commonMain/kotlin" type="kotlin-source" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../test-utils-freeze-checks/src/commonMain/resources" />
+    <orderEntry type="jdk" jdkName="Android API 31 Platform" jdkType="Android SDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.6.10" level="project" />
+  </component>
+</module>

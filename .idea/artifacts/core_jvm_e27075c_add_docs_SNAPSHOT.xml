@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="core-jvm-e27075c-add-docs-SNAPSHOT">
+    <output-path>$PROJECT_DIR$/core/build/libs</output-path>
+    <root id="archive" name="core-jvm-e27075c-add-docs-SNAPSHOT.jar" />
+  </artifact>
+</component>

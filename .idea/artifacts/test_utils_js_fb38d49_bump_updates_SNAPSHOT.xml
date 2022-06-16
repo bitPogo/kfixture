@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="test-utils-js-fb38d49-bump-updates-SNAPSHOT">
+    <output-path>$PROJECT_DIR$/test-utils/build/libs</output-path>
+    <root id="archive" name="test-utils-js-fb38d49-bump-updates-SNAPSHOT.jar">
+      <element id="module-output" name="test-utils-kmp.test-utils.jsMain" />
+    </root>
+  </artifact>
+</component>

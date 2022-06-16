@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="test-utils-freeze-checks-jvm">
+    <output-path>$PROJECT_DIR$/test-utils-freeze-checks/build/libs</output-path>
+    <root id="archive" name="test-utils-freeze-checks-jvm.jar">
+      <element id="module-output" name="test-utils-kmp.test-utils-freeze-checks.jvmMain" />
+    </root>
+  </artifact>
+</component>

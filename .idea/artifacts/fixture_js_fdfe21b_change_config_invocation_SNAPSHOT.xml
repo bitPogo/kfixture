@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="fixture-js-fdfe21b-change-config-invocation-SNAPSHOT">
+    <output-path>$PROJECT_DIR$/fixture/build/libs</output-path>
+    <root id="archive" name="fixture-js-fdfe21b-change-config-invocation-SNAPSHOT.jar" />
+  </artifact>
+</component>

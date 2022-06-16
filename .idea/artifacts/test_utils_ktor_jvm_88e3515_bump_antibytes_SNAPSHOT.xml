@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="test-utils-ktor-jvm-88e3515-bump-antibytes-SNAPSHOT">
+    <output-path>$PROJECT_DIR$/test-utils-ktor/build/libs</output-path>
+    <root id="archive" name="test-utils-ktor-jvm-88e3515-bump-antibytes-SNAPSHOT.jar">
+      <element id="module-output" name="test-utils-kmp.test-utils-ktor.jvmMain" />
+    </root>
+  </artifact>
+</component>

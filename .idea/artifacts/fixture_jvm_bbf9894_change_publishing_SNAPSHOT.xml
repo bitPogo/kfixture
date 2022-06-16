@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="fixture-jvm-bbf9894-change-publishing-SNAPSHOT">
+    <output-path>$PROJECT_DIR$/fixture/build/libs</output-path>
+    <root id="archive" name="fixture-jvm-bbf9894-change-publishing-SNAPSHOT.jar">
+      <element id="module-output" name="kfixture.fixture.jvmMain" />
+    </root>
+  </artifact>
+</component>
