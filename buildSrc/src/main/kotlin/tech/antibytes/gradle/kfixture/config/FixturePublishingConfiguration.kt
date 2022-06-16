@@ -55,7 +55,7 @@ open class FixturePublishingConfiguration {
     val repositories = setOf(
         MavenRepositoryConfiguration(
             name = "MavenCentral",
-            url = "https://oss.sonatype.org/service/local/staging/deploy/maven2",
+            url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/",
             username = nexusUsername,
             password = nexusPassword
         ),
