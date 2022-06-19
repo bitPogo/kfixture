@@ -10,7 +10,7 @@ import tech.antibytes.kfixture.PublicApi
 import kotlin.random.Random
 
 internal class FloatGenerator(
-    val random: Random
+    private val random: Random
 ) : PublicApi.Generator<Float> {
     override fun generate(): Float = random.nextFloat() + random.nextInt()
 }

@@ -14,7 +14,7 @@ import tech.antibytes.kfixture.PublicApi
 import kotlin.random.Random
 
 internal class StringGenerator(
-    val random: Random
+    private val random: Random
 ) : PublicApi.Generator<String> {
     override fun generate(): String {
         val length = random.nextInt(STRING_LOWER_BOUND, STRING_UPPER_BOUND)

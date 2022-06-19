@@ -10,7 +10,7 @@ import tech.antibytes.kfixture.PublicApi
 import kotlin.random.Random
 
 internal class DoubleGenerator(
-    val random: Random
+    private val random: Random
 ) : PublicApi.Generator<Double> {
     override fun generate(): Double = random.nextDouble() + random.nextInt()
 }

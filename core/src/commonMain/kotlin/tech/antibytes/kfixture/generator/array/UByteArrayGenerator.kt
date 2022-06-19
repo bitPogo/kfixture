@@ -13,7 +13,7 @@ import kotlin.random.Random
 import kotlin.random.nextUBytes
 
 internal class UByteArrayGenerator(
-    val random: Random
+    private val random: Random
 ) : PublicApi.Generator<UByteArray> {
     override fun generate(): UByteArray {
         val size = random.nextInt(ARRAY_LOWER_BOUND, ARRAY_UPPER_BOUND)

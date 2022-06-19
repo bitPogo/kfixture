@@ -9,7 +9,7 @@ package tech.antibytes.gradle.kfixture.dependency
 object Version {
 
     val gradle = Gradle
-    const val kotlin = "1.6.10"
+    const val kotlin = "1.6.21"
 
     object Gradle {
         /**
@@ -20,7 +20,7 @@ object Version {
         /**
          * [AnitBytes GradlePlugins](https://github.com/bitPogo/gradle-plugins)
          */
-        const val antibytes = "2fa240c"
+        const val antibytes = "a5c6f90"
 
         /**
          * [Spotless](https://plugins.gradle.org/plugin/com.diffplug.gradle.spotless)

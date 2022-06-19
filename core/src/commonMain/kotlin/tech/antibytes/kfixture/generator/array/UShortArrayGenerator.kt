@@ -13,7 +13,7 @@ import kotlin.random.Random
 import kotlin.random.nextUBytes
 
 internal class UShortArrayGenerator(
-    val random: Random
+    private val random: Random
 ) : PublicApi.Generator<UShortArray> {
     private fun generateUShortArray(size: Int): UShortArray {
         val raw = random.nextUBytes(size)

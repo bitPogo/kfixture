@@ -51,13 +51,13 @@ antiBytesCoverage {
     val branchCoverage = JacocoVerificationRule(
         counter = JacocoCounter.BRANCH,
         measurement = JacocoMeasurement.COVERED_RATIO,
-        minimum = BigDecimal(0.95)
+        minimum = BigDecimal(0.97)
     )
 
     val instructionCoverage = JacocoVerificationRule(
         counter = JacocoCounter.INSTRUCTION,
         measurement = JacocoMeasurement.COVERED_RATIO,
-        minimum = BigDecimal(0.95)
+        minimum = BigDecimal(0.97)
     )
 
     val jvmCoverage = JvmJacocoConfiguration.createJvmKmpConfiguration(
@@ -80,10 +80,6 @@ antiBytesCoverage {
 
     configurations["jvm"] = jvmCoverage
     configurations["android"] = androidCoverage
-}
-
-atomicfu {
-    dependenciesVersion = "0.17.1"
 }
 
 android {

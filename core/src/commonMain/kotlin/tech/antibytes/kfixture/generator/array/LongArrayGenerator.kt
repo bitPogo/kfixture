@@ -12,7 +12,7 @@ import tech.antibytes.kfixture.PublicApi
 import kotlin.random.Random
 
 internal class LongArrayGenerator(
-    val random: Random
+    private val random: Random
 ) : PublicApi.Generator<LongArray> {
     private fun generateLongArray(size: Int): LongArray {
         val raw = random.nextBytes(size)

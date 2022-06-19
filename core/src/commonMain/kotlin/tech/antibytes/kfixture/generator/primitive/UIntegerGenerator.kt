@@ -11,7 +11,7 @@ import kotlin.random.Random
 import kotlin.random.nextUInt
 
 internal class UIntegerGenerator(
-    val random: Random
+    private val random: Random
 ) : PublicApi.Generator<UInt> {
     override fun generate(): UInt = random.nextUInt()
 }

@@ -11,7 +11,7 @@ import kotlin.random.Random
 import kotlin.random.nextULong
 
 internal class ULongGenerator(
-    val random: Random
+    private val random: Random
 ) : PublicApi.Generator<ULong> {
     override fun generate(): ULong = random.nextULong()
 }
