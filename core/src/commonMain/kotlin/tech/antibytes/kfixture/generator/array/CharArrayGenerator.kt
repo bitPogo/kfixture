@@ -14,7 +14,7 @@ import tech.antibytes.kfixture.PublicApi
 import kotlin.random.Random
 
 internal class CharArrayGenerator(
-    val random: Random
+    private val random: Random
 ) : PublicApi.Generator<CharArray> {
     private fun generateCharArray(size: Int): CharArray {
         val fixture = CharArray(size)

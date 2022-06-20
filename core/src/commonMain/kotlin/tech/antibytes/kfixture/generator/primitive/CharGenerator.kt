@@ -12,7 +12,7 @@ import tech.antibytes.kfixture.PublicApi
 import kotlin.random.Random
 
 internal class CharGenerator(
-    val random: Random
+    private val random: Random
 ) : PublicApi.Generator<Char> {
     override fun generate(): Char = random.nextInt(CHAR_LOWER_BOUND, CHAR_UPPER_BOUND).toChar()
 }

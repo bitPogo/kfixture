@@ -11,7 +11,7 @@ By participating, you are expected to uphold this code.
 
 GitHub issues are the way to track bugs and enhancements.
 
-Issues are hold in high regards in this project, so please feel free to open [issue](https://github.com/kfixture/kmock/issues) for:
+Issues are hold in high regards in this project, so please feel free to open [issue](https://github.com/bitPogo/kfixture/issues) for:
 
 * _**Questions**_ to help to improve the user experience
 * _**Ideas**_ which are a great source for contributions

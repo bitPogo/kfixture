@@ -10,7 +10,7 @@ import tech.antibytes.kfixture.PublicApi
 import kotlin.random.Random
 
 internal class UByteGenerator(
-    val random: Random
+    private val random: Random
 ) : PublicApi.Generator<UByte> {
     override fun generate(): UByte = random.nextInt().toUByte()
 }

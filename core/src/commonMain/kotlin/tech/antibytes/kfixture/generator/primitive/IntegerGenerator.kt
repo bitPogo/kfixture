@@ -10,7 +10,7 @@ import tech.antibytes.kfixture.PublicApi
 import kotlin.random.Random
 
 internal class IntegerGenerator(
-    val random: Random
+    private val random: Random
 ) : PublicApi.Generator<Int> {
     override fun generate(): Int = random.nextInt()
 }

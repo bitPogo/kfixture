@@ -10,7 +10,7 @@ import tech.antibytes.kfixture.PublicApi
 import kotlin.random.Random
 
 internal class ByteGenerator(
-    val random: Random
+    private val random: Random
 ) : PublicApi.Generator<Byte> {
     override fun generate(): Byte = random.nextInt().toByte()
 }

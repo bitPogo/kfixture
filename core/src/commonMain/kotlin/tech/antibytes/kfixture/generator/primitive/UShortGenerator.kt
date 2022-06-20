@@ -10,7 +10,7 @@ import tech.antibytes.kfixture.PublicApi
 import kotlin.random.Random
 
 internal class UShortGenerator(
-    val random: Random
+    private val random: Random
 ) : PublicApi.Generator<UShort> {
     override fun generate(): UShort = random.nextInt().toUShort()
 }

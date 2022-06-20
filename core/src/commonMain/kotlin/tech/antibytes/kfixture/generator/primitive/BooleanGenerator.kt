@@ -10,7 +10,7 @@ import tech.antibytes.kfixture.PublicApi
 import kotlin.random.Random
 
 internal class BooleanGenerator(
-    val random: Random
+    private val random: Random
 ) : PublicApi.Generator<Boolean> {
     override fun generate(): Boolean = random.nextBoolean()
 }

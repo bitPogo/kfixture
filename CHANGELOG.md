@@ -21,6 +21,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Bumped
 
+* Kotlin 1.6.10 -> 1.6.21
+* AtomicFu 0.17.1 -> 0.17.3
+
 ## [0.1.0](https://github.com/bitPogo/kfixture/compare/releases/tag/v0.1.0)
 
 Initial release.

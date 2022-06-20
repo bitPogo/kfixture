@@ -19,7 +19,7 @@ import tech.antibytes.gradle.dependency.Version
  * You need to add following dependencies to the buildSrc/build.gradle.kts
  *
  * dependencies {
- *     implementation("com.diffplug.spotless:spotless-plugin-gradle:5.14.3"")
+ *     implementation("com.diffplug.spotless:spotless-plugin-gradle:5.14.3"") or higher
  *     implementation("com.pinterest:ktlint:0.42.3") or higher
  * }
  *
@@ -29,13 +29,13 @@ import tech.antibytes.gradle.dependency.Version
  *     gradlePluginPortal()
  * }
  *
- * Now just add id("tech.antibytes.gradle.test.script.quality-spotless") to your rootProject build.gradle.kts plugins
+ * Now just add id("tech.antibytes.gradle.kfixture.script.quality-spotless") to your rootProject build.gradle.kts plugins
  *
  * plugins {
- *     id("tech.antibytes.gradle.test.script.quality-spotless")
+ *     id("tech.antibytes.gradle.kfixture.script.quality-spotless")
  * }
  */
-// TODO Integrade with dependency Plugin
+// TODO Integrate with dependency Plugin
 plugins {
     id("com.diffplug.spotless")
 }

@@ -12,7 +12,7 @@ import tech.antibytes.kfixture.PublicApi
 import kotlin.random.Random
 
 internal class ShortArrayGenerator(
-    val random: Random
+    private val random: Random
 ) : PublicApi.Generator<ShortArray> {
     private fun generateShortArray(size: Int): ShortArray {
         val raw = random.nextBytes(size)

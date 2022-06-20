@@ -12,7 +12,7 @@ import tech.antibytes.kfixture.PublicApi
 import kotlin.random.Random
 
 internal class BooleanArrayGenerator(
-    val random: Random
+    private val random: Random
 ) : PublicApi.Generator<BooleanArray> {
     override fun generate(): BooleanArray {
         val size = random.nextInt(ARRAY_LOWER_BOUND, ARRAY_UPPER_BOUND)

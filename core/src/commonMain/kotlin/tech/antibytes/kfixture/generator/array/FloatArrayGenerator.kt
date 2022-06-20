@@ -12,7 +12,7 @@ import tech.antibytes.kfixture.PublicApi
 import kotlin.random.Random
 
 internal class FloatArrayGenerator(
-    val random: Random
+    private val random: Random
 ) : PublicApi.Generator<FloatArray> {
     private fun generateFloatArray(size: Int): FloatArray {
         val raw = random.nextBytes(size)
