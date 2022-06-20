@@ -17,7 +17,7 @@ object FixtureConfiguration {
     object Publishing : FixturePublishingConfiguration() {
         val packageConfiguration = PackageConfiguration(
             pom = PomConfiguration(
-                name = "fixture",
+                name = "KFixture Core",
                 description = "A tool to generate randomized test values for Kotlin Multiplatform.",
                 year = 2022,
                 url = "https://$gitHubRepositoryPath"
