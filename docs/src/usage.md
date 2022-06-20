@@ -110,6 +110,7 @@ Following types are directly supported by the `fixture` extension:
 
 ### Atomic Arrays
 Following types are directly supported by the `fixture` extension:
+
 | Type           |
 | -------------- |
 |  BooleanArray  |
