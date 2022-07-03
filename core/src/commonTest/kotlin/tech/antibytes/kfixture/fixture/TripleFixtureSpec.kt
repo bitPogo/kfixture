@@ -6,6 +6,12 @@
 
 package tech.antibytes.kfixture.fixture
 
+import kotlin.js.JsName
+import kotlin.test.AfterTest
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
+import kotlin.test.assertTrue
 import kotlinx.atomicfu.atomic
 import tech.antibytes.kfixture.Fixture
 import tech.antibytes.kfixture.PublicApi
@@ -16,12 +22,6 @@ import tech.antibytes.kfixture.mock.RandomStub
 import tech.antibytes.kfixture.qualifier.StringQualifier
 import tech.antibytes.kfixture.resolveClassName
 import tech.antibytes.kfixture.tripleFixture
-import kotlin.js.JsName
-import kotlin.test.AfterTest
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertFailsWith
-import kotlin.test.assertTrue
 
 @Suppress("USELESS_CAST")
 class TripleFixtureSpec {
@@ -67,7 +67,7 @@ class TripleFixtureSpec {
 
         assertEquals(
             actual = error.message,
-            expected = "Missing Generator for ClassID ($int)."
+            expected = "Missing Generator for ClassID ($int).",
         )
     }
 
@@ -91,7 +91,7 @@ class TripleFixtureSpec {
         // Then
         assertEquals(
             actual = result,
-            expected = Triple(expected, expected, expected)
+            expected = Triple(expected, expected, expected),
         )
     }
 
@@ -117,7 +117,7 @@ class TripleFixtureSpec {
         // Then
         assertEquals(
             actual = result,
-            expected = Triple(expected, null, expected)
+            expected = Triple(expected, null, expected),
         )
     }
 
@@ -142,20 +142,20 @@ class TripleFixtureSpec {
                 "q:$firstQualifier:$int" to generator,
                 "q:$secondQualifier:$int" to generator,
                 "q:$thirdQualifier:$int" to generator,
-            )
+            ),
         )
 
         // When
         val result = fixture.tripleFixture<Int, Int, Int>(
             StringQualifier(firstQualifier),
             StringQualifier(secondQualifier),
-            StringQualifier(thirdQualifier)
+            StringQualifier(thirdQualifier),
         )
 
         // Then
         assertEquals(
             actual = result,
-            expected = Triple(expected, expected, expected)
+            expected = Triple(expected, expected, expected),
         )
     }
 
@@ -180,7 +180,7 @@ class TripleFixtureSpec {
                 "q:$firstQualifier:$int" to generator,
                 "q:$secondQualifier:$int" to generator,
                 "q:$thirdQualifier:$int" to generator,
-            )
+            ),
         )
 
         // When
@@ -194,7 +194,7 @@ class TripleFixtureSpec {
         // Then
         assertEquals(
             actual = result,
-            expected = Triple(expected, expected, expected)
+            expected = Triple(expected, expected, expected),
         )
     }
 }

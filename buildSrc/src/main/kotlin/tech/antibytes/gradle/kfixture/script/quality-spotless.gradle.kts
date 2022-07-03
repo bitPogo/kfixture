@@ -6,7 +6,6 @@
 
 package tech.antibytes.gradle.kfixture.script
 
-import gradle.kotlin.dsl.accessors._d3d825ede134c4a0732d5feeb4761c1d.spotless
 import tech.antibytes.gradle.dependency.Version
 
 /**
@@ -44,10 +43,12 @@ spotless {
     kotlin {
         target("**/*.kt")
         targetExclude("buildSrc/build/", "**/buildSrc/build/")
-        ktlint(Version.gradle.ktLint).userData(
+        ktlint(Version.gradle.ktLint).editorConfigOverride(
             mapOf(
-                "disabled_rules" to "no-wildcard-imports",
-                "ij_kotlin_imports_layout" to "*"
+                "disabled_rules" to "no-wildcard-imports,filename",
+                "ij_kotlin_imports_layout" to "*",
+                "ij_kotlin_allow_trailing_comma" to "true",
+                "ij_kotlin_allow_trailing_comma_on_call_site" to "true",
             )
         )
         trimTrailingWhitespace()

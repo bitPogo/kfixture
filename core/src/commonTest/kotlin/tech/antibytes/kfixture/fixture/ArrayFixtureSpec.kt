@@ -6,6 +6,12 @@
 
 package tech.antibytes.kfixture.fixture
 
+import kotlin.js.JsName
+import kotlin.test.AfterTest
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
+import kotlin.test.assertTrue
 import kotlinx.atomicfu.atomic
 import tech.antibytes.kfixture.Fixture
 import tech.antibytes.kfixture.PublicApi
@@ -16,12 +22,6 @@ import tech.antibytes.kfixture.mock.GeneratorStub
 import tech.antibytes.kfixture.mock.RandomStub
 import tech.antibytes.kfixture.qualifier.StringQualifier
 import tech.antibytes.kfixture.resolveClassName
-import kotlin.js.JsName
-import kotlin.test.AfterTest
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertFailsWith
-import kotlin.test.assertTrue
 
 @Suppress("USELESS_CAST")
 class ArrayFixtureSpec {
@@ -68,7 +68,7 @@ class ArrayFixtureSpec {
 
         assertEquals(
             actual = error.message,
-            expected = "Missing Generator for ClassID ($int)."
+            expected = "Missing Generator for ClassID ($int).",
         )
     }
 
@@ -100,15 +100,15 @@ class ArrayFixtureSpec {
         assertTrue(result is Array<*>)
         assertEquals(
             actual = capturedMinimum.value,
-            expected = 1
+            expected = 1,
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = 10
+            expected = 10,
         )
         assertEquals(
             actual = result.size,
-            expected = size
+            expected = size,
         )
         assertTrue(
             result.contentDeepEquals(
@@ -117,9 +117,9 @@ class ArrayFixtureSpec {
                     expected,
                     expected,
                     expected,
-                    expected
-                )
-            )
+                    expected,
+                ),
+            ),
         )
     }
 
@@ -152,15 +152,15 @@ class ArrayFixtureSpec {
         // Then
         assertEquals(
             actual = capturedMinimum.value,
-            expected = 1
+            expected = 1,
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = 10
+            expected = 10,
         )
         assertEquals(
             actual = result.size,
-            expected = size
+            expected = size,
         )
         assertTrue(
             result.contentDeepEquals(
@@ -169,9 +169,9 @@ class ArrayFixtureSpec {
                     null,
                     null,
                     null,
-                    null
-                )
-            )
+                    null,
+                ),
+            ),
         )
     }
 
@@ -204,9 +204,9 @@ class ArrayFixtureSpec {
                     expected,
                     expected,
                     expected,
-                    expected
-                )
-            )
+                    expected,
+                ),
+            ),
         )
     }
 
@@ -238,9 +238,9 @@ class ArrayFixtureSpec {
                     expected,
                     expected,
                     expected,
-                    expected
-                )
-            )
+                    expected,
+                ),
+            ),
         )
     }
 
@@ -263,7 +263,7 @@ class ArrayFixtureSpec {
 
         // When
         val result: Array<Int> = fixture.fixture(
-            type = Array::class
+            type = Array::class,
         )
 
         // Then
@@ -274,9 +274,9 @@ class ArrayFixtureSpec {
                     expected,
                     expected,
                     expected,
-                    expected
-                )
-            )
+                    expected,
+                ),
+            ),
         )
     }
 }

@@ -9,7 +9,7 @@ package tech.antibytes.gradle.kfixture.dependency
 object Version {
 
     val gradle = Gradle
-    const val kotlin = "1.6.21"
+    const val kotlin = "1.7.0"
 
     object Gradle {
         /**
@@ -20,12 +20,17 @@ object Version {
         /**
          * [AnitBytes GradlePlugins](https://github.com/bitPogo/gradle-plugins)
          */
-        const val antibytes = "a5c6f90"
+        const val antibytes = "2dcd1e4"
 
         /**
          * [Spotless](https://plugins.gradle.org/plugin/com.diffplug.gradle.spotless)
          */
-        const val spotless = "6.4.2"
+        const val spotless = "6.8.0"
+
+        /**
+         * [Dokka](https://github.com/Kotlin/dokka)
+         */
+        const val dokka = "1.7.0"
     }
 
     val mkdocs = MkDoccs

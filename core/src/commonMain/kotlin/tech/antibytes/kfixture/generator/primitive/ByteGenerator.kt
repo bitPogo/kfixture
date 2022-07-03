@@ -6,11 +6,11 @@
 
 package tech.antibytes.kfixture.generator.primitive
 
-import tech.antibytes.kfixture.PublicApi
 import kotlin.random.Random
+import tech.antibytes.kfixture.PublicApi
 
 internal class ByteGenerator(
-    private val random: Random
+    private val random: Random,
 ) : PublicApi.Generator<Byte> {
     override fun generate(): Byte = random.nextInt().toByte()
 }

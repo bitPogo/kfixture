@@ -8,14 +8,14 @@ package tech.antibytes.kfixture.generator.array
 
 import co.touchlab.stately.collections.IsoMutableList
 import co.touchlab.stately.collections.sharedMutableListOf
-import tech.antibytes.kfixture.PublicApi
-import tech.antibytes.kfixture.mock.RandomStub
 import kotlin.js.JsName
 import kotlin.random.Random
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
+import tech.antibytes.kfixture.PublicApi
+import tech.antibytes.kfixture.mock.RandomStub
 
 class CharArrayGeneratorSpec {
     private val fixture = Random(0)
@@ -61,18 +61,18 @@ class CharArrayGeneratorSpec {
         // Then
         assertEquals(
             actual = Pair(1, 10),
-            expected = range.removeAt(0)
+            expected = range.removeAt(0),
         )
 
         range.forEach { actual ->
             assertEquals(
                 actual = Pair(32, 126),
-                expected = actual
+                expected = actual,
             )
         }
 
         assertTrue(
-            expected.toTypedArray().toCharArray().contentEquals(result)
+            expected.toTypedArray().toCharArray().contentEquals(result),
         )
     }
 }

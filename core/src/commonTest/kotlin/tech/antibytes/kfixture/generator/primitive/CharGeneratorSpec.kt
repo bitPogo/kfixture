@@ -6,16 +6,16 @@
 
 package tech.antibytes.kfixture.generator.primitive
 
-import kotlinx.atomicfu.AtomicRef
-import kotlinx.atomicfu.atomic
-import kotlinx.atomicfu.update
-import tech.antibytes.kfixture.PublicApi
-import tech.antibytes.kfixture.mock.RandomStub
 import kotlin.js.JsName
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
+import kotlinx.atomicfu.AtomicRef
+import kotlinx.atomicfu.atomic
+import kotlinx.atomicfu.update
+import tech.antibytes.kfixture.PublicApi
+import tech.antibytes.kfixture.mock.RandomStub
 
 class CharGeneratorSpec {
     private val random = RandomStub()
@@ -55,11 +55,11 @@ class CharGeneratorSpec {
         // Then
         assertEquals(
             actual = range.value,
-            expected = Pair(32, 126)
+            expected = Pair(32, 126),
         )
         assertEquals(
             actual = result,
-            expected = expected.toChar()
+            expected = expected.toChar(),
         )
     }
 }

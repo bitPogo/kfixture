@@ -6,14 +6,14 @@
 
 package tech.antibytes.kfixture.intregration
 
-import tech.antibytes.kfixture.PublicApi
-import tech.antibytes.kfixture.fixture
-import tech.antibytes.kfixture.kotlinFixture
 import kotlin.js.JsName
 import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
+import tech.antibytes.kfixture.PublicApi
+import tech.antibytes.kfixture.fixture
+import tech.antibytes.kfixture.kotlinFixture
 
 class KotlinFixtureSpec {
     @Test
@@ -24,7 +24,7 @@ class KotlinFixtureSpec {
         assertTrue(fixture is PublicApi.Fixture)
         assertEquals(
             actual = fixture.fixture<Int>(),
-            expected = Random(0).nextInt()
+            expected = Random(0).nextInt(),
         )
     }
 
@@ -40,7 +40,7 @@ class KotlinFixtureSpec {
         assertTrue(fixture is PublicApi.Fixture)
         assertEquals(
             actual = fixture.fixture(),
-            expected = Random(givenSeed).nextInt()
+            expected = Random(givenSeed).nextInt(),
         )
     }
 }

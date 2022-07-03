@@ -6,15 +6,15 @@
 
 package tech.antibytes.kfixture.generator.primitive
 
+import kotlin.random.Random
 import tech.antibytes.kfixture.FixtureContract.CHAR_LOWER_BOUND
 import tech.antibytes.kfixture.FixtureContract.CHAR_UPPER_BOUND
 import tech.antibytes.kfixture.FixtureContract.STRING_LOWER_BOUND
 import tech.antibytes.kfixture.FixtureContract.STRING_UPPER_BOUND
 import tech.antibytes.kfixture.PublicApi
-import kotlin.random.Random
 
 internal class StringGenerator(
-    private val random: Random
+    private val random: Random,
 ) : PublicApi.Generator<String> {
     override fun generate(): String {
         val length = random.nextInt(STRING_LOWER_BOUND, STRING_UPPER_BOUND)

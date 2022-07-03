@@ -6,16 +6,16 @@
 
 package tech.antibytes.kfixture.generator.array
 
-import kotlinx.atomicfu.AtomicRef
-import kotlinx.atomicfu.atomic
-import kotlinx.atomicfu.update
-import tech.antibytes.kfixture.PublicApi
-import tech.antibytes.kfixture.mock.RandomStub
 import kotlin.js.JsName
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
+import kotlinx.atomicfu.AtomicRef
+import kotlinx.atomicfu.atomic
+import kotlinx.atomicfu.update
+import tech.antibytes.kfixture.PublicApi
+import tech.antibytes.kfixture.mock.RandomStub
 
 class UByteArrayGeneratorSpec {
     private val random = RandomStub()
@@ -59,10 +59,10 @@ class UByteArrayGeneratorSpec {
         // Then
         assertEquals(
             actual = Pair(1, 10),
-            expected = range.value
+            expected = range.value,
         )
         assertTrue(
-            expected.contentEquals(result)
+            expected.contentEquals(result),
         )
     }
 }

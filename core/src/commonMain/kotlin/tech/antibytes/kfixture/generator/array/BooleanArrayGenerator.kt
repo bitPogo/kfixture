@@ -6,13 +6,13 @@
 
 package tech.antibytes.kfixture.generator.array
 
+import kotlin.random.Random
 import tech.antibytes.kfixture.FixtureContract.ARRAY_LOWER_BOUND
 import tech.antibytes.kfixture.FixtureContract.ARRAY_UPPER_BOUND
 import tech.antibytes.kfixture.PublicApi
-import kotlin.random.Random
 
 internal class BooleanArrayGenerator(
-    private val random: Random
+    private val random: Random,
 ) : PublicApi.Generator<BooleanArray> {
     override fun generate(): BooleanArray {
         val size = random.nextInt(ARRAY_LOWER_BOUND, ARRAY_UPPER_BOUND)

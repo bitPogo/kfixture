@@ -6,17 +6,17 @@
 
 package tech.antibytes.kfixture
 
+import kotlin.jvm.JvmName
+import kotlin.random.Random
+import kotlin.reflect.KClass
 import kotlinx.atomicfu.atomic
 import tech.antibytes.kfixture.FixtureContract.COLLECTION_LOWER_BOUND
 import tech.antibytes.kfixture.FixtureContract.COLLECTION_UPPER_BOUND
 import tech.antibytes.kfixture.qualifier.resolveGeneratorId
-import kotlin.jvm.JvmName
-import kotlin.random.Random
-import kotlin.reflect.KClass
 
 internal class Fixture(
     override val random: Random,
-    generators: Map<String, PublicApi.Generator<out Any>>
+    generators: Map<String, PublicApi.Generator<out Any>>,
 ) : PublicApi.Fixture {
     private val _generators = atomic(generators)
 
@@ -29,7 +29,7 @@ internal class Fixture(
  * @return a Fixture Generator
  */
 public fun kotlinFixture(
-    configurator: PublicApi.Configuration.() -> Unit = {}
+    configurator: PublicApi.Configuration.() -> Unit = {},
 ): PublicApi.Fixture {
     val configuration = Configuration()
 
@@ -70,39 +70,39 @@ internal inline fun <reified T> Random.returnNull(): Boolean {
 @InternalAPI
 @PublishedApi
 internal fun PublicApi.Fixture.determineCollectionSize(
-    size: Int?
+    size: Int?,
 ): Int = size ?: random.nextInt(COLLECTION_LOWER_BOUND, COLLECTION_UPPER_BOUND)
 
 @InternalAPI
 @PublishedApi
 internal fun PublicApi.Fixture.pickAnListIndex(
-    list: List<*>
+    list: List<*>,
 ): Int = random.nextInt(LIST_LOWER_BOUND, list.size)
 
 @InternalAPI
 @PublishedApi
 internal fun PublicApi.Fixture.chooseNumberType(
-    qualifier: PublicApi.Qualifier?
+    qualifier: PublicApi.Qualifier?,
 ): String {
     val typeIdx = pickAnListIndex(numberTypes)
 
     return resolveGeneratorId(
         numberTypes[typeIdx],
-        qualifier
+        qualifier,
     )
 }
 
 @InternalAPI
 @PublishedApi
 internal inline fun <reified T> PublicApi.Fixture.resolveIdentifier(
-    qualifier: PublicApi.Qualifier?
+    qualifier: PublicApi.Qualifier?,
 ): String {
     return if (T::class == Number::class) {
         chooseNumberType(qualifier)
     } else {
         resolveGeneratorId(
             T::class as KClass<*>,
-            qualifier
+            qualifier,
         )
     }
 }
@@ -113,7 +113,7 @@ internal inline fun <reified T> PublicApi.Fixture.resolveIdentifier(
  * @param iterable - an iterable with values where to pick from.
  */
 public fun <T> PublicApi.Fixture.fixture(
-    iterable: Iterable<T>
+    iterable: Iterable<T>,
 ): T {
     val values = iterable.toList()
 
@@ -127,7 +127,7 @@ public fun <T> PublicApi.Fixture.fixture(
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 public inline fun <reified T> PublicApi.Fixture.fixture(
-    qualifier: PublicApi.Qualifier? = null
+    qualifier: PublicApi.Qualifier? = null,
 ): T {
     val returnNull = random.returnNull<T>()
     val id = resolveIdentifier<T>(qualifier)
@@ -148,7 +148,7 @@ public inline fun <reified T> PublicApi.Fixture.fixture(
  */
 public inline fun <reified T> PublicApi.Fixture.mutableListFixture(
     qualifier: PublicApi.Qualifier? = null,
-    size: Int? = null
+    size: Int? = null,
 ): MutableList<T> {
     val actualSize = determineCollectionSize(size)
 
@@ -174,7 +174,7 @@ public inline fun <reified C : MutableList<T>, reified T> PublicApi.Fixture.fixt
     size: Int? = null,
 ): C = mutableListFixture<T>(
     qualifier = qualifier,
-    size = size
+    size = size,
 ) as C
 
 /**
@@ -186,7 +186,7 @@ public inline fun <reified C : MutableList<T>, reified T> PublicApi.Fixture.fixt
  */
 public inline fun <reified T> PublicApi.Fixture.listFixture(
     qualifier: PublicApi.Qualifier? = null,
-    size: Int? = null
+    size: Int? = null,
 ): List<T> = mutableListFixture(
     qualifier = qualifier,
     size = size,
@@ -209,7 +209,7 @@ public inline fun <reified C : List<T>, reified T> PublicApi.Fixture.fixture(
     size: Int? = null,
 ): C = listFixture<T>(
     qualifier = qualifier,
-    size = size
+    size = size,
 ) as C
 
 /**
@@ -221,10 +221,10 @@ public inline fun <reified C : List<T>, reified T> PublicApi.Fixture.fixture(
  */
 public inline fun <reified T> PublicApi.Fixture.mutableCollectionFixture(
     qualifier: PublicApi.Qualifier? = null,
-    size: Int? = null
+    size: Int? = null,
 ): MutableCollection<T> = mutableListFixture(
     qualifier = qualifier,
-    size = size
+    size = size,
 )
 
 @Suppress("UNUSED_PARAMETER")
@@ -244,7 +244,7 @@ public inline fun <reified C : MutableCollection<T>, reified T> PublicApi.Fixtur
     size: Int? = null,
 ): C = mutableCollectionFixture<T>(
     qualifier = qualifier,
-    size = size
+    size = size,
 ) as C
 
 /**
@@ -256,10 +256,10 @@ public inline fun <reified C : MutableCollection<T>, reified T> PublicApi.Fixtur
  */
 public inline fun <reified T> PublicApi.Fixture.collectionFixture(
     qualifier: PublicApi.Qualifier? = null,
-    size: Int? = null
+    size: Int? = null,
 ): MutableCollection<T> = mutableListFixture(
     qualifier = qualifier,
-    size = size
+    size = size,
 )
 
 @Suppress("UNUSED_PARAMETER")
@@ -279,7 +279,7 @@ public inline fun <reified C : Collection<T>, reified T> PublicApi.Fixture.fixtu
     size: Int? = null,
 ): C = collectionFixture<T>(
     qualifier = qualifier,
-    size = size
+    size = size,
 ) as C
 
 /**
@@ -291,10 +291,10 @@ public inline fun <reified C : Collection<T>, reified T> PublicApi.Fixture.fixtu
  */
 public inline fun <reified T> PublicApi.Fixture.arrayFixture(
     qualifier: PublicApi.Qualifier? = null,
-    size: Int? = null
+    size: Int? = null,
 ): Array<T> = mutableListFixture<T>(
     qualifier = qualifier,
-    size = size
+    size = size,
 ).toTypedArray()
 
 @Suppress("UNUSED_PARAMETER")
@@ -313,7 +313,7 @@ public inline fun <reified T> PublicApi.Fixture.fixture(
     size: Int? = null,
 ): Array<T> = arrayFixture(
     qualifier = qualifier,
-    size = size
+    size = size,
 )
 
 /**
@@ -325,7 +325,7 @@ public inline fun <reified T> PublicApi.Fixture.fixture(
  */
 public inline fun <reified T> PublicApi.Fixture.sequenceFixture(
     qualifier: PublicApi.Qualifier? = null,
-    size: Int? = null
+    size: Int? = null,
 ): Sequence<T> {
     val actualSize = determineCollectionSize(size)
 
@@ -353,7 +353,7 @@ public inline fun <reified C : Sequence<T>, reified T> PublicApi.Fixture.fixture
     size: Int? = null,
 ): C = sequenceFixture<T>(
     qualifier = qualifier,
-    size = size
+    size = size,
 ) as C
 
 /**
@@ -449,7 +449,7 @@ public inline fun <reified C : Triple<First, Second, Third>, reified First, reif
 public inline fun <reified Key, reified Value> PublicApi.Fixture.mapFixture(
     keyQualifier: PublicApi.Qualifier? = null,
     valueQualifier: PublicApi.Qualifier? = null,
-    size: Int? = null
+    size: Int? = null,
 ): Map<Key, Value> {
     val actualSize = determineCollectionSize(size)
 
@@ -475,7 +475,7 @@ public inline fun <reified C : Map<Key, Value>, reified Key, reified Value> Publ
     type: KClass<Map<*, *>>,
     keyQualifier: PublicApi.Qualifier? = null,
     valueQualifier: PublicApi.Qualifier? = null,
-    size: Int? = null
+    size: Int? = null,
 ): C = mapFixture<Key, Value>(
     keyQualifier = keyQualifier,
     valueQualifier = valueQualifier,
@@ -494,7 +494,7 @@ public inline fun <reified C : Map<Key, Value>, reified Key, reified Value> Publ
 public inline fun <reified Key, reified Value> PublicApi.Fixture.mutableMapFixture(
     keyQualifier: PublicApi.Qualifier? = null,
     valueQualifier: PublicApi.Qualifier? = null,
-    size: Int? = null
+    size: Int? = null,
 ): Map<Key, Value> = mapFixture<Key, Value>(
     keyQualifier = keyQualifier,
     valueQualifier = valueQualifier,
@@ -518,7 +518,7 @@ public inline fun <reified C : MutableMap<Key, Value>, reified Key, reified Valu
     type: KClass<MutableMap<*, *>>,
     keyQualifier: PublicApi.Qualifier? = null,
     valueQualifier: PublicApi.Qualifier? = null,
-    size: Int? = null
+    size: Int? = null,
 ): C = mutableMapFixture<Key, Value>(
     keyQualifier = keyQualifier,
     valueQualifier = valueQualifier,
@@ -534,7 +534,7 @@ public inline fun <reified C : MutableMap<Key, Value>, reified Key, reified Valu
  */
 public inline fun <reified T> PublicApi.Fixture.mutableSetFixture(
     qualifier: PublicApi.Qualifier? = null,
-    size: Int? = null
+    size: Int? = null,
 ): MutableSet<T> {
     val actualSize = determineCollectionSize(size)
 
@@ -564,7 +564,7 @@ public inline fun <reified C : MutableSet<T>, reified T> PublicApi.Fixture.fixtu
     size: Int? = null,
 ): C = mutableSetFixture<T>(
     qualifier = qualifier,
-    size = size
+    size = size,
 ) as C
 
 /**
@@ -576,7 +576,7 @@ public inline fun <reified C : MutableSet<T>, reified T> PublicApi.Fixture.fixtu
  */
 public inline fun <reified T> PublicApi.Fixture.setFixture(
     qualifier: PublicApi.Qualifier? = null,
-    size: Int? = null
+    size: Int? = null,
 ): Set<T> = mutableSetFixture(qualifier, size)
 
 @Suppress("UNUSED_PARAMETER")
@@ -596,5 +596,5 @@ public inline fun <reified C : Set<T>, reified T> PublicApi.Fixture.fixture(
     size: Int? = null,
 ): C = setFixture<T>(
     qualifier = qualifier,
-    size = size
+    size = size,
 ) as C
