@@ -6,6 +6,12 @@
 
 package tech.antibytes.kfixture.fixture
 
+import kotlin.js.JsName
+import kotlin.test.AfterTest
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
+import kotlin.test.assertTrue
 import kotlinx.atomicfu.atomic
 import tech.antibytes.kfixture.Fixture
 import tech.antibytes.kfixture.PublicApi
@@ -17,12 +23,6 @@ import tech.antibytes.kfixture.mock.RandomStub
 import tech.antibytes.kfixture.mutableCollectionFixture
 import tech.antibytes.kfixture.qualifier.StringQualifier
 import tech.antibytes.kfixture.resolveClassName
-import kotlin.js.JsName
-import kotlin.test.AfterTest
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertFailsWith
-import kotlin.test.assertTrue
 
 @Suppress("USELESS_CAST")
 class CollectionFixtureSpec {
@@ -68,7 +68,7 @@ class CollectionFixtureSpec {
 
         assertEquals(
             actual = error.message,
-            expected = "Missing Generator for ClassID ($int)."
+            expected = "Missing Generator for ClassID ($int).",
         )
     }
 
@@ -100,15 +100,15 @@ class CollectionFixtureSpec {
         assertTrue(result is Collection<*>)
         assertEquals(
             actual = capturedMinimum.value,
-            expected = 1
+            expected = 1,
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = 10
+            expected = 10,
         )
         assertEquals(
             actual = result.size,
-            expected = size
+            expected = size,
         )
         assertEquals(
             actual = result,
@@ -117,8 +117,8 @@ class CollectionFixtureSpec {
                 expected,
                 expected,
                 expected,
-                expected
-            )
+                expected,
+            ),
         )
     }
 
@@ -151,15 +151,15 @@ class CollectionFixtureSpec {
         // Then
         assertEquals(
             actual = capturedMinimum.value,
-            expected = 1
+            expected = 1,
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = 10
+            expected = 10,
         )
         assertEquals(
             actual = result.size,
-            expected = size
+            expected = size,
         )
         assertEquals<Collection<Int?>>(
             actual = result,
@@ -168,8 +168,8 @@ class CollectionFixtureSpec {
                 null,
                 null,
                 null,
-                null
-            )
+                null,
+            ),
         )
     }
 
@@ -202,8 +202,8 @@ class CollectionFixtureSpec {
                 expected,
                 expected,
                 expected,
-                expected
-            )
+                expected,
+            ),
         )
     }
 
@@ -235,8 +235,8 @@ class CollectionFixtureSpec {
                 expected,
                 expected,
                 expected,
-                expected
-            )
+                expected,
+            ),
         )
     }
 
@@ -259,7 +259,7 @@ class CollectionFixtureSpec {
 
         // When
         val result: Collection<Int> = fixture.fixture(
-            type = Collection::class
+            type = Collection::class,
         )
 
         // Then
@@ -270,8 +270,8 @@ class CollectionFixtureSpec {
                 expected,
                 expected,
                 expected,
-                expected
-            )
+                expected,
+            ),
         )
     }
 
@@ -298,7 +298,7 @@ class CollectionFixtureSpec {
 
         assertEquals(
             actual = error.message,
-            expected = "Missing Generator for ClassID ($int)."
+            expected = "Missing Generator for ClassID ($int).",
         )
     }
 
@@ -330,15 +330,15 @@ class CollectionFixtureSpec {
         assertTrue(result is MutableCollection<*>)
         assertEquals(
             actual = capturedMinimum.value,
-            expected = 1
+            expected = 1,
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = 10
+            expected = 10,
         )
         assertEquals(
             actual = result.size,
-            expected = size
+            expected = size,
         )
         assertEquals(
             actual = result,
@@ -347,8 +347,8 @@ class CollectionFixtureSpec {
                 expected,
                 expected,
                 expected,
-                expected
-            )
+                expected,
+            ),
         )
     }
 
@@ -381,15 +381,15 @@ class CollectionFixtureSpec {
         // Then
         assertEquals(
             actual = capturedMinimum.value,
-            expected = 1
+            expected = 1,
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = 10
+            expected = 10,
         )
         assertEquals(
             actual = result.size,
-            expected = size
+            expected = size,
         )
         assertEquals<MutableCollection<Int?>>(
             actual = result,
@@ -398,8 +398,8 @@ class CollectionFixtureSpec {
                 null,
                 null,
                 null,
-                null
-            )
+                null,
+            ),
         )
     }
 
@@ -432,8 +432,8 @@ class CollectionFixtureSpec {
                 expected,
                 expected,
                 expected,
-                expected
-            )
+                expected,
+            ),
         )
     }
 
@@ -465,8 +465,8 @@ class CollectionFixtureSpec {
                 expected,
                 expected,
                 expected,
-                expected
-            )
+                expected,
+            ),
         )
     }
 
@@ -489,7 +489,7 @@ class CollectionFixtureSpec {
 
         // When
         val result: MutableCollection<Int> = fixture.fixture(
-            type = MutableCollection::class
+            type = MutableCollection::class,
         )
 
         // Then
@@ -500,8 +500,8 @@ class CollectionFixtureSpec {
                 expected,
                 expected,
                 expected,
-                expected
-            )
+                expected,
+            ),
         )
     }
 }

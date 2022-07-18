@@ -7,6 +7,12 @@
 package tech.antibytes.kfixture
 
 import co.touchlab.stately.isFrozen
+import kotlin.js.JsName
+import kotlin.random.Random
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertNotEquals
+import kotlin.test.assertTrue
 import kotlinx.atomicfu.AtomicRef
 import kotlinx.atomicfu.atomic
 import kotlinx.atomicfu.update
@@ -40,12 +46,6 @@ import tech.antibytes.kfixture.generator.primitive.UShortGenerator
 import tech.antibytes.kfixture.generator.primitive.UnitGenerator
 import tech.antibytes.kfixture.mock.GeneratorFactoryStub
 import tech.antibytes.kfixture.qualifier.qualifiedBy
-import kotlin.js.JsName
-import kotlin.random.Random
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertNotEquals
-import kotlin.test.assertTrue
 
 class ConfigurationSpec {
     @Test
@@ -71,7 +71,7 @@ class ConfigurationSpec {
 
         assertEquals(
             actual = config.seed,
-            expected = 0
+            expected = 0,
         )
     }
 
@@ -88,7 +88,7 @@ class ConfigurationSpec {
         assertTrue(fixture.random is RandomWrapper)
         assertEquals(
             actual = fixture.random.nextDouble(),
-            expected = Random(seed).nextDouble()
+            expected = Random(seed).nextDouble(),
         )
     }
 
@@ -133,17 +133,17 @@ class ConfigurationSpec {
         // Then
         assertEquals(
             actual = mapping.size,
-            expected = fixture.generators.size
+            expected = fixture.generators.size,
         )
         fixture.generators.forEach { (key, generator) ->
             assertTrue(
                 mapping.containsKey(key),
-                message = "Unknown Key ($key)"
+                message = "Unknown Key ($key)",
             )
 
             assertTrue(
                 mapping[key]!!.isInstance(generator),
-                message = "Unexpected Generator for Key ($key)"
+                message = "Unexpected Generator for Key ($key)",
             )
         }
     }
@@ -166,17 +166,17 @@ class ConfigurationSpec {
 
         assertTrue(
             generators.containsKey("tech.antibytes.kfixture.TestClass") || generators.containsKey("TestClass"),
-            message = "Missing Key (tech.antibytes.kfixture.TestClass)"
+            message = "Missing Key (tech.antibytes.kfixture.TestClass)",
         )
         assertTrue(
             generators["tech.antibytes.kfixture.TestClass"] is TestGenerator ||
-                generators["TestClass"] is TestGenerator
+                generators["TestClass"] is TestGenerator,
         )
 
         if (!TestGenerator.lastRandom.isFrozen) {
             assertEquals(
                 actual = TestGenerator.lastRandom.nextDouble(),
-                expected = Random(seed).nextDouble()
+                expected = Random(seed).nextDouble(),
             )
         }
 
@@ -201,7 +201,7 @@ class ConfigurationSpec {
 
         assertNotEquals(
             actual = generators["int"],
-            illegal = generator.lastInstance
+            illegal = generator.lastInstance,
         )
     }
 
@@ -225,11 +225,11 @@ class ConfigurationSpec {
         assertTrue(
             generators.containsKey("q:$qualifier:tech.antibytes.kfixture.TestClass") ||
                 generators.containsKey("q:$qualifier:TestClass"),
-            message = "Missing Key (q:$qualifier:tech.antibytes.kfixture.TestClass)"
+            message = "Missing Key (q:$qualifier:tech.antibytes.kfixture.TestClass)",
         )
         assertTrue(
             generators["q:$qualifier:tech.antibytes.kfixture.TestClass"] is TestGenerator ||
-                generators["q:$qualifier:TestClass"] is TestGenerator
+                generators["q:$qualifier:TestClass"] is TestGenerator,
         )
     }
 }

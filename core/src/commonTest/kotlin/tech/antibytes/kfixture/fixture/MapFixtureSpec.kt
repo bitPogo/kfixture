@@ -7,6 +7,12 @@
 package tech.antibytes.kfixture.fixture
 
 import co.touchlab.stately.collections.sharedMutableListOf
+import kotlin.js.JsName
+import kotlin.test.AfterTest
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
+import kotlin.test.assertTrue
 import kotlinx.atomicfu.atomic
 import tech.antibytes.kfixture.Fixture
 import tech.antibytes.kfixture.PublicApi
@@ -18,12 +24,6 @@ import tech.antibytes.kfixture.mock.RandomStub
 import tech.antibytes.kfixture.mutableMapFixture
 import tech.antibytes.kfixture.qualifier.StringQualifier
 import tech.antibytes.kfixture.resolveClassName
-import kotlin.js.JsName
-import kotlin.test.AfterTest
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertFailsWith
-import kotlin.test.assertTrue
 
 @Suppress("USELESS_CAST")
 class MapFixtureSpec {
@@ -71,7 +71,7 @@ class MapFixtureSpec {
 
         assertEquals(
             actual = error.message,
-            expected = "Missing Generator for ClassID ($int)."
+            expected = "Missing Generator for ClassID ($int).",
         )
     }
 
@@ -103,24 +103,24 @@ class MapFixtureSpec {
         assertTrue(result is Map<*, *>)
         assertEquals(
             actual = capturedMinimum.value,
-            expected = 1
+            expected = 1,
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = 10
+            expected = 10,
         )
         assertEquals(
             actual = result.size,
-            expected = 1
+            expected = 1,
         )
 
         assertEquals(
             actual = result.keys,
-            expected = setOf(expected)
+            expected = setOf(expected),
         )
         assertEquals(
             actual = result.values.toList(),
-            expected = listOf(expected)
+            expected = listOf(expected),
         )
     }
 
@@ -152,24 +152,24 @@ class MapFixtureSpec {
         // Then
         assertEquals(
             actual = capturedMinimum.value,
-            expected = 1
+            expected = 1,
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = 10
+            expected = 10,
         )
         assertEquals(
             actual = result.size,
-            expected = 1
+            expected = 1,
         )
 
         assertEquals(
             actual = result.keys,
-            expected = setOf(expected)
+            expected = setOf(expected),
         )
         assertEquals(
             actual = result.values.toList(),
-            expected = listOf(null)
+            expected = listOf(null),
         )
     }
 
@@ -195,7 +195,7 @@ class MapFixtureSpec {
             mapOf(
                 "q:$keyQualifier:$int" to generator,
                 "q:$valueQualifier:$int" to generator,
-            )
+            ),
         )
 
         // When
@@ -207,11 +207,11 @@ class MapFixtureSpec {
         // Then
         assertEquals(
             actual = result.keys,
-            expected = setOf(expected)
+            expected = setOf(expected),
         )
         assertEquals(
             actual = result.values.toList(),
-            expected = listOf(expected)
+            expected = listOf(expected),
         )
     }
 
@@ -233,7 +233,7 @@ class MapFixtureSpec {
 
         val fixture = Fixture(
             random,
-            mapOf(int to generator)
+            mapOf(int to generator),
         )
 
         // When
@@ -242,7 +242,7 @@ class MapFixtureSpec {
         // Then
         assertEquals(
             actual = result.keys.size,
-            expected = size
+            expected = size,
         )
     }
 
@@ -264,7 +264,7 @@ class MapFixtureSpec {
 
         val fixture = Fixture(
             random,
-            mapOf(int to generator)
+            mapOf(int to generator),
         )
 
         // When
@@ -276,7 +276,7 @@ class MapFixtureSpec {
         // Then
         assertEquals(
             actual = result.keys.size,
-            expected = size
+            expected = size,
         )
     }
 
@@ -304,7 +304,7 @@ class MapFixtureSpec {
 
         assertEquals(
             actual = error.message,
-            expected = "Missing Generator for ClassID ($int)."
+            expected = "Missing Generator for ClassID ($int).",
         )
     }
 
@@ -336,24 +336,24 @@ class MapFixtureSpec {
         assertTrue(result is MutableMap<*, *>)
         assertEquals(
             actual = capturedMinimum.value,
-            expected = 1
+            expected = 1,
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = 10
+            expected = 10,
         )
         assertEquals(
             actual = result.size,
-            expected = 1
+            expected = 1,
         )
 
         assertEquals(
             actual = result.keys,
-            expected = mutableSetOf(expected)
+            expected = mutableSetOf(expected),
         )
         assertEquals(
             actual = result.values.toList(),
-            expected = listOf(expected)
+            expected = listOf(expected),
         )
     }
 
@@ -385,24 +385,24 @@ class MapFixtureSpec {
         // Then
         assertEquals(
             actual = capturedMinimum.value,
-            expected = 1
+            expected = 1,
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = 10
+            expected = 10,
         )
         assertEquals(
             actual = result.size,
-            expected = 1
+            expected = 1,
         )
 
         assertEquals(
             actual = result.keys,
-            expected = setOf(expected)
+            expected = setOf(expected),
         )
         assertEquals(
             actual = result.values.toList(),
-            expected = listOf(null)
+            expected = listOf(null),
         )
     }
 
@@ -428,7 +428,7 @@ class MapFixtureSpec {
             mapOf(
                 "q:$keyQualifier:$int" to generator,
                 "q:$valueQualifier:$int" to generator,
-            )
+            ),
         )
 
         // When
@@ -440,11 +440,11 @@ class MapFixtureSpec {
         // Then
         assertEquals(
             actual = result.keys,
-            expected = setOf(expected)
+            expected = setOf(expected),
         )
         assertEquals(
             actual = result.values.toList(),
-            expected = listOf(expected)
+            expected = listOf(expected),
         )
     }
 
@@ -466,7 +466,7 @@ class MapFixtureSpec {
 
         val fixture = Fixture(
             random,
-            mapOf(int to generator)
+            mapOf(int to generator),
         )
 
         // When
@@ -475,7 +475,7 @@ class MapFixtureSpec {
         // Then
         assertEquals(
             actual = result.keys.size,
-            expected = size
+            expected = size,
         )
     }
 
@@ -497,7 +497,7 @@ class MapFixtureSpec {
 
         val fixture = Fixture(
             random,
-            mapOf(int to generator)
+            mapOf(int to generator),
         )
 
         // When
@@ -509,7 +509,7 @@ class MapFixtureSpec {
         // Then
         assertEquals(
             actual = result.keys.size,
-            expected = size
+            expected = size,
         )
     }
 }

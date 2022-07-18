@@ -6,12 +6,12 @@
 
 package tech.antibytes.kfixture.qualifier
 
-import tech.antibytes.kfixture.FixtureContract.QUALIFIER_PREFIX
-import tech.antibytes.kfixture.PublicApi
 import kotlin.js.JsName
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
+import tech.antibytes.kfixture.FixtureContract.QUALIFIER_PREFIX
+import tech.antibytes.kfixture.PublicApi
 
 class StringQualifierSpec {
     @Test
@@ -30,7 +30,7 @@ class StringQualifierSpec {
 
         assertEquals(
             actual = qualifier.value,
-            expected = "${QUALIFIER_PREFIX}$value"
+            expected = "${QUALIFIER_PREFIX}$value",
         )
     }
 }

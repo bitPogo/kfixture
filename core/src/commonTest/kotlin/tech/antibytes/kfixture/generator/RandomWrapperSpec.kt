@@ -7,9 +7,6 @@
 package tech.antibytes.kfixture.generator
 
 import co.touchlab.stately.isolate.IsolateState
-import kotlinx.atomicfu.atomic
-import kotlinx.atomicfu.update
-import tech.antibytes.kfixture.mock.RandomStub
 import kotlin.js.JsName
 import kotlin.random.Random
 import kotlin.test.AfterTest
@@ -17,6 +14,9 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertSame
 import kotlin.test.assertTrue
+import kotlinx.atomicfu.atomic
+import kotlinx.atomicfu.update
+import tech.antibytes.kfixture.mock.RandomStub
 
 @Suppress("UNCHECKED_CAST")
 class RandomWrapperSpec {
@@ -65,11 +65,11 @@ class RandomWrapperSpec {
         // Then
         assertEquals(
             actual = actual,
-            expected = expected
+            expected = expected,
         )
         assertEquals(
             actual = capturedCount.value,
-            expected = count
+            expected = count,
         )
     }
 
@@ -90,7 +90,7 @@ class RandomWrapperSpec {
         // Then
         assertEquals(
             actual = actual,
-            expected = expected
+            expected = expected,
         )
     }
 
@@ -111,7 +111,7 @@ class RandomWrapperSpec {
         // Then
         assertEquals(
             actual = actual,
-            expected = expected
+            expected = expected,
         )
     }
 
@@ -137,11 +137,11 @@ class RandomWrapperSpec {
         // Then
         assertEquals(
             actual = actual,
-            expected = expected
+            expected = expected,
         )
         assertEquals(
             actual = capturedCount.value,
-            expected = count
+            expected = count,
         )
     }
 
@@ -169,15 +169,15 @@ class RandomWrapperSpec {
         // Then
         assertEquals(
             actual = actual,
-            expected = expected
+            expected = expected,
         )
         assertEquals(
             actual = capturedMinimum.value,
-            expected = min
+            expected = min,
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = max
+            expected = max,
         )
     }
 
@@ -198,7 +198,7 @@ class RandomWrapperSpec {
         // Then
         assertEquals(
             actual = actual,
-            expected = expected.toLong()
+            expected = expected.toLong(),
         )
     }
 
@@ -224,11 +224,11 @@ class RandomWrapperSpec {
         // Then
         assertEquals(
             actual = actual,
-            expected = expected.toLong()
+            expected = expected.toLong(),
         )
         assertEquals(
             actual = capturedCount.value,
-            expected = count
+            expected = count,
         )
     }
 
@@ -256,15 +256,15 @@ class RandomWrapperSpec {
         // Then
         assertEquals(
             actual = actual,
-            expected = expected.toLong()
+            expected = expected.toLong(),
         )
         assertEquals(
             actual = capturedMinimum.value,
-            expected = min
+            expected = min,
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = max
+            expected = max,
         )
     }
 
@@ -285,7 +285,7 @@ class RandomWrapperSpec {
         // Then
         assertEquals(
             actual = actual,
-            expected = expected.toDouble()
+            expected = expected.toDouble(),
         )
     }
 
@@ -311,11 +311,11 @@ class RandomWrapperSpec {
         // Then
         assertEquals(
             actual = actual,
-            expected = expected.toDouble()
+            expected = expected.toDouble(),
         )
         assertEquals(
             actual = capturedCount.value,
-            expected = count
+            expected = count,
         )
     }
 
@@ -343,15 +343,15 @@ class RandomWrapperSpec {
         // Then
         assertEquals(
             actual = actual,
-            expected = expected.toDouble()
+            expected = expected.toDouble(),
         )
         assertEquals(
             actual = capturedMinimum.value,
-            expected = min
+            expected = min,
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = max
+            expected = max,
         )
     }
 
@@ -372,7 +372,7 @@ class RandomWrapperSpec {
         // Then
         assertEquals(
             actual = actual,
-            expected = expected.toFloat()
+            expected = expected.toFloat(),
         )
     }
 
@@ -397,11 +397,11 @@ class RandomWrapperSpec {
         // Then
         assertSame(
             actual = actual,
-            expected = expected
+            expected = expected,
         )
         assertSame(
             actual = capturedArray.value,
-            expected = given
+            expected = given,
         )
     }
 
@@ -426,11 +426,11 @@ class RandomWrapperSpec {
         // Then
         assertSame(
             actual = actual,
-            expected = expected
+            expected = expected,
         )
         assertEquals(
             actual = capturedCount.value,
-            expected = given
+            expected = given,
         )
     }
 
@@ -459,19 +459,19 @@ class RandomWrapperSpec {
         // Then
         assertSame(
             actual = actual,
-            expected = expected
+            expected = expected,
         )
         assertEquals(
             actual = capturedArray.value,
-            expected = array
+            expected = array,
         )
         assertEquals(
             actual = capturedMinimum.value,
-            expected = min
+            expected = min,
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = max
+            expected = max,
         )
     }
 

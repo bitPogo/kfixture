@@ -13,10 +13,10 @@ If you want to know more take a look into the [Documentation](https://bitpogo.gi
 
 ## Requirements
 
-* [Kotlin 1.6.21](https://kotlinlang.org/docs/releases.html)
-* [AtomicFu 0.17.3](https://github.com/Kotlin/kotlinx.atomicfu)
-* [Touchlab's Stately 1.2.1](https://github.com/touchlab/Stately)
-* Android 6.0 (API 21) to Android 12 (API 31)
+* [Kotlin 1.7.0](https://kotlinlang.org/docs/releases.html)
+* [AtomicFu 0.18.2](https://github.com/Kotlin/kotlinx.atomicfu)
+* [Touchlab's Stately 1.2.3](https://github.com/touchlab/Stately)
+* Android 5.0 (API 21) to Android 12L (API 32)
 
 ## Changelog
 

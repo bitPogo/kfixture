@@ -6,6 +6,12 @@
 
 package tech.antibytes.kfixture.fixture
 
+import kotlin.js.JsName
+import kotlin.test.AfterTest
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
+import kotlin.test.assertTrue
 import kotlinx.atomicfu.atomic
 import tech.antibytes.kfixture.Fixture
 import tech.antibytes.kfixture.PublicApi
@@ -16,12 +22,6 @@ import tech.antibytes.kfixture.mock.RandomStub
 import tech.antibytes.kfixture.qualifier.StringQualifier
 import tech.antibytes.kfixture.resolveClassName
 import tech.antibytes.kfixture.sequenceFixture
-import kotlin.js.JsName
-import kotlin.test.AfterTest
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertFailsWith
-import kotlin.test.assertTrue
 
 @Suppress("USELESS_CAST")
 class SequenceFixtureSpec {
@@ -67,7 +67,7 @@ class SequenceFixtureSpec {
 
         assertEquals(
             actual = error.message,
-            expected = "Missing Generator for ClassID ($int)."
+            expected = "Missing Generator for ClassID ($int).",
         )
     }
 
@@ -99,15 +99,15 @@ class SequenceFixtureSpec {
         assertTrue(result is Sequence<*>)
         assertEquals(
             actual = capturedMinimum.value,
-            expected = 1
+            expected = 1,
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = 10
+            expected = 10,
         )
         assertEquals(
             actual = result.toList().size,
-            expected = size
+            expected = size,
         )
         assertEquals(
             actual = result.toList(),
@@ -116,8 +116,8 @@ class SequenceFixtureSpec {
                 expected,
                 expected,
                 expected,
-                expected
-            )
+                expected,
+            ),
         )
     }
 
@@ -150,15 +150,15 @@ class SequenceFixtureSpec {
         // Then
         assertEquals(
             actual = capturedMinimum.value,
-            expected = 1
+            expected = 1,
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = 10
+            expected = 10,
         )
         assertEquals(
             actual = result.toList().size,
-            expected = size
+            expected = size,
         )
         assertEquals(
             actual = result.toList(),
@@ -167,8 +167,8 @@ class SequenceFixtureSpec {
                 null,
                 null,
                 null,
-                null
-            )
+                null,
+            ),
         )
     }
 
@@ -201,8 +201,8 @@ class SequenceFixtureSpec {
                 expected,
                 expected,
                 expected,
-                expected
-            )
+                expected,
+            ),
         )
     }
 
@@ -234,8 +234,8 @@ class SequenceFixtureSpec {
                 expected,
                 expected,
                 expected,
-                expected
-            )
+                expected,
+            ),
         )
     }
 
@@ -258,7 +258,7 @@ class SequenceFixtureSpec {
 
         // When
         val result: Sequence<Int> = fixture.fixture(
-            type = Sequence::class
+            type = Sequence::class,
         )
 
         // Then
@@ -269,8 +269,8 @@ class SequenceFixtureSpec {
                 expected,
                 expected,
                 expected,
-                expected
-            )
+                expected,
+            ),
         )
     }
 }

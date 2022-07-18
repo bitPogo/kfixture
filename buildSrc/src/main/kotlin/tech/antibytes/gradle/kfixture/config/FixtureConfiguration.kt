@@ -20,11 +20,11 @@ object FixtureConfiguration {
                 name = "KFixture Core",
                 description = "A tool to generate randomized test values for Kotlin Multiplatform.",
                 year = 2022,
-                url = "https://$gitHubRepositoryPath"
+                url = "https://$gitHubRepositoryPath",
             ),
             developers = listOf(developer),
             license = license,
-            scm = sourceControl
+            scm = sourceControl,
         )
     }
 }

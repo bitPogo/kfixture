@@ -6,11 +6,11 @@
 
 package tech.antibytes.kfixture.generator.primitive
 
-import tech.antibytes.kfixture.PublicApi
 import kotlin.js.JsName
 import kotlin.test.Test
 import kotlin.test.assertNotSame
 import kotlin.test.assertTrue
+import tech.antibytes.kfixture.PublicApi
 
 class AnyGeneratorSpec {
     @Test
@@ -42,7 +42,7 @@ class AnyGeneratorSpec {
         // Then
         assertNotSame(
             actual = obj1,
-            illegal = obj2
+            illegal = obj2,
         )
     }
 }

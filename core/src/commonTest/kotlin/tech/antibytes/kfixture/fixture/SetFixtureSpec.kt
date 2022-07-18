@@ -6,6 +6,12 @@
 
 package tech.antibytes.kfixture.fixture
 
+import kotlin.js.JsName
+import kotlin.test.AfterTest
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
+import kotlin.test.assertTrue
 import kotlinx.atomicfu.atomic
 import tech.antibytes.kfixture.Fixture
 import tech.antibytes.kfixture.PublicApi
@@ -17,12 +23,6 @@ import tech.antibytes.kfixture.mutableSetFixture
 import tech.antibytes.kfixture.qualifier.StringQualifier
 import tech.antibytes.kfixture.resolveClassName
 import tech.antibytes.kfixture.setFixture
-import kotlin.js.JsName
-import kotlin.test.AfterTest
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertFailsWith
-import kotlin.test.assertTrue
 
 @Suppress("USELESS_CAST")
 class SetFixtureSpec {
@@ -69,7 +69,7 @@ class SetFixtureSpec {
 
         assertEquals(
             actual = error.message,
-            expected = "Missing Generator for ClassID ($int)."
+            expected = "Missing Generator for ClassID ($int).",
         )
     }
 
@@ -101,21 +101,21 @@ class SetFixtureSpec {
         assertTrue(result is Set<*>)
         assertEquals(
             actual = capturedMinimum.value,
-            expected = 1
+            expected = 1,
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = 10
+            expected = 10,
         )
         assertEquals(
             actual = result.size,
-            expected = 1 // it is a set and kills doublets
+            expected = 1, // it is a set and kills doublets
         )
         assertEquals(
             actual = result,
             expected = setOf(
                 expected,
-            )
+            ),
         )
     }
 
@@ -148,21 +148,21 @@ class SetFixtureSpec {
         // Then
         assertEquals(
             actual = capturedMinimum.value,
-            expected = 1
+            expected = 1,
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = 10
+            expected = 10,
         )
         assertEquals(
             actual = result.size,
-            expected = 1 // it is a set and kills doublets
+            expected = 1, // it is a set and kills doublets
         )
         assertEquals(
             actual = result,
             expected = setOf(
                 null,
-            )
+            ),
         )
     }
 
@@ -195,8 +195,8 @@ class SetFixtureSpec {
                 expected,
                 expected,
                 expected,
-                expected
-            )
+                expected,
+            ),
         )
     }
 
@@ -228,8 +228,8 @@ class SetFixtureSpec {
                 expected,
                 expected,
                 expected,
-                expected
-            )
+                expected,
+            ),
         )
     }
 
@@ -252,7 +252,7 @@ class SetFixtureSpec {
 
         // When
         val result: Set<Int> = fixture.fixture(
-            type = Set::class
+            type = Set::class,
         )
 
         // Then
@@ -263,8 +263,8 @@ class SetFixtureSpec {
                 expected,
                 expected,
                 expected,
-                expected
-            )
+                expected,
+            ),
         )
     }
 
@@ -291,7 +291,7 @@ class SetFixtureSpec {
 
         assertEquals(
             actual = error.message,
-            expected = "Missing Generator for ClassID ($int)."
+            expected = "Missing Generator for ClassID ($int).",
         )
     }
 
@@ -323,21 +323,21 @@ class SetFixtureSpec {
         assertTrue(result is MutableSet<*>)
         assertEquals(
             actual = capturedMinimum.value,
-            expected = 1
+            expected = 1,
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = 10
+            expected = 10,
         )
         assertEquals(
             actual = result.size,
-            expected = 1 // it is a set and kills doublets
+            expected = 1, // it is a set and kills doublets
         )
         assertEquals(
             actual = result,
             expected = mutableSetOf(
                 expected,
-            )
+            ),
         )
     }
 
@@ -370,21 +370,21 @@ class SetFixtureSpec {
         // Then
         assertEquals(
             actual = capturedMinimum.value,
-            expected = 1
+            expected = 1,
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = 10
+            expected = 10,
         )
         assertEquals(
             actual = result.size,
-            expected = 1 // it is a set and kill doublets
+            expected = 1, // it is a set and kill doublets
         )
         assertEquals<MutableSet<Int?>>(
             actual = result,
             expected = mutableSetOf(
                 null,
-            )
+            ),
         )
     }
 
@@ -417,8 +417,8 @@ class SetFixtureSpec {
                 expected,
                 expected,
                 expected,
-                expected
-            )
+                expected,
+            ),
         )
     }
 
@@ -450,8 +450,8 @@ class SetFixtureSpec {
                 expected,
                 expected,
                 expected,
-                expected
-            )
+                expected,
+            ),
         )
     }
 
@@ -474,7 +474,7 @@ class SetFixtureSpec {
 
         // When
         val result: MutableSet<Int> = fixture.fixture(
-            type = MutableSet::class
+            type = MutableSet::class,
         )
 
         // Then
@@ -485,8 +485,8 @@ class SetFixtureSpec {
                 expected,
                 expected,
                 expected,
-                expected
-            )
+                expected,
+            ),
         )
     }
 }

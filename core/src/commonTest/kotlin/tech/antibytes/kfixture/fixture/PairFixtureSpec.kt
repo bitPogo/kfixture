@@ -6,6 +6,12 @@
 
 package tech.antibytes.kfixture.fixture
 
+import kotlin.js.JsName
+import kotlin.test.AfterTest
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
+import kotlin.test.assertTrue
 import kotlinx.atomicfu.atomic
 import tech.antibytes.kfixture.Fixture
 import tech.antibytes.kfixture.PublicApi
@@ -16,12 +22,6 @@ import tech.antibytes.kfixture.mock.RandomStub
 import tech.antibytes.kfixture.pairFixture
 import tech.antibytes.kfixture.qualifier.StringQualifier
 import tech.antibytes.kfixture.resolveClassName
-import kotlin.js.JsName
-import kotlin.test.AfterTest
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertFailsWith
-import kotlin.test.assertTrue
 
 @Suppress("USELESS_CAST")
 class PairFixtureSpec {
@@ -67,7 +67,7 @@ class PairFixtureSpec {
 
         assertEquals(
             actual = error.message,
-            expected = "Missing Generator for ClassID ($int)."
+            expected = "Missing Generator for ClassID ($int).",
         )
     }
 
@@ -91,7 +91,7 @@ class PairFixtureSpec {
         // Then
         assertEquals(
             actual = result,
-            expected = Pair(expected, expected)
+            expected = Pair(expected, expected),
         )
     }
 
@@ -117,7 +117,7 @@ class PairFixtureSpec {
         // Then
         assertEquals(
             actual = result,
-            expected = Pair(expected, null)
+            expected = Pair(expected, null),
         )
     }
 
@@ -140,19 +140,19 @@ class PairFixtureSpec {
             mapOf(
                 "q:$keyQualifier:$int" to generator,
                 "q:$valueQualifier:$int" to generator,
-            )
+            ),
         )
 
         // When
         val result = fixture.pairFixture<Int, Int>(
             StringQualifier(keyQualifier),
-            StringQualifier(valueQualifier)
+            StringQualifier(valueQualifier),
         )
 
         // Then
         assertEquals(
             actual = result,
-            expected = Pair(expected, expected)
+            expected = Pair(expected, expected),
         )
     }
 
@@ -175,20 +175,20 @@ class PairFixtureSpec {
             mapOf(
                 "q:$keyQualifier:$int" to generator,
                 "q:$valueQualifier:$int" to generator,
-            )
+            ),
         )
 
         // When
         val result: Pair<Int, Int> = fixture.fixture(
             firstQualifier = StringQualifier(keyQualifier),
             secondQualifier = StringQualifier(valueQualifier),
-            type = Pair::class
+            type = Pair::class,
         )
 
         // Then
         assertEquals(
             actual = result,
-            expected = Pair(expected, expected)
+            expected = Pair(expected, expected),
         )
     }
 }

@@ -23,7 +23,7 @@ class ClassNameResolverSpec {
         // Then
         assertEquals(
             actual = clazz.simpleName,
-            expected = result
+            expected = result,
         )
     }
 }

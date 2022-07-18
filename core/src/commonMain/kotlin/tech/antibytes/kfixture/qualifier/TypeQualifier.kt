@@ -6,12 +6,12 @@
 
 package tech.antibytes.kfixture.qualifier
 
+import kotlin.reflect.KClass
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.resolveClassName
-import kotlin.reflect.KClass
 
 internal class TypeQualifier(
-    private val type: KClass<out Any>
+    private val type: KClass<out Any>,
 ) : PublicApi.Qualifier {
     override val value: String
         get() = resolveClassName(type)

@@ -6,6 +6,13 @@
 
 package tech.antibytes.kfixture.fixture
 
+import kotlin.js.JsName
+import kotlin.test.AfterTest
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
+import kotlin.test.assertNull
+import kotlin.test.assertTrue
 import kotlinx.atomicfu.atomic
 import kotlinx.atomicfu.update
 import tech.antibytes.kfixture.Fixture
@@ -16,13 +23,6 @@ import tech.antibytes.kfixture.mock.GeneratorStub
 import tech.antibytes.kfixture.mock.RandomStub
 import tech.antibytes.kfixture.qualifier.StringQualifier
 import tech.antibytes.kfixture.resolveClassName
-import kotlin.js.JsName
-import kotlin.test.AfterTest
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertFailsWith
-import kotlin.test.assertNull
-import kotlin.test.assertTrue
 
 @Suppress("USELESS_CAST")
 class AtomicFixtureSpec {
@@ -68,7 +68,7 @@ class AtomicFixtureSpec {
 
         assertEquals(
             actual = error.message,
-            expected = "Missing Generator for ClassID ($int)."
+            expected = "Missing Generator for ClassID ($int).",
         )
     }
 
@@ -92,7 +92,7 @@ class AtomicFixtureSpec {
         // Then
         assertEquals(
             actual = result,
-            expected = expected
+            expected = expected,
         )
     }
 
@@ -134,7 +134,7 @@ class AtomicFixtureSpec {
 
         val fixture = Fixture(
             random,
-            mapOf("q:$qualifier:$int" to generator)
+            mapOf("q:$qualifier:$int" to generator),
         )
 
         // When
@@ -143,7 +143,7 @@ class AtomicFixtureSpec {
         // Then
         assertEquals(
             actual = result,
-            expected = expected
+            expected = expected,
         )
     }
 
@@ -162,7 +162,7 @@ class AtomicFixtureSpec {
 
         val fixture = Fixture(
             random,
-            mapOf(int to generator)
+            mapOf(int to generator),
         )
 
         // When
@@ -171,7 +171,7 @@ class AtomicFixtureSpec {
         // Then
         assertEquals(
             actual = result,
-            expected = expected
+            expected = expected,
         )
     }
 
@@ -191,7 +191,7 @@ class AtomicFixtureSpec {
 
         val fixture = Fixture(
             random,
-            mapOf("q:$qualifier:$int" to generator)
+            mapOf("q:$qualifier:$int" to generator),
         )
 
         // When
@@ -200,7 +200,7 @@ class AtomicFixtureSpec {
         // Then
         assertEquals(
             actual = result,
-            expected = expected
+            expected = expected,
         )
     }
 
@@ -217,7 +217,7 @@ class AtomicFixtureSpec {
 
         val fixture = Fixture(
             random,
-            emptyMap()
+            emptyMap(),
         )
 
         // When
@@ -226,15 +226,15 @@ class AtomicFixtureSpec {
         // Then
         assertEquals(
             actual = result,
-            expected = 1
+            expected = 1,
         )
         assertEquals(
             actual = capturedMinimum.value,
-            expected = 0
+            expected = 0,
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = 24
+            expected = 24,
         )
     }
 }

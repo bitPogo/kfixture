@@ -6,12 +6,12 @@
 
 package tech.antibytes.kfixture.generator.primitive
 
-import tech.antibytes.kfixture.PublicApi
 import kotlin.random.Random
 import kotlin.random.nextUInt
+import tech.antibytes.kfixture.PublicApi
 
 internal class UIntegerGenerator(
-    private val random: Random
+    private val random: Random,
 ) : PublicApi.Generator<UInt> {
     override fun generate(): UInt = random.nextUInt()
 }

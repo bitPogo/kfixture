@@ -6,13 +6,13 @@
 
 package tech.antibytes.kfixture.generator.primitive
 
-import tech.antibytes.kfixture.PublicApi
-import tech.antibytes.kfixture.mock.RandomStub
 import kotlin.js.JsName
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
+import tech.antibytes.kfixture.PublicApi
+import tech.antibytes.kfixture.mock.RandomStub
 
 class UByteGeneratorSpec {
     private val random = RandomStub()
@@ -47,7 +47,7 @@ class UByteGeneratorSpec {
         // Then
         assertEquals(
             actual = result,
-            expected = expected.toUByte()
+            expected = expected.toUByte(),
         )
     }
 }

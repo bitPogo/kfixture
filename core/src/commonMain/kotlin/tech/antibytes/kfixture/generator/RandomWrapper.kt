@@ -10,7 +10,7 @@ import co.touchlab.stately.isolate.IsolateState
 import kotlin.random.Random
 
 internal class RandomWrapper(
-    private val random: IsolateState<Random>
+    private val random: IsolateState<Random>,
 ) : Random() {
     override fun nextBits(bitCount: Int): Int = random.access { it.nextBits(bitCount) }
 
