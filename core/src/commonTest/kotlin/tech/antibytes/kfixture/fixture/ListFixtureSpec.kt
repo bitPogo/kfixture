@@ -6,6 +6,12 @@
 
 package tech.antibytes.kfixture.fixture
 
+import kotlin.js.JsName
+import kotlin.test.AfterTest
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
+import kotlin.test.assertTrue
 import kotlinx.atomicfu.atomic
 import tech.antibytes.kfixture.Fixture
 import tech.antibytes.kfixture.PublicApi
@@ -17,12 +23,6 @@ import tech.antibytes.kfixture.mock.RandomStub
 import tech.antibytes.kfixture.mutableListFixture
 import tech.antibytes.kfixture.qualifier.StringQualifier
 import tech.antibytes.kfixture.resolveClassName
-import kotlin.js.JsName
-import kotlin.test.AfterTest
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertFailsWith
-import kotlin.test.assertTrue
 
 @Suppress("USELESS_CAST")
 class ListFixtureSpec {
@@ -69,7 +69,7 @@ class ListFixtureSpec {
 
         assertEquals(
             actual = error.message,
-            expected = "Missing Generator for ClassID ($int)."
+            expected = "Missing Generator for ClassID ($int).",
         )
     }
 
@@ -101,15 +101,15 @@ class ListFixtureSpec {
         assertTrue(result is List<*>)
         assertEquals(
             actual = capturedMinimum.value,
-            expected = 1
+            expected = 1,
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = 10
+            expected = 10,
         )
         assertEquals(
             actual = result.size,
-            expected = size
+            expected = size,
         )
         assertEquals(
             actual = result,
@@ -118,8 +118,8 @@ class ListFixtureSpec {
                 expected,
                 expected,
                 expected,
-                expected
-            )
+                expected,
+            ),
         )
     }
 
@@ -152,15 +152,15 @@ class ListFixtureSpec {
         // Then
         assertEquals(
             actual = capturedMinimum.value,
-            expected = 1
+            expected = 1,
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = 10
+            expected = 10,
         )
         assertEquals(
             actual = result.size,
-            expected = size
+            expected = size,
         )
         assertEquals(
             actual = result,
@@ -169,8 +169,8 @@ class ListFixtureSpec {
                 null,
                 null,
                 null,
-                null
-            )
+                null,
+            ),
         )
     }
 
@@ -203,8 +203,8 @@ class ListFixtureSpec {
                 expected,
                 expected,
                 expected,
-                expected
-            )
+                expected,
+            ),
         )
     }
 
@@ -236,8 +236,8 @@ class ListFixtureSpec {
                 expected,
                 expected,
                 expected,
-                expected
-            )
+                expected,
+            ),
         )
     }
 
@@ -260,7 +260,7 @@ class ListFixtureSpec {
 
         // When
         val result: List<Int> = fixture.fixture(
-            type = List::class
+            type = List::class,
         )
 
         // Then
@@ -271,8 +271,8 @@ class ListFixtureSpec {
                 expected,
                 expected,
                 expected,
-                expected
-            )
+                expected,
+            ),
         )
     }
 
@@ -299,7 +299,7 @@ class ListFixtureSpec {
 
         assertEquals(
             actual = error.message,
-            expected = "Missing Generator for ClassID ($int)."
+            expected = "Missing Generator for ClassID ($int).",
         )
     }
 
@@ -331,15 +331,15 @@ class ListFixtureSpec {
         assertTrue(result is MutableList<*>)
         assertEquals(
             actual = capturedMinimum.value,
-            expected = 1
+            expected = 1,
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = 10
+            expected = 10,
         )
         assertEquals(
             actual = result.size,
-            expected = size
+            expected = size,
         )
         assertEquals(
             actual = result,
@@ -348,8 +348,8 @@ class ListFixtureSpec {
                 expected,
                 expected,
                 expected,
-                expected
-            )
+                expected,
+            ),
         )
     }
 
@@ -382,15 +382,15 @@ class ListFixtureSpec {
         // Then
         assertEquals(
             actual = capturedMinimum.value,
-            expected = 1
+            expected = 1,
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = 10
+            expected = 10,
         )
         assertEquals(
             actual = result.size,
-            expected = size
+            expected = size,
         )
         assertEquals<MutableList<Int?>>(
             actual = result,
@@ -399,8 +399,8 @@ class ListFixtureSpec {
                 null,
                 null,
                 null,
-                null
-            )
+                null,
+            ),
         )
     }
 
@@ -433,8 +433,8 @@ class ListFixtureSpec {
                 expected,
                 expected,
                 expected,
-                expected
-            )
+                expected,
+            ),
         )
     }
 
@@ -466,8 +466,8 @@ class ListFixtureSpec {
                 expected,
                 expected,
                 expected,
-                expected
-            )
+                expected,
+            ),
         )
     }
 
@@ -490,7 +490,7 @@ class ListFixtureSpec {
 
         // When
         val result: MutableList<Int> = fixture.fixture(
-            type = MutableList::class
+            type = MutableList::class,
         )
 
         // Then
@@ -501,8 +501,8 @@ class ListFixtureSpec {
                 expected,
                 expected,
                 expected,
-                expected
-            )
+                expected,
+            ),
         )
     }
 }

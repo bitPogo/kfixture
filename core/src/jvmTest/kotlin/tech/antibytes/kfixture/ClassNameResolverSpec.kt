@@ -6,8 +6,8 @@
 
 package tech.antibytes.kfixture
 
-import org.junit.Test
 import kotlin.test.assertEquals
+import org.junit.Test
 
 class ClassNameResolverSpec {
     @Test
@@ -21,7 +21,7 @@ class ClassNameResolverSpec {
         // Then
         assertEquals(
             actual = clazz.java.name,
-            expected = result
+            expected = result,
         )
     }
 }

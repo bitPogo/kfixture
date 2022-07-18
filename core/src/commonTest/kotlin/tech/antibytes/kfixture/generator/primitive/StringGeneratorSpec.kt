@@ -7,13 +7,13 @@
 package tech.antibytes.kfixture.generator.primitive
 
 import co.touchlab.stately.collections.sharedMutableListOf
-import tech.antibytes.kfixture.PublicApi
-import tech.antibytes.kfixture.mock.RandomStub
 import kotlin.js.JsName
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
+import tech.antibytes.kfixture.PublicApi
+import tech.antibytes.kfixture.mock.RandomStub
 
 @Suppress("USELESS_CAST")
 class StringGeneratorSpec {
@@ -43,7 +43,7 @@ class StringGeneratorSpec {
             3,
             'a'.code,
             'b'.code,
-            'c'.code
+            'c'.code,
         )
 
         random.nextIntRanged = { from, until ->
@@ -60,24 +60,24 @@ class StringGeneratorSpec {
         assertTrue(result is String)
         assertEquals(
             expected = "abc",
-            actual = result
+            actual = result,
         )
 
         assertEquals(
             actual = capturedRanges[0],
-            expected = Pair(1, 10)
+            expected = Pair(1, 10),
         )
         assertEquals(
             actual = capturedRanges[1],
-            expected = Pair(32, 126)
+            expected = Pair(32, 126),
         )
         assertEquals(
             actual = capturedRanges[2],
-            expected = Pair(32, 126)
+            expected = Pair(32, 126),
         )
         assertEquals(
             actual = capturedRanges[3],
-            expected = Pair(32, 126)
+            expected = Pair(32, 126),
         )
     }
 }

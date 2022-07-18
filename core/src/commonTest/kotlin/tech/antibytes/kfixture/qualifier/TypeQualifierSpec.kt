@@ -6,12 +6,12 @@
 
 package tech.antibytes.kfixture.qualifier
 
-import tech.antibytes.kfixture.PublicApi
-import tech.antibytes.kfixture.resolveClassName
 import kotlin.js.JsName
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
+import tech.antibytes.kfixture.PublicApi
+import tech.antibytes.kfixture.resolveClassName
 
 class TypeQualifierSpec {
     @Test
@@ -30,7 +30,7 @@ class TypeQualifierSpec {
 
         assertEquals(
             actual = qualifier.value,
-            expected = resolveClassName(clazz)
+            expected = resolveClassName(clazz),
         )
     }
 }

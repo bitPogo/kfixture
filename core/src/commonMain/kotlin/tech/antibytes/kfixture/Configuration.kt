@@ -7,6 +7,8 @@
 package tech.antibytes.kfixture
 
 import co.touchlab.stately.isolate.IsolateState
+import kotlin.random.Random
+import kotlin.reflect.KClass
 import tech.antibytes.kfixture.PublicApi.Generator
 import tech.antibytes.kfixture.generator.RandomWrapper
 import tech.antibytes.kfixture.generator.array.BooleanArrayGenerator
@@ -37,8 +39,6 @@ import tech.antibytes.kfixture.generator.primitive.ULongGenerator
 import tech.antibytes.kfixture.generator.primitive.UShortGenerator
 import tech.antibytes.kfixture.generator.primitive.UnitGenerator
 import tech.antibytes.kfixture.qualifier.resolveGeneratorId
-import kotlin.random.Random
-import kotlin.reflect.KClass
 
 internal class Configuration(
     override var seed: Int = 0,
@@ -73,7 +73,7 @@ internal class Configuration(
             resolveClassName(UByte::class) to UByteGenerator(random),
             resolveClassName(UByteArray::class) to UByteArrayGenerator(random),
             resolveClassName(Any::class) to AnyGenerator,
-            resolveClassName(Unit::class) to UnitGenerator
+            resolveClassName(Unit::class) to UnitGenerator,
         )
     }
 
@@ -89,11 +89,11 @@ internal class Configuration(
     override fun <T : Any> addGenerator(
         clazz: KClass<T>,
         factory: PublicApi.GeneratorFactory<T>,
-        qualifier: PublicApi.Qualifier?
+        qualifier: PublicApi.Qualifier?,
     ): PublicApi.Configuration {
         val id = resolveGeneratorId(
             clazz,
-            qualifier
+            qualifier,
         )
 
         return this.also {

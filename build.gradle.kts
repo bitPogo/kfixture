@@ -22,7 +22,7 @@ plugins {
 
     id("tech.antibytes.gradle.publishing")
 
-    id("io.gitlab.arturbosch.detekt") version "1.20.0"
+    id("io.gitlab.arturbosch.detekt") version "1.21.0"
 }
 
 antiBytesPublishing {
@@ -42,12 +42,12 @@ allprojects {
 }
 
 tasks.named<Wrapper>("wrapper") {
-    gradleVersion = "7.4.2"
+    gradleVersion = "7.5"
     distributionType = Wrapper.DistributionType.ALL
 }
 
 detekt {
-    toolVersion = "1.20.0"
+    toolVersion = "1.21.0"
     buildUponDefaultConfig = true // preconfigure defaults
     allRules = false // activate all available (even unstable) rules.
     config = files("$projectDir/detekt/config.yml") // point to your custom config defining rules to run, overwriting default behavior
@@ -69,7 +69,7 @@ tasks.withType<Detekt>().configureEach {
         "**/test/resources/**",
         "**/build.gradle.kts",
         "**/settings.gradle.kts",
-        "**/Dangerfile.df.kts",
+        "**/Dangerfile.df.kts"
     )
 
     reports {
@@ -104,6 +104,6 @@ tasks.withType<DetektCreateBaselineTask>().configureEach {
         "**/*.pro",
         "**/*.sq",
         "**/*.xml",
-        "**/*.yml",
+        "**/*.yml"
     )
 }

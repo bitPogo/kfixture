@@ -6,15 +6,15 @@
 
 package tech.antibytes.kfixture.mock
 
+import kotlin.js.JsName
+import kotlin.random.Random
 import kotlinx.atomicfu.AtomicRef
 import kotlinx.atomicfu.atomic
 import tech.antibytes.kfixture.PublicApi
-import kotlin.js.JsName
-import kotlin.random.Random
 
 class GeneratorStub<T : Any>(
     @JsName("generateStub")
-    var generate: (() -> T)? = null
+    var generate: (() -> T)? = null,
 ) : PublicApi.Generator<T> {
     override fun generate(): T {
         return generate?.invoke() ?: throw RuntimeException("Missing sideeffect for generate.")
@@ -23,7 +23,7 @@ class GeneratorStub<T : Any>(
 
 class GeneratorFactoryStub<T : Any>(
     @JsName("generateStub")
-    var generate: (() -> T)? = null
+    var generate: (() -> T)? = null,
 ) : PublicApi.GeneratorFactory<T> {
     private val _lastRandom: AtomicRef<Random> = atomic(Random(49))
     private val _lastInstance: AtomicRef<GeneratorStub<T>?> = atomic(null)

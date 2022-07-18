@@ -6,15 +6,15 @@
 
 package tech.antibytes.kfixture.generator.array
 
+import kotlin.random.Random
 import tech.antibytes.kfixture.FixtureContract.ARRAY_LOWER_BOUND
 import tech.antibytes.kfixture.FixtureContract.ARRAY_UPPER_BOUND
 import tech.antibytes.kfixture.FixtureContract.CHAR_LOWER_BOUND
 import tech.antibytes.kfixture.FixtureContract.CHAR_UPPER_BOUND
 import tech.antibytes.kfixture.PublicApi
-import kotlin.random.Random
 
 internal class CharArrayGenerator(
-    private val random: Random
+    private val random: Random,
 ) : PublicApi.Generator<CharArray> {
     private fun generateCharArray(size: Int): CharArray {
         val fixture = CharArray(size)

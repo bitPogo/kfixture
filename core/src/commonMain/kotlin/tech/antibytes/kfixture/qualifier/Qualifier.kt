@@ -6,10 +6,10 @@
 
 package tech.antibytes.kfixture.qualifier
 
+import kotlin.reflect.KClass
 import tech.antibytes.kfixture.FixtureContract.SEPARATOR
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.resolveClassName
-import kotlin.reflect.KClass
 
 // see: https://github.com/InsertKoinIO/koin/blob/48e532798d53d02cfcb4420db86bf5bfa7c01428/core/koin-core/src/commonMain/kotlin/org/koin/core/qualifier/Qualifier.kt#L30
 /**
@@ -27,12 +27,12 @@ public fun qualifiedBy(value: String): PublicApi.Qualifier = StringQualifier(val
  */
 public fun <E : Enum<E>> qualifiedBy(value: E): PublicApi.Qualifier {
     return StringQualifier(
-        value.toString().lowercase()
+        value.toString().lowercase(),
     )
 }
 
 internal fun resolveQualifier(
-    vararg qualifiers: PublicApi.Qualifier
+    vararg qualifiers: PublicApi.Qualifier,
 ): String = qualifiers.joinToString(SEPARATOR) { qualifier -> qualifier.value }
 
 /**
@@ -43,7 +43,7 @@ internal fun resolveQualifier(
  */
 public fun resolveGeneratorId(
     clazz: KClass<out Any>,
-    qualifier: PublicApi.Qualifier? = null
+    qualifier: PublicApi.Qualifier? = null,
 ): String {
     return if (qualifier == null) {
         resolveClassName(clazz)

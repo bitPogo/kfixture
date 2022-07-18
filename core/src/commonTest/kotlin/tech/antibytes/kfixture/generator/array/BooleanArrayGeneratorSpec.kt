@@ -6,17 +6,17 @@
 
 package tech.antibytes.kfixture.generator.array
 
-import kotlinx.atomicfu.AtomicRef
-import kotlinx.atomicfu.atomic
-import kotlinx.atomicfu.update
-import tech.antibytes.kfixture.PublicApi
-import tech.antibytes.kfixture.mock.RandomStub
 import kotlin.js.JsName
 import kotlin.random.Random
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
+import kotlinx.atomicfu.AtomicRef
+import kotlinx.atomicfu.atomic
+import kotlinx.atomicfu.update
+import tech.antibytes.kfixture.PublicApi
+import tech.antibytes.kfixture.mock.RandomStub
 
 class BooleanArrayGeneratorSpec {
     private val fixture = Random(0)
@@ -60,10 +60,10 @@ class BooleanArrayGeneratorSpec {
         // Then
         assertEquals(
             actual = Pair(1, 10),
-            expected = range.value
+            expected = range.value,
         )
         assertTrue(
-            expected.toTypedArray().toBooleanArray().contentEquals(result)
+            expected.toTypedArray().toBooleanArray().contentEquals(result),
         )
     }
 }

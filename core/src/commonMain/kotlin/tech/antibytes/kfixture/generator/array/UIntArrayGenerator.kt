@@ -6,14 +6,14 @@
 
 package tech.antibytes.kfixture.generator.array
 
+import kotlin.random.Random
+import kotlin.random.nextUBytes
 import tech.antibytes.kfixture.FixtureContract.ARRAY_LOWER_BOUND
 import tech.antibytes.kfixture.FixtureContract.ARRAY_UPPER_BOUND
 import tech.antibytes.kfixture.PublicApi
-import kotlin.random.Random
-import kotlin.random.nextUBytes
 
 internal class UIntArrayGenerator(
-    private val random: Random
+    private val random: Random,
 ) : PublicApi.Generator<UIntArray> {
     private fun generateUIntArray(size: Int): UIntArray {
         val raw = random.nextUBytes(size)

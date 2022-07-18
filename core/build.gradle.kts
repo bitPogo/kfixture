@@ -27,10 +27,10 @@ plugins {
 
     id("kotlinx-atomicfu")
 
-    id("org.jetbrains.dokka") version "1.6.10"
+    id("org.jetbrains.dokka") version "1.7.0"
 
     // Pin API
-    id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.10.0"
+    id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.11.0"
 }
 
 group = FixtureConfiguration.group

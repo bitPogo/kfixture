@@ -10,7 +10,7 @@ import tech.antibytes.kfixture.FixtureContract.QUALIFIER_PREFIX
 import tech.antibytes.kfixture.PublicApi
 
 internal class StringQualifier(
-    private val _value: String
+    private val _value: String,
 ) : PublicApi.Qualifier {
     override val value: String
         get() = "${QUALIFIER_PREFIX}$_value"

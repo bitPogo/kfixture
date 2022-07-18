@@ -6,11 +6,11 @@
 
 package tech.antibytes.kfixture.generator.primitive
 
-import tech.antibytes.kfixture.PublicApi
 import kotlin.js.JsName
 import kotlin.test.Test
 import kotlin.test.assertSame
 import kotlin.test.assertTrue
+import tech.antibytes.kfixture.PublicApi
 
 class UnitGeneratorSpec {
     @Test
@@ -30,7 +30,7 @@ class UnitGeneratorSpec {
         // Then
         assertSame(
             actual = actual,
-            expected = Unit
+            expected = Unit,
         )
     }
 }

@@ -6,12 +6,12 @@
 
 package tech.antibytes.kfixture.generator.primitive
 
-import tech.antibytes.kfixture.PublicApi
 import kotlin.random.Random
 import kotlin.random.nextULong
+import tech.antibytes.kfixture.PublicApi
 
 internal class ULongGenerator(
-    private val random: Random
+    private val random: Random,
 ) : PublicApi.Generator<ULong> {
     override fun generate(): ULong = random.nextULong()
 }

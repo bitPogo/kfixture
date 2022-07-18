@@ -36,14 +36,14 @@ open class FixturePublishingConfiguration {
     protected val license = LicenseConfiguration(
         name = "Apache License, Version 2.0",
         url = "https://www.apache.org/licenses/LICENSE-2.0.txt",
-        distribution = "repo"
+        distribution = "repo",
     )
 
     protected val developer = DeveloperConfiguration(
         id = githubOwner,
         name = githubOwner,
         url = "https://$host/$githubOwner",
-        email = "bitpogo@antibytes.tech"
+        email = "bitpogo@antibytes.tech",
     )
 
     protected val sourceControl = SourceControlConfiguration(
@@ -57,33 +57,33 @@ open class FixturePublishingConfiguration {
             name = "MavenCentral",
             url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/",
             username = nexusUsername,
-            password = nexusPassword
+            password = nexusPassword,
         ),
         GitRepositoryConfiguration(
             name = "Development",
             gitWorkDirectory = "dev",
             url = "https://$gitHubOwnerPath/maven-dev",
             username = username,
-            password = password
+            password = password,
         ),
         GitRepositoryConfiguration(
             name = "Snapshot",
             gitWorkDirectory = "snapshots",
             url = "https://$gitHubOwnerPath/maven-snapshots",
             username = username,
-            password = password
+            password = password,
         ),
         GitRepositoryConfiguration(
             name = "Release",
             gitWorkDirectory = "releases",
             url = "https://$gitHubOwnerPath/maven-releases",
             username = username,
-            password = password
-        )
+            password = password,
+        ),
     )
 
     val versioning = VersioningConfiguration(
-        featurePrefixes = listOf("feature")
+        featurePrefixes = listOf("feature"),
     )
 
     val signing = MemorySigningConfiguration(

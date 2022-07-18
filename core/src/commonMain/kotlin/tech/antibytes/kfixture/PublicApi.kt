@@ -80,7 +80,7 @@ public interface PublicApi {
         public fun <T : Any> addGenerator(
             clazz: KClass<T>,
             factory: GeneratorFactory<T>,
-            qualifier: Qualifier? = null
+            qualifier: Qualifier? = null,
         ): Configuration
     }
 
