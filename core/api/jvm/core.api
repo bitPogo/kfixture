@@ -3,6 +3,7 @@ public final class tech/antibytes/kfixture/ClassNameResolverKt {
 }
 
 public final class tech/antibytes/kfixture/FixtureContract {
+	public static final field ACCESS_LOWER_BOUND I
 	public static final field ARRAY_LOWER_BOUND I
 	public static final field ARRAY_UPPER_BOUND I
 	public static final field CHAR_LOWER_BOUND I
@@ -59,6 +60,11 @@ public abstract interface class tech/antibytes/kfixture/PublicApi$GeneratorFacto
 
 public abstract interface class tech/antibytes/kfixture/PublicApi$Qualifier {
 	public abstract fun getValue ()Ljava/lang/String;
+}
+
+public final class tech/antibytes/kfixture/generator/selector/SelectorGeneratorFactory : tech/antibytes/kfixture/PublicApi$GeneratorFactory {
+	public fun <init> ([Ljava/lang/Object;)V
+	public fun getInstance (Lkotlin/random/Random;)Ltech/antibytes/kfixture/PublicApi$Generator;
 }
 
 public final class tech/antibytes/kfixture/qualifier/QualifierKt {

@@ -15,6 +15,7 @@ internal object FixtureContract {
 
     const val SEPARATOR = ":"
     const val QUALIFIER_PREFIX = "q:"
+    const val ACCESS_LOWER_BOUND = 0
     const val ARRAY_LOWER_BOUND = 1
     const val ARRAY_UPPER_BOUND = 10
     const val CHAR_LOWER_BOUND = 32

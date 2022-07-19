@@ -15,7 +15,7 @@ import tech.antibytes.kfixture.PublicApi
 class AnyGeneratorSpec {
     @Test
     @JsName("fn0")
-    fun `It fulfils AnyGenerator`() {
+    fun `It fulfils Generator`() {
         val generator: Any = AnyGenerator
 
         assertTrue(generator is PublicApi.Generator<*>)

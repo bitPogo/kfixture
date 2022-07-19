@@ -106,7 +106,7 @@ Following types are directly supported by the `fixture` extension:
 
 !!!note
     String and Chars will be using Chars between ` ` (32) and `~` (126).
-    A String will be composed of 1 to 10 chars.
+    A String will be composed of 1 to 10 Chars.
 
 ### Atomic Arrays
 Following types are directly supported by the `fixture` extension:
@@ -131,7 +131,7 @@ Following types are directly supported by the `fixture` extension:
     Also an item of an CharArray will be a Char between ` ` (32) and `~` (126).
 
 ### Complex Types
-### Iterables
+#### Iterables
 | Type           | Corresponding Extension |
 | -------------- | ----------------------- |
 |  Sequence      | sequenceFixture         |
@@ -147,7 +147,7 @@ Following types are directly supported by the `fixture` extension:
     Except for `pairFixture` and `tripleFixture` you can define the size via `size`.
     If you do not set a value it will randomly choose a size between 1 and 10 items.
 
-### Others
+#### Others
 | Type           | Corresponding Extension |
 | -------------- | ----------------------- |
 |  Pair          | pairFixture             |
