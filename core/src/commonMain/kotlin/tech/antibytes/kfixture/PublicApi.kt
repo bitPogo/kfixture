@@ -15,7 +15,7 @@ import kotlin.reflect.KClass
  */
 public interface PublicApi {
     /**
-     * Generator of value for specific type.
+     * Generator of values for specific type.
      * @param T the type which the Generator is referring to.
      * @author Matthias Geisler
      */
@@ -25,6 +25,48 @@ public interface PublicApi {
          * @return a instance of a given type.
          */
         public fun generate(): T
+    }
+
+    /**
+     * Generator of values for specific type in a given Range.
+     * @param T the type which the Generator is referring to.
+     * @author Matthias Geisler
+     */
+    public interface RangedGenerator<T> : Generator<T> where T : Any, T : Comparable<T> {
+
+        /**
+         * Generates a instance of given type in a given range.
+         * @param from the lower boundary of the value.
+         * @param to the upper boundary of the value.
+         * @throws IllegalArgumentException if start value is greater than the end value.
+         * @return a instance of a given type.
+         */
+        @Throws(IllegalArgumentException::class)
+        public fun generate(
+            from: T,
+            to: T,
+        ): T
+    }
+
+    /**
+     * Indicator if the a numeric type should be resoled as positive or negative Number.
+     */
+    public enum class Sign {
+        POSITIVE,
+        NEGATIVE,
+    }
+
+    /**
+     * Generator of values for specific type in a given Range of signed Numbers.
+     * @param T the type which the Generator is referring to.
+     * @author Matthias Geisler
+     */
+    public interface SignedNumberGenerator<T> : RangedGenerator<T> where T : Any, T : Comparable<T> {
+        /**
+         * Generates a instance of given type in a given range.
+         * @return a instance of a given type.
+         */
+        public fun generate(sign: Sign): T
     }
 
     /**

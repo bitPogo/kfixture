@@ -14,18 +14,17 @@ import kotlin.test.assertFailsWith
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import kotlinx.atomicfu.atomic
-import kotlinx.atomicfu.update
 import tech.antibytes.kfixture.Fixture
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.fixture
 import tech.antibytes.kfixture.int
 import tech.antibytes.kfixture.mock.GeneratorStub
 import tech.antibytes.kfixture.mock.RandomStub
+import tech.antibytes.kfixture.mock.SignedNumberGeneratorStub
 import tech.antibytes.kfixture.qualifier.StringQualifier
 import tech.antibytes.kfixture.resolveClassName
 
-@Suppress("USELESS_CAST")
-class AtomicFixtureSpec {
+class SignedNumberFixtureSpec {
     private val random = RandomStub()
     private val capturedMinimum = atomic(-1)
     private val capturedMaximum = atomic(-1)
@@ -49,11 +48,11 @@ class AtomicFixtureSpec {
     @Test
     @Suppress("UNCHECKED_CAST")
     @JsName("fn1")
-    fun `Given fixture is called it fails if the Type has no corresponding Generator`() {
+    fun `Given fixture is called with a upper and lower bound it fails if the Type has no corresponding Generator`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int>()
-        generator.generate = { expected }
+        val generator = SignedNumberGeneratorStub<Int>()
+        generator.generateWithSign = { expected }
 
         // Ensure stable names since reified is in play
         resolveClassName(Int::class)
@@ -63,7 +62,7 @@ class AtomicFixtureSpec {
         // Then
         val error = assertFailsWith<RuntimeException> {
             // When
-            fixture.fixture<Int>()
+            fixture.fixture<Int>(sign = PublicApi.Sign.POSITIVE)
         }
 
         assertEquals(
@@ -75,7 +74,7 @@ class AtomicFixtureSpec {
     @Test
     @Suppress("UNCHECKED_CAST")
     @JsName("fn2")
-    fun `Given fixture is called it returns a Fixture for the derived Type`() {
+    fun `Given fixture is called with a upper and lower bound it fails the corresponding Generator is not a RangedGenerator`() {
         // Given
         val expected = 23
         val generator = GeneratorStub<Int>()
@@ -86,26 +85,34 @@ class AtomicFixtureSpec {
 
         val fixture = Fixture(random, mapOf(int to generator))
 
-        // When
-        val result: Int = fixture.fixture()
-
         // Then
+        val error = assertFailsWith<RuntimeException> {
+            // When
+            fixture.fixture<Int>(sign = PublicApi.Sign.POSITIVE)
+        }
+
         assertEquals(
-            actual = result,
-            expected = expected,
+            actual = error.message,
+            expected = "Missing Generator for ClassID ($int).",
         )
     }
 
     @Test
     @Suppress("UNCHECKED_CAST")
     @JsName("fn3")
-    fun `Given fixture is called it returns a Fixture while respecting nullability`() {
+    fun `Given fixture is called with a upper and lower bound it returns a Fixture for the derived Type`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val expectedSign = PublicApi.Sign.NEGATIVE
+        val generator = SignedNumberGeneratorStub<Int>()
 
-        random.nextBoolean = { true }
-        generator.generate = { expected }
+        var capturedSign: PublicApi.Sign? = null
+
+        generator.generateWithSign = { givenType ->
+            capturedSign = givenType
+
+            expected
+        }
 
         // Ensure stable names since reified is in play
         resolveClassName(Int::class)
@@ -113,78 +120,68 @@ class AtomicFixtureSpec {
         val fixture = Fixture(random, mapOf(int to generator))
 
         // When
-        val result: Int? = fixture.fixture()
+        val result: Int = fixture.fixture(sign = expectedSign)
 
         // Then
-        assertNull(result)
+        assertEquals(
+            actual = result,
+            expected = expected,
+        )
+        assertEquals(
+            actual = capturedSign,
+            expected = expectedSign,
+        )
     }
 
     @Test
     @Suppress("UNCHECKED_CAST")
     @JsName("fn4")
-    fun `Given fixture is called with a qualifier it returns a Fixture for the derived Type`() {
+    fun `Given fixture is called with a upper and lower bound it returns a Fixture while respecting nullability`() {
         // Given
         val expected = 23
-        val qualifier = "test"
-        val generator = GeneratorStub<Int>()
-        generator.generate = { expected }
+        val expectedSign = PublicApi.Sign.NEGATIVE
+        val generator = SignedNumberGeneratorStub<Int>()
+
+        var capturedSign: PublicApi.Sign? = null
+
+        generator.generateWithSign = { givenType ->
+            capturedSign = givenType
+
+            expected
+        }
+
+        random.nextBoolean = { true }
 
         // Ensure stable names since reified is in play
         resolveClassName(Int::class)
 
-        val fixture = Fixture(
-            random,
-            mapOf("q:$qualifier:$int" to generator),
-        )
+        val fixture = Fixture(random, mapOf(int to generator))
 
         // When
-        val result: Int = fixture.fixture(StringQualifier(qualifier))
+        val result: Int? = fixture.fixture(sign = expectedSign)
 
         // Then
-        assertEquals(
-            actual = result,
-            expected = expected,
-        )
+        assertNull(result)
+        assertNull(capturedSign)
     }
 
     @Test
     @Suppress("UNCHECKED_CAST")
     @JsName("fn5")
-    fun `Given fixture is called it returns a type for a Number Type`() {
+    fun `Given fixture is called  with a upper and lower bound and a qualifier it returns a Fixture for the derived Type`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int>()
-        generator.generate = { expected }
-        random.nextIntRanged = { _, _ -> 2 }
-
-        // Ensure stable names since reified is in play
-        resolveClassName(Int::class)
-
-        val fixture = Fixture(
-            random,
-            mapOf(int to generator),
-        )
-
-        // When
-        val result: Number = fixture.fixture()
-
-        // Then
-        assertEquals(
-            actual = result,
-            expected = expected,
-        )
-    }
-
-    @Test
-    @Suppress("UNCHECKED_CAST")
-    @JsName("fn6")
-    fun `Given fixture is called with a qualifier it returns a type for a Number Type`() {
-        // Given
-        val expected = 23
+        val expectedSign = PublicApi.Sign.NEGATIVE
         val qualifier = "test"
-        val generator = GeneratorStub<Int>()
-        generator.generate = { expected }
-        random.nextIntRanged = { _, _ -> 2 }
+        val generator = SignedNumberGeneratorStub<Int>()
+
+        var capturedSign: PublicApi.Sign? = null
+
+        generator.generateWithSign = { givenType ->
+            capturedSign = givenType
+
+            expected
+        }
 
         // Ensure stable names since reified is in play
         resolveClassName(Int::class)
@@ -195,46 +192,19 @@ class AtomicFixtureSpec {
         )
 
         // When
-        val result: Number = fixture.fixture(StringQualifier(qualifier))
+        val result: Int = fixture.fixture(
+            sign = expectedSign,
+            qualifier = StringQualifier(qualifier),
+        )
 
         // Then
         assertEquals(
             actual = result,
             expected = expected,
         )
-    }
-
-    @Test
-    @Suppress("UNCHECKED_CAST")
-    @JsName("fn7")
-    fun `Given fixture is called with Iterable it returns a random picked item out of it`() {
-        // Given
-        random.nextIntRanged = { givenLower, givenUpper ->
-            capturedMinimum.update { givenLower }
-            capturedMaximum.update { givenUpper }
-            1
-        }
-
-        val fixture = Fixture(
-            random,
-            emptyMap(),
-        )
-
-        // When
-        val result = fixture.fixture(options = 0..23)
-
-        // Then
         assertEquals(
-            actual = result,
-            expected = 1,
-        )
-        assertEquals(
-            actual = capturedMinimum.value,
-            expected = 0,
-        )
-        assertEquals(
-            actual = capturedMaximum.value,
-            expected = 24,
+            actual = capturedSign,
+            expected = expectedSign,
         )
     }
 }

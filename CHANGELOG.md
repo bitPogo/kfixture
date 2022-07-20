@@ -10,8 +10,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 * SelectorGenerator
+* Ranged- and SignedNumberGenerator for:
+    - Byte
 
 ### Changed
+
+* iterable of fixture is now called option
 
 ### Deprecated
 
