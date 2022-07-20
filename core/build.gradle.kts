@@ -60,9 +60,16 @@ antiBytesCoverage {
         minimum = BigDecimal(0.97)
     )
 
+    val excludes = setOf(
+        "**/FixtureKt*",
+        "**/RangedFixtureKt*",
+        "**/SignedNumericFixtureKt*",
+        "**/BindingKt*",
+    ) // Inline Function cannot be covered
+
     val jvmCoverage = JvmJacocoConfiguration.createJvmKmpConfiguration(
         project,
-        classFilter = setOf("**/FixtureKt*"), // Inline Function cannot be covered
+        classFilter = excludes,
         verificationRules = setOf(
             branchCoverage,
             instructionCoverage
@@ -71,7 +78,7 @@ antiBytesCoverage {
 
     val androidCoverage = AndroidJacocoConfiguration.createAndroidLibraryKmpConfiguration(
         project,
-        classFilter = setOf("**/FixtureKt*"), // Inline Function cannot be covered
+        classFilter = excludes, // Inline Function cannot be covered
         verificationRules = setOf(
             branchCoverage,
             instructionCoverage

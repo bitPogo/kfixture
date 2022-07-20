@@ -69,6 +69,21 @@ public abstract interface class tech/antibytes/kfixture/PublicApi$Qualifier {
 	public abstract fun getValue ()Ljava/lang/String;
 }
 
+public abstract interface class tech/antibytes/kfixture/PublicApi$RangedGenerator : tech/antibytes/kfixture/PublicApi$Generator {
+	public abstract fun generate (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+}
+
+public final class tech/antibytes/kfixture/PublicApi$Sign : java/lang/Enum {
+	public static final field NEGATIVE Ltech/antibytes/kfixture/PublicApi$Sign;
+	public static final field POSITIVE Ltech/antibytes/kfixture/PublicApi$Sign;
+	public static fun valueOf (Ljava/lang/String;)Ltech/antibytes/kfixture/PublicApi$Sign;
+	public static fun values ()[Ltech/antibytes/kfixture/PublicApi$Sign;
+}
+
+public abstract interface class tech/antibytes/kfixture/PublicApi$SignedNumberGenerator : tech/antibytes/kfixture/PublicApi$RangedGenerator {
+	public abstract fun generate (Ltech/antibytes/kfixture/PublicApi$Sign;)Ljava/lang/Object;
+}
+
 public final class tech/antibytes/kfixture/generator/selector/SelectorGeneratorFactory : tech/antibytes/kfixture/PublicApi$GeneratorFactory {
 	public fun <init> ([Ljava/lang/Object;)V
 	public fun getInstance (Lkotlin/random/Random;)Ltech/antibytes/kfixture/PublicApi$Generator;

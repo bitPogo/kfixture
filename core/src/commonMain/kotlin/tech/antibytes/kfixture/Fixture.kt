@@ -110,12 +110,10 @@ internal inline fun <reified T> PublicApi.Fixture.resolveIdentifier(
 /**
  * Picks an value from a given Iterable.
  * @param T the type which is supposed to be created.
- * @param iterable - an iterable with values where to pick from.
+ * @param options - an iterable with values where to pick from.
  */
-public fun <T> PublicApi.Fixture.fixture(
-    iterable: Iterable<T>,
-): T {
-    val values = iterable.toList()
+public fun <T> PublicApi.Fixture.fixture(options: Iterable<T>): T {
+    val values = options.toList()
 
     return values[pickAnListIndex(values)]
 }
@@ -126,6 +124,7 @@ public fun <T> PublicApi.Fixture.fixture(
  * @param qualifier a optional qualifier for a special flavour of a type.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
+@Throws(IllegalStateException::class)
 public inline fun <reified T> PublicApi.Fixture.fixture(
     qualifier: PublicApi.Qualifier? = null,
 ): T {
@@ -146,6 +145,7 @@ public inline fun <reified T> PublicApi.Fixture.fixture(
  * @param size the size of the List.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
+@Throws(IllegalStateException::class)
 public inline fun <reified T> PublicApi.Fixture.mutableListFixture(
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null,
@@ -168,6 +168,7 @@ public inline fun <reified T> PublicApi.Fixture.mutableListFixture(
  * @param size the size of the List.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
+@Throws(IllegalStateException::class)
 public inline fun <reified C : MutableList<T>, reified T> PublicApi.Fixture.fixture(
     type: KClass<MutableList<*>>,
     qualifier: PublicApi.Qualifier? = null,
@@ -184,6 +185,7 @@ public inline fun <reified C : MutableList<T>, reified T> PublicApi.Fixture.fixt
  * @param size the size of the List.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
+@Throws(IllegalStateException::class)
 public inline fun <reified T> PublicApi.Fixture.listFixture(
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null,
@@ -203,6 +205,7 @@ public inline fun <reified T> PublicApi.Fixture.listFixture(
  * @param size the size of the List.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
+@Throws(IllegalStateException::class)
 public inline fun <reified C : List<T>, reified T> PublicApi.Fixture.fixture(
     type: KClass<List<*>>,
     qualifier: PublicApi.Qualifier? = null,
@@ -219,6 +222,7 @@ public inline fun <reified C : List<T>, reified T> PublicApi.Fixture.fixture(
  * @param size the size of the Collection.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
+@Throws(IllegalStateException::class)
 public inline fun <reified T> PublicApi.Fixture.mutableCollectionFixture(
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null,
@@ -238,6 +242,7 @@ public inline fun <reified T> PublicApi.Fixture.mutableCollectionFixture(
  * @param size the size of the Collection.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
+@Throws(IllegalStateException::class)
 public inline fun <reified C : MutableCollection<T>, reified T> PublicApi.Fixture.fixture(
     type: KClass<MutableCollection<*>>,
     qualifier: PublicApi.Qualifier? = null,
@@ -254,6 +259,7 @@ public inline fun <reified C : MutableCollection<T>, reified T> PublicApi.Fixtur
  * @param size the size of the Collection.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
+@Throws(IllegalStateException::class)
 public inline fun <reified T> PublicApi.Fixture.collectionFixture(
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null,
@@ -273,6 +279,7 @@ public inline fun <reified T> PublicApi.Fixture.collectionFixture(
  * @param size the size of the Collection.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
+@Throws(IllegalStateException::class)
 public inline fun <reified C : Collection<T>, reified T> PublicApi.Fixture.fixture(
     type: KClass<Collection<*>>,
     qualifier: PublicApi.Qualifier? = null,
@@ -289,6 +296,7 @@ public inline fun <reified C : Collection<T>, reified T> PublicApi.Fixture.fixtu
  * @param size the size of the Array.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
+@Throws(IllegalStateException::class)
 public inline fun <reified T> PublicApi.Fixture.arrayFixture(
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null,
@@ -307,6 +315,7 @@ public inline fun <reified T> PublicApi.Fixture.arrayFixture(
  * @param size the size of the Array.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
+@Throws(IllegalStateException::class)
 public inline fun <reified T> PublicApi.Fixture.fixture(
     type: KClass<Array<*>>,
     qualifier: PublicApi.Qualifier? = null,
@@ -323,6 +332,7 @@ public inline fun <reified T> PublicApi.Fixture.fixture(
  * @param size the size of the Sequence.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
+@Throws(IllegalStateException::class)
 public inline fun <reified T> PublicApi.Fixture.sequenceFixture(
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null,
@@ -347,6 +357,7 @@ public inline fun <reified T> PublicApi.Fixture.sequenceFixture(
  * @param size the size of the Sequence.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
+@Throws(IllegalStateException::class)
 public inline fun <reified C : Sequence<T>, reified T> PublicApi.Fixture.fixture(
     type: KClass<Sequence<*>>,
     qualifier: PublicApi.Qualifier? = null,
@@ -364,6 +375,7 @@ public inline fun <reified C : Sequence<T>, reified T> PublicApi.Fixture.fixture
  * @param secondQualifier - a optional qualifier for a special flavour of a type of the second value.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
+@Throws(IllegalStateException::class)
 public inline fun <reified First, reified Second> PublicApi.Fixture.pairFixture(
     firstQualifier: PublicApi.Qualifier? = null,
     secondQualifier: PublicApi.Qualifier? = null,
@@ -381,6 +393,7 @@ public inline fun <reified First, reified Second> PublicApi.Fixture.pairFixture(
  * @param secondQualifier - a optional qualifier for a special flavour of a type of the second value.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
+@Throws(IllegalStateException::class)
 public inline fun <reified C : Pair<First, Second>, reified First, reified Second> PublicApi.Fixture.fixture(
     type: KClass<Pair<*, *>>,
     firstQualifier: PublicApi.Qualifier? = null,
@@ -400,6 +413,7 @@ public inline fun <reified C : Pair<First, Second>, reified First, reified Secon
  * @param thirdQualifier a optional qualifier for a special flavour of a type of the third value.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
+@Throws(IllegalStateException::class)
 public inline fun <reified First, reified Second, reified Third> PublicApi.Fixture.tripleFixture(
     firstQualifier: PublicApi.Qualifier? = null,
     secondQualifier: PublicApi.Qualifier? = null,
@@ -426,6 +440,7 @@ public inline fun <reified First, reified Second, reified Third> PublicApi.Fixtu
  * @param thirdQualifier a optional qualifier for a special flavour of a type of the third value.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
+@Throws(IllegalStateException::class)
 public inline fun <reified C : Triple<First, Second, Third>, reified First, reified Second, reified Third> PublicApi.Fixture.fixture(
     type: KClass<Triple<*, *, *>>,
     firstQualifier: PublicApi.Qualifier? = null,
@@ -446,6 +461,7 @@ public inline fun <reified C : Triple<First, Second, Third>, reified First, reif
  * @param size the size of the Map.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
+@Throws(IllegalStateException::class)
 public inline fun <reified Key, reified Value> PublicApi.Fixture.mapFixture(
     keyQualifier: PublicApi.Qualifier? = null,
     valueQualifier: PublicApi.Qualifier? = null,
@@ -471,6 +487,7 @@ public inline fun <reified Key, reified Value> PublicApi.Fixture.mapFixture(
  * @param size the size of the Map.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
+@Throws(IllegalStateException::class)
 public inline fun <reified C : Map<Key, Value>, reified Key, reified Value> PublicApi.Fixture.fixture(
     type: KClass<Map<*, *>>,
     keyQualifier: PublicApi.Qualifier? = null,
@@ -491,6 +508,7 @@ public inline fun <reified C : Map<Key, Value>, reified Key, reified Value> Publ
  * @param size the size of the Map.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
+@Throws(IllegalStateException::class)
 public inline fun <reified Key, reified Value> PublicApi.Fixture.mutableMapFixture(
     keyQualifier: PublicApi.Qualifier? = null,
     valueQualifier: PublicApi.Qualifier? = null,
@@ -514,6 +532,7 @@ public inline fun <reified Key, reified Value> PublicApi.Fixture.mutableMapFixtu
  * @param size the size of the Map.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
+@Throws(IllegalStateException::class)
 public inline fun <reified C : MutableMap<Key, Value>, reified Key, reified Value> PublicApi.Fixture.fixture(
     type: KClass<MutableMap<*, *>>,
     keyQualifier: PublicApi.Qualifier? = null,
@@ -532,6 +551,7 @@ public inline fun <reified C : MutableMap<Key, Value>, reified Key, reified Valu
  * @param size the size of the Set.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
+@Throws(IllegalStateException::class)
 public inline fun <reified T> PublicApi.Fixture.mutableSetFixture(
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null,
@@ -558,6 +578,7 @@ public inline fun <reified T> PublicApi.Fixture.mutableSetFixture(
  * @param size the size of the Set.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
+@Throws(IllegalStateException::class)
 public inline fun <reified C : MutableSet<T>, reified T> PublicApi.Fixture.fixture(
     type: KClass<MutableSet<*>>,
     qualifier: PublicApi.Qualifier? = null,
@@ -574,6 +595,7 @@ public inline fun <reified C : MutableSet<T>, reified T> PublicApi.Fixture.fixtu
  * @param size the size of the Set.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
+@Throws(IllegalStateException::class)
 public inline fun <reified T> PublicApi.Fixture.setFixture(
     qualifier: PublicApi.Qualifier? = null,
     size: Int? = null,
@@ -590,6 +612,7 @@ public inline fun <reified T> PublicApi.Fixture.setFixture(
  * @param size the size of the Set.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
+@Throws(IllegalStateException::class)
 public inline fun <reified C : Set<T>, reified T> PublicApi.Fixture.fixture(
     type: KClass<Set<*>>,
     qualifier: PublicApi.Qualifier? = null,
