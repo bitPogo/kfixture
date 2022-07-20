@@ -10,6 +10,8 @@ import kotlin.js.JsName
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
+import kotlin.test.assertSame
 import kotlin.test.assertTrue
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.mock.RandomStub
@@ -37,7 +39,15 @@ class UByteGeneratorSpec {
     fun `Given generate is called it returns a UByte`() {
         // Given
         val expected = 23
-        random.nextInt = { expected }
+        var capturedMin: Int? = null
+        var capturedMax: Int? = null
+
+        random.nextIntRanged = { givenMin, givenMax ->
+            capturedMin = givenMin
+            capturedMax = givenMax
+
+            expected
+        }
 
         val generator = UByteGenerator(random)
 
@@ -48,6 +58,80 @@ class UByteGeneratorSpec {
         assertEquals(
             actual = result,
             expected = expected.toUByte(),
+        )
+        assertEquals(
+            actual = capturedMin,
+            expected = 0,
+        )
+        assertEquals(
+            actual = capturedMax,
+            expected = UByte.MAX_VALUE.toInt() + 1,
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn2")
+    fun `Given generate is called with a range it fails since the start is less equal to the end`() {
+        // Given
+        val expected = IllegalArgumentException()
+
+        random.nextIntRanged = { _, _ -> throw expected }
+
+        val generator = UByteGenerator(random)
+
+        // Then
+        val error = assertFailsWith<IllegalArgumentException> {
+            // When
+            generator.generate(1.toUByte(), 0.toUByte())
+        }
+
+        // Then
+        assertSame(
+            actual = error,
+            expected = expected,
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn3")
+    fun `Given generate is called with boundaries it returns a UByte`() {
+        // Given
+        val expected = 107
+        val expectedMin = 0.toUByte()
+        val expectedMax = 42.toUByte()
+
+        var capturedMin: Int? = null
+        var capturedMax: Int? = null
+
+        random.nextIntRanged = { givenMin, givenMax ->
+            capturedMin = givenMin
+            capturedMax = givenMax
+
+            expected
+        }
+
+        val generator = UByteGenerator(random)
+
+        // When
+        val result = generator.generate(
+            from = expectedMin,
+            to = expectedMax,
+        )
+
+        // Then
+        assertEquals(
+            actual = result,
+            expected = expected.toUByte(),
+        )
+        assertEquals(
+            actual = capturedMin,
+            expected = expectedMin.toInt(),
+        )
+        assertEquals(
+            actual = capturedMax,
+            expected = expectedMax.toInt() + 1,
         )
     }
 }

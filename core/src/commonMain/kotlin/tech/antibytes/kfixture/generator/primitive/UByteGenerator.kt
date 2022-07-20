@@ -11,6 +11,16 @@ import tech.antibytes.kfixture.PublicApi
 
 internal class UByteGenerator(
     private val random: Random,
-) : PublicApi.Generator<UByte> {
-    override fun generate(): UByte = random.nextInt().toUByte()
+) : PublicApi.RangedGenerator<UByte> {
+    override fun generate(): UByte = generate(
+        from = UByte.MIN_VALUE,
+        to = UByte.MAX_VALUE,
+    )
+
+    override fun generate(from: UByte, to: UByte): UByte {
+        return random.nextInt(
+            from = from.toInt(),
+            until = to.toInt() + 1,
+        ).toUByte()
+    }
 }
