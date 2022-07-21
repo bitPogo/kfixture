@@ -30,7 +30,7 @@ class DoubleGeneratorSpec {
     fun `It fulfils SignedNumberGenerator`() {
         val generator: Any = DoubleGenerator(random)
 
-        assertTrue(generator is PublicApi.SignedNumberGenerator<*>)
+        assertTrue(generator is PublicApi.SignedNumberGenerator<*, *>)
     }
 
     @Test

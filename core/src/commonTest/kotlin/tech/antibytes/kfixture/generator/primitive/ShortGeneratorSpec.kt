@@ -30,7 +30,7 @@ class ShortGeneratorSpec {
     fun `It fulfils SignedNumberGenerator`() {
         val generator: Any = ShortGenerator(random)
 
-        assertTrue(generator is PublicApi.SignedNumberGenerator<*>)
+        assertTrue(generator is PublicApi.SignedNumberGenerator<*, *>)
     }
 
     @Test

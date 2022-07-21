@@ -49,8 +49,9 @@ internal class Configuration(
     private val customDependentGenerators: MutableMap<String, DependentGeneratorFactory<out Any>> = mutableMapOf()
 
     private fun initializeDefaultsGenerators(random: Random): Map<String, Generator<out Any>> {
-        return mapOf(
+        return mutableMapOf(
             resolveClassName(Boolean::class) to BooleanGenerator(random),
+            resolveClassName(Byte::class) to ByteGenerator(random),
             resolveClassName(BooleanArray::class) to BooleanArrayGenerator(random),
             resolveClassName(Short::class) to ShortGenerator(random),
             resolveClassName(ShortArray::class) to ShortArrayGenerator(random),
@@ -65,8 +66,6 @@ internal class Configuration(
             resolveClassName(Double::class) to DoubleGenerator(random),
             resolveClassName(DoubleArray::class) to DoubleArrayGenerator(random),
             resolveClassName(String::class) to StringGenerator(random),
-            resolveClassName(Byte::class) to ByteGenerator(random),
-            resolveClassName(ByteArray::class) to ByteArrayGenerator(random),
             resolveClassName(UShort::class) to UShortGenerator(random),
             resolveClassName(UShortArray::class) to UShortArrayGenerator(random),
             resolveClassName(UInt::class) to UIntegerGenerator(random),
@@ -80,11 +79,27 @@ internal class Configuration(
         )
     }
 
-    private fun initializeCustomGenerators(
+    @Suppress("UNCHECKED_CAST")
+    private fun <T, R> Map<String, Generator<out Any>>.resolveSignedGenerator(
+        key: String
+    ): R where T : Any, T : Comparable<T>, R : PublicApi.SignedNumberGenerator<T, T> = this[key] as R
+
+    @Suppress("UNCHECKED_CAST")
+    private fun Map<String, Generator<out Any>>.initializeDefaultDependentGenerators(
         random: Random,
-        internalGenerators: Map<String, Generator<out Any>>,
+    ): Map<String, Generator<out Any>> {
+        return this.toMutableMap().apply {
+            this[resolveClassName(ByteArray::class)] = ByteArrayGenerator(
+                random,
+                this.resolveSignedGenerator(resolveClassName(Byte::class))
+            )
+        }
+    }
+
+    private fun Map<String, Generator<out Any>>.initializeCustomGenerators(
+        random: Random,
     ): MutableMap<String, Generator<out Any>> {
-        val initializedGenerators: MutableMap<String, Generator<out Any>> = internalGenerators.toMutableMap()
+        val initializedGenerators: MutableMap<String, Generator<out Any>> = this.toMutableMap()
 
         customGenerators.forEach { (key, factory) ->
             initializedGenerators[key] = factory.getInstance(random)
@@ -129,8 +144,10 @@ internal class Configuration(
         val random = IsolateState { Random(seed) }
         val randomWrapper = RandomWrapper(random)
         val internalGenerators = initializeDefaultsGenerators(randomWrapper)
-        val generators = initializeCustomGenerators(randomWrapper, internalGenerators)
-        generators.putAll(internalGenerators)
+            .initializeDefaultDependentGenerators(randomWrapper)
+        val generators = internalGenerators
+            .initializeCustomGenerators(randomWrapper)
+            .apply { putAll(internalGenerators) }
 
         return Fixture(randomWrapper, generators)
     }

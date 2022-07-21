@@ -51,7 +51,7 @@ class RangedFixtureSpec {
     fun `Given fixture is called with a upper and lower bound it fails if the Type has no corresponding Generator`() {
         // Given
         val expected = 23
-        val generator = RangedGeneratorStub<Int>()
+        val generator = RangedGeneratorStub<Int, Int>()
         generator.generateWithRange = { _, _ ->
             expected
         }
@@ -113,7 +113,7 @@ class RangedFixtureSpec {
         val expected = 23
         val expectedFrom = 12
         val expectedTo = 42
-        val generator = RangedGeneratorStub<Int>()
+        val generator = RangedGeneratorStub<Int, Int>()
 
         var capturedFrom: Int? = null
         var capturedTo: Int? = null
@@ -159,7 +159,7 @@ class RangedFixtureSpec {
         val expected = 23
         val expectedFrom = 12
         val expectedTo = 42
-        val generator = RangedGeneratorStub<Int>()
+        val generator = RangedGeneratorStub<Int, Int>()
 
         var capturedFrom: Int? = null
         var capturedTo: Int? = null
@@ -199,7 +199,7 @@ class RangedFixtureSpec {
         val expectedFrom = 12
         val expectedTo = 42
         val qualifier = "test"
-        val generator = RangedGeneratorStub<Int>()
+        val generator = RangedGeneratorStub<Int, Int>()
 
         var capturedFrom: Int? = null
         var capturedTo: Int? = null
@@ -247,7 +247,7 @@ class RangedFixtureSpec {
     fun `Given fixture is called with a range it fails if the Type has no corresponding Generator`() {
         // Given
         val expected = 23
-        val generator = RangedGeneratorStub<Int>()
+        val generator = RangedGeneratorStub<Int, Int>()
         generator.generateWithRange = { _, _ ->
             expected
         }
@@ -303,7 +303,7 @@ class RangedFixtureSpec {
         val expected = 23
         val expectedFrom = 12
         val expectedTo = 42
-        val generator = RangedGeneratorStub<Int>()
+        val generator = RangedGeneratorStub<Int, Int>()
 
         var capturedFrom: Int? = null
         var capturedTo: Int? = null
@@ -346,7 +346,7 @@ class RangedFixtureSpec {
         val expected = 23
         val expectedFrom = 12
         val expectedTo = 42
-        val generator = RangedGeneratorStub<Int>()
+        val generator = RangedGeneratorStub<Int, Int>()
 
         var capturedFrom: Int? = null
         var capturedTo: Int? = null
@@ -383,7 +383,7 @@ class RangedFixtureSpec {
         val expectedFrom = 12
         val expectedTo = 42
         val qualifier = "test"
-        val generator = RangedGeneratorStub<Int>()
+        val generator = RangedGeneratorStub<Int, Int>()
 
         var capturedFrom: Int? = null
         var capturedTo: Int? = null

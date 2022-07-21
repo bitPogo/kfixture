@@ -32,7 +32,7 @@ public interface PublicApi {
      * @param T the type which the Generator is referring to.
      * @author Matthias Geisler
      */
-    public interface RangedGenerator<T> : Generator<T> where T : Any, T : Comparable<T> {
+    public interface RangedGenerator<T, R : Any> : Generator<R> where T : Any, T : Comparable<T> {
 
         /**
          * Generates a instance of given type in a given range.
@@ -45,7 +45,70 @@ public interface PublicApi {
         public fun generate(
             from: T,
             to: T,
-        ): T
+        ): R
+    }
+
+    /**
+     * Generator of values for specific array types.
+     * @param T the type which the Generator is referring to.
+     * @author Matthias Geisler
+     */
+    public interface ArrayGenerator<T : Any> : Generator<T> {
+        /**
+         * Generates a instance of given array type.
+         * @param size a fixed size for the resulting Array.
+         * If none size is given it chooses a arbitrary size of in between 1 and 10 items.
+         * @return a instance of a given type.
+         */
+        public fun generate(size: Int): T
+    }
+
+    /**
+     * Generator of values for specific array types in a given Range.
+     * @param T the type which the Generator is referring to.
+     * @author Matthias Geisler
+     */
+    public interface RangedArrayGenerator<T, R : Any> : RangedGenerator<T, R>,
+        ArrayGenerator<R> where T : Any, T : Comparable<T> {
+        /**
+         * Generates a instance of given type in a given range.
+         * @param from the lower boundary of the value.
+         * @param to the upper boundary of the value.
+         * @param size a fixed given size for the resulting Array.
+         * If none size is given it chooses a arbitrary size of in between 1 and 10 items.
+         * @throws IllegalArgumentException if start value is greater than the end value.
+         * @return a instance of a given type.
+         */
+        @Throws(IllegalArgumentException::class)
+        public fun generate(
+            from: T,
+            to: T,
+            size: Int,
+        ): R
+
+        /**
+         * Generates a instance of given type in a given range.
+         * @param ranges arbitrary amount of boundaries.
+         * @throws IllegalArgumentException if start value is greater than the end value.
+         * @return a instance of a given type.
+         */
+        @Throws(IllegalArgumentException::class)
+        public fun generate(
+            vararg ranges: ClosedRange<T>
+        ): R
+
+        /**
+         * Generates a instance of given type in a given range for a given Size.
+         * @param ranges arbitrary amount of boundaries.
+         * @param size a fixed given size for the resulting Array.
+         * @throws IllegalArgumentException if start value is greater than the end value.
+         * @return a instance of a given type.
+         */
+        @Throws(IllegalArgumentException::class)
+        public fun generate(
+            vararg ranges: ClosedRange<T>,
+            size: Int,
+        ): R
     }
 
     /**
@@ -61,12 +124,27 @@ public interface PublicApi {
      * @param T the type which the Generator is referring to.
      * @author Matthias Geisler
      */
-    public interface SignedNumberGenerator<T> : RangedGenerator<T> where T : Any, T : Comparable<T> {
+    public interface SignedNumberGenerator<T, R : Any> : RangedGenerator<T, R> where T : Any, T : Comparable<T> {
         /**
          * Generates a instance of given type in a given range.
          * @return a instance of a given type.
          */
-        public fun generate(sign: Sign): T
+        public fun generate(sign: Sign): R
+    }
+
+    /**
+     * Generator of values for specific type in a given Range of signed Numbers for Arrays.
+     * @param T the type which the Generator is referring to.
+     * @author Matthias Geisler
+     */
+    public interface SignedNumericArrayGenerator<T, R : Any> : RangedArrayGenerator<T, R>,
+        SignedNumberGenerator<T, R>, ArrayGenerator<R> where T : Any, T : Comparable<T> {
+        /**
+         * Generates a instance of given type in a given range.
+         * @param size a fixed given size for the resulting Array.
+         * @return a instance of a given type.
+         */
+        public fun generate(sign: Sign, size: Int): R
     }
 
     /**

@@ -13,7 +13,7 @@ import tech.antibytes.kfixture.PublicApi
 
 internal class ByteGenerator(
     private val random: Random,
-) : PublicApi.SignedNumberGenerator<Byte> {
+) : PublicApi.SignedNumberGenerator<Byte, Byte> {
     override fun generate(): Byte = generate(MIN_VALUE, MAX_VALUE)
 
     override fun generate(from: Byte, to: Byte): Byte {

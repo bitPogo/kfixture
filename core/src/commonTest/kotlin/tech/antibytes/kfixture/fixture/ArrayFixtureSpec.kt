@@ -178,7 +178,7 @@ class ArrayFixtureSpec {
     @Test
     @Suppress("UNCHECKED_CAST")
     @JsName("fn9")
-    fun `Given arrayFixture is called with a qualifier it returns a Fixture for the derrived Type`() {
+    fun `Given arrayFixture is called with a qualifier it returns a Fixture for the derived Type`() {
         // Given
         val size = 5
         val expected = 23

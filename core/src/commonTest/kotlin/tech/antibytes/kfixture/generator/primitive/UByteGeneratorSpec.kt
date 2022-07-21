@@ -30,7 +30,7 @@ class UByteGeneratorSpec {
     fun `It fulfils RangedGenerator`() {
         val generator: Any = UByteGenerator(random)
 
-        assertTrue(generator is PublicApi.RangedGenerator<*>)
+        assertTrue(generator is PublicApi.RangedGenerator<*, *>)
     }
 
     @Test

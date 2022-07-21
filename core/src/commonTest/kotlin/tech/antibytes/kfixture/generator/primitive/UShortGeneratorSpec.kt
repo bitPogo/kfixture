@@ -30,7 +30,7 @@ class UShortGeneratorSpec {
     fun `It fulfils RangedGenerator`() {
         val generator: Any = UShortGenerator(random)
 
-        assertTrue(generator is PublicApi.RangedGenerator<*>)
+        assertTrue(generator is PublicApi.RangedGenerator<*, *>)
     }
 
     @Test

@@ -7,15 +7,15 @@
 package tech.antibytes.kfixture.generator.array
 
 import kotlin.random.Random
-import tech.antibytes.kfixture.FixtureContract.ARRAY_LOWER_BOUND
-import tech.antibytes.kfixture.FixtureContract.ARRAY_UPPER_BOUND
-import tech.antibytes.kfixture.PublicApi
+import tech.antibytes.kfixture.PublicApi.SignedNumberGenerator
+import tech.antibytes.kfixture.PublicApi.SignedNumericArrayGenerator
 
 internal class ByteArrayGenerator(
-    private val random: Random,
-) : PublicApi.Generator<ByteArray> {
-    override fun generate(): ByteArray {
-        val size = random.nextInt(ARRAY_LOWER_BOUND, ARRAY_UPPER_BOUND)
-        return random.nextBytes(size)
-    }
+    random: Random,
+    byteGenerator: SignedNumberGenerator<Byte, Byte>
+) : SignedNumericArrayGenerator<Byte, ByteArray>, SignedArrayNumberGenerator<Byte, ByteArray>(random, byteGenerator) {
+    override fun arrayBuilder(
+        size: Int,
+        onEach: (idx: Int) -> Byte
+    ): ByteArray = ByteArray(size, onEach)
 }

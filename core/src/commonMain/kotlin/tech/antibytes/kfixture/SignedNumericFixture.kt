@@ -25,10 +25,10 @@ public inline fun <reified T> PublicApi.Fixture.fixture(
 
     @Suppress("UNCHECKED_CAST")
     return when {
-        generator !is PublicApi.SignedNumberGenerator<*> -> {
+        generator !is PublicApi.SignedNumberGenerator<*, *> -> {
             throw IllegalStateException("Missing Generator for ClassID ($id).")
         }
         returnNull -> null as T
-        else -> (generator as PublicApi.SignedNumberGenerator<Comparable<Any>>).generate(sign) as T
+        else -> (generator as PublicApi.SignedNumberGenerator<Comparable<Any>, *>).generate(sign) as T
     }
 }

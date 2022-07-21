@@ -28,11 +28,11 @@ public inline fun <reified RangeType, reified FixtureType : RangeType?> PublicAp
 
     @Suppress("UNCHECKED_CAST")
     return when {
-        generator !is PublicApi.RangedGenerator<*> -> {
+        generator !is PublicApi.RangedGenerator<*, *> -> {
             throw IllegalStateException("Missing Generator for ClassID ($id).")
         }
         returnNull -> null as FixtureType
-        else -> (generator as PublicApi.RangedGenerator<Comparable<Any>>).generate(
+        else -> (generator as PublicApi.RangedGenerator<Comparable<Any>, *>).generate(
             from = from as Comparable<Any>,
             to = to as Comparable<Any>,
         ) as FixtureType

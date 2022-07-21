@@ -51,7 +51,7 @@ class SignedNumberFixtureSpec {
     fun `Given fixture is called with a upper and lower bound it fails if the Type has no corresponding Generator`() {
         // Given
         val expected = 23
-        val generator = SignedNumberGeneratorStub<Int>()
+        val generator = SignedNumberGeneratorStub<Int, Int>()
         generator.generateWithSign = { expected }
 
         // Ensure stable names since reified is in play
@@ -104,7 +104,7 @@ class SignedNumberFixtureSpec {
         // Given
         val expected = 23
         val expectedSign = PublicApi.Sign.NEGATIVE
-        val generator = SignedNumberGeneratorStub<Int>()
+        val generator = SignedNumberGeneratorStub<Int, Int>()
 
         var capturedSign: PublicApi.Sign? = null
 
@@ -140,7 +140,7 @@ class SignedNumberFixtureSpec {
         // Given
         val expected = 23
         val expectedSign = PublicApi.Sign.NEGATIVE
-        val generator = SignedNumberGeneratorStub<Int>()
+        val generator = SignedNumberGeneratorStub<Int, Int>()
 
         var capturedSign: PublicApi.Sign? = null
 
@@ -173,7 +173,7 @@ class SignedNumberFixtureSpec {
         val expected = 23
         val expectedSign = PublicApi.Sign.NEGATIVE
         val qualifier = "test"
-        val generator = SignedNumberGeneratorStub<Int>()
+        val generator = SignedNumberGeneratorStub<Int, Int>()
 
         var capturedSign: PublicApi.Sign? = null
 

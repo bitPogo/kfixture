@@ -12,7 +12,7 @@ import tech.antibytes.kfixture.PublicApi
 
 internal class ULongGenerator(
     private val random: Random,
-) : PublicApi.RangedGenerator<ULong> {
+) : PublicApi.RangedGenerator<ULong, ULong> {
     override fun generate(): ULong = random.nextULong()
 
     override fun generate(from: ULong, to: ULong): ULong = random.nextULong(ULongRange(from, to))

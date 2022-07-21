@@ -11,7 +11,7 @@ import tech.antibytes.kfixture.PublicApi
 
 internal class ShortGenerator(
     private val random: Random,
-) : PublicApi.SignedNumberGenerator<Short> {
+) : PublicApi.SignedNumberGenerator<Short, Short> {
     override fun generate(): Short = generate(Short.MIN_VALUE, Short.MAX_VALUE)
 
     override fun generate(from: Short, to: Short): Short {
