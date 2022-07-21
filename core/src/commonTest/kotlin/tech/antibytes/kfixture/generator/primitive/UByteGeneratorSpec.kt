@@ -27,10 +27,10 @@ class UByteGeneratorSpec {
     @Test
     @Suppress("UNCHECKED_CAST")
     @JsName("fn0")
-    fun `It fulfils Generator`() {
+    fun `It fulfils RangedGenerator`() {
         val generator: Any = UByteGenerator(random)
 
-        assertTrue(generator is PublicApi.Generator<*>)
+        assertTrue(generator is PublicApi.RangedGenerator<*>)
     }
 
     @Test
