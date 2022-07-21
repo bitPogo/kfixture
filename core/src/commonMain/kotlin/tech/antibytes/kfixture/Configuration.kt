@@ -9,7 +9,9 @@ package tech.antibytes.kfixture
 import co.touchlab.stately.isolate.IsolateState
 import kotlin.random.Random
 import kotlin.reflect.KClass
+import tech.antibytes.kfixture.PublicApi.DependentGeneratorFactory
 import tech.antibytes.kfixture.PublicApi.Generator
+import tech.antibytes.kfixture.PublicApi.GeneratorFactory
 import tech.antibytes.kfixture.generator.RandomWrapper
 import tech.antibytes.kfixture.generator.array.BooleanArrayGenerator
 import tech.antibytes.kfixture.generator.array.ByteArrayGenerator
@@ -43,7 +45,8 @@ import tech.antibytes.kfixture.qualifier.resolveGeneratorId
 internal class Configuration(
     override var seed: Int = 0,
 ) : FixtureContract.Configuration {
-    private val customGenerators: MutableMap<String, PublicApi.GeneratorFactory<out Any>> = mutableMapOf()
+    private val customGenerators: MutableMap<String, GeneratorFactory<out Any>> = mutableMapOf()
+    private val customDependentGenerators: MutableMap<String, DependentGeneratorFactory<out Any>> = mutableMapOf()
 
     private fun initializeDefaultsGenerators(random: Random): Map<String, Generator<out Any>> {
         return mapOf(
@@ -77,10 +80,18 @@ internal class Configuration(
         )
     }
 
-    private fun initializeCustomGenerators(random: Random): MutableMap<String, Generator<out Any>> {
-        val initializedGenerators: MutableMap<String, Generator<out Any>> = mutableMapOf()
+    private fun initializeCustomGenerators(
+        random: Random,
+        internalGenerators: Map<String, Generator<out Any>>,
+    ): MutableMap<String, Generator<out Any>> {
+        val initializedGenerators: MutableMap<String, Generator<out Any>> = internalGenerators.toMutableMap()
+
         customGenerators.forEach { (key, factory) ->
             initializedGenerators[key] = factory.getInstance(random)
+        }
+
+        customDependentGenerators.forEach { (key, factory) ->
+            initializedGenerators[key] = factory.getInstance(random, initializedGenerators.toMap())
         }
 
         return initializedGenerators
@@ -88,25 +99,38 @@ internal class Configuration(
 
     override fun <T : Any> addGenerator(
         clazz: KClass<T>,
-        factory: PublicApi.GeneratorFactory<T>,
+        factory: GeneratorFactory<T>,
         qualifier: PublicApi.Qualifier?,
     ): PublicApi.Configuration {
         val id = resolveGeneratorId(
             clazz,
             qualifier,
         )
+        customGenerators[id] = factory
 
-        return this.also {
-            customGenerators[id] = factory
-        }
+        return this
+    }
+
+    override fun <T : Any> addGenerator(
+        clazz: KClass<T>,
+        factory: DependentGeneratorFactory<T>,
+        qualifier: PublicApi.Qualifier?,
+    ): PublicApi.Configuration {
+        val id = resolveGeneratorId(
+            clazz,
+            qualifier,
+        )
+        customDependentGenerators[id] = factory
+
+        return this
     }
 
     override fun build(): PublicApi.Fixture {
         val random = IsolateState { Random(seed) }
         val randomWrapper = RandomWrapper(random)
-        val generators = initializeCustomGenerators(randomWrapper).also {
-            it.putAll(initializeDefaultsGenerators(randomWrapper))
-        }
+        val internalGenerators = initializeDefaultsGenerators(randomWrapper)
+        val generators = initializeCustomGenerators(randomWrapper, internalGenerators)
+        generators.putAll(internalGenerators)
 
         return Fixture(randomWrapper, generators)
     }

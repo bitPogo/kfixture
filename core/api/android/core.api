@@ -43,13 +43,19 @@ public abstract interface class tech/antibytes/kfixture/PublicApi {
 }
 
 public abstract interface class tech/antibytes/kfixture/PublicApi$Configuration {
+	public abstract fun addGenerator (Lkotlin/reflect/KClass;Ltech/antibytes/kfixture/PublicApi$DependentGeneratorFactory;Ltech/antibytes/kfixture/PublicApi$Qualifier;)Ltech/antibytes/kfixture/PublicApi$Configuration;
 	public abstract fun addGenerator (Lkotlin/reflect/KClass;Ltech/antibytes/kfixture/PublicApi$GeneratorFactory;Ltech/antibytes/kfixture/PublicApi$Qualifier;)Ltech/antibytes/kfixture/PublicApi$Configuration;
 	public abstract fun getSeed ()I
 	public abstract fun setSeed (I)V
 }
 
 public final class tech/antibytes/kfixture/PublicApi$Configuration$DefaultImpls {
+	public static synthetic fun addGenerator$default (Ltech/antibytes/kfixture/PublicApi$Configuration;Lkotlin/reflect/KClass;Ltech/antibytes/kfixture/PublicApi$DependentGeneratorFactory;Ltech/antibytes/kfixture/PublicApi$Qualifier;ILjava/lang/Object;)Ltech/antibytes/kfixture/PublicApi$Configuration;
 	public static synthetic fun addGenerator$default (Ltech/antibytes/kfixture/PublicApi$Configuration;Lkotlin/reflect/KClass;Ltech/antibytes/kfixture/PublicApi$GeneratorFactory;Ltech/antibytes/kfixture/PublicApi$Qualifier;ILjava/lang/Object;)Ltech/antibytes/kfixture/PublicApi$Configuration;
+}
+
+public abstract interface class tech/antibytes/kfixture/PublicApi$DependentGeneratorFactory {
+	public abstract fun getInstance (Lkotlin/random/Random;Ljava/util/Map;)Ltech/antibytes/kfixture/PublicApi$Generator;
 }
 
 public abstract interface class tech/antibytes/kfixture/PublicApi$Fixture {

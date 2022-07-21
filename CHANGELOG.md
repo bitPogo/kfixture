@@ -29,6 +29,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - Long
     - Float
     - Double
+* DependentGeneratorFactory in order to build Generators on top of other Generators
 
 ### Changed
 
