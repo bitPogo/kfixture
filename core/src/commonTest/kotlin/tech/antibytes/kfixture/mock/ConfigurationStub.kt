@@ -24,4 +24,12 @@ class ConfigurationStub(
 
         return this
     }
+
+    override fun <T : Any> addGenerator(
+        clazz: KClass<T>,
+        factory: PublicApi.DependentGeneratorFactory<T>,
+        qualifier: PublicApi.Qualifier?,
+    ): PublicApi.Configuration {
+        TODO("Not yet implemented")
+    }
 }

@@ -86,6 +86,26 @@ public interface PublicApi {
     }
 
     /**
+     * Factory of a Generator which has dependencies on other Generators
+     * @param T the type which the Generator is referring to.
+     * @see Generator
+     * @author Matthias Geisler
+     */
+    public interface DependentGeneratorFactory<T : Any> {
+        /**
+         * Instantiates a Generator
+         * @param random a shared instance of Random.
+         * @param generators a Map which holds already registered Generators.
+         * @see Random
+         * @return a instance of a Generator
+         */
+        public fun getInstance(
+            random: Random,
+            generators: Map<String, Generator<out Any>>,
+        ): Generator<T>
+    }
+
+    /**
      * Indicator to identify a special flavour of a Generator
      * @see Generator
      * @author Matthias Geisler
@@ -124,21 +144,39 @@ public interface PublicApi {
             factory: GeneratorFactory<T>,
             qualifier: Qualifier? = null,
         ): Configuration
+
+        /**
+         * Adds a custom Generator to Fixture Generator.
+         * However build in types cannot be overridden.
+         * @param T the type which the Generator is referring to.
+         * @param clazz a KClass the generator is referring to.
+         * @param factory the Factory which has dependencies for the Generator.
+         * @param qualifier optional Qualifier which can be to differ between flavours of the same type.
+         * @return Configuration the current instance of the Configuration.
+         * @see Generator
+         * @see GeneratorFactory
+         * @see Qualifier
+         */
+        public fun <T : Any> addGenerator(
+            clazz: KClass<T>,
+            factory: DependentGeneratorFactory<T>,
+            qualifier: Qualifier? = null,
+        ): Configuration
     }
 
     /**
-     * Fixture Generator
+     * Fixture Generator.
      *
      * @author Matthias Geisler
      */
     public interface Fixture {
         /**
-         * Random Generator which is used to generate atomic types
+         * Random Generator which is used to generate atomic types.
          */
         public val random: Random
 
         /**
-         * Map which holds all registers Generators
+         * Map which holds all registers Generators.
          */
         public val generators: Map<String, Generator<out Any>>
     }

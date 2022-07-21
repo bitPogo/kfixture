@@ -44,6 +44,7 @@ import tech.antibytes.kfixture.generator.primitive.UIntegerGenerator
 import tech.antibytes.kfixture.generator.primitive.ULongGenerator
 import tech.antibytes.kfixture.generator.primitive.UShortGenerator
 import tech.antibytes.kfixture.generator.primitive.UnitGenerator
+import tech.antibytes.kfixture.mock.DependentGeneratorFactoryStub
 import tech.antibytes.kfixture.mock.GeneratorFactoryStub
 import tech.antibytes.kfixture.qualifier.qualifiedBy
 
@@ -232,6 +233,100 @@ class ConfigurationSpec {
                 generators["q:$qualifier:TestClass"] is TestGenerator,
         )
     }
+
+    @Test
+    @JsName("fn8")
+    fun `Given addGenerator is called with a Klass and a DependentGeneratorFactory it adds the a custom Generator`() {
+        // Given
+        val klass = TestDependentClass::class
+        val generator = TestDependentGenerator
+        val seed = 23
+
+        // When
+        val config = Configuration(seed)
+            .addGenerator(
+                klass,
+                generator,
+            )
+        val fixture = (config as FixtureContract.Configuration).build()
+
+        // Then
+        val generators = fixture.generators
+
+        assertTrue(
+            generators.containsKey("tech.antibytes.kfixture.TestDependentClass") || generators.containsKey("TestDependentClass"),
+            message = "Missing Key (tech.antibytes.kfixture.TestDependentClass)",
+        )
+        assertTrue(
+            generators["tech.antibytes.kfixture.TestDependentClass"] is TestDependentGenerator ||
+                generators["TestDependentClass"] is TestDependentGenerator,
+        )
+
+        assertEquals(
+            actual = TestDependentGenerator.lastRandom.nextDouble(),
+            expected = Random(seed).nextDouble(),
+        )
+
+        assertTrue(TestDependentGenerator.lastRandom is RandomWrapper)
+        assertEquals(
+            actual = TestDependentGenerator.lastGenerators.size,
+            expected = 27,
+        )
+    }
+
+    @Test
+    @JsName("fn9")
+    fun `Given addGenerator is called with a Klass and a DependentGeneratorFactory it prevents overriding buildins`() {
+        // Given
+        val klass = Int::class
+        val generator = DependentGeneratorFactoryStub<Int>()
+        val seed = 23
+
+        // When
+        val config = Configuration(seed)
+            .addGenerator(klass, generator)
+        val fixture = (config as FixtureContract.Configuration).build()
+
+        // Then
+        val generators = fixture.generators
+
+        assertNotEquals(
+            actual = generators["int"],
+            illegal = generator.lastInstance,
+        )
+        assertEquals(
+            actual = generator.lastGenerators?.size,
+            expected = 27,
+        )
+    }
+
+    @Test
+    @JsName("fn10")
+    fun `Given addGenerator is called with a Klass a DependentGeneratorFactory and a Qualifier it prevents overriding buildins`() {
+        // Given
+        val klass = TestDependentClass::class
+        val generator = TestDependentGenerator
+        val seed = 42
+        val qualifier = "test"
+
+        // When
+        val config = Configuration(seed)
+            .addGenerator(klass, generator, qualifiedBy(qualifier))
+
+        val fixture = (config as FixtureContract.Configuration).build()
+
+        // Then
+        val generators = fixture.generators
+        assertTrue(
+            generators.containsKey("q:$qualifier:tech.antibytes.kfixture.TestDependentClass") ||
+                generators.containsKey("q:$qualifier:TestDependentClass"),
+            message = "Missing Key (q:$qualifier:tech.antibytes.kfixture.TestDependentClass)",
+        )
+        assertTrue(
+            generators["q:$qualifier:tech.antibytes.kfixture.TestDependentClass"] is TestDependentGenerator ||
+                generators["q:$qualifier:TestDependentClass"] is TestDependentGenerator,
+        )
+    }
 }
 
 private data class TestClass(val value: String = "test")
@@ -250,6 +345,38 @@ private class TestGenerator : PublicApi.Generator<TestClass> {
         override fun getInstance(random: Random): PublicApi.Generator<TestClass> {
             return TestGenerator().also {
                 lastRandom = random
+            }
+        }
+    }
+}
+
+private data class TestDependentClass(val value: String = "testd")
+private class TestDependentGenerator : PublicApi.Generator<TestDependentClass> {
+    override fun generate(): TestDependentClass = TestDependentClass()
+
+    companion object : PublicApi.DependentGeneratorFactory<TestDependentClass> {
+        private val _lastRandom: AtomicRef<Random?> = atomic(null)
+        private val _lastGenerators: AtomicRef<Map<String, PublicApi.Generator<out Any>>?> = atomic(null)
+
+        var lastRandom: Random
+            get() = _lastRandom.value!!
+            set(value) {
+                _lastRandom.update { value }
+            }
+
+        var lastGenerators: Map<String, PublicApi.Generator<out Any>>
+            get() = _lastGenerators.value!!
+            set(value) {
+                _lastGenerators.update { value }
+            }
+
+        override fun getInstance(
+            random: Random,
+            generators: Map<String, PublicApi.Generator<out Any>>,
+        ): PublicApi.Generator<TestDependentClass> {
+            return TestDependentGenerator().also {
+                lastRandom = random
+                lastGenerators = generators.toMap()
             }
         }
     }
