@@ -7,8 +7,8 @@
 package tech.antibytes.kfixture.generator.primitive
 
 import kotlin.random.Random
-import tech.antibytes.kfixture.PublicApi
 import kotlin.random.nextInt
+import tech.antibytes.kfixture.PublicApi
 
 internal class IntegerGenerator(
     private val random: Random,
