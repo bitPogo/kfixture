@@ -11,6 +11,16 @@ import tech.antibytes.kfixture.PublicApi
 
 internal class UShortGenerator(
     private val random: Random,
-) : PublicApi.Generator<UShort> {
-    override fun generate(): UShort = random.nextInt().toUShort()
+) : PublicApi.RangedGenerator<UShort> {
+    override fun generate(): UShort = generate(
+        from = UShort.MIN_VALUE,
+        to = UShort.MAX_VALUE,
+    )
+
+    override fun generate(from: UShort, to: UShort): UShort {
+        return random.nextInt(
+            from = from.toInt(),
+            until = to.toInt() + 1,
+        ).toUShort()
+    }
 }
