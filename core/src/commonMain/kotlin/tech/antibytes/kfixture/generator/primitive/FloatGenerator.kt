@@ -7,10 +7,39 @@
 package tech.antibytes.kfixture.generator.primitive
 
 import kotlin.random.Random
+import kotlin.random.nextInt
 import tech.antibytes.kfixture.PublicApi
 
 internal class FloatGenerator(
     private val random: Random,
-) : PublicApi.Generator<Float> {
+) : PublicApi.SignedNumberGenerator<Float> {
     override fun generate(): Float = random.nextFloat() + random.nextInt()
+
+    override fun generate(from: Float, to: Float): Float {
+        val limit = to.toInt()
+        val base = random.nextInt(IntRange(from.toInt(), limit))
+
+        return if (base == limit) {
+            base.toFloat()
+        } else {
+            base + random.nextFloat()
+        }
+    }
+
+    private fun resolveBoundary(sign: PublicApi.Sign): Pair<Float, Float> {
+        return if (sign == PublicApi.Sign.POSITIVE) {
+            ZERO to Float.MAX_VALUE
+        } else {
+            Float.MIN_VALUE to ZERO
+        }
+    }
+
+    override fun generate(sign: PublicApi.Sign): Float {
+        val (from, to) = resolveBoundary(sign)
+        return generate(from, to)
+    }
+
+    private companion object {
+        const val ZERO = 0F
+    }
 }
