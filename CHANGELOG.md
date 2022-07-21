@@ -19,11 +19,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - UInt
     - Long
     - ULong
+    - Float
+    - Double
 * SignedNumberGenerator for:
     - Byte
     - Short
     - Int
     - Long
+    - Float
+    - Double
 
 ### Changed
 
