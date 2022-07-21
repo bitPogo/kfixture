@@ -62,4 +62,34 @@ class CharGeneratorSpec {
             expected = expected.toChar(),
         )
     }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn2")
+    fun `Given generate is called it returns a Char in given boundaries`() {
+        // Given
+        val expectedMin = 102.toChar()
+        val expectedMax = 189.toChar()
+        val expected = 100
+
+        random.nextIntRanged = { from, to ->
+            range.update { Pair(from, to) }
+            expected
+        }
+
+        val generator = CharGenerator(random)
+
+        // When
+        val result = generator.generate(expectedMin, expectedMax)
+
+        // Then
+        assertEquals(
+            actual = range.value,
+            expected = Pair(expectedMin.code, expectedMax.code),
+        )
+        assertEquals(
+            actual = result,
+            expected = expected.toChar(),
+        )
+    }
 }
