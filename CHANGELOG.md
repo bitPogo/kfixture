@@ -13,8 +13,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * RangedGenerator for:
     - Byte
     - UByte
+    - Short
+    - UShort
 * SignedNumberGenerator for:
     - Byte
+    - Short
 
 ### Changed
 
