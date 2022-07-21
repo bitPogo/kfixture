@@ -21,7 +21,7 @@ internal class StringGenerator(
         val chars = ByteArray(length)
 
         for (idx in 0 until length) {
-            chars[idx] = random.nextInt(CHAR_LOWER_BOUND, CHAR_UPPER_BOUND).toByte()
+            chars[idx] = random.nextInt(CHAR_LOWER_BOUND.code, CHAR_UPPER_BOUND.code).toByte()
         }
 
         return chars.decodeToString()

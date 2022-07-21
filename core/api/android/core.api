@@ -13,8 +13,8 @@ public final class tech/antibytes/kfixture/FixtureContract {
 	public static final field ACCESS_LOWER_BOUND I
 	public static final field ARRAY_LOWER_BOUND I
 	public static final field ARRAY_UPPER_BOUND I
-	public static final field CHAR_LOWER_BOUND I
-	public static final field CHAR_UPPER_BOUND I
+	public static final field CHAR_LOWER_BOUND C
+	public static final field CHAR_UPPER_BOUND C
 	public static final field COLLECTION_LOWER_BOUND I
 	public static final field COLLECTION_UPPER_BOUND I
 	public static final field INSTANCE Ltech/antibytes/kfixture/FixtureContract;

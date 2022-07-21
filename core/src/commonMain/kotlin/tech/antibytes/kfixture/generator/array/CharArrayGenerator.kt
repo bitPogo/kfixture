@@ -20,7 +20,7 @@ internal class CharArrayGenerator(
         val fixture = CharArray(size)
 
         repeat(size) { idx ->
-            fixture[idx] = random.nextInt(CHAR_LOWER_BOUND, CHAR_UPPER_BOUND).toChar()
+            fixture[idx] = random.nextInt(CHAR_LOWER_BOUND.code, CHAR_UPPER_BOUND.code).toChar()
         }
 
         return fixture
