@@ -17,10 +17,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - UShort
     - Int
     - UInt
+    - Long
+    - ULong
 * SignedNumberGenerator for:
     - Byte
     - Short
     - Int
+    - Long
 
 ### Changed
 
