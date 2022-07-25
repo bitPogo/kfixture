@@ -17,7 +17,7 @@ import kotlinx.atomicfu.atomic
 import kotlinx.atomicfu.update
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.mock.RandomStub
-import tech.antibytes.kfixture.mock.SignedNumberGeneratorStub
+import tech.antibytes.kfixture.mock.RangedGeneratorStub
 
 class FloatArrayGeneratorSpec {
     private val random = RandomStub()
@@ -33,7 +33,7 @@ class FloatArrayGeneratorSpec {
     @Suppress("UNCHECKED_CAST")
     @JsName("fn0")
     fun `It fulfils RangedArrayGenerator`() {
-        val generator: Any = FloatArrayGenerator(random, SignedNumberGeneratorStub())
+        val generator: Any = FloatArrayGenerator(random, RangedGeneratorStub())
 
         assertTrue(generator is PublicApi.RangedArrayGenerator<*, *>)
     }
@@ -46,7 +46,7 @@ class FloatArrayGeneratorSpec {
         val size = 23
         val expectedValue = 23.toFloat()
         val expected = FloatArray(size) { expectedValue }
-        val auxiliaryGenerator = SignedNumberGeneratorStub<Float, Float>()
+        val auxiliaryGenerator = RangedGeneratorStub<Float, Float>()
 
         auxiliaryGenerator.generate = { expectedValue }
         random.nextIntRanged = { from, to ->
@@ -76,7 +76,7 @@ class FloatArrayGeneratorSpec {
         val size = 12
         val expectedValue = 23.toFloat()
         val expected = FloatArray(size) { expectedValue }
-        val auxiliaryGenerator = SignedNumberGeneratorStub<Float, Float>()
+        val auxiliaryGenerator = RangedGeneratorStub<Float, Float>()
 
         auxiliaryGenerator.generate = { expectedValue }
 
@@ -106,7 +106,7 @@ class FloatArrayGeneratorSpec {
         var capturedMin: Int? = null
         var capturedMax: Int? = null
 
-        val auxiliaryGenerator = SignedNumberGeneratorStub<Float, Float>()
+        val auxiliaryGenerator = RangedGeneratorStub<Float, Float>()
 
         val expected = listOf(
             23.toFloat(),
@@ -161,7 +161,7 @@ class FloatArrayGeneratorSpec {
         var capturedMin: Int? = null
         var capturedMax: Int? = null
 
-        val auxiliaryGenerator = SignedNumberGeneratorStub<Float, Float>()
+        val auxiliaryGenerator = RangedGeneratorStub<Float, Float>()
 
         val expected = listOf(
             23.toFloat(),
@@ -208,7 +208,7 @@ class FloatArrayGeneratorSpec {
         val capturedMin: MutableList<Int> = sharedMutableListOf()
         val capturedMax: MutableList<Int> = sharedMutableListOf()
 
-        val auxiliaryGenerator = SignedNumberGeneratorStub<Float, Float>()
+        val auxiliaryGenerator = RangedGeneratorStub<Float, Float>()
 
         val expected = listOf(
             23.toFloat(),
@@ -275,7 +275,7 @@ class FloatArrayGeneratorSpec {
         val capturedMin: MutableList<Int> = sharedMutableListOf()
         val capturedMax: MutableList<Int> = sharedMutableListOf()
 
-        val auxiliaryGenerator = SignedNumberGeneratorStub<Float, Float>()
+        val auxiliaryGenerator = RangedGeneratorStub<Float, Float>()
 
         val expected = listOf(
             23.toFloat(),

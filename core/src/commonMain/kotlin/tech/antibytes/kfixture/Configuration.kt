@@ -21,6 +21,7 @@ import tech.antibytes.kfixture.generator.array.FloatArrayGenerator
 import tech.antibytes.kfixture.generator.array.IntArrayGenerator
 import tech.antibytes.kfixture.generator.array.LongArrayGenerator
 import tech.antibytes.kfixture.generator.array.ShortArrayGenerator
+import tech.antibytes.kfixture.generator.array.StringGenerator
 import tech.antibytes.kfixture.generator.array.UByteArrayGenerator
 import tech.antibytes.kfixture.generator.array.UIntArrayGenerator
 import tech.antibytes.kfixture.generator.array.ULongArrayGenerator
@@ -34,7 +35,6 @@ import tech.antibytes.kfixture.generator.primitive.FloatGenerator
 import tech.antibytes.kfixture.generator.primitive.IntegerGenerator
 import tech.antibytes.kfixture.generator.primitive.LongGenerator
 import tech.antibytes.kfixture.generator.primitive.ShortGenerator
-import tech.antibytes.kfixture.generator.primitive.StringGenerator
 import tech.antibytes.kfixture.generator.primitive.UByteGenerator
 import tech.antibytes.kfixture.generator.primitive.UIntegerGenerator
 import tech.antibytes.kfixture.generator.primitive.ULongGenerator
@@ -57,10 +57,8 @@ internal class Configuration(
             resolveClassName(Int::class) to IntegerGenerator(random),
             resolveClassName(Float::class) to FloatGenerator(random),
             resolveClassName(Char::class) to CharGenerator(random),
-            resolveClassName(CharArray::class) to CharArrayGenerator(random),
             resolveClassName(Long::class) to LongGenerator(random),
             resolveClassName(Double::class) to DoubleGenerator(random),
-            resolveClassName(String::class) to StringGenerator(random),
             resolveClassName(UShort::class) to UShortGenerator(random),
             resolveClassName(UInt::class) to UIntegerGenerator(random),
             resolveClassName(ULong::class) to ULongGenerator(random),
@@ -124,6 +122,14 @@ internal class Configuration(
             this[resolveClassName(DoubleArray::class)] = DoubleArrayGenerator(
                 random,
                 this.resolveRangedGenerator(resolveClassName(Double::class)),
+            )
+            this[resolveClassName(CharArray::class)] = CharArrayGenerator(
+                random,
+                this.resolveRangedGenerator(resolveClassName(Char::class)),
+            )
+            this[resolveClassName(String::class)] = StringGenerator(
+                random,
+                this.resolveRangedGenerator(resolveClassName(Char::class)),
             )
         }
     }

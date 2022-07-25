@@ -9,13 +9,13 @@ package tech.antibytes.kfixture.generator.array
 import kotlin.random.Random
 import tech.antibytes.kfixture.PublicApi
 
-internal class CharArrayGenerator(
+internal class StringGenerator(
     random: Random,
     charGenerator: PublicApi.RangedGenerator<Char, Char>,
-) : PublicApi.RangedArrayGenerator<Char, CharArray>,
-    RangedArrayNumberGenerator<Char, CharArray>(random, charGenerator) {
+) : PublicApi.RangedArrayGenerator<Char, String>,
+    RangedArrayNumberGenerator<Char, String>(random, charGenerator) {
     override fun arrayBuilder(
         size: Int,
         onEach: (idx: Int) -> Char,
-    ): CharArray = CharArray(size, onEach)
+    ): String = CharArray(size, onEach).concatToString()
 }

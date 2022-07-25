@@ -25,6 +25,7 @@ import tech.antibytes.kfixture.generator.array.FloatArrayGenerator
 import tech.antibytes.kfixture.generator.array.IntArrayGenerator
 import tech.antibytes.kfixture.generator.array.LongArrayGenerator
 import tech.antibytes.kfixture.generator.array.ShortArrayGenerator
+import tech.antibytes.kfixture.generator.array.StringGenerator
 import tech.antibytes.kfixture.generator.array.UByteArrayGenerator
 import tech.antibytes.kfixture.generator.array.UIntArrayGenerator
 import tech.antibytes.kfixture.generator.array.ULongArrayGenerator
@@ -38,7 +39,6 @@ import tech.antibytes.kfixture.generator.primitive.FloatGenerator
 import tech.antibytes.kfixture.generator.primitive.IntegerGenerator
 import tech.antibytes.kfixture.generator.primitive.LongGenerator
 import tech.antibytes.kfixture.generator.primitive.ShortGenerator
-import tech.antibytes.kfixture.generator.primitive.StringGenerator
 import tech.antibytes.kfixture.generator.primitive.UByteGenerator
 import tech.antibytes.kfixture.generator.primitive.UIntegerGenerator
 import tech.antibytes.kfixture.generator.primitive.ULongGenerator
