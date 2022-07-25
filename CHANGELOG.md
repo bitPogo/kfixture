@@ -36,6 +36,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - ULongArray
     - FloatArray
     - DoubleArray
+    - CharArray
+    - String
 * SignedArrayNumberGenerator for:
     - ByteArray
     - ShortArray

@@ -17,7 +17,7 @@ import kotlinx.atomicfu.atomic
 import kotlinx.atomicfu.update
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.mock.RandomStub
-import tech.antibytes.kfixture.mock.SignedNumberGeneratorStub
+import tech.antibytes.kfixture.mock.RangedGeneratorStub
 
 class DoubleArrayGeneratorSpec {
     private val random = RandomStub()
@@ -33,7 +33,7 @@ class DoubleArrayGeneratorSpec {
     @Suppress("UNCHECKED_CAST")
     @JsName("fn0")
     fun `It fulfils RangedArrayGenerator`() {
-        val generator: Any = DoubleArrayGenerator(random, SignedNumberGeneratorStub())
+        val generator: Any = DoubleArrayGenerator(random, RangedGeneratorStub())
 
         assertTrue(generator is PublicApi.RangedArrayGenerator<*, *>)
     }
@@ -46,7 +46,7 @@ class DoubleArrayGeneratorSpec {
         val size = 23
         val expectedValue = 23.toDouble()
         val expected = DoubleArray(size) { expectedValue }
-        val auxiliaryGenerator = SignedNumberGeneratorStub<Double, Double>()
+        val auxiliaryGenerator = RangedGeneratorStub<Double, Double>()
 
         auxiliaryGenerator.generate = { expectedValue }
         random.nextIntRanged = { from, to ->
@@ -76,7 +76,7 @@ class DoubleArrayGeneratorSpec {
         val size = 12
         val expectedValue = 23.toDouble()
         val expected = DoubleArray(size) { expectedValue }
-        val auxiliaryGenerator = SignedNumberGeneratorStub<Double, Double>()
+        val auxiliaryGenerator = RangedGeneratorStub<Double, Double>()
 
         auxiliaryGenerator.generate = { expectedValue }
 
@@ -106,7 +106,7 @@ class DoubleArrayGeneratorSpec {
         var capturedMin: Int? = null
         var capturedMax: Int? = null
 
-        val auxiliaryGenerator = SignedNumberGeneratorStub<Double, Double>()
+        val auxiliaryGenerator = RangedGeneratorStub<Double, Double>()
 
         val expected = listOf(
             23.toDouble(),
@@ -161,7 +161,7 @@ class DoubleArrayGeneratorSpec {
         var capturedMin: Int? = null
         var capturedMax: Int? = null
 
-        val auxiliaryGenerator = SignedNumberGeneratorStub<Double, Double>()
+        val auxiliaryGenerator = RangedGeneratorStub<Double, Double>()
 
         val expected = listOf(
             23.toDouble(),
@@ -208,7 +208,7 @@ class DoubleArrayGeneratorSpec {
         val capturedMin: MutableList<Int> = sharedMutableListOf()
         val capturedMax: MutableList<Int> = sharedMutableListOf()
 
-        val auxiliaryGenerator = SignedNumberGeneratorStub<Double, Double>()
+        val auxiliaryGenerator = RangedGeneratorStub<Double, Double>()
 
         val expected = listOf(
             23.toDouble(),
@@ -275,7 +275,7 @@ class DoubleArrayGeneratorSpec {
         val capturedMin: MutableList<Int> = sharedMutableListOf()
         val capturedMax: MutableList<Int> = sharedMutableListOf()
 
-        val auxiliaryGenerator = SignedNumberGeneratorStub<Double, Double>()
+        val auxiliaryGenerator = RangedGeneratorStub<Double, Double>()
 
         val expected = listOf(
             23.toDouble(),
