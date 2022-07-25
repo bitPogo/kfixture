@@ -125,7 +125,7 @@ class StringGeneratorSpec {
             size
         }
 
-        auxiliaryGenerator.generateWithRange = { givenMin, givenMax ->
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax, _ ->
             capturedMin = givenMin.code
             capturedMax = givenMax.code
 
@@ -176,7 +176,7 @@ class StringGeneratorSpec {
         )
         val consumableItem = expected.toSharedMutableList()
 
-        auxiliaryGenerator.generateWithRange = { givenMin, givenMax ->
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax, _ ->
             capturedMin = givenMin.code
             capturedMax = givenMax.code
 
@@ -231,7 +231,7 @@ class StringGeneratorSpec {
             ranges.removeFirst()
         }
 
-        auxiliaryGenerator.generateWithRange = { givenMin, givenMax ->
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax, _ ->
             capturedMin.add(givenMin.code)
             capturedMax.add(givenMax.code)
 
@@ -298,7 +298,7 @@ class StringGeneratorSpec {
             ranges.removeFirst()
         }
 
-        auxiliaryGenerator.generateWithRange = { givenMin, givenMax ->
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax, _ ->
             capturedMin.add(givenMin.code)
             capturedMax.add(givenMax.code)
 
