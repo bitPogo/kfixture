@@ -17,13 +17,13 @@ internal class IntegerGenerator(
     override fun generate(): Int = random.nextInt()
 
     override fun generate(
-        predicate: (Int) -> Boolean
+        predicate: (Int) -> Boolean,
     ): Int = returnFilteredValue(predicate, ::generate)
 
     override fun generate(
         from: Int,
         to: Int,
-        predicate: (Int?) -> Boolean
+        predicate: (Int?) -> Boolean,
     ): Int = returnFilteredValue(predicate) { random.nextInt(IntRange(from, to)) }
 
     private fun resolveBoundary(sign: PublicApi.Sign): Pair<Int, Int> {
@@ -36,7 +36,7 @@ internal class IntegerGenerator(
 
     override fun generate(
         sign: PublicApi.Sign,
-        predicate: (Int?) -> Boolean
+        predicate: (Int?) -> Boolean,
     ): Int {
         val (from, to) = resolveBoundary(sign)
         return returnFilteredValue(predicate) { generate(from, to) }

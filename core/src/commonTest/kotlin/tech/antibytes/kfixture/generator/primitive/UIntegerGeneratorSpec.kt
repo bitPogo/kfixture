@@ -56,6 +56,28 @@ class UIntegerGeneratorSpec {
     @Test
     @Suppress("UNCHECKED_CAST")
     @JsName("fn2")
+    fun `Given generate is called with a predicate it returns a UInt`() {
+        // Given
+        val expected = 23
+        val ints = mutableListOf(12, 13, expected)
+
+        random.nextInt = { ints.removeFirst() }
+
+        val generator = UIntegerGenerator(random)
+
+        // When
+        val result = generator.generate { int -> int == expected.toUInt() }
+
+        // Then
+        assertEquals(
+            actual = result,
+            expected = expected.toUInt(),
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn3")
     fun `Given generate is called with a range it fails since the start is less equal to the end`() {
         // Given
         val generator = UIntegerGenerator(random)
@@ -69,7 +91,21 @@ class UIntegerGeneratorSpec {
 
     @Test
     @Suppress("UNCHECKED_CAST")
-    @JsName("fn3")
+    @JsName("fn4")
+    fun `Given generate is called with a range and a predicate it fails since the start is less equal to the end`() {
+        // Given
+        val generator = UIntegerGenerator(random)
+
+        // Then
+        assertFailsWith<IllegalArgumentException> {
+            // When
+            generator.generate(1.toUInt(), 0.toUInt()) { false }
+        }
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn5")
     fun `Given generate is called with boundaries it returns a UInt`() {
         // Given
         val expected = 107
@@ -93,6 +129,49 @@ class UIntegerGeneratorSpec {
             from = expectedMin,
             to = expectedMax,
         )
+
+        // Then
+        assertEquals(
+            actual = result,
+            expected = (expected xor Int.MIN_VALUE).toUInt(),
+        )
+        assertEquals(
+            actual = capturedMin,
+            expected = expectedMin.toInt() xor Int.MIN_VALUE,
+        )
+        assertEquals(
+            actual = capturedMax,
+            expected = ((expectedMax.toInt() xor Int.MIN_VALUE) + 1),
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn6")
+    fun `Given generate is called with boundaries and a predicate it returns a UInt`() {
+        // Given
+        val expected = 107
+        val ints = mutableListOf(12, 13, expected)
+        val expectedMin = 0.toUInt()
+        val expectedMax = 42.toUInt()
+
+        var capturedMin: Int? = null
+        var capturedMax: Int? = null
+
+        random.nextIntRanged = { givenMin, givenMax ->
+            capturedMin = givenMin
+            capturedMax = givenMax
+
+            ints.removeFirst()
+        }
+
+        val generator = UIntegerGenerator(random)
+
+        // When
+        val result = generator.generate(
+            from = expectedMin,
+            to = expectedMax,
+        ) { int -> int == (expected xor Int.MIN_VALUE).toUInt() }
 
         // Then
         assertEquals(

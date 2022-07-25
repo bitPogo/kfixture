@@ -9,14 +9,20 @@ package tech.antibytes.kfixture.generator.primitive
 import kotlin.random.Random
 import kotlin.random.nextUInt
 import tech.antibytes.kfixture.PublicApi
+import tech.antibytes.kfixture.generator.Generator
 
 internal class UIntegerGenerator(
     private val random: Random,
-) : PublicApi.RangedGenerator<UInt, UInt> {
+) : PublicApi.RangedGenerator<UInt, UInt>, Generator<UInt>() {
     override fun generate(): UInt = random.nextUInt()
-    override fun generate(predicate: (UInt) -> Boolean): UInt {
-        TODO("Not yet implemented")
-    }
 
-    override fun generate(from: UInt, to: UInt, predicate: (UInt?) -> Boolean): UInt = random.nextUInt(UIntRange(from, to))
+    override fun generate(
+        predicate: (UInt) -> Boolean,
+    ): UInt = returnFilteredValue(predicate, ::generate)
+
+    override fun generate(
+        from: UInt,
+        to: UInt,
+        predicate: (UInt?) -> Boolean,
+    ): UInt = returnFilteredValue(predicate) { random.nextUInt(UIntRange(from, to)) }
 }
