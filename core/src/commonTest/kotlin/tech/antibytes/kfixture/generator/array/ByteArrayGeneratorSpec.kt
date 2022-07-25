@@ -32,10 +32,10 @@ class ByteArrayGeneratorSpec {
     @Test
     @Suppress("UNCHECKED_CAST")
     @JsName("fn0")
-    fun `It fulfils Generator`() {
+    fun `It fulfils SignedNumericArrayGenerator`() {
         val generator: Any = ByteArrayGenerator(random, SignedNumberGeneratorStub())
 
-        assertTrue(generator is PublicApi.Generator<*>)
+        assertTrue(generator is PublicApi.SignedNumericArrayGenerator<*, *>)
     }
 
     @Test

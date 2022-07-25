@@ -11,8 +11,8 @@ import tech.antibytes.kfixture.PublicApi
 
 internal class UIntArrayGenerator(
     random: Random,
-    uShortGenerator: PublicApi.RangedGenerator<UInt, UInt>,
-) : RangedArrayNumberGenerator<UInt, UIntArray>(random, uShortGenerator) {
+    uIntGenerator: PublicApi.RangedGenerator<UInt, UInt>,
+) : RangedArrayNumberGenerator<UInt, UIntArray>(random, uIntGenerator) {
     override fun arrayBuilder(
         size: Int,
         onEach: (idx: Int) -> UInt,

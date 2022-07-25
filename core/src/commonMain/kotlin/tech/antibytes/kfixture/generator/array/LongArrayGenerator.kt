@@ -11,9 +11,9 @@ import tech.antibytes.kfixture.PublicApi
 
 internal class LongArrayGenerator(
     random: Random,
-    shortGenerator: PublicApi.SignedNumberGenerator<Long, Long>,
+    longGenerator: PublicApi.SignedNumberGenerator<Long, Long>,
 ) : PublicApi.SignedNumericArrayGenerator<Long, LongArray>,
-    SignedArrayNumberGenerator<Long, LongArray>(random, shortGenerator) {
+    SignedArrayNumberGenerator<Long, LongArray>(random, longGenerator) {
     override fun arrayBuilder(
         size: Int,
         onEach: (idx: Int) -> Long,
