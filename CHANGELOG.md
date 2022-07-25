@@ -43,6 +43,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - ShortArray
     - IntArray
     - LongArray
+* BooleanArrayGenerator is now a ArrayGenerator
 * DependentGeneratorFactory in order to build Generators on top of other Generators
 
 ### Changed

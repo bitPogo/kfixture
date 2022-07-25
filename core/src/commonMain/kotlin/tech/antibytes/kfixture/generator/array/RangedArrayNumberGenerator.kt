@@ -8,17 +8,13 @@ package tech.antibytes.kfixture.generator.array
 
 import kotlin.random.Random
 import tech.antibytes.kfixture.FixtureContract.ARRAY_LOWER_BOUND
-import tech.antibytes.kfixture.FixtureContract.ARRAY_UPPER_BOUND
 import tech.antibytes.kfixture.PublicApi
 
 internal abstract class RangedArrayNumberGenerator<T, R>(
     private val random: Random,
     private val numberGenerator: PublicApi.RangedGenerator<T, T>,
-) : PublicApi.RangedArrayGenerator<T, R> where T : Any, T : Comparable<T>, R : Any {
-    protected abstract fun arrayBuilder(size: Int, onEach: (idx: Int) -> T): R
-
-    protected fun chooseSize(): Int = random.nextInt(ARRAY_LOWER_BOUND, ARRAY_UPPER_BOUND)
-
+) : PublicApi.RangedArrayGenerator<T, R>, ArrayGenerator<T, R>(random, numberGenerator)
+    where T : Any, T : Comparable<T>, R : Any {
     private fun unpackRange(
         ranges: Array<out ClosedRange<T>>,
     ): Pair<T, T> {

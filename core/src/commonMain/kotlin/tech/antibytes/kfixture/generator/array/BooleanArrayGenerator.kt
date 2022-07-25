@@ -7,21 +7,14 @@
 package tech.antibytes.kfixture.generator.array
 
 import kotlin.random.Random
-import tech.antibytes.kfixture.FixtureContract.ARRAY_LOWER_BOUND
-import tech.antibytes.kfixture.FixtureContract.ARRAY_UPPER_BOUND
 import tech.antibytes.kfixture.PublicApi
 
 internal class BooleanArrayGenerator(
-    private val random: Random,
-) : PublicApi.Generator<BooleanArray> {
-    override fun generate(): BooleanArray {
-        val size = random.nextInt(ARRAY_LOWER_BOUND, ARRAY_UPPER_BOUND)
-        val array = BooleanArray(size)
-
-        repeat(size) { idx ->
-            array[idx] = random.nextBoolean()
-        }
-
-        return array
-    }
+    random: Random,
+    booleanGenerator: PublicApi.Generator<Boolean>,
+) : ArrayGenerator<Boolean, BooleanArray>(random, booleanGenerator) {
+    override fun arrayBuilder(
+        size: Int,
+        onEach: (idx: Int) -> Boolean,
+    ): BooleanArray = BooleanArray(size, onEach)
 }
