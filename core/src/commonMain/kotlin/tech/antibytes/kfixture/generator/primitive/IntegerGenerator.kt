@@ -9,17 +9,22 @@ package tech.antibytes.kfixture.generator.primitive
 import kotlin.random.Random
 import kotlin.random.nextInt
 import tech.antibytes.kfixture.PublicApi
+import tech.antibytes.kfixture.generator.Generator
 
 internal class IntegerGenerator(
     private val random: Random,
-) : PublicApi.SignedNumberGenerator<Int, Int> {
+) : PublicApi.SignedNumberGenerator<Int, Int>, Generator<Int>() {
     override fun generate(): Int = random.nextInt()
 
-    override fun generate(predicate: (Int) -> Boolean): Int {
-        TODO("Not yet implemented")
-    }
+    override fun generate(
+        predicate: (Int) -> Boolean
+    ): Int = returnFilteredValue(predicate, ::generate)
 
-    override fun generate(from: Int, to: Int, predicate: (Int?) -> Boolean): Int = random.nextInt(IntRange(from, to))
+    override fun generate(
+        from: Int,
+        to: Int,
+        predicate: (Int?) -> Boolean
+    ): Int = returnFilteredValue(predicate) { random.nextInt(IntRange(from, to)) }
 
     private fun resolveBoundary(sign: PublicApi.Sign): Pair<Int, Int> {
         return if (sign == PublicApi.Sign.POSITIVE) {
@@ -29,9 +34,12 @@ internal class IntegerGenerator(
         }
     }
 
-    override fun generate(sign: PublicApi.Sign, predicate: (Int?) -> Boolean): Int {
+    override fun generate(
+        sign: PublicApi.Sign,
+        predicate: (Int?) -> Boolean
+    ): Int {
         val (from, to) = resolveBoundary(sign)
-        return generate(from, to)
+        return returnFilteredValue(predicate) { generate(from, to) }
     }
 
     private companion object {
