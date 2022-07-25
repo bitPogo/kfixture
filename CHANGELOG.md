@@ -33,10 +33,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - UByteArray
     - UShortArray
     - UIntArray
+    - ULongArray
 * SignedArrayNumberGenerator for:
     - ByteArray
     - ShortArray
     - IntArray
+    - LongArray
 * DependentGeneratorFactory in order to build Generators on top of other Generators
 
 ### Changed

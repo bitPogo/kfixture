@@ -7,28 +7,14 @@
 package tech.antibytes.kfixture.generator.array
 
 import kotlin.random.Random
-import kotlin.random.nextUBytes
-import tech.antibytes.kfixture.FixtureContract.ARRAY_LOWER_BOUND
-import tech.antibytes.kfixture.FixtureContract.ARRAY_UPPER_BOUND
 import tech.antibytes.kfixture.PublicApi
 
 internal class ULongArrayGenerator(
-    private val random: Random,
-) : PublicApi.Generator<ULongArray> {
-    private fun generateULongArray(size: Int): ULongArray {
-        val raw = random.nextUBytes(size)
-        val fixture = ULongArray(size)
-
-        repeat(size) { idx ->
-            fixture[idx] = raw[idx].toULong()
-        }
-
-        return fixture
-    }
-
-    override fun generate(): ULongArray {
-        val size = random.nextInt(ARRAY_LOWER_BOUND, ARRAY_UPPER_BOUND)
-
-        return generateULongArray(size)
-    }
+    random: Random,
+    uLongGenerator: PublicApi.RangedGenerator<ULong, ULong>,
+) : RangedArrayNumberGenerator<ULong, ULongArray>(random, uLongGenerator) {
+    override fun arrayBuilder(
+        size: Int,
+        onEach: (idx: Int) -> ULong,
+    ): ULongArray = ULongArray(size, onEach)
 }

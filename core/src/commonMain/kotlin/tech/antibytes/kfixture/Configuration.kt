@@ -60,14 +60,12 @@ internal class Configuration(
             resolveClassName(Char::class) to CharGenerator(random),
             resolveClassName(CharArray::class) to CharArrayGenerator(random),
             resolveClassName(Long::class) to LongGenerator(random),
-            resolveClassName(LongArray::class) to LongArrayGenerator(random),
             resolveClassName(Double::class) to DoubleGenerator(random),
             resolveClassName(DoubleArray::class) to DoubleArrayGenerator(random),
             resolveClassName(String::class) to StringGenerator(random),
             resolveClassName(UShort::class) to UShortGenerator(random),
             resolveClassName(UInt::class) to UIntegerGenerator(random),
             resolveClassName(ULong::class) to ULongGenerator(random),
-            resolveClassName(ULongArray::class) to ULongArrayGenerator(random),
             resolveClassName(UByte::class) to UByteGenerator(random),
             resolveClassName(Any::class) to AnyGenerator,
             resolveClassName(Unit::class) to UnitGenerator,
@@ -112,6 +110,14 @@ internal class Configuration(
             this[resolveClassName(UIntArray::class)] = UIntArrayGenerator(
                 random,
                 this.resolveRangedGenerator(resolveClassName(UInt::class)),
+            )
+            this[resolveClassName(LongArray::class)] = LongArrayGenerator(
+                random,
+                this.resolveSignedGenerator(resolveClassName(Long::class)),
+            )
+            this[resolveClassName(ULongArray::class)] = ULongArrayGenerator(
+                random,
+                this.resolveRangedGenerator(resolveClassName(ULong::class)),
             )
         }
     }
