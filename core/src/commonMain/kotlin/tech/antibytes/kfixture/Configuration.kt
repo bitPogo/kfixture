@@ -12,6 +12,8 @@ import kotlin.reflect.KClass
 import tech.antibytes.kfixture.PublicApi.DependentGeneratorFactory
 import tech.antibytes.kfixture.PublicApi.Generator
 import tech.antibytes.kfixture.PublicApi.GeneratorFactory
+import tech.antibytes.kfixture.PublicApi.RangedGenerator
+import tech.antibytes.kfixture.PublicApi.SignedNumberGenerator
 import tech.antibytes.kfixture.generator.RandomWrapper
 import tech.antibytes.kfixture.generator.array.BooleanArrayGenerator
 import tech.antibytes.kfixture.generator.array.ByteArrayGenerator
@@ -52,7 +54,6 @@ internal class Configuration(
         return mutableMapOf(
             resolveClassName(Boolean::class) to BooleanGenerator(random),
             resolveClassName(Byte::class) to ByteGenerator(random),
-            resolveClassName(BooleanArray::class) to BooleanArrayGenerator(random),
             resolveClassName(Short::class) to ShortGenerator(random),
             resolveClassName(Int::class) to IntegerGenerator(random),
             resolveClassName(Float::class) to FloatGenerator(random),
@@ -69,20 +70,29 @@ internal class Configuration(
     }
 
     @Suppress("UNCHECKED_CAST")
+    private fun <T : Any, R : Generator<T>> Map<String, Generator<out Any>>.resolveGenerator(
+        key: String,
+    ): R = this[key] as R
+
+    @Suppress("UNCHECKED_CAST")
     private fun <T, R> Map<String, Generator<out Any>>.resolveRangedGenerator(
         key: String,
-    ): R where T : Any, T : Comparable<T>, R : PublicApi.RangedGenerator<T, T> = this[key] as R
+    ): R where T : Any, T : Comparable<T>, R : RangedGenerator<T, T> = this[key] as R
 
     @Suppress("UNCHECKED_CAST")
     private fun <T, R> Map<String, Generator<out Any>>.resolveSignedGenerator(
         key: String,
-    ): R where T : Any, T : Comparable<T>, R : PublicApi.SignedNumberGenerator<T, T> = this[key] as R
+    ): R where T : Any, T : Comparable<T>, R : SignedNumberGenerator<T, T> = this[key] as R
 
     @Suppress("UNCHECKED_CAST")
     private fun Map<String, Generator<out Any>>.initializeDefaultDependentGenerators(
         random: Random,
     ): Map<String, Generator<out Any>> {
         return this.toMutableMap().apply {
+            this[resolveClassName(BooleanArray::class)] = BooleanArrayGenerator(
+                random,
+                this.resolveGenerator(resolveClassName(Boolean::class)),
+            )
             this[resolveClassName(ByteArray::class)] = ByteArrayGenerator(
                 random,
                 this.resolveSignedGenerator(resolveClassName(Byte::class)),

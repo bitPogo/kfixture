@@ -7,7 +7,6 @@
 package tech.antibytes.kfixture.generator.array
 
 import kotlin.js.JsName
-import kotlin.random.Random
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -16,10 +15,10 @@ import kotlinx.atomicfu.AtomicRef
 import kotlinx.atomicfu.atomic
 import kotlinx.atomicfu.update
 import tech.antibytes.kfixture.PublicApi
+import tech.antibytes.kfixture.mock.GeneratorStub
 import tech.antibytes.kfixture.mock.RandomStub
 
 class BooleanArrayGeneratorSpec {
-    private val fixture = Random(0)
     private val random = RandomStub()
     private val range: AtomicRef<Pair<Int, Int>?> = atomic(null)
 
@@ -32,10 +31,10 @@ class BooleanArrayGeneratorSpec {
     @Test
     @Suppress("UNCHECKED_CAST")
     @JsName("fn0")
-    fun `It fulfils Generator`() {
-        val generator: Any = BooleanArrayGenerator(random)
+    fun `It fulfils ArrayGenerator`() {
+        val generator: Any = BooleanArrayGenerator(random, GeneratorStub())
 
-        assertTrue(generator is PublicApi.Generator<*>)
+        assertTrue(generator is PublicApi.ArrayGenerator<*>)
     }
 
     @Test
@@ -44,17 +43,18 @@ class BooleanArrayGeneratorSpec {
     fun `Given generate is called it returns a BooleanArray`() {
         // Given
         val size = 23
-        val generator = BooleanArrayGenerator(random)
-        val expected = List(size) { fixture.nextBoolean() }
+        val expectedValue = false
+        val expected = BooleanArray(size) { expectedValue }
+        val auxiliaryGenerator = GeneratorStub<Boolean>()
 
+        auxiliaryGenerator.generate = { expectedValue }
         random.nextIntRanged = { from, to ->
             range.update { Pair(from, to) }
             size
         }
-        val values = expected.toSharedMutableList()
-        random.nextBoolean = { values.removeAt(0) }
 
         // When
+        val generator = BooleanArrayGenerator(random, auxiliaryGenerator)
         val result = generator.generate()
 
         // Then
@@ -63,7 +63,33 @@ class BooleanArrayGeneratorSpec {
             expected = range.value,
         )
         assertTrue(
-            expected.toTypedArray().toBooleanArray().contentEquals(result),
+            expected.contentEquals(result),
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn2")
+    fun `Given generate is called with a size it returns a BooleanArray in the given size`() {
+        // Given
+        val size = 12
+        val expectedValue = true
+        val expected = BooleanArray(size) { expectedValue }
+        val auxiliaryGenerator = GeneratorStub<Boolean>()
+
+        auxiliaryGenerator.generate = { expectedValue }
+
+        // When
+        val generator = BooleanArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(size)
+
+        // Then
+        assertEquals(
+            actual = result.size,
+            expected = size,
+        )
+        assertTrue(
+            expected.contentEquals(result),
         )
     }
 }
