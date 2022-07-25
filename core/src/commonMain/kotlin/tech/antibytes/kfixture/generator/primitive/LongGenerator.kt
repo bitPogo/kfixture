@@ -9,17 +9,20 @@ package tech.antibytes.kfixture.generator.primitive
 import kotlin.random.Random
 import kotlin.random.nextLong
 import tech.antibytes.kfixture.PublicApi
+import tech.antibytes.kfixture.generator.Generator
 
 internal class LongGenerator(
     private val random: Random,
-) : PublicApi.SignedNumberGenerator<Long, Long> {
+) : PublicApi.SignedNumberGenerator<Long, Long>, Generator<Long>() {
     override fun generate(): Long = random.nextLong()
 
-    override fun generate(predicate: (Long) -> Boolean): Long {
-        TODO("Not yet implemented")
-    }
+    override fun generate(predicate: (Long) -> Boolean): Long = returnFilteredValue(predicate, ::generate)
 
-    override fun generate(from: Long, to: Long, predicate: (Long?) -> Boolean): Long = random.nextLong(LongRange(from, to))
+    override fun generate(
+        from: Long,
+        to: Long,
+        predicate: (Long?) -> Boolean,
+    ): Long = returnFilteredValue(predicate) { random.nextLong(LongRange(from, to)) }
 
     private fun resolveBoundary(sign: PublicApi.Sign): Pair<Long, Long> {
         return if (sign == PublicApi.Sign.POSITIVE) {
@@ -31,7 +34,7 @@ internal class LongGenerator(
 
     override fun generate(sign: PublicApi.Sign, predicate: (Long?) -> Boolean): Long {
         val (from, to) = resolveBoundary(sign)
-        return generate(from, to)
+        return returnFilteredValue(predicate) { generate(from, to) }
     }
 
     private companion object {
