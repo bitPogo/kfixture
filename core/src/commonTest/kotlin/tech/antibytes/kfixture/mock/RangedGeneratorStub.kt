@@ -9,7 +9,7 @@ package tech.antibytes.kfixture.mock
 import kotlin.js.JsName
 import tech.antibytes.kfixture.PublicApi
 
-class RangedGeneratorStub<T, R: Any>(
+class RangedGeneratorStub<T, R : Any>(
     @JsName("generateStub")
     var generate: (() -> R)? = null,
     @JsName("generateWithRangeStub")

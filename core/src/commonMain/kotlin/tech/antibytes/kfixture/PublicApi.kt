@@ -68,7 +68,8 @@ public interface PublicApi {
      * @param T the type which the Generator is referring to.
      * @author Matthias Geisler
      */
-    public interface RangedArrayGenerator<T, R : Any> : RangedGenerator<T, R>,
+    public interface RangedArrayGenerator<T, R : Any> :
+        RangedGenerator<T, R>,
         ArrayGenerator<R> where T : Any, T : Comparable<T> {
         /**
          * Generates a instance of given type in a given range.
@@ -94,7 +95,7 @@ public interface PublicApi {
          */
         @Throws(IllegalArgumentException::class)
         public fun generate(
-            vararg ranges: ClosedRange<T>
+            vararg ranges: ClosedRange<T>,
         ): R
 
         /**
@@ -137,8 +138,9 @@ public interface PublicApi {
      * @param T the type which the Generator is referring to.
      * @author Matthias Geisler
      */
-    public interface SignedNumericArrayGenerator<T, R : Any> : RangedArrayGenerator<T, R>,
-        SignedNumberGenerator<T, R>, ArrayGenerator<R> where T : Any, T : Comparable<T> {
+    public interface SignedNumericArrayGenerator<T, R : Any> :
+        RangedArrayGenerator<T, R>,
+        SignedNumberGenerator<T, R> where T : Any, T : Comparable<T> {
         /**
          * Generates a instance of given type in a given range.
          * @param size a fixed given size for the resulting Array.

@@ -81,7 +81,7 @@ internal class Configuration(
 
     @Suppress("UNCHECKED_CAST")
     private fun <T, R> Map<String, Generator<out Any>>.resolveSignedGenerator(
-        key: String
+        key: String,
     ): R where T : Any, T : Comparable<T>, R : PublicApi.SignedNumberGenerator<T, T> = this[key] as R
 
     @Suppress("UNCHECKED_CAST")
@@ -91,7 +91,7 @@ internal class Configuration(
         return this.toMutableMap().apply {
             this[resolveClassName(ByteArray::class)] = ByteArrayGenerator(
                 random,
-                this.resolveSignedGenerator(resolveClassName(Byte::class))
+                this.resolveSignedGenerator(resolveClassName(Byte::class)),
             )
         }
     }

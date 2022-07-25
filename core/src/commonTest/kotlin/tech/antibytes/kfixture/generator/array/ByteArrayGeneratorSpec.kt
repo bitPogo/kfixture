@@ -245,10 +245,10 @@ class ByteArrayGeneratorSpec {
             expected = Pair(1, 2),
         )
         assertTrue(
-            actual = expectedMin1.toInt() in capturedMin
+            actual = expectedMin1.toInt() in capturedMin,
         )
         assertTrue(
-            actual = expectedMin2.toInt() in capturedMin
+            actual = expectedMin2.toInt() in capturedMin,
         )
         assertTrue(
             actual = expectedMax1.toInt() in capturedMax,
@@ -313,10 +313,10 @@ class ByteArrayGeneratorSpec {
             expected = Pair(1, 2),
         )
         assertTrue(
-            actual = expectedMin1.toInt() in capturedMin
+            actual = expectedMin1.toInt() in capturedMin,
         )
         assertTrue(
-            actual = expectedMin2.toInt() in capturedMin
+            actual = expectedMin2.toInt() in capturedMin,
         )
         assertTrue(
             actual = expectedMax1.toInt() in capturedMax,
@@ -409,9 +409,7 @@ class ByteArrayGeneratorSpec {
     }
 }
 
-
-
 private data class ByteRange(
     override val start: Byte,
-    override val endInclusive: Byte
+    override val endInclusive: Byte,
 ) : ClosedRange<Byte>

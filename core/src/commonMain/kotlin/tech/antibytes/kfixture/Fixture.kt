@@ -10,9 +10,6 @@ import kotlin.jvm.JvmName
 import kotlin.random.Random
 import kotlin.reflect.KClass
 import kotlinx.atomicfu.atomic
-import tech.antibytes.kfixture.FixtureContract.COLLECTION_LOWER_BOUND
-import tech.antibytes.kfixture.FixtureContract.COLLECTION_UPPER_BOUND
-import tech.antibytes.kfixture.qualifier.resolveGeneratorId
 
 internal class Fixture(
     override val random: Random,
@@ -40,72 +37,9 @@ public fun kotlinFixture(
 
 @InternalAPI
 @PublishedApi
-internal val numberTypes: List<KClass<*>> = listOf(
-    Byte::class,
-    Short::class,
-    Int::class,
-    Float::class,
-    Long::class,
-    Double::class,
-)
-
-@InternalAPI
-@PublishedApi
-internal const val LIST_LOWER_BOUND: Int = 0
-
-@InternalAPI
-@PublishedApi
-internal inline fun <reified T> isNullable(): Boolean = null is T
-
-@InternalAPI
-@PublishedApi
-internal inline fun <reified T> Random.returnNull(): Boolean {
-    return if (isNullable<T>()) {
-        nextBoolean()
-    } else {
-        false
-    }
-}
-
-@InternalAPI
-@PublishedApi
-internal fun PublicApi.Fixture.determineCollectionSize(
-    size: Int?,
-): Int = size ?: random.nextInt(COLLECTION_LOWER_BOUND, COLLECTION_UPPER_BOUND)
-
-@InternalAPI
-@PublishedApi
 internal fun PublicApi.Fixture.pickAnListIndex(
     list: List<*>,
 ): Int = random.nextInt(LIST_LOWER_BOUND, list.size)
-
-@InternalAPI
-@PublishedApi
-internal fun PublicApi.Fixture.chooseNumberType(
-    qualifier: PublicApi.Qualifier?,
-): String {
-    val typeIdx = pickAnListIndex(numberTypes)
-
-    return resolveGeneratorId(
-        numberTypes[typeIdx],
-        qualifier,
-    )
-}
-
-@InternalAPI
-@PublishedApi
-internal inline fun <reified T> PublicApi.Fixture.resolveIdentifier(
-    qualifier: PublicApi.Qualifier?,
-): String {
-    return if (T::class == Number::class) {
-        chooseNumberType(qualifier)
-    } else {
-        resolveGeneratorId(
-            T::class as KClass<*>,
-            qualifier,
-        )
-    }
-}
 
 /**
  * Picks an value from a given Iterable.
@@ -135,6 +69,29 @@ public inline fun <reified T> PublicApi.Fixture.fixture(
         !generators.containsKey(id) -> throw IllegalStateException("Missing Generator for ClassID ($id).")
         returnNull -> null as T
         else -> generators[id]!!.generate() as T
+    }
+}
+
+/**
+ * Creates a value for a given type, excluding generics like List or Array.
+ * @param T the type which is supposed to be created.
+ * @param size determines amount of items.
+ * @param qualifier a optional qualifier for a special flavour of a type.
+ * @throws IllegalStateException if the no matching Generator was found for the given type.
+ */
+@Throws(IllegalStateException::class)
+public inline fun <reified T> PublicApi.Fixture.fixture(
+    size: Int,
+    qualifier: PublicApi.Qualifier? = null,
+): T {
+    val returnNull = random.returnNull<T>()
+    val id = resolveIdentifier<T>(qualifier)
+    val generator = generators[id]
+
+    return when {
+        generator !is PublicApi.ArrayGenerator<*> -> throw IllegalStateException("Missing Generator for ClassID ($id).")
+        returnNull -> null as T
+        else -> generator.generate(size) as T
     }
 }
 

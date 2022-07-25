@@ -12,10 +12,10 @@ import tech.antibytes.kfixture.PublicApi.SignedNumericArrayGenerator
 
 internal class ByteArrayGenerator(
     random: Random,
-    byteGenerator: SignedNumberGenerator<Byte, Byte>
+    byteGenerator: SignedNumberGenerator<Byte, Byte>,
 ) : SignedNumericArrayGenerator<Byte, ByteArray>, SignedArrayNumberGenerator<Byte, ByteArray>(random, byteGenerator) {
     override fun arrayBuilder(
         size: Int,
-        onEach: (idx: Int) -> Byte
+        onEach: (idx: Int) -> Byte,
     ): ByteArray = ByteArray(size, onEach)
 }
