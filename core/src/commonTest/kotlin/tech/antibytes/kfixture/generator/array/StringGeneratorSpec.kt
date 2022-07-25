@@ -4,7 +4,7 @@
  * Use of this source code is governed by Apache v2.0
  */
 
-package tech.antibytes.kfixture.generator.primitive
+package tech.antibytes.kfixture.generator.array
 
 import co.touchlab.stately.collections.sharedMutableListOf
 import kotlin.js.JsName
@@ -16,8 +16,6 @@ import kotlinx.atomicfu.AtomicRef
 import kotlinx.atomicfu.atomic
 import kotlinx.atomicfu.update
 import tech.antibytes.kfixture.PublicApi
-import tech.antibytes.kfixture.generator.array.StringGenerator
-import tech.antibytes.kfixture.generator.array.toSharedMutableList
 import tech.antibytes.kfixture.mock.RandomStub
 import tech.antibytes.kfixture.mock.RangedGeneratorStub
 
@@ -241,8 +239,8 @@ class StringGeneratorSpec {
         // When
         val generator = StringGenerator(random, auxiliaryGenerator)
         val result = generator.generate(
-            CharRange(expectedMin1, expectedMax1),
-            CharRange(expectedMin2, expectedMax2),
+            tech.antibytes.kfixture.generator.array.StringRange(expectedMin1, expectedMax1),
+            tech.antibytes.kfixture.generator.array.StringRange(expectedMin2, expectedMax2),
         )
 
         // Then
@@ -308,8 +306,8 @@ class StringGeneratorSpec {
         // When
         val generator = StringGenerator(random, auxiliaryGenerator)
         val result = generator.generate(
-            CharRange(expectedMin1, expectedMax1),
-            CharRange(expectedMin2, expectedMax2),
+            tech.antibytes.kfixture.generator.array.StringRange(expectedMin1, expectedMax1),
+            tech.antibytes.kfixture.generator.array.StringRange(expectedMin2, expectedMax2),
             size = expectedSize,
         )
 
@@ -337,7 +335,7 @@ class StringGeneratorSpec {
     }
 }
 
-private data class CharRange(
+private data class StringRange(
     override val start: Char,
     override val endInclusive: Char,
 ) : ClosedRange<Char>
