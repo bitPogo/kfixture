@@ -32,10 +32,10 @@ class UShortArrayGeneratorSpec {
     @Test
     @Suppress("UNCHECKED_CAST")
     @JsName("fn0")
-    fun `It fulfils Generator`() {
+    fun `It fulfils RangedArrayGenerator`() {
         val generator: Any = UShortArrayGenerator(random, RangedGeneratorStub())
 
-        assertTrue(generator is PublicApi.Generator<*>)
+        assertTrue(generator is PublicApi.RangedArrayGenerator<*, *>)
     }
 
     @Test

@@ -6,6 +6,7 @@
 
 package tech.antibytes.kfixture.generator.array
 
+import co.touchlab.stately.collections.sharedMutableListOf
 import kotlin.js.JsName
 import kotlin.test.AfterTest
 import kotlin.test.Test
@@ -16,6 +17,7 @@ import kotlinx.atomicfu.atomic
 import kotlinx.atomicfu.update
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.mock.RandomStub
+import tech.antibytes.kfixture.mock.SignedNumberGeneratorStub
 
 class FloatArrayGeneratorSpec {
     private val random = RandomStub()
@@ -30,10 +32,10 @@ class FloatArrayGeneratorSpec {
     @Test
     @Suppress("UNCHECKED_CAST")
     @JsName("fn0")
-    fun `It fulfils Generator`() {
-        val generator: Any = FloatArrayGenerator(random)
+    fun `It fulfils RangedArrayGenerator`() {
+        val generator: Any = FloatArrayGenerator(random, SignedNumberGeneratorStub())
 
-        assertTrue(generator is PublicApi.Generator<*>)
+        assertTrue(generator is PublicApi.RangedArrayGenerator<*, *>)
     }
 
     @Test
@@ -41,27 +43,20 @@ class FloatArrayGeneratorSpec {
     @JsName("fn1")
     fun `Given generate is called it returns a FloatArray`() {
         // Given
-        val size = 3
-        val expected = FloatArray(size)
-        val expectedFloatPoints: List<Float> = mutableListOf(
-            0.3.toFloat(),
-            0.42.toFloat(),
-            0.23.toFloat(),
-        )
-        val generator = FloatArrayGenerator(random)
+        val size = 23
+        val expectedValue = 23.toFloat()
+        val expected = FloatArray(size) { expectedValue }
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Float, Float>()
 
+        auxiliaryGenerator.generate = { expectedValue }
         random.nextIntRanged = { from, to ->
             range.update { Pair(from, to) }
             size
         }
 
-        val floatPoints = expectedFloatPoints.toSharedMutableList()
-        random.nextBytesArray = { arraySize -> ByteArray(arraySize) }
-
-        random.nextFloat = { floatPoints.removeAt(0) }
-
         // When
-        val result: FloatArray = generator.generate()
+        val generator = FloatArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate()
 
         // Then
         assertEquals(
@@ -69,9 +64,273 @@ class FloatArrayGeneratorSpec {
             expected = range.value,
         )
         assertTrue(
-            expected.mapIndexed { idx, byte ->
-                byte.toInt() + expectedFloatPoints[idx]
-            }.toFloatArray().contentEquals(result),
+            expected.contentEquals(result),
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn2")
+    fun `Given generate is called with a size it returns a FloatArray in the given size`() {
+        // Given
+        val size = 12
+        val expectedValue = 23.toFloat()
+        val expected = FloatArray(size) { expectedValue }
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Float, Float>()
+
+        auxiliaryGenerator.generate = { expectedValue }
+
+        // When
+        val generator = FloatArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(size)
+
+        // Then
+        assertEquals(
+            actual = result.size,
+            expected = size,
+        )
+        assertTrue(
+            expected.contentEquals(result),
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn3")
+    fun `Given generate is called with boundaries it returns a FloatArray`() {
+        // Given
+        val size = 3
+        val expectedMin = 0.toFloat()
+        val expectedMax = 42.toFloat()
+
+        var capturedMin: Int? = null
+        var capturedMax: Int? = null
+
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Float, Float>()
+
+        val expected = listOf(
+            23.toFloat(),
+            7.toFloat(),
+            39.toFloat(),
+        )
+        val consumableItem = expected.toSharedMutableList()
+
+        random.nextIntRanged = { from, to ->
+            range.update { Pair(from, to) }
+            size
+        }
+
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax ->
+            capturedMin = givenMin.toInt()
+            capturedMax = givenMax.toInt()
+
+            consumableItem.removeFirst()
+        }
+
+        // When
+        val generator = FloatArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(from = expectedMin, to = expectedMax)
+
+        // Then
+        assertEquals(
+            actual = Pair(1, 10),
+            expected = range.value,
+        )
+        assertEquals(
+            actual = capturedMin,
+            expected = expectedMin.toInt(),
+        )
+        assertEquals(
+            actual = capturedMax,
+            expected = expectedMax.toInt(),
+        )
+        assertTrue(
+            expected.toFloatArray().contentEquals(result),
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn4")
+    fun `Given generate is called with boundaries it returns a FloatArray with a given Size`() {
+        // Given
+        val size = 3
+        val expectedMin = 0.toFloat()
+        val expectedMax = 42.toFloat()
+
+        var capturedMin: Int? = null
+        var capturedMax: Int? = null
+
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Float, Float>()
+
+        val expected = listOf(
+            23.toFloat(),
+            7.toFloat(),
+            39.toFloat(),
+        )
+        val consumableItem = expected.toSharedMutableList()
+
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax ->
+            capturedMin = givenMin.toInt()
+            capturedMax = givenMax.toInt()
+
+            consumableItem.removeFirst()
+        }
+
+        // When
+        val generator = FloatArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(from = expectedMin, to = expectedMax, size = size)
+
+        // Then
+        assertEquals(
+            actual = capturedMin,
+            expected = expectedMin.toInt(),
+        )
+        assertEquals(
+            actual = capturedMax,
+            expected = expectedMax.toInt(),
+        )
+        assertTrue(
+            expected.toFloatArray().contentEquals(result),
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn5")
+    fun `Given generate is called with ranges it returns a FloatArray`() {
+        // Given
+        val expectedMin1 = 0.toFloat()
+        val expectedMax1 = 42.toFloat()
+        val expectedMin2 = 3.toFloat()
+        val expectedMax2 = 41.toFloat()
+
+        val capturedMin: MutableList<Int> = sharedMutableListOf()
+        val capturedMax: MutableList<Int> = sharedMutableListOf()
+
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Float, Float>()
+
+        val expected = listOf(
+            23.toFloat(),
+            7.toFloat(),
+            39.toFloat(),
+        )
+        val ranges = sharedMutableListOf(3, 1, 0, 1)
+
+        val consumableItem = expected.toSharedMutableList()
+
+        random.nextIntRanged = { from, to ->
+            range.update { Pair(from, to) }
+            ranges.removeFirst()
+        }
+
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax ->
+            capturedMin.add(givenMin.toInt())
+            capturedMax.add(givenMax.toInt())
+
+            consumableItem.removeFirst()
+        }
+
+        // When
+        val generator = FloatArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(
+            FloatRange(expectedMin1, expectedMax1),
+            FloatRange(expectedMin2, expectedMax2),
+        )
+
+        // Then
+        assertEquals(
+            actual = range.value,
+            expected = Pair(1, 2),
+        )
+        assertTrue(
+            actual = expectedMin1.toInt() in capturedMin,
+        )
+        assertTrue(
+            actual = expectedMin2.toInt() in capturedMin,
+        )
+        assertTrue(
+            actual = expectedMax1.toInt() in capturedMax,
+        )
+        assertTrue(
+            actual = expectedMax2.toInt() in capturedMax,
+        )
+
+        assertTrue(
+            expected.toFloatArray().contentEquals(result),
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn6")
+    fun `Given generate is called with ranges it returns a FloatArray with a given Size`() {
+        // Given
+        val expectedSize = 3
+        val expectedMin1 = 0.toFloat()
+        val expectedMax1 = 42.toFloat()
+        val expectedMin2 = 3.toFloat()
+        val expectedMax2 = 41.toFloat()
+
+        val capturedMin: MutableList<Int> = sharedMutableListOf()
+        val capturedMax: MutableList<Int> = sharedMutableListOf()
+
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Float, Float>()
+
+        val expected = listOf(
+            23.toFloat(),
+            7.toFloat(),
+            39.toFloat(),
+        )
+        val ranges = sharedMutableListOf(1, 0, 1)
+
+        val consumableItem = expected.toSharedMutableList()
+
+        random.nextIntRanged = { from, to ->
+            range.update { Pair(from, to) }
+            ranges.removeFirst()
+        }
+
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax ->
+            capturedMin.add(givenMin.toInt())
+            capturedMax.add(givenMax.toInt())
+
+            consumableItem.removeFirst()
+        }
+
+        // When
+        val generator = FloatArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(
+            FloatRange(expectedMin1, expectedMax1),
+            FloatRange(expectedMin2, expectedMax2),
+            size = expectedSize,
+        )
+
+        // Then
+        assertEquals(
+            actual = range.value,
+            expected = Pair(1, 2),
+        )
+        assertTrue(
+            actual = expectedMin1.toInt() in capturedMin,
+        )
+        assertTrue(
+            actual = expectedMin2.toInt() in capturedMin,
+        )
+        assertTrue(
+            actual = expectedMax1.toInt() in capturedMax,
+        )
+        assertTrue(
+            actual = expectedMax2.toInt() in capturedMax,
+        )
+
+        assertTrue(
+            expected.toFloatArray().contentEquals(result),
         )
     }
 }
+
+private data class FloatRange(
+    override val start: Float,
+    override val endInclusive: Float,
+) : ClosedRange<Float>
