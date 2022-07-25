@@ -29,6 +29,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - Long
     - Float
     - Double
+* RangedArrayGenerator for:
+    - UByteArray
 * SignedArrayNumberGenerator for:
     - ByteArray
 * DependentGeneratorFactory in order to build Generators on top of other Generators
