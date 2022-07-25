@@ -14,6 +14,10 @@ internal class ShortGenerator(
 ) : PublicApi.SignedNumberGenerator<Short, Short> {
     override fun generate(): Short = generate(Short.MIN_VALUE, Short.MAX_VALUE)
 
+    override fun generate(predicate: (Short) -> Boolean): Short {
+        TODO("Not yet implemented")
+    }
+
     override fun generate(from: Short, to: Short): Short {
         return random.nextInt(
             from = from.toInt(),

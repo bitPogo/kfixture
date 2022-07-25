@@ -348,6 +348,10 @@ private class TestGenerator : PublicApi.Generator<TestClass> {
             }
         }
     }
+
+    override fun generate(predicate: (TestClass) -> Boolean): TestClass {
+        TODO("Not yet implemented")
+    }
 }
 
 private data class TestDependentClass(val value: String = "testd")
@@ -379,5 +383,9 @@ private class TestDependentGenerator : PublicApi.Generator<TestDependentClass> {
                 lastGenerators = generators.toMap()
             }
         }
+    }
+
+    override fun generate(predicate: (TestDependentClass) -> Boolean): TestDependentClass {
+        TODO("Not yet implemented")
     }
 }

@@ -15,6 +15,9 @@ internal class CharGenerator(
     private val random: Random,
 ) : PublicApi.RangedGenerator<Char, Char> {
     override fun generate(): Char = generate(CHAR_LOWER_BOUND, CHAR_UPPER_BOUND)
+    override fun generate(predicate: (Char) -> Boolean): Char {
+        TODO("Not yet implemented")
+    }
 
     override fun generate(from: Char, to: Char): Char = random.nextInt(from.code, to.code).toChar()
 }

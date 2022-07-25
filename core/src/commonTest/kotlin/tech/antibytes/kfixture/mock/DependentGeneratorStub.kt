@@ -19,6 +19,10 @@ class DependentGeneratorStub<T : Any>(
     override fun generate(): T {
         return generate?.invoke() ?: throw RuntimeException("Missing sideeffect for generate.")
     }
+
+    override fun generate(predicate: (T) -> Boolean): T {
+        TODO("Not yet implemented")
+    }
 }
 
 class DependentGeneratorFactoryStub<T : Any>(

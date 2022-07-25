@@ -11,6 +11,8 @@ import kotlin.test.Test
 import kotlin.test.assertSame
 import kotlin.test.assertTrue
 import tech.antibytes.kfixture.PublicApi
+import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 
 class UnitGeneratorSpec {
     @Test
@@ -31,6 +33,23 @@ class UnitGeneratorSpec {
         assertSame(
             actual = actual,
             expected = Unit,
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn2")
+    fun `Given generate is called with a filter it fails`() {
+        // Then
+        val error = assertFailsWith<IllegalStateException> {
+            // When
+            UnitGenerator.generate { true }
+        }
+
+        // Then
+        assertEquals(
+            actual = error.message,
+            expected = "Unit cannot be filtered!",
         )
     }
 }

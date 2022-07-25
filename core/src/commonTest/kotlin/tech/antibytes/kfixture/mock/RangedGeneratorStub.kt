@@ -23,4 +23,8 @@ class RangedGeneratorStub<T, R : Any>(
         return generateWithRange?.invoke(from, to)
             ?: throw RuntimeException("Missing SideEffect for generateWithRange.")
     }
+
+    override fun generate(predicate: (R) -> Boolean): R {
+        TODO("Not yet implemented")
+    }
 }

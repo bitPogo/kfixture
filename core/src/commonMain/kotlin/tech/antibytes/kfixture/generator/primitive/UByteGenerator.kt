@@ -17,6 +17,10 @@ internal class UByteGenerator(
         to = UByte.MAX_VALUE,
     )
 
+    override fun generate(predicate: (UByte) -> Boolean): UByte {
+        TODO("Not yet implemented")
+    }
+
     override fun generate(from: UByte, to: UByte): UByte {
         return random.nextInt(
             from = from.toInt(),

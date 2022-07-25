@@ -22,4 +22,8 @@ internal abstract class ArrayGenerator<T : Any, R : Any>(
     override fun generate(size: Int): R = arrayBuilder(size) { generator.generate() }
 
     override fun generate(): R = generate(chooseSize())
+
+    override fun generate(predicate: (R) -> Boolean): R {
+        TODO("Not yet implemented")
+    }
 }

@@ -13,4 +13,7 @@ internal class BooleanGenerator(
     private val random: Random,
 ) : PublicApi.Generator<Boolean> {
     override fun generate(): Boolean = random.nextBoolean()
+    override fun generate(predicate: (Boolean) -> Boolean): Boolean {
+        throw IllegalStateException("Boolean cannot be filtered, use a constant value instead!")
+    }
 }

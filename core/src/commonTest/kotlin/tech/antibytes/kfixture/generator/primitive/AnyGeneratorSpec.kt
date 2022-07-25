@@ -11,6 +11,8 @@ import kotlin.test.Test
 import kotlin.test.assertNotSame
 import kotlin.test.assertTrue
 import tech.antibytes.kfixture.PublicApi
+import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 
 class AnyGeneratorSpec {
     @Test
@@ -43,6 +45,23 @@ class AnyGeneratorSpec {
         assertNotSame(
             actual = obj1,
             illegal = obj2,
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn3")
+    fun `Given generate is called with a filter it fails`() {
+        // Then
+        val error = assertFailsWith<IllegalStateException> {
+            // When
+            AnyGenerator.generate { true }
+        }
+
+        // Then
+        assertEquals(
+            actual = error.message,
+            expected = "Any cannot be filtered!",
         )
     }
 }

@@ -25,6 +25,13 @@ public interface PublicApi {
          * @return a instance of a given type.
          */
         public fun generate(): T
+
+        /**
+         * Generates a instance of given type if it matches the given predicate.
+         * @param predicate which filters the the generated instances.
+         * @return a instance of a given type.
+         */
+        public fun generate(predicate: (T) -> Boolean): T
     }
 
     /**

@@ -16,6 +16,10 @@ internal class ByteGenerator(
 ) : PublicApi.SignedNumberGenerator<Byte, Byte> {
     override fun generate(): Byte = generate(MIN_VALUE, MAX_VALUE)
 
+    override fun generate(predicate: (Byte) -> Boolean): Byte {
+        TODO("Not yet implemented")
+    }
+
     override fun generate(from: Byte, to: Byte): Byte {
         return random.nextInt(
             from = from.toInt(),

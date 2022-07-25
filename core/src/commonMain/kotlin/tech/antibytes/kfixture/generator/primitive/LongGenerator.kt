@@ -15,6 +15,10 @@ internal class LongGenerator(
 ) : PublicApi.SignedNumberGenerator<Long, Long> {
     override fun generate(): Long = random.nextLong()
 
+    override fun generate(predicate: (Long) -> Boolean): Long {
+        TODO("Not yet implemented")
+    }
+
     override fun generate(from: Long, to: Long): Long = random.nextLong(LongRange(from, to))
 
     private fun resolveBoundary(sign: PublicApi.Sign): Pair<Long, Long> {

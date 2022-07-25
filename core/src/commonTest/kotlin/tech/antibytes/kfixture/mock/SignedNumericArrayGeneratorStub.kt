@@ -50,4 +50,8 @@ class SignedNumericArrayGeneratorStub<T, R : Any>(
     override fun generate(vararg ranges: ClosedRange<T>, size: Int): R {
         TODO("Not yet implemented")
     }
+
+    override fun generate(predicate: (R) -> Boolean): R {
+        TODO("Not yet implemented")
+    }
 }

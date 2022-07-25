@@ -30,4 +30,8 @@ class SignedNumberGeneratorStub<T, R : Any>(
         return generateWithSign?.invoke(sign)
             ?: throw RuntimeException("Missing SideEffect for generateWithType.")
     }
+
+    override fun generate(predicate: (R) -> Boolean): R {
+        TODO("Not yet implemented")
+    }
 }

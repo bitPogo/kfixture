@@ -14,6 +14,10 @@ internal class DoubleGenerator(
 ) : PublicApi.SignedNumberGenerator<Double, Double> {
     override fun generate(): Double = generate(Double.MIN_VALUE, Double.MAX_VALUE)
 
+    override fun generate(predicate: (Double) -> Boolean): Double {
+        TODO("Not yet implemented")
+    }
+
     private fun fill(lowerBound: Double, limit: Double): Double {
         return if (random.nextBoolean()) {
             limit
