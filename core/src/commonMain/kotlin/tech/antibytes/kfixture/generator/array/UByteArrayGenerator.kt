@@ -7,16 +7,14 @@
 package tech.antibytes.kfixture.generator.array
 
 import kotlin.random.Random
-import kotlin.random.nextUBytes
-import tech.antibytes.kfixture.FixtureContract.ARRAY_LOWER_BOUND
-import tech.antibytes.kfixture.FixtureContract.ARRAY_UPPER_BOUND
 import tech.antibytes.kfixture.PublicApi
 
 internal class UByteArrayGenerator(
-    private val random: Random,
-) : PublicApi.Generator<UByteArray> {
-    override fun generate(): UByteArray {
-        val size = random.nextInt(ARRAY_LOWER_BOUND, ARRAY_UPPER_BOUND)
-        return random.nextUBytes(size)
-    }
+    random: Random,
+    uByteArrayGenerator: PublicApi.RangedGenerator<UByte, UByte>,
+) : RangedArrayNumberGenerator<UByte, UByteArray>(random, uByteArrayGenerator) {
+    override fun arrayBuilder(
+        size: Int,
+        onEach: (idx: Int) -> UByte,
+    ): UByteArray = UByteArray(size, onEach)
 }

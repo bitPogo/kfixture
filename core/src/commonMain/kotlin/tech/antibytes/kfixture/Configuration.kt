@@ -73,11 +73,15 @@ internal class Configuration(
             resolveClassName(ULong::class) to ULongGenerator(random),
             resolveClassName(ULongArray::class) to ULongArrayGenerator(random),
             resolveClassName(UByte::class) to UByteGenerator(random),
-            resolveClassName(UByteArray::class) to UByteArrayGenerator(random),
             resolveClassName(Any::class) to AnyGenerator,
             resolveClassName(Unit::class) to UnitGenerator,
         )
     }
+
+    @Suppress("UNCHECKED_CAST")
+    private fun <T, R> Map<String, Generator<out Any>>.resolveRangedGenerator(
+        key: String,
+    ): R where T : Any, T : Comparable<T>, R : PublicApi.RangedGenerator<T, T> = this[key] as R
 
     @Suppress("UNCHECKED_CAST")
     private fun <T, R> Map<String, Generator<out Any>>.resolveSignedGenerator(
@@ -92,6 +96,10 @@ internal class Configuration(
             this[resolveClassName(ByteArray::class)] = ByteArrayGenerator(
                 random,
                 this.resolveSignedGenerator(resolveClassName(Byte::class)),
+            )
+            this[resolveClassName(UByteArray::class)] = UByteArrayGenerator(
+                random,
+                this.resolveRangedGenerator(resolveClassName(UByte::class)),
             )
         }
     }
