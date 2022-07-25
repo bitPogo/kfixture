@@ -20,11 +20,11 @@ import tech.antibytes.kfixture.fixture
 import tech.antibytes.kfixture.int
 import tech.antibytes.kfixture.mock.GeneratorStub
 import tech.antibytes.kfixture.mock.RandomStub
-import tech.antibytes.kfixture.mock.RangedGeneratorStub
+import tech.antibytes.kfixture.mock.RangedNumericArrayGeneratorStub
 import tech.antibytes.kfixture.qualifier.StringQualifier
 import tech.antibytes.kfixture.resolveClassName
 
-class RangedFixtureSpec {
+class RangedNumericArrayFixtureSpec {
     private val random = RandomStub()
     private val capturedMinimum = atomic(-1)
     private val capturedMaximum = atomic(-1)
@@ -51,8 +51,8 @@ class RangedFixtureSpec {
     fun `Given fixture is called with a upper and lower bound it fails if the Type has no corresponding Generator`() {
         // Given
         val expected = 23
-        val generator = RangedGeneratorStub<Int, Int>()
-        generator.generateWithRange = { _, _ ->
+        val generator = RangedNumericArrayGeneratorStub<Int, Int>()
+        generator.generateWithRange = { _, _, _ ->
             expected
         }
 
@@ -96,6 +96,7 @@ class RangedFixtureSpec {
             fixture.fixture<Int, Int>(
                 from = 0,
                 to = 23,
+                size = 42,
             )
         }
 
@@ -113,14 +114,17 @@ class RangedFixtureSpec {
         val expected = 23
         val expectedFrom = 12
         val expectedTo = 42
-        val generator = RangedGeneratorStub<Int, Int>()
+        val expectedSize = 97
+        val generator = RangedNumericArrayGeneratorStub<Int, Int>()
 
         var capturedFrom: Int? = null
         var capturedTo: Int? = null
+        var capturedSize: Int? = null
 
-        generator.generateWithRange = { givenFrom, givenTo ->
+        generator.generateWithRange = { givenFrom, givenTo, givenSize ->
             capturedFrom = givenFrom
             capturedTo = givenTo
+            capturedSize = givenSize
 
             expected
         }
@@ -134,6 +138,7 @@ class RangedFixtureSpec {
         val result: Int = fixture.fixture(
             from = expectedFrom,
             to = expectedTo,
+            size = expectedSize,
         )
 
         // Then
@@ -149,6 +154,10 @@ class RangedFixtureSpec {
             actual = capturedTo,
             expected = expectedTo,
         )
+        assertEquals(
+            actual = capturedSize,
+            expected = expectedSize,
+        )
     }
 
     @Test
@@ -159,14 +168,17 @@ class RangedFixtureSpec {
         val expected = 23
         val expectedFrom = 12
         val expectedTo = 42
-        val generator = RangedGeneratorStub<Int, Int>()
+        val expectedSize = 39
+        val generator = RangedNumericArrayGeneratorStub<Int, Int>()
 
         var capturedFrom: Int? = null
         var capturedTo: Int? = null
+        var capturedSize: Int? = null
 
-        generator.generateWithRange = { givenFrom, givenTo ->
+        generator.generateWithRange = { givenFrom, givenTo, givenSize ->
             capturedFrom = givenFrom
             capturedTo = givenTo
+            capturedSize = givenSize
 
             expected
         }
@@ -182,12 +194,14 @@ class RangedFixtureSpec {
         val result: Int? = fixture.fixture(
             from = expectedFrom,
             to = expectedTo,
+            size = expectedSize,
         )
 
         // Then
         assertNull(result)
         assertNull(capturedFrom)
         assertNull(capturedTo)
+        assertNull(capturedSize)
     }
 
     @Test
@@ -198,15 +212,18 @@ class RangedFixtureSpec {
         val expected = 23
         val expectedFrom = 12
         val expectedTo = 42
+        val expectedSize = 39
         val qualifier = "test"
-        val generator = RangedGeneratorStub<Int, Int>()
+        val generator = RangedNumericArrayGeneratorStub<Int, Int>()
 
         var capturedFrom: Int? = null
         var capturedTo: Int? = null
+        var capturedSize: Int? = null
 
-        generator.generateWithRange = { givenFrom, givenTo ->
+        generator.generateWithRange = { givenFrom, givenTo, givenSize ->
             capturedFrom = givenFrom
             capturedTo = givenTo
+            capturedSize = givenSize
 
             expected
         }
@@ -223,6 +240,7 @@ class RangedFixtureSpec {
         val result: Int = fixture.fixture(
             from = expectedFrom,
             to = expectedTo,
+            size = expectedSize,
             qualifier = StringQualifier(qualifier),
         )
 
@@ -239,6 +257,10 @@ class RangedFixtureSpec {
             actual = capturedTo,
             expected = expectedTo,
         )
+        assertEquals(
+            actual = capturedSize,
+            expected = expectedSize,
+        )
     }
 
     @Test
@@ -247,8 +269,8 @@ class RangedFixtureSpec {
     fun `Given fixture is called with a range it fails if the Type has no corresponding Generator`() {
         // Given
         val expected = 23
-        val generator = RangedGeneratorStub<Int, Int>()
-        generator.generateWithRange = { _, _ ->
+        val generator = RangedNumericArrayGeneratorStub<Int, Int>()
+        generator.generateWithRange = { _, _, _ ->
             expected
         }
 
@@ -260,7 +282,7 @@ class RangedFixtureSpec {
         // Then
         val error = assertFailsWith<RuntimeException> {
             // When
-            fixture.fixture<Int, Int>(range = 0..23)
+            fixture.fixture<Int, Int>(ranges = arrayOf(0..23))
         }
 
         assertEquals(
@@ -272,6 +294,34 @@ class RangedFixtureSpec {
     @Test
     @Suppress("UNCHECKED_CAST")
     @JsName("fn7")
+    fun `Given fixture is called with a range and size it fails if the Type has no corresponding Generator`() {
+        // Given
+        val expected = 23
+        val generator = RangedNumericArrayGeneratorStub<Int, Int>()
+        generator.generateWithRange = { _, _, _ ->
+            expected
+        }
+
+        // Ensure stable names since reified is in play
+        resolveClassName(Int::class)
+
+        val fixture = Fixture(random, emptyMap())
+
+        // Then
+        val error = assertFailsWith<RuntimeException> {
+            // When
+            fixture.fixture<Int, Int>(ranges = arrayOf(0..23), size = 23)
+        }
+
+        assertEquals(
+            actual = error.message,
+            expected = "Missing Generator for ClassID ($int).",
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn8")
     fun `Given fixture is called with a range it fails the corresponding Generator is not a RangedGenerator`() {
         // Given
         val expected = 23
@@ -286,7 +336,7 @@ class RangedFixtureSpec {
         // Then
         val error = assertFailsWith<RuntimeException> {
             // When
-            fixture.fixture<Int, Int>(range = 0..23)
+            fixture.fixture<Int, Int>(ranges = arrayOf(0..23))
         }
 
         assertEquals(
@@ -297,20 +347,43 @@ class RangedFixtureSpec {
 
     @Test
     @Suppress("UNCHECKED_CAST")
-    @JsName("fn8")
+    @JsName("fn9")
+    fun `Given fixture is called with a range and size it fails the corresponding Generator is not a RangedGenerator`() {
+        // Given
+        val expected = 23
+        val generator = GeneratorStub<Int>()
+        generator.generate = { expected }
+
+        // Ensure stable names since reified is in play
+        resolveClassName(Int::class)
+
+        val fixture = Fixture(random, mapOf(int to generator))
+
+        // Then
+        val error = assertFailsWith<RuntimeException> {
+            // When
+            fixture.fixture<Int, Int>(ranges = arrayOf(0..23), size = 23)
+        }
+
+        assertEquals(
+            actual = error.message,
+            expected = "Missing Generator for ClassID ($int).",
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn10")
     fun `Given fixture is called with a range it returns a Fixture for the derived Type`() {
         // Given
         val expected = 23
-        val expectedFrom = 12
-        val expectedTo = 42
-        val generator = RangedGeneratorStub<Int, Int>()
+        val expectedRange = 12..42
+        val generator = RangedNumericArrayGeneratorStub<Int, Int>()
 
-        var capturedFrom: Int? = null
-        var capturedTo: Int? = null
+        var capturedRange: Array<out ClosedRange<Int>>? = null
 
-        generator.generateWithRange = { givenFrom, givenTo ->
-            capturedFrom = givenFrom
-            capturedTo = givenTo
+        generator.generateWithRanges = { givenRange ->
+            capturedRange = givenRange
 
             expected
         }
@@ -321,39 +394,73 @@ class RangedFixtureSpec {
         val fixture = Fixture(random, mapOf(int to generator))
 
         // When
-        val result: Int = fixture.fixture(range = expectedFrom..expectedTo)
+        val result: Int = fixture.fixture(ranges = arrayOf(expectedRange))
 
         // Then
         assertEquals(
             actual = result,
             expected = expected,
         )
+        assertTrue {
+            capturedRange.contentEquals(arrayOf(expectedRange))
+        }
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn11")
+    fun `Given fixture is called with a range and size it returns a Fixture for the derived Type`() {
+        // Given
+        val expected = 23
+        val expectedRange = 12..42
+        val expectedSize = 39
+        val generator = RangedNumericArrayGeneratorStub<Int, Int>()
+
+        var capturedRange: Array<out ClosedRange<Int>>? = null
+        var capturedSize: Int? = null
+
+        generator.generateWithRangesAndSize = { givenRange, givenSize ->
+            capturedRange = givenRange
+            capturedSize = givenSize
+
+            expected
+        }
+
+        // Ensure stable names since reified is in play
+        resolveClassName(Int::class)
+
+        val fixture = Fixture(random, mapOf(int to generator))
+
+        // When
+        val result: Int = fixture.fixture(expectedRange, size = expectedSize)
+
+        // Then
         assertEquals(
-            actual = capturedFrom,
-            expected = expectedFrom,
+            actual = result,
+            expected = expected,
         )
+        assertTrue {
+            capturedRange.contentEquals(arrayOf(expectedRange))
+        }
         assertEquals(
-            actual = capturedTo,
-            expected = expectedTo,
+            actual = capturedSize,
+            expected = expectedSize,
         )
     }
 
     @Test
     @Suppress("UNCHECKED_CAST")
-    @JsName("fn9")
+    @JsName("fn12")
     fun `Given fixture is called with a range it returns a Fixture while respecting nullability`() {
         // Given
         val expected = 23
-        val expectedFrom = 12
-        val expectedTo = 42
-        val generator = RangedGeneratorStub<Int, Int>()
+        val expectedRange = 12..42
+        val generator = RangedNumericArrayGeneratorStub<Int, Int>()
 
-        var capturedFrom: Int? = null
-        var capturedTo: Int? = null
+        var capturedRange: Array<out ClosedRange<Int>>? = null
 
-        generator.generateWithRange = { givenFrom, givenTo ->
-            capturedFrom = givenFrom
-            capturedTo = givenTo
+        generator.generateWithRanges = { givenRange ->
+            capturedRange = givenRange
 
             expected
         }
@@ -366,31 +473,63 @@ class RangedFixtureSpec {
         val fixture = Fixture(random, mapOf(int to generator))
 
         // When
-        val result: Int? = fixture.fixture(range = expectedFrom..expectedTo)
+        val result: Int? = fixture.fixture(ranges = arrayOf(expectedRange))
 
         // Then
         assertNull(result)
-        assertNull(capturedFrom)
-        assertNull(capturedTo)
+        assertNull(capturedRange)
     }
 
     @Test
     @Suppress("UNCHECKED_CAST")
-    @JsName("fn10")
+    @JsName("fn13")
+    fun `Given fixture is called with a range and size it returns a Fixture while respecting nullability`() {
+        // Given
+        val expected = 23
+        val expectedRange = 12..42
+        val expectedSize = 39
+        val generator = RangedNumericArrayGeneratorStub<Int, Int>()
+
+        var capturedRange: Array<out ClosedRange<Int>>? = null
+        var capturedSize: Int? = null
+
+        generator.generateWithRangesAndSize = { givenRange, givenSize ->
+            capturedRange = givenRange
+            capturedSize = givenSize
+
+            expected
+        }
+
+        random.nextBoolean = { true }
+
+        // Ensure stable names since reified is in play
+        resolveClassName(Int::class)
+
+        val fixture = Fixture(random, mapOf(int to generator))
+
+        // When
+        val result: Int? = fixture.fixture(expectedRange, size = expectedSize)
+
+        // Then
+        assertNull(result)
+        assertNull(capturedRange)
+        assertNull(capturedSize)
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn14")
     fun `Given fixture is called with a range and a qualifier it returns a Fixture for the derived Type`() {
         // Given
         val expected = 23
-        val expectedFrom = 12
-        val expectedTo = 42
+        val expectedRange = 12..42
         val qualifier = "test"
-        val generator = RangedGeneratorStub<Int, Int>()
+        val generator = RangedNumericArrayGeneratorStub<Int, Int>()
 
-        var capturedFrom: Int? = null
-        var capturedTo: Int? = null
+        var capturedRange: Array<out ClosedRange<Int>>? = null
 
-        generator.generateWithRange = { givenFrom, givenTo ->
-            capturedFrom = givenFrom
-            capturedTo = givenTo
+        generator.generateWithRanges = { givenRange ->
+            capturedRange = givenRange
 
             expected
         }
@@ -405,7 +544,7 @@ class RangedFixtureSpec {
 
         // When
         val result: Int = fixture.fixture(
-            expectedFrom..expectedTo,
+            ranges = arrayOf(expectedRange),
             qualifier = StringQualifier(qualifier),
         )
 
@@ -414,13 +553,58 @@ class RangedFixtureSpec {
             actual = result,
             expected = expected,
         )
-        assertEquals(
-            actual = capturedFrom,
-            expected = expectedFrom,
+        assertTrue {
+            capturedRange.contentEquals(arrayOf(expectedRange))
+        }
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn16")
+    fun `Given fixture is called with a range and size and a qualifier it returns a Fixture for the derived Type`() {
+        // Given
+        val expected = 23
+        val expectedRange = 12..42
+        val expectedSize = 39
+        val qualifier = "test"
+        val generator = RangedNumericArrayGeneratorStub<Int, Int>()
+
+        var capturedRange: Array<out ClosedRange<Int>>? = null
+        var capturedSize: Int? = null
+
+        generator.generateWithRangesAndSize = { givenRange, givenSize ->
+            capturedRange = givenRange
+            capturedSize = givenSize
+
+            expected
+        }
+
+        // Ensure stable names since reified is in play
+        resolveClassName(Int::class)
+
+        val fixture = Fixture(
+            random,
+            mapOf("q:$qualifier:$int" to generator),
         )
+
+        // When
+        val result: Int = fixture.fixture(
+            expectedRange,
+            qualifier = StringQualifier(qualifier),
+            size = expectedSize,
+        )
+
+        // Then
         assertEquals(
-            actual = capturedTo,
-            expected = expectedTo,
+            actual = result,
+            expected = expected,
+        )
+        assertTrue {
+            capturedRange.contentEquals(arrayOf(expectedRange))
+        }
+        assertEquals(
+            actual = capturedSize,
+            expected = expectedSize,
         )
     }
 }

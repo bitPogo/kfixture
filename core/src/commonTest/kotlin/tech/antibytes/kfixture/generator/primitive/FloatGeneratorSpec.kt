@@ -27,10 +27,10 @@ class FloatGeneratorSpec {
     @Test
     @Suppress("UNCHECKED_CAST")
     @JsName("fn0")
-    fun `It fulfils Generator`() {
+    fun `It fulfils SignedNumberGenerator`() {
         val generator: Any = FloatGenerator(random)
 
-        assertTrue(generator is PublicApi.Generator<*>)
+        assertTrue(generator is PublicApi.SignedNumberGenerator<*, *>)
     }
 
     @Test

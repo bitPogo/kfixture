@@ -12,7 +12,7 @@ import tech.antibytes.kfixture.PublicApi
 
 internal class LongGenerator(
     private val random: Random,
-) : PublicApi.SignedNumberGenerator<Long> {
+) : PublicApi.SignedNumberGenerator<Long, Long> {
     override fun generate(): Long = random.nextLong()
 
     override fun generate(from: Long, to: Long): Long = random.nextLong(LongRange(from, to))

@@ -12,7 +12,7 @@ import tech.antibytes.kfixture.PublicApi
 
 internal class UIntegerGenerator(
     private val random: Random,
-) : PublicApi.RangedGenerator<UInt> {
+) : PublicApi.RangedGenerator<UInt, UInt> {
     override fun generate(): UInt = random.nextUInt()
 
     override fun generate(from: UInt, to: UInt): UInt = random.nextUInt(UIntRange(from, to))

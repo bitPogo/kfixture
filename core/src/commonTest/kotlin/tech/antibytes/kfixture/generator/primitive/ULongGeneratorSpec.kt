@@ -29,7 +29,7 @@ class ULongGeneratorSpec {
     fun `It fulfils RangedGenerator`() {
         val generator: Any = ULongGenerator(random)
 
-        assertTrue(generator is PublicApi.RangedGenerator<*>)
+        assertTrue(generator is PublicApi.RangedGenerator<*, *>)
     }
 
     @Test

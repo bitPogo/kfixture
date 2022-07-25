@@ -29,17 +29,17 @@ public abstract interface class tech/antibytes/kfixture/FixtureContract$Configur
 }
 
 public final class tech/antibytes/kfixture/FixtureKt {
-	public static final field LIST_LOWER_BOUND I
-	public static final fun chooseNumberType (Ltech/antibytes/kfixture/PublicApi$Fixture;Ltech/antibytes/kfixture/PublicApi$Qualifier;)Ljava/lang/String;
-	public static final fun determineCollectionSize (Ltech/antibytes/kfixture/PublicApi$Fixture;Ljava/lang/Integer;)I
 	public static final fun fixture (Ltech/antibytes/kfixture/PublicApi$Fixture;Ljava/lang/Iterable;)Ljava/lang/Object;
-	public static final fun getNumberTypes ()Ljava/util/List;
 	public static final fun kotlinFixture (Lkotlin/jvm/functions/Function1;)Ltech/antibytes/kfixture/PublicApi$Fixture;
 	public static synthetic fun kotlinFixture$default (Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ltech/antibytes/kfixture/PublicApi$Fixture;
 	public static final fun pickAnListIndex (Ltech/antibytes/kfixture/PublicApi$Fixture;Ljava/util/List;)I
 }
 
 public abstract interface class tech/antibytes/kfixture/PublicApi {
+}
+
+public abstract interface class tech/antibytes/kfixture/PublicApi$ArrayGenerator : tech/antibytes/kfixture/PublicApi$Generator {
+	public abstract fun generate (I)Ljava/lang/Object;
 }
 
 public abstract interface class tech/antibytes/kfixture/PublicApi$Configuration {
@@ -75,6 +75,12 @@ public abstract interface class tech/antibytes/kfixture/PublicApi$Qualifier {
 	public abstract fun getValue ()Ljava/lang/String;
 }
 
+public abstract interface class tech/antibytes/kfixture/PublicApi$RangedArrayGenerator : tech/antibytes/kfixture/PublicApi$ArrayGenerator, tech/antibytes/kfixture/PublicApi$RangedGenerator {
+	public abstract fun generate (Ljava/lang/Object;Ljava/lang/Object;I)Ljava/lang/Object;
+	public abstract fun generate ([Lkotlin/ranges/ClosedRange;)Ljava/lang/Object;
+	public abstract fun generate ([Lkotlin/ranges/ClosedRange;I)Ljava/lang/Object;
+}
+
 public abstract interface class tech/antibytes/kfixture/PublicApi$RangedGenerator : tech/antibytes/kfixture/PublicApi$Generator {
 	public abstract fun generate (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 }
@@ -88,6 +94,17 @@ public final class tech/antibytes/kfixture/PublicApi$Sign : java/lang/Enum {
 
 public abstract interface class tech/antibytes/kfixture/PublicApi$SignedNumberGenerator : tech/antibytes/kfixture/PublicApi$RangedGenerator {
 	public abstract fun generate (Ltech/antibytes/kfixture/PublicApi$Sign;)Ljava/lang/Object;
+}
+
+public abstract interface class tech/antibytes/kfixture/PublicApi$SignedNumericArrayGenerator : tech/antibytes/kfixture/PublicApi$RangedArrayGenerator, tech/antibytes/kfixture/PublicApi$SignedNumberGenerator {
+	public abstract fun generate (Ltech/antibytes/kfixture/PublicApi$Sign;I)Ljava/lang/Object;
+}
+
+public final class tech/antibytes/kfixture/SharedInternalKt {
+	public static final field LIST_LOWER_BOUND I
+	public static final fun chooseNumberType (Ltech/antibytes/kfixture/PublicApi$Fixture;Ltech/antibytes/kfixture/PublicApi$Qualifier;)Ljava/lang/String;
+	public static final fun determineCollectionSize (Ltech/antibytes/kfixture/PublicApi$Fixture;Ljava/lang/Integer;)I
+	public static final fun getNumberTypes ()Ljava/util/List;
 }
 
 public final class tech/antibytes/kfixture/generator/selector/SelectorGeneratorFactory : tech/antibytes/kfixture/PublicApi$GeneratorFactory {

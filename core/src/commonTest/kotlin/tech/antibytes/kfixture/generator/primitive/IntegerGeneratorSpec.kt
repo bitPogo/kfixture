@@ -30,7 +30,7 @@ class IntegerGeneratorSpec {
     fun `It fulfils SignedNumberGenerator`() {
         val generator: Any = IntegerGenerator(random)
 
-        assertTrue(generator is PublicApi.SignedNumberGenerator<*>)
+        assertTrue(generator is PublicApi.SignedNumberGenerator<*, *>)
     }
 
     @Test

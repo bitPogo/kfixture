@@ -29,7 +29,7 @@ class UIntegerGeneratorSpec {
     fun `It fulfils RangedGenerator`() {
         val generator: Any = UIntegerGenerator(random)
 
-        assertTrue(generator is PublicApi.RangedGenerator<*>)
+        assertTrue(generator is PublicApi.RangedGenerator<*, *>)
     }
 
     @Test

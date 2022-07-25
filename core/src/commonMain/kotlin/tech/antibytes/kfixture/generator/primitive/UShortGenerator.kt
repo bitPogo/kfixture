@@ -11,7 +11,7 @@ import tech.antibytes.kfixture.PublicApi
 
 internal class UShortGenerator(
     private val random: Random,
-) : PublicApi.RangedGenerator<UShort> {
+) : PublicApi.RangedGenerator<UShort, UShort> {
     override fun generate(): UShort = generate(
         from = UShort.MIN_VALUE,
         to = UShort.MAX_VALUE,

@@ -63,7 +63,9 @@ antiBytesCoverage {
     val excludes = setOf(
         "**/FixtureKt*",
         "**/RangedFixtureKt*",
+        "**/RangedNumericArrayFixtureKt*",
         "**/SignedNumericFixtureKt*",
+        "**/SignedNumericArrayFixtureKt*",
         "**/BindingKt*",
     ) // Inline Function cannot be covered
 

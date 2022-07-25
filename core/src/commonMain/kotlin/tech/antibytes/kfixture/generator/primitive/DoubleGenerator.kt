@@ -11,7 +11,7 @@ import tech.antibytes.kfixture.PublicApi
 
 internal class DoubleGenerator(
     private val random: Random,
-) : PublicApi.SignedNumberGenerator<Double> {
+) : PublicApi.SignedNumberGenerator<Double, Double> {
     override fun generate(): Double = generate(Double.MIN_VALUE, Double.MAX_VALUE)
 
     private fun fill(lowerBound: Double, limit: Double): Double {

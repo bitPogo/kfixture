@@ -12,7 +12,7 @@ import tech.antibytes.kfixture.PublicApi
 
 internal class FloatGenerator(
     private val random: Random,
-) : PublicApi.SignedNumberGenerator<Float> {
+) : PublicApi.SignedNumberGenerator<Float, Float> {
     override fun generate(): Float = random.nextFloat() + random.nextInt()
 
     override fun generate(from: Float, to: Float): Float {

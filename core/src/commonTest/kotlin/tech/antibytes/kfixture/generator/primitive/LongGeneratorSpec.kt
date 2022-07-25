@@ -30,7 +30,7 @@ class LongGeneratorSpec {
     fun `It fulfils SignedNumberGenerator`() {
         val generator: Any = LongGenerator(random)
 
-        assertTrue(generator is PublicApi.SignedNumberGenerator<*>)
+        assertTrue(generator is PublicApi.SignedNumberGenerator<*, *>)
     }
 
     @Test

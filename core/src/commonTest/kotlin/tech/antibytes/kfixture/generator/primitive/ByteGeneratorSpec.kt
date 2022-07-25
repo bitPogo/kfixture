@@ -30,7 +30,7 @@ class ByteGeneratorSpec {
     fun `It fulfils SignedNumberGenerator`() {
         val generator: Any = ByteGenerator(random)
 
-        assertTrue(generator is PublicApi.SignedNumberGenerator<*>)
+        assertTrue(generator is PublicApi.SignedNumberGenerator<*, *>)
     }
 
     @Test

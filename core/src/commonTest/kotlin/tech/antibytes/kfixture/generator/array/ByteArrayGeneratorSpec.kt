@@ -6,6 +6,7 @@
 
 package tech.antibytes.kfixture.generator.array
 
+import co.touchlab.stately.collections.sharedMutableListOf
 import kotlin.js.JsName
 import kotlin.test.AfterTest
 import kotlin.test.Test
@@ -16,6 +17,7 @@ import kotlinx.atomicfu.atomic
 import kotlinx.atomicfu.update
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.mock.RandomStub
+import tech.antibytes.kfixture.mock.SignedNumberGeneratorStub
 
 class ByteArrayGeneratorSpec {
     private val random = RandomStub()
@@ -31,7 +33,7 @@ class ByteArrayGeneratorSpec {
     @Suppress("UNCHECKED_CAST")
     @JsName("fn0")
     fun `It fulfils Generator`() {
-        val generator: Any = ByteArrayGenerator(random)
+        val generator: Any = ByteArrayGenerator(random, SignedNumberGeneratorStub())
 
         assertTrue(generator is PublicApi.Generator<*>)
     }
@@ -42,17 +44,18 @@ class ByteArrayGeneratorSpec {
     fun `Given generate is called it returns a ByteArray`() {
         // Given
         val size = 23
-        val expected = ByteArray(size)
-        val generator = ByteArrayGenerator(random)
+        val expectedValue = 23.toByte()
+        val expected = ByteArray(size) { expectedValue }
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Byte, Byte>()
 
+        auxiliaryGenerator.generate = { expectedValue }
         random.nextIntRanged = { from, to ->
             range.update { Pair(from, to) }
             size
         }
 
-        random.nextBytesArray = { arraySize -> ByteArray(arraySize) }
-
         // When
+        val generator = ByteArrayGenerator(random, auxiliaryGenerator)
         val result = generator.generate()
 
         // Then
@@ -64,4 +67,349 @@ class ByteArrayGeneratorSpec {
             expected.contentEquals(result),
         )
     }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn2")
+    fun `Given generate is called with a size it returns a ByteArray in the given size`() {
+        // Given
+        val size = 12
+        val expectedValue = 23.toByte()
+        val expected = ByteArray(size) { expectedValue }
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Byte, Byte>()
+
+        random.nextBytesArray = { arraySize -> ByteArray(arraySize) }
+        auxiliaryGenerator.generate = { expectedValue }
+
+        // When
+        val generator = ByteArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(size)
+
+        // Then
+        assertEquals(
+            actual = result.size,
+            expected = size,
+        )
+        assertTrue(
+            expected.contentEquals(result),
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn3")
+    fun `Given generate is called with boundaries it returns a ByteArray`() {
+        // Given
+        val size = 3
+        val expectedMin = 0.toByte()
+        val expectedMax = 42.toByte()
+
+        var capturedMin: Int? = null
+        var capturedMax: Int? = null
+
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Byte, Byte>()
+
+        val expected = listOf(
+            23.toByte(),
+            7.toByte(),
+            39.toByte(),
+        )
+        val consumableItem = expected.toSharedMutableList()
+
+        random.nextIntRanged = { from, to ->
+            range.update { Pair(from, to) }
+            size
+        }
+
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax ->
+            capturedMin = givenMin.toInt()
+            capturedMax = givenMax.toInt()
+
+            consumableItem.removeFirst()
+        }
+
+        // When
+        val generator = ByteArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(from = expectedMin, to = expectedMax)
+
+        // Then
+        assertEquals(
+            actual = Pair(1, 10),
+            expected = range.value,
+        )
+        assertEquals(
+            actual = capturedMin,
+            expected = expectedMin.toInt(),
+        )
+        assertEquals(
+            actual = capturedMax,
+            expected = expectedMax.toInt(),
+        )
+        assertTrue(
+            expected.toByteArray().contentEquals(result),
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn4")
+    fun `Given generate is called with boundaries it returns a ByteArray with a given Size`() {
+        // Given
+        val size = 3
+        val expectedMin = 0.toByte()
+        val expectedMax = 42.toByte()
+
+        var capturedMin: Int? = null
+        var capturedMax: Int? = null
+
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Byte, Byte>()
+
+        val expected = listOf(
+            23.toByte(),
+            7.toByte(),
+            39.toByte(),
+        )
+        val consumableItem = expected.toSharedMutableList()
+
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax ->
+            capturedMin = givenMin.toInt()
+            capturedMax = givenMax.toInt()
+
+            consumableItem.removeFirst()
+        }
+
+        // When
+        val generator = ByteArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(from = expectedMin, to = expectedMax, size = size)
+
+        // Then
+        assertEquals(
+            actual = capturedMin,
+            expected = expectedMin.toInt(),
+        )
+        assertEquals(
+            actual = capturedMax,
+            expected = expectedMax.toInt(),
+        )
+        assertTrue(
+            expected.toByteArray().contentEquals(result),
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn5")
+    fun `Given generate is called with ranges it returns a ByteArray`() {
+        // Given
+        val expectedMin1 = 0.toByte()
+        val expectedMax1 = 42.toByte()
+        val expectedMin2 = 3.toByte()
+        val expectedMax2 = 41.toByte()
+
+        val capturedMin: MutableList<Int> = sharedMutableListOf()
+        val capturedMax: MutableList<Int> = sharedMutableListOf()
+
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Byte, Byte>()
+
+        val expected = listOf(
+            23.toByte(),
+            7.toByte(),
+            39.toByte(),
+        )
+        val ranges = sharedMutableListOf(3, 1, 0, 1)
+
+        val consumableItem = expected.toSharedMutableList()
+
+        random.nextIntRanged = { from, to ->
+            range.update { Pair(from, to) }
+            ranges.removeFirst()
+        }
+
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax ->
+            capturedMin.add(givenMin.toInt())
+            capturedMax.add(givenMax.toInt())
+
+            consumableItem.removeFirst()
+        }
+
+        // When
+        val generator = ByteArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(
+            ByteRange(expectedMin1, expectedMax1),
+            ByteRange(expectedMin2, expectedMax2),
+        )
+
+        // Then
+        assertEquals(
+            actual = range.value,
+            expected = Pair(1, 2),
+        )
+        assertTrue(
+            actual = expectedMin1.toInt() in capturedMin,
+        )
+        assertTrue(
+            actual = expectedMin2.toInt() in capturedMin,
+        )
+        assertTrue(
+            actual = expectedMax1.toInt() in capturedMax,
+        )
+        assertTrue(
+            actual = expectedMax2.toInt() in capturedMax,
+        )
+
+        assertTrue(
+            expected.toByteArray().contentEquals(result),
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn6")
+    fun `Given generate is called with ranges it returns a ByteArray with a given Size`() {
+        // Given
+        val expectedSize = 3
+        val expectedMin1 = 0.toByte()
+        val expectedMax1 = 42.toByte()
+        val expectedMin2 = 3.toByte()
+        val expectedMax2 = 41.toByte()
+
+        val capturedMin: MutableList<Int> = sharedMutableListOf()
+        val capturedMax: MutableList<Int> = sharedMutableListOf()
+
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Byte, Byte>()
+
+        val expected = listOf(
+            23.toByte(),
+            7.toByte(),
+            39.toByte(),
+        )
+        val ranges = sharedMutableListOf(1, 0, 1)
+
+        val consumableItem = expected.toSharedMutableList()
+
+        random.nextIntRanged = { from, to ->
+            range.update { Pair(from, to) }
+            ranges.removeFirst()
+        }
+
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax ->
+            capturedMin.add(givenMin.toInt())
+            capturedMax.add(givenMax.toInt())
+
+            consumableItem.removeFirst()
+        }
+
+        // When
+        val generator = ByteArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(
+            ByteRange(expectedMin1, expectedMax1),
+            ByteRange(expectedMin2, expectedMax2),
+            size = expectedSize,
+        )
+
+        // Then
+        assertEquals(
+            actual = range.value,
+            expected = Pair(1, 2),
+        )
+        assertTrue(
+            actual = expectedMin1.toInt() in capturedMin,
+        )
+        assertTrue(
+            actual = expectedMin2.toInt() in capturedMin,
+        )
+        assertTrue(
+            actual = expectedMax1.toInt() in capturedMax,
+        )
+        assertTrue(
+            actual = expectedMax2.toInt() in capturedMax,
+        )
+
+        assertTrue(
+            expected.toByteArray().contentEquals(result),
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn7")
+    fun `Given generate is called with a Sign it returns a ByteArray`() {
+        // Given
+        val expectedSign = PublicApi.Sign.NEGATIVE
+        val size = 23
+
+        var capturedSign: PublicApi.Sign? = null
+
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Byte, Byte>()
+
+        val expectedValue = 42.toByte()
+        val expected = ByteArray(size) { expectedValue }
+
+        auxiliaryGenerator.generateWithSign = { givenSign ->
+            capturedSign = givenSign
+
+            expectedValue
+        }
+        random.nextIntRanged = { from, to ->
+            range.update { Pair(from, to) }
+            size
+        }
+
+        // When
+        val generator = ByteArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(expectedSign)
+
+        // Then
+        assertEquals(
+            actual = Pair(1, 10),
+            expected = range.value,
+        )
+        assertEquals(
+            actual = capturedSign,
+            expected = expectedSign,
+        )
+        assertTrue(
+            expected.contentEquals(result),
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn8")
+    fun `Given generate is called with a Sign and Size it returns a ByteArray`() {
+        // Given
+        val expectedSign = PublicApi.Sign.NEGATIVE
+        val size = 23
+
+        var capturedSign: PublicApi.Sign? = null
+
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Byte, Byte>()
+
+        val expectedValue = 42.toByte()
+        val expected = ByteArray(size) { expectedValue }
+
+        auxiliaryGenerator.generateWithSign = { givenSign ->
+            capturedSign = givenSign
+
+            expectedValue
+        }
+
+        // When
+        val generator = ByteArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(expectedSign, size)
+
+        // Then
+        assertEquals(
+            actual = capturedSign,
+            expected = expectedSign,
+        )
+        assertTrue(
+            expected.contentEquals(result),
+        )
+    }
 }
+
+private data class ByteRange(
+    override val start: Byte,
+    override val endInclusive: Byte,
+) : ClosedRange<Byte>

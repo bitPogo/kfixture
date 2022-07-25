@@ -20,11 +20,11 @@ import tech.antibytes.kfixture.fixture
 import tech.antibytes.kfixture.int
 import tech.antibytes.kfixture.mock.GeneratorStub
 import tech.antibytes.kfixture.mock.RandomStub
-import tech.antibytes.kfixture.mock.SignedNumberGeneratorStub
+import tech.antibytes.kfixture.mock.SignedNumericArrayGeneratorStub
 import tech.antibytes.kfixture.qualifier.StringQualifier
 import tech.antibytes.kfixture.resolveClassName
 
-class SignedNumberFixtureSpec {
+class SignedNumericArrayFixtureSpec {
     private val random = RandomStub()
     private val capturedMinimum = atomic(-1)
     private val capturedMaximum = atomic(-1)
@@ -51,8 +51,8 @@ class SignedNumberFixtureSpec {
     fun `Given fixture is called with a upper and lower bound it fails if the Type has no corresponding Generator`() {
         // Given
         val expected = 23
-        val generator = SignedNumberGeneratorStub<Int, Int>()
-        generator.generateWithSign = { expected }
+        val generator = SignedNumericArrayGeneratorStub<Int, Int>()
+        generator.generateWithSign = { _, _ -> expected }
 
         // Ensure stable names since reified is in play
         resolveClassName(Int::class)
@@ -62,7 +62,7 @@ class SignedNumberFixtureSpec {
         // Then
         val error = assertFailsWith<RuntimeException> {
             // When
-            fixture.fixture<Int>(sign = PublicApi.Sign.POSITIVE)
+            fixture.fixture<Int>(sign = PublicApi.Sign.POSITIVE, size = 23)
         }
 
         assertEquals(
@@ -88,7 +88,7 @@ class SignedNumberFixtureSpec {
         // Then
         val error = assertFailsWith<RuntimeException> {
             // When
-            fixture.fixture<Int>(sign = PublicApi.Sign.POSITIVE)
+            fixture.fixture<Int>(sign = PublicApi.Sign.POSITIVE, size = 24)
         }
 
         assertEquals(
@@ -103,13 +103,16 @@ class SignedNumberFixtureSpec {
     fun `Given fixture is called with a upper and lower bound it returns a Fixture for the derived Type`() {
         // Given
         val expected = 23
+        val expectedSize = 12
         val expectedSign = PublicApi.Sign.NEGATIVE
-        val generator = SignedNumberGeneratorStub<Int, Int>()
+        val generator = SignedNumericArrayGeneratorStub<Int, Int>()
 
         var capturedSign: PublicApi.Sign? = null
+        var capturedSize: Int? = null
 
-        generator.generateWithSign = { givenType ->
+        generator.generateWithSign = { givenType, givenSize ->
             capturedSign = givenType
+            capturedSize = givenSize
 
             expected
         }
@@ -120,7 +123,7 @@ class SignedNumberFixtureSpec {
         val fixture = Fixture(random, mapOf(int to generator))
 
         // When
-        val result: Int = fixture.fixture(sign = expectedSign)
+        val result: Int = fixture.fixture(sign = expectedSign, size = expectedSize)
 
         // Then
         assertEquals(
@@ -131,6 +134,10 @@ class SignedNumberFixtureSpec {
             actual = capturedSign,
             expected = expectedSign,
         )
+        assertEquals(
+            actual = capturedSize,
+            expected = expectedSize,
+        )
     }
 
     @Test
@@ -140,12 +147,15 @@ class SignedNumberFixtureSpec {
         // Given
         val expected = 23
         val expectedSign = PublicApi.Sign.NEGATIVE
-        val generator = SignedNumberGeneratorStub<Int, Int>()
+        val expectedSize = 42
+        val generator = SignedNumericArrayGeneratorStub<Int, Int>()
 
         var capturedSign: PublicApi.Sign? = null
+        var capturedSize: Int? = null
 
-        generator.generateWithSign = { givenType ->
+        generator.generateWithSign = { givenType, givenSize ->
             capturedSign = givenType
+            capturedSize = givenSize
 
             expected
         }
@@ -158,11 +168,12 @@ class SignedNumberFixtureSpec {
         val fixture = Fixture(random, mapOf(int to generator))
 
         // When
-        val result: Int? = fixture.fixture(sign = expectedSign)
+        val result: Int? = fixture.fixture(sign = expectedSign, size = expectedSize)
 
         // Then
         assertNull(result)
         assertNull(capturedSign)
+        assertNull(capturedSize)
     }
 
     @Test
@@ -172,13 +183,16 @@ class SignedNumberFixtureSpec {
         // Given
         val expected = 23
         val expectedSign = PublicApi.Sign.NEGATIVE
+        val expectedSize = 42
         val qualifier = "test"
-        val generator = SignedNumberGeneratorStub<Int, Int>()
+        val generator = SignedNumericArrayGeneratorStub<Int, Int>()
 
         var capturedSign: PublicApi.Sign? = null
+        var capturedSize: Int? = null
 
-        generator.generateWithSign = { givenType ->
+        generator.generateWithSign = { givenType, givenSize ->
             capturedSign = givenType
+            capturedSize = givenSize
 
             expected
         }
@@ -194,6 +208,7 @@ class SignedNumberFixtureSpec {
         // When
         val result: Int = fixture.fixture(
             sign = expectedSign,
+            size = expectedSize,
             qualifier = StringQualifier(qualifier),
         )
 
@@ -205,6 +220,10 @@ class SignedNumberFixtureSpec {
         assertEquals(
             actual = capturedSign,
             expected = expectedSign,
+        )
+        assertEquals(
+            actual = capturedSize,
+            expected = expectedSize,
         )
     }
 }
