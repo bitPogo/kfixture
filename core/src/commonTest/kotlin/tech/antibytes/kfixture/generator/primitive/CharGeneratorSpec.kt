@@ -69,12 +69,12 @@ class CharGeneratorSpec {
     fun `Given generate is called with a predicate it returns a Char`() {
         // Given
         val expected = 100
-        val values = mutableListOf(42, 78, expected)
+        val chars = mutableListOf(42, 78, expected)
 
         random.nextIntRanged = { from, to ->
             range.update { Pair(from, to) }
 
-            values.removeFirst()
+            chars.removeFirst()
         }
 
         val generator = CharGenerator(random)
@@ -131,12 +131,12 @@ class CharGeneratorSpec {
         val expectedMin = 102.toChar()
         val expectedMax = 189.toChar()
         val expected = 100
-        val values = mutableListOf(42, 78, expected)
+        val chars = mutableListOf(42, 78, expected)
 
         random.nextIntRanged = { from, to ->
             range.update { Pair(from, to) }
 
-            values.removeFirst()
+            chars.removeFirst()
         }
 
         val generator = CharGenerator(random)

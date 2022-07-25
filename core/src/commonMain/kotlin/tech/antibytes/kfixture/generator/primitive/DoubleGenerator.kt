@@ -8,15 +8,16 @@ package tech.antibytes.kfixture.generator.primitive
 
 import kotlin.random.Random
 import tech.antibytes.kfixture.PublicApi
+import tech.antibytes.kfixture.generator.Generator
 
 internal class DoubleGenerator(
     private val random: Random,
-) : PublicApi.SignedNumberGenerator<Double, Double> {
+) : PublicApi.SignedNumberGenerator<Double, Double>, Generator<Double>() {
     override fun generate(): Double = generate(Double.MIN_VALUE, Double.MAX_VALUE)
 
-    override fun generate(predicate: (Double) -> Boolean): Double {
-        TODO("Not yet implemented")
-    }
+    override fun generate(
+        predicate: (Double) -> Boolean
+    ): Double = returnFilteredValue(predicate, ::generate)
 
     private fun fill(lowerBound: Double, limit: Double): Double {
         return if (random.nextBoolean()) {
@@ -26,7 +27,10 @@ internal class DoubleGenerator(
         }
     }
 
-    override fun generate(from: Double, to: Double, predicate: (Double?) -> Boolean): Double {
+    private fun generate(
+        from: Double,
+        to: Double,
+    ): Double {
         val number = random.nextDouble(from, to)
         val difference = to - number
 
@@ -36,6 +40,12 @@ internal class DoubleGenerator(
             number
         }
     }
+
+    override fun generate(
+        from: Double,
+        to: Double,
+        predicate: (Double?) -> Boolean
+    ): Double = returnFilteredValue(predicate) { generate(from, to) }
 
     private fun resolveBoundary(sign: PublicApi.Sign): Pair<Double, Double> {
         return if (sign == PublicApi.Sign.POSITIVE) {
@@ -47,7 +57,7 @@ internal class DoubleGenerator(
 
     override fun generate(sign: PublicApi.Sign, predicate: (Double?) -> Boolean): Double {
         val (from, to) = resolveBoundary(sign)
-        return generate(from, to)
+        return generate(from, to, predicate)
     }
 
     private companion object {
