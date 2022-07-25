@@ -52,6 +52,7 @@ public interface PublicApi {
         public fun generate(
             from: T,
             to: T,
+            predicate: (T) -> Boolean = { true }
         ): R
     }
 
@@ -137,7 +138,10 @@ public interface PublicApi {
          * Generates a instance of given type in a given range.
          * @return a instance of a given type.
          */
-        public fun generate(sign: Sign): R
+        public fun generate(
+            sign: Sign,
+            predicate: (T) -> Boolean = { true }
+        ): R
     }
 
     /**

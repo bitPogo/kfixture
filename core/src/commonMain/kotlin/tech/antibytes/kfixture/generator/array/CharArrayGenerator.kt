@@ -18,4 +18,8 @@ internal class CharArrayGenerator(
         size: Int,
         onEach: (idx: Int) -> Char,
     ): CharArray = CharArray(size, onEach)
+
+    override fun generate(from: Char, to: Char, predicate: (Char) -> Boolean): CharArray {
+        TODO("Not yet implemented")
+    }
 }

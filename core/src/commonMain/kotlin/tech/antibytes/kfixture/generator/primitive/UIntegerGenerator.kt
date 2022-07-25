@@ -18,5 +18,5 @@ internal class UIntegerGenerator(
         TODO("Not yet implemented")
     }
 
-    override fun generate(from: UInt, to: UInt): UInt = random.nextUInt(UIntRange(from, to))
+    override fun generate(from: UInt, to: UInt, predicate: (UInt) -> Boolean): UInt = random.nextUInt(UIntRange(from, to))
 }

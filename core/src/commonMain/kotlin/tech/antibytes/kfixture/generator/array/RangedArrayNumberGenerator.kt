@@ -36,6 +36,7 @@ internal abstract class RangedArrayNumberGenerator<T, R>(
     override fun generate(
         from: T,
         to: T,
+        predicate: (T) -> Boolean,
     ): R = generate(from = from, to = to, size = chooseSize())
 
     override fun generate(

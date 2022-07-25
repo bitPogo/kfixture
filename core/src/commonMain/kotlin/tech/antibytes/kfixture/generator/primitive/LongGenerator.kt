@@ -19,7 +19,7 @@ internal class LongGenerator(
         TODO("Not yet implemented")
     }
 
-    override fun generate(from: Long, to: Long): Long = random.nextLong(LongRange(from, to))
+    override fun generate(from: Long, to: Long, predicate: (Long) -> Boolean): Long = random.nextLong(LongRange(from, to))
 
     private fun resolveBoundary(sign: PublicApi.Sign): Pair<Long, Long> {
         return if (sign == PublicApi.Sign.POSITIVE) {
@@ -29,7 +29,7 @@ internal class LongGenerator(
         }
     }
 
-    override fun generate(sign: PublicApi.Sign): Long {
+    override fun generate(sign: PublicApi.Sign, predicate: (Long) -> Boolean): Long {
         val (from, to) = resolveBoundary(sign)
         return generate(from, to)
     }

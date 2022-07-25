@@ -18,4 +18,8 @@ internal class ShortArrayGenerator(
         size: Int,
         onEach: (idx: Int) -> Short,
     ): ShortArray = ShortArray(size, onEach)
+
+    override fun generate(sign: PublicApi.Sign, predicate: (Short) -> Boolean): ShortArray {
+        TODO("Not yet implemented")
+    }
 }
