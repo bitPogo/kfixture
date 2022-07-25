@@ -66,7 +66,7 @@ class LongGeneratorSpec {
         val generator = LongGenerator(random)
 
         // When
-        val result = generator.generate { long -> long == expected}
+        val result = generator.generate { long -> long == expected }
 
         // Then
         assertEquals(
@@ -113,7 +113,7 @@ class LongGeneratorSpec {
         // Then
         val error = assertFailsWith<IllegalArgumentException> {
             // When
-            generator.generate(-1, 0) { false  }
+            generator.generate(-1, 0) { false }
         }
 
         // Then

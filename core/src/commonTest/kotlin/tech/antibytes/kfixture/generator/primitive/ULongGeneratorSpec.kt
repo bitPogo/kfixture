@@ -56,6 +56,28 @@ class ULongGeneratorSpec {
     @Test
     @Suppress("UNCHECKED_CAST")
     @JsName("fn2")
+    fun `Given generate is called with a predicate it returns a ULong`() {
+        // Given
+        val expected = 23L
+        val longs = mutableListOf(12L, 11L, expected)
+
+        random.nextLong = { longs.removeFirst() }
+
+        val generator = ULongGenerator(random)
+
+        // When
+        val result = generator.generate { long -> long == expected.toULong() }
+
+        // Then
+        assertEquals(
+            actual = result,
+            expected = expected.toULong(),
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn3")
     fun `Given generate is called with a range it fails since the start is less equal to the end`() {
         // Given
         val generator = ULongGenerator(random)
@@ -69,7 +91,21 @@ class ULongGeneratorSpec {
 
     @Test
     @Suppress("UNCHECKED_CAST")
-    @JsName("fn3")
+    @JsName("fn4")
+    fun `Given generate is called with a range and a predicate it fails since the start is less equal to the end`() {
+        // Given
+        val generator = ULongGenerator(random)
+
+        // Then
+        assertFailsWith<IllegalArgumentException> {
+            // When
+            generator.generate(1.toULong(), 0.toULong()) { false }
+        }
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn5")
     fun `Given generate is called with boundaries it returns a ULong`() {
         // Given
         val expected = 107L
@@ -93,6 +129,49 @@ class ULongGeneratorSpec {
             from = expectedMin,
             to = expectedMax,
         )
+
+        // Then
+        assertEquals(
+            actual = result,
+            expected = (expected xor Long.MIN_VALUE).toULong(),
+        )
+        assertEquals(
+            actual = capturedMin,
+            expected = expectedMin.toLong() xor Long.MIN_VALUE,
+        )
+        assertEquals(
+            actual = capturedMax,
+            expected = ((expectedMax.toLong() xor Long.MIN_VALUE) + 1),
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn6")
+    fun `Given generate is called with boundaries and a predicate it returns a ULong`() {
+        // Given
+        val expected = 107L
+        val longs = mutableListOf(0L, 1L, expected)
+        val expectedMin = 0.toULong()
+        val expectedMax = 42.toULong()
+
+        var capturedMin: Long? = null
+        var capturedMax: Long? = null
+
+        random.nextLongRanged = { givenMin, givenMax ->
+            capturedMin = givenMin
+            capturedMax = givenMax
+
+            longs.removeFirst()
+        }
+
+        val generator = ULongGenerator(random)
+
+        // When
+        val result = generator.generate(
+            from = expectedMin,
+            to = expectedMax,
+        ) { long -> long == (expected xor Long.MIN_VALUE).toULong() }
 
         // Then
         assertEquals(
