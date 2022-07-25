@@ -31,8 +31,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - Double
 * RangedArrayGenerator for:
     - UByteArray
+    - UShortArray
 * SignedArrayNumberGenerator for:
     - ByteArray
+    - ShortArray
 * DependentGeneratorFactory in order to build Generators on top of other Generators
 
 ### Changed

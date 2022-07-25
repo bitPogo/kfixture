@@ -7,27 +7,15 @@
 package tech.antibytes.kfixture.generator.array
 
 import kotlin.random.Random
-import tech.antibytes.kfixture.FixtureContract.ARRAY_LOWER_BOUND
-import tech.antibytes.kfixture.FixtureContract.ARRAY_UPPER_BOUND
 import tech.antibytes.kfixture.PublicApi
 
 internal class ShortArrayGenerator(
-    private val random: Random,
-) : PublicApi.Generator<ShortArray> {
-    private fun generateShortArray(size: Int): ShortArray {
-        val raw = random.nextBytes(size)
-        val fixture = ShortArray(size)
-
-        repeat(size) { idx ->
-            fixture[idx] = raw[idx].toShort()
-        }
-
-        return fixture
-    }
-
-    override fun generate(): ShortArray {
-        val size = random.nextInt(ARRAY_LOWER_BOUND, ARRAY_UPPER_BOUND)
-
-        return generateShortArray(size)
-    }
+    random: Random,
+    shortGenerator: PublicApi.SignedNumberGenerator<Short, Short>,
+) : PublicApi.SignedNumericArrayGenerator<Short, ShortArray>,
+    SignedArrayNumberGenerator<Short, ShortArray>(random, shortGenerator) {
+    override fun arrayBuilder(
+        size: Int,
+        onEach: (idx: Int) -> Short,
+    ): ShortArray = ShortArray(size, onEach)
 }
