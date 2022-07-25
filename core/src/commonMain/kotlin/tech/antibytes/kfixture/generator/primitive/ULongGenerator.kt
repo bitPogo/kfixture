@@ -15,5 +15,9 @@ internal class ULongGenerator(
 ) : PublicApi.RangedGenerator<ULong, ULong> {
     override fun generate(): ULong = random.nextULong()
 
-    override fun generate(from: ULong, to: ULong): ULong = random.nextULong(ULongRange(from, to))
+    override fun generate(predicate: (ULong) -> Boolean): ULong {
+        TODO("Not yet implemented")
+    }
+
+    override fun generate(from: ULong, to: ULong, predicate: (ULong?) -> Boolean): ULong = random.nextULong(ULongRange(from, to))
 }

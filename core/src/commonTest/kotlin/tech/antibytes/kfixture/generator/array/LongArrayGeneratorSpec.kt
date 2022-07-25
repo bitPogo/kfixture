@@ -120,7 +120,7 @@ class LongArrayGeneratorSpec {
             size
         }
 
-        auxiliaryGenerator.generateWithRange = { givenMin, givenMax ->
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax, _ ->
             capturedMin = givenMin.toInt()
             capturedMax = givenMax.toInt()
 
@@ -170,7 +170,7 @@ class LongArrayGeneratorSpec {
         )
         val consumableItem = expected.toSharedMutableList()
 
-        auxiliaryGenerator.generateWithRange = { givenMin, givenMax ->
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax, _ ->
             capturedMin = givenMin.toInt()
             capturedMax = givenMax.toInt()
 
@@ -224,7 +224,7 @@ class LongArrayGeneratorSpec {
             ranges.removeFirst()
         }
 
-        auxiliaryGenerator.generateWithRange = { givenMin, givenMax ->
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax, _ ->
             capturedMin.add(givenMin.toInt())
             capturedMax.add(givenMax.toInt())
 
@@ -291,7 +291,7 @@ class LongArrayGeneratorSpec {
             ranges.removeFirst()
         }
 
-        auxiliaryGenerator.generateWithRange = { givenMin, givenMax ->
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax, _ ->
             capturedMin.add(givenMin.toInt())
             capturedMax.add(givenMax.toInt())
 
@@ -344,7 +344,7 @@ class LongArrayGeneratorSpec {
         val expectedValue = 42.toLong()
         val expected = LongArray(size) { expectedValue }
 
-        auxiliaryGenerator.generateWithSign = { givenSign ->
+        auxiliaryGenerator.generateWithSign = { givenSign, _ ->
             capturedSign = givenSign
 
             expectedValue
@@ -387,7 +387,7 @@ class LongArrayGeneratorSpec {
         val expectedValue = 42.toLong()
         val expected = LongArray(size) { expectedValue }
 
-        auxiliaryGenerator.generateWithSign = { givenSign ->
+        auxiliaryGenerator.generateWithSign = { givenSign, _ ->
             capturedSign = givenSign
 
             expectedValue

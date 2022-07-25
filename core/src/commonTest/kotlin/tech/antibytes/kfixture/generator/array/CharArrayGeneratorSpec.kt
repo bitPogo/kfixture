@@ -120,7 +120,7 @@ class CharArrayGeneratorSpec {
             size
         }
 
-        auxiliaryGenerator.generateWithRange = { givenMin, givenMax ->
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax, _ ->
             capturedMin = givenMin.code
             capturedMax = givenMax.code
 
@@ -170,7 +170,7 @@ class CharArrayGeneratorSpec {
         )
         val consumableItem = expected.toSharedMutableList()
 
-        auxiliaryGenerator.generateWithRange = { givenMin, givenMax ->
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax, _ ->
             capturedMin = givenMin.code
             capturedMax = givenMax.code
 
@@ -224,7 +224,7 @@ class CharArrayGeneratorSpec {
             ranges.removeFirst()
         }
 
-        auxiliaryGenerator.generateWithRange = { givenMin, givenMax ->
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax, _ ->
             capturedMin.add(givenMin.code)
             capturedMax.add(givenMax.code)
 
@@ -291,7 +291,7 @@ class CharArrayGeneratorSpec {
             ranges.removeFirst()
         }
 
-        auxiliaryGenerator.generateWithRange = { givenMin, givenMax ->
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax, _ ->
             capturedMin.add(givenMin.code)
             capturedMax.add(givenMax.code)
 

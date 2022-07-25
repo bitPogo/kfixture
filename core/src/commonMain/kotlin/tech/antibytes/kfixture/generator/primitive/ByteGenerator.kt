@@ -10,14 +10,23 @@ import kotlin.Byte.Companion.MAX_VALUE
 import kotlin.Byte.Companion.MIN_VALUE
 import kotlin.random.Random
 import tech.antibytes.kfixture.PublicApi
+import tech.antibytes.kfixture.generator.Generator
 
 internal class ByteGenerator(
     private val random: Random,
-) : PublicApi.SignedNumberGenerator<Byte, Byte> {
+) : PublicApi.SignedNumberGenerator<Byte, Byte>, Generator<Byte>() {
     override fun generate(): Byte = generate(MIN_VALUE, MAX_VALUE)
 
-    override fun generate(from: Byte, to: Byte): Byte {
-        return random.nextInt(
+    override fun generate(
+        predicate: (Byte) -> Boolean,
+    ): Byte = returnFilteredValue(predicate, ::generate)
+
+    override fun generate(
+        from: Byte,
+        to: Byte,
+        predicate: (Byte?) -> Boolean,
+    ): Byte = returnFilteredValue(predicate) {
+        random.nextInt(
             from = from.toInt(),
             until = to.toInt() + 1,
         ).toByte()
@@ -31,9 +40,12 @@ internal class ByteGenerator(
         }
     }
 
-    override fun generate(sign: PublicApi.Sign): Byte {
+    override fun generate(
+        sign: PublicApi.Sign,
+        predicate: (Byte?) -> Boolean,
+    ): Byte {
         val (from, to) = resolveBoundary(sign)
-        return generate(from, to)
+        return returnFilteredValue(predicate) { generate(from, to) }
     }
 
     private companion object {

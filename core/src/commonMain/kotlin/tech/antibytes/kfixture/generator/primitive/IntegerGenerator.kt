@@ -15,7 +15,11 @@ internal class IntegerGenerator(
 ) : PublicApi.SignedNumberGenerator<Int, Int> {
     override fun generate(): Int = random.nextInt()
 
-    override fun generate(from: Int, to: Int): Int = random.nextInt(IntRange(from, to))
+    override fun generate(predicate: (Int) -> Boolean): Int {
+        TODO("Not yet implemented")
+    }
+
+    override fun generate(from: Int, to: Int, predicate: (Int?) -> Boolean): Int = random.nextInt(IntRange(from, to))
 
     private fun resolveBoundary(sign: PublicApi.Sign): Pair<Int, Int> {
         return if (sign == PublicApi.Sign.POSITIVE) {
@@ -25,7 +29,7 @@ internal class IntegerGenerator(
         }
     }
 
-    override fun generate(sign: PublicApi.Sign): Int {
+    override fun generate(sign: PublicApi.Sign, predicate: (Int?) -> Boolean): Int {
         val (from, to) = resolveBoundary(sign)
         return generate(from, to)
     }

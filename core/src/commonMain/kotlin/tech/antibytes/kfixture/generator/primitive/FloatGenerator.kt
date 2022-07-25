@@ -15,7 +15,11 @@ internal class FloatGenerator(
 ) : PublicApi.SignedNumberGenerator<Float, Float> {
     override fun generate(): Float = random.nextFloat() + random.nextInt()
 
-    override fun generate(from: Float, to: Float): Float {
+    override fun generate(predicate: (Float) -> Boolean): Float {
+        TODO("Not yet implemented")
+    }
+
+    override fun generate(from: Float, to: Float, predicate: (Float?) -> Boolean): Float {
         val limit = to.toInt()
         val base = random.nextInt(IntRange(from.toInt(), limit))
 
@@ -34,7 +38,7 @@ internal class FloatGenerator(
         }
     }
 
-    override fun generate(sign: PublicApi.Sign): Float {
+    override fun generate(sign: PublicApi.Sign, predicate: (Float?) -> Boolean): Float {
         val (from, to) = resolveBoundary(sign)
         return generate(from, to)
     }

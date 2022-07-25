@@ -20,5 +20,8 @@ internal abstract class SignedArrayNumberGenerator<T, R>(
         size: Int,
     ): R = arrayBuilder(size) { numberGenerator.generate(sign) }
 
-    override fun generate(sign: PublicApi.Sign): R = generate(sign, chooseSize())
+    override fun generate(
+        sign: PublicApi.Sign,
+        predicate: (R?) -> Boolean,
+    ): R = generate(sign, chooseSize())
 }

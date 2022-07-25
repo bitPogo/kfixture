@@ -14,7 +14,11 @@ internal class ShortGenerator(
 ) : PublicApi.SignedNumberGenerator<Short, Short> {
     override fun generate(): Short = generate(Short.MIN_VALUE, Short.MAX_VALUE)
 
-    override fun generate(from: Short, to: Short): Short {
+    override fun generate(predicate: (Short) -> Boolean): Short {
+        TODO("Not yet implemented")
+    }
+
+    override fun generate(from: Short, to: Short, predicate: (Short?) -> Boolean): Short {
         return random.nextInt(
             from = from.toInt(),
             until = to.toInt() + 1,
@@ -29,7 +33,7 @@ internal class ShortGenerator(
         }
     }
 
-    override fun generate(sign: PublicApi.Sign): Short {
+    override fun generate(sign: PublicApi.Sign, predicate: (Short?) -> Boolean): Short {
         val (from, to) = resolveBoundary(sign)
         return generate(from, to)
     }

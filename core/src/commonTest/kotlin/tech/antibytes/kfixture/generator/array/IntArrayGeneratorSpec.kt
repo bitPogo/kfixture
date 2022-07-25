@@ -120,7 +120,7 @@ class IntArrayGeneratorSpec {
             size
         }
 
-        auxiliaryGenerator.generateWithRange = { givenMin, givenMax ->
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax, _ ->
             capturedMin = givenMin
             capturedMax = givenMax
 
@@ -170,7 +170,7 @@ class IntArrayGeneratorSpec {
         )
         val consumableItem = expected.toSharedMutableList()
 
-        auxiliaryGenerator.generateWithRange = { givenMin, givenMax ->
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax, _ ->
             capturedMin = givenMin
             capturedMax = givenMax
 
@@ -224,7 +224,7 @@ class IntArrayGeneratorSpec {
             ranges.removeFirst()
         }
 
-        auxiliaryGenerator.generateWithRange = { givenMin, givenMax ->
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax, _ ->
             capturedMin.add(givenMin)
             capturedMax.add(givenMax)
 
@@ -291,7 +291,7 @@ class IntArrayGeneratorSpec {
             ranges.removeFirst()
         }
 
-        auxiliaryGenerator.generateWithRange = { givenMin, givenMax ->
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax, _ ->
             capturedMin.add(givenMin)
             capturedMax.add(givenMax)
 
@@ -344,7 +344,7 @@ class IntArrayGeneratorSpec {
         val expectedValue = 42
         val expected = IntArray(size) { expectedValue }
 
-        auxiliaryGenerator.generateWithSign = { givenSign ->
+        auxiliaryGenerator.generateWithSign = { givenSign, _ ->
             capturedSign = givenSign
 
             expectedValue
@@ -387,7 +387,7 @@ class IntArrayGeneratorSpec {
         val expectedValue = 42
         val expected = IntArray(size) { expectedValue }
 
-        auxiliaryGenerator.generateWithSign = { givenSign ->
+        auxiliaryGenerator.generateWithSign = { givenSign, _ ->
             capturedSign = givenSign
 
             expectedValue

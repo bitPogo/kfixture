@@ -14,6 +14,7 @@ package tech.antibytes.kfixture
  * @param RangeType the type which is supposed to be created and is bounded to its boundaries.
  * @param from the lower boundary of the value.
  * @param to the upper boundary of the value.
+ * @param predicate which filters the the generated instances.
  * @param qualifier a optional qualifier for a special flavour of a type.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
@@ -21,6 +22,7 @@ public inline fun <reified RangeType, reified FixtureType : RangeType?> PublicAp
     from: RangeType & Any,
     to: RangeType & Any,
     qualifier: PublicApi.Qualifier? = null,
+    noinline predicate: (FixtureType) -> Boolean = ::defaultPredicate,
 ): FixtureType {
     val returnNull = random.returnNull<FixtureType>()
     val id = resolveIdentifier<FixtureType>(qualifier)
@@ -35,6 +37,7 @@ public inline fun <reified RangeType, reified FixtureType : RangeType?> PublicAp
         else -> (generator as PublicApi.RangedGenerator<Comparable<Any>, *>).generate(
             from = from as Comparable<Any>,
             to = to as Comparable<Any>,
+            predicate = predicate as Function1<Any?, Boolean>,
         ) as FixtureType
     }
 }
@@ -45,14 +48,17 @@ public inline fun <reified RangeType, reified FixtureType : RangeType?> PublicAp
  * @param FixtureType the type which is supposed to be created.
  * @param RangeType the type which is supposed to be created and is bounded to its boundaries.
  * @param range the lower boundary of the value.
+ * @param predicate which filters the the generated instances.
  * @param qualifier a optional qualifier for a special flavour of a type.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 public inline fun <reified RangeType, reified FixtureType : RangeType?> PublicApi.Fixture.fixture(
     range: ClosedRange<RangeType>,
     qualifier: PublicApi.Qualifier? = null,
+    noinline predicate: (FixtureType) -> Boolean = ::defaultPredicate,
 ): FixtureType where RangeType : Comparable<RangeType> = fixture(
     from = range.start,
     to = range.endInclusive,
+    predicate = predicate,
     qualifier = qualifier,
 )

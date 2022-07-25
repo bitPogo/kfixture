@@ -17,7 +17,11 @@ internal class UShortGenerator(
         to = UShort.MAX_VALUE,
     )
 
-    override fun generate(from: UShort, to: UShort): UShort {
+    override fun generate(predicate: (UShort) -> Boolean): UShort {
+        TODO("Not yet implemented")
+    }
+
+    override fun generate(from: UShort, to: UShort, predicate: (UShort?) -> Boolean): UShort {
         return random.nextInt(
             from = from.toInt(),
             until = to.toInt() + 1,

@@ -14,6 +14,10 @@ internal class DoubleGenerator(
 ) : PublicApi.SignedNumberGenerator<Double, Double> {
     override fun generate(): Double = generate(Double.MIN_VALUE, Double.MAX_VALUE)
 
+    override fun generate(predicate: (Double) -> Boolean): Double {
+        TODO("Not yet implemented")
+    }
+
     private fun fill(lowerBound: Double, limit: Double): Double {
         return if (random.nextBoolean()) {
             limit
@@ -22,7 +26,7 @@ internal class DoubleGenerator(
         }
     }
 
-    override fun generate(from: Double, to: Double): Double {
+    override fun generate(from: Double, to: Double, predicate: (Double?) -> Boolean): Double {
         val number = random.nextDouble(from, to)
         val difference = to - number
 
@@ -41,7 +45,7 @@ internal class DoubleGenerator(
         }
     }
 
-    override fun generate(sign: PublicApi.Sign): Double {
+    override fun generate(sign: PublicApi.Sign, predicate: (Double?) -> Boolean): Double {
         val (from, to) = resolveBoundary(sign)
         return generate(from, to)
     }

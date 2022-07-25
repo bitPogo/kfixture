@@ -20,4 +20,8 @@ class ArrayGeneratorStub<T : Any>(
     override fun generate(size: Int): T {
         return generate?.invoke(size) ?: throw RuntimeException("Missing sideeffect for generate.")
     }
+
+    override fun generate(predicate: (T) -> Boolean): T {
+        TODO("Not yet implemented")
+    }
 }

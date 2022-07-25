@@ -13,14 +13,18 @@ class RangedGeneratorStub<T, R : Any>(
     @JsName("generateStub")
     var generate: (() -> R)? = null,
     @JsName("generateWithRangeStub")
-    var generateWithRange: ((T, T) -> R)? = null,
+    var generateWithRange: ((T, T, predicate: (R?) -> Boolean) -> R)? = null,
 ) : PublicApi.RangedGenerator<T, R> where T : Any, T : Comparable<T> {
     override fun generate(): R {
         return generate?.invoke() ?: throw RuntimeException("Missing SideEffect for generate.")
     }
 
-    override fun generate(from: T, to: T): R {
-        return generateWithRange?.invoke(from, to)
+    override fun generate(from: T, to: T, predicate: (R?) -> Boolean): R {
+        return generateWithRange?.invoke(from, to, predicate)
             ?: throw RuntimeException("Missing SideEffect for generateWithRange.")
+    }
+
+    override fun generate(predicate: (R) -> Boolean): R {
+        TODO("Not yet implemented")
     }
 }

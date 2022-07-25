@@ -18,6 +18,7 @@ package tech.antibytes.kfixture
 public inline fun <reified T> PublicApi.Fixture.fixture(
     sign: PublicApi.Sign,
     qualifier: PublicApi.Qualifier? = null,
+    noinline predicate: (T?) -> Boolean = ::defaultPredicate,
 ): T where T : Number? {
     val returnNull = random.returnNull<T>()
     val id = resolveIdentifier<T>(qualifier)
@@ -29,6 +30,9 @@ public inline fun <reified T> PublicApi.Fixture.fixture(
             throw IllegalStateException("Missing Generator for ClassID ($id).")
         }
         returnNull -> null as T
-        else -> (generator as PublicApi.SignedNumberGenerator<Comparable<Any>, *>).generate(sign) as T
+        else -> (generator as PublicApi.SignedNumberGenerator<Comparable<Any>, *>).generate(
+            sign,
+            predicate as Function1<Any?, Boolean>,
+        ) as T
     }
 }
