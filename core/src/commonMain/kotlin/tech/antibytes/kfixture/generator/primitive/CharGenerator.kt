@@ -22,6 +22,6 @@ internal class CharGenerator(
     override fun generate(
         from: Char,
         to: Char,
-        predicate: (Char?) -> Boolean
+        predicate: (Char?) -> Boolean,
     ): Char = returnFilteredValue(predicate) { random.nextInt(from.code, to.code).toChar() }
 }

@@ -9,17 +9,18 @@ package tech.antibytes.kfixture.generator.primitive
 import kotlin.random.Random
 import kotlin.random.nextInt
 import tech.antibytes.kfixture.PublicApi
+import tech.antibytes.kfixture.generator.Generator
 
 internal class FloatGenerator(
     private val random: Random,
-) : PublicApi.SignedNumberGenerator<Float, Float> {
+) : PublicApi.SignedNumberGenerator<Float, Float>, Generator<Float>() {
     override fun generate(): Float = random.nextFloat() + random.nextInt()
 
-    override fun generate(predicate: (Float) -> Boolean): Float {
-        TODO("Not yet implemented")
-    }
+    override fun generate(
+        predicate: (Float) -> Boolean,
+    ): Float = returnFilteredValue(predicate, ::generate)
 
-    override fun generate(from: Float, to: Float, predicate: (Float?) -> Boolean): Float {
+    private fun generate(from: Float, to: Float): Float {
         val limit = to.toInt()
         val base = random.nextInt(IntRange(from.toInt(), limit))
 
@@ -29,6 +30,12 @@ internal class FloatGenerator(
             base + random.nextFloat()
         }
     }
+
+    override fun generate(
+        from: Float,
+        to: Float,
+        predicate: (Float?) -> Boolean,
+    ): Float = returnFilteredValue(predicate) { generate(from, to) }
 
     private fun resolveBoundary(sign: PublicApi.Sign): Pair<Float, Float> {
         return if (sign == PublicApi.Sign.POSITIVE) {
@@ -40,7 +47,7 @@ internal class FloatGenerator(
 
     override fun generate(sign: PublicApi.Sign, predicate: (Float?) -> Boolean): Float {
         val (from, to) = resolveBoundary(sign)
-        return generate(from, to)
+        return generate(from, to, predicate)
     }
 
     private companion object {

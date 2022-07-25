@@ -16,7 +16,7 @@ internal class DoubleGenerator(
     override fun generate(): Double = generate(Double.MIN_VALUE, Double.MAX_VALUE)
 
     override fun generate(
-        predicate: (Double) -> Boolean
+        predicate: (Double) -> Boolean,
     ): Double = returnFilteredValue(predicate, ::generate)
 
     private fun fill(lowerBound: Double, limit: Double): Double {
@@ -44,7 +44,7 @@ internal class DoubleGenerator(
     override fun generate(
         from: Double,
         to: Double,
-        predicate: (Double?) -> Boolean
+        predicate: (Double?) -> Boolean,
     ): Double = returnFilteredValue(predicate) { generate(from, to) }
 
     private fun resolveBoundary(sign: PublicApi.Sign): Pair<Double, Double> {
