@@ -8,18 +8,23 @@ package tech.antibytes.kfixture.generator.primitive
 
 import kotlin.random.Random
 import tech.antibytes.kfixture.PublicApi
+import tech.antibytes.kfixture.generator.Generator
 
 internal class ShortGenerator(
     private val random: Random,
-) : PublicApi.SignedNumberGenerator<Short, Short> {
+) : PublicApi.SignedNumberGenerator<Short, Short>, Generator<Short>() {
     override fun generate(): Short = generate(Short.MIN_VALUE, Short.MAX_VALUE)
 
-    override fun generate(predicate: (Short) -> Boolean): Short {
-        TODO("Not yet implemented")
-    }
+    override fun generate(
+        predicate: (Short) -> Boolean,
+    ): Short = returnFilteredValue(predicate, ::generate)
 
-    override fun generate(from: Short, to: Short, predicate: (Short?) -> Boolean): Short {
-        return random.nextInt(
+    override fun generate(
+        from: Short,
+        to: Short,
+        predicate: (Short?) -> Boolean,
+    ): Short = returnFilteredValue(predicate) {
+        random.nextInt(
             from = from.toInt(),
             until = to.toInt() + 1,
         ).toShort()
@@ -35,7 +40,7 @@ internal class ShortGenerator(
 
     override fun generate(sign: PublicApi.Sign, predicate: (Short?) -> Boolean): Short {
         val (from, to) = resolveBoundary(sign)
-        return generate(from, to)
+        return returnFilteredValue(predicate) { generate(from, to) }
     }
 
     private companion object {

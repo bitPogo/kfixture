@@ -72,6 +72,43 @@ class UShortGeneratorSpec {
     @Test
     @Suppress("UNCHECKED_CAST")
     @JsName("fn2")
+    fun `Given generate is called with a predicate it returns a UShort`() {
+        // Given
+        val expected = 23
+        val values = mutableListOf(108, 109, expected)
+        var capturedMin: Int? = null
+        var capturedMax: Int? = null
+
+        random.nextIntRanged = { givenMin, givenMax ->
+            capturedMin = givenMin
+            capturedMax = givenMax
+
+            values.removeFirst()
+        }
+
+        val generator = UShortGenerator(random)
+
+        // When
+        val result = generator.generate { uShort -> uShort == expected.toUShort() }
+
+        // Then
+        assertEquals(
+            actual = result,
+            expected = expected.toUShort(),
+        )
+        assertEquals(
+            actual = capturedMin,
+            expected = 0,
+        )
+        assertEquals(
+            actual = capturedMax,
+            expected = UShort.MAX_VALUE.toInt() + 1,
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn3")
     fun `Given generate is called with a range it fails since the start is less equal to the end`() {
         // Given
         val expected = IllegalArgumentException()
@@ -95,7 +132,31 @@ class UShortGeneratorSpec {
 
     @Test
     @Suppress("UNCHECKED_CAST")
-    @JsName("fn3")
+    @JsName("fn4")
+    fun `Given generate is called with a range and a predicate it fails since the start is less equal to the end`() {
+        // Given
+        val expected = IllegalArgumentException()
+
+        random.nextIntRanged = { _, _ -> throw expected }
+
+        val generator = UShortGenerator(random)
+
+        // Then
+        val error = assertFailsWith<IllegalArgumentException> {
+            // When
+            generator.generate(1.toUShort(), 0.toUShort()) { false }
+        }
+
+        // Then
+        assertSame(
+            actual = error,
+            expected = expected,
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn5")
     fun `Given generate is called with boundaries it returns a UShort`() {
         // Given
         val expected = 107
@@ -119,6 +180,49 @@ class UShortGeneratorSpec {
             from = expectedMin,
             to = expectedMax,
         )
+
+        // Then
+        assertEquals(
+            actual = result,
+            expected = expected.toUShort(),
+        )
+        assertEquals(
+            actual = capturedMin,
+            expected = expectedMin.toInt(),
+        )
+        assertEquals(
+            actual = capturedMax,
+            expected = expectedMax.toInt() + 1,
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn6")
+    fun `Given generate is called with boundaries and a predicate it returns a UShort`() {
+        // Given
+        val expected = 107
+        val expectedMin = 0.toUShort()
+        val expectedMax = 42.toUShort()
+        val values = mutableListOf(108, 109, expected)
+
+        var capturedMin: Int? = null
+        var capturedMax: Int? = null
+
+        random.nextIntRanged = { givenMin, givenMax ->
+            capturedMin = givenMin
+            capturedMax = givenMax
+
+            values.removeFirst()
+        }
+
+        val generator = UShortGenerator(random)
+
+        // When
+        val result = generator.generate(
+            from = expectedMin,
+            to = expectedMax,
+        ) { uShort -> uShort == expected.toUShort() }
 
         // Then
         assertEquals(

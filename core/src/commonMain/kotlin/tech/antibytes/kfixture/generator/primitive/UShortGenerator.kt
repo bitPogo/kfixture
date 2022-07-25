@@ -8,21 +8,24 @@ package tech.antibytes.kfixture.generator.primitive
 
 import kotlin.random.Random
 import tech.antibytes.kfixture.PublicApi
+import tech.antibytes.kfixture.generator.Generator
 
 internal class UShortGenerator(
     private val random: Random,
-) : PublicApi.RangedGenerator<UShort, UShort> {
+) : PublicApi.RangedGenerator<UShort, UShort>, Generator<UShort>() {
     override fun generate(): UShort = generate(
         from = UShort.MIN_VALUE,
         to = UShort.MAX_VALUE,
     )
 
-    override fun generate(predicate: (UShort) -> Boolean): UShort {
-        TODO("Not yet implemented")
-    }
+    override fun generate(predicate: (UShort) -> Boolean): UShort = returnFilteredValue(predicate, ::generate)
 
-    override fun generate(from: UShort, to: UShort, predicate: (UShort?) -> Boolean): UShort {
-        return random.nextInt(
+    override fun generate(
+        from: UShort,
+        to: UShort,
+        predicate: (UShort?) -> Boolean,
+    ): UShort = returnFilteredValue(predicate) {
+        random.nextInt(
             from = from.toInt(),
             until = to.toInt() + 1,
         ).toUShort()

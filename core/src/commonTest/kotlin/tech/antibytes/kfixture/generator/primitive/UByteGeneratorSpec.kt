@@ -71,7 +71,7 @@ class UByteGeneratorSpec {
 
     @Test
     @Suppress("UNCHECKED_CAST")
-    @JsName("fn3")
+    @JsName("fn2")
     fun `Given generate with a predicate is called it returns a UByte`() {
         // Given
         val expected = 23
@@ -109,7 +109,7 @@ class UByteGeneratorSpec {
 
     @Test
     @Suppress("UNCHECKED_CAST")
-    @JsName("fn4")
+    @JsName("fn3")
     fun `Given generate is called with a range it fails since the start is less equal to the end`() {
         // Given
         val expected = IllegalArgumentException()
@@ -133,7 +133,7 @@ class UByteGeneratorSpec {
 
     @Test
     @Suppress("UNCHECKED_CAST")
-    @JsName("fn5")
+    @JsName("fn4")
     fun `Given generate is called with a range and a predicate it fails since the start is less equal to the end`() {
         // Given
         val expected = IllegalArgumentException()
@@ -157,7 +157,7 @@ class UByteGeneratorSpec {
 
     @Test
     @Suppress("UNCHECKED_CAST")
-    @JsName("fn6")
+    @JsName("fn5")
     fun `Given generate is called with boundaries it returns a UByte`() {
         // Given
         val expected = 107
@@ -199,7 +199,7 @@ class UByteGeneratorSpec {
 
     @Test
     @Suppress("UNCHECKED_CAST")
-    @JsName("fn7")
+    @JsName("fn6")
     fun `Given generate is called with boundaries and a predicate it returns a UByte`() {
         // Given
         val expected = 107
