@@ -17,8 +17,4 @@ internal class DoubleArrayGenerator(
         size: Int,
         onEach: (idx: Int) -> Double,
     ): DoubleArray = DoubleArray(size, onEach)
-
-    override fun generate(from: Double, to: Double, predicate: (Double) -> Boolean): DoubleArray {
-        TODO("Not yet implemented")
-    }
 }

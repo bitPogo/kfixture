@@ -10,10 +10,10 @@ import kotlin.js.JsName
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.mock.RandomStub
-import kotlin.test.assertFailsWith
 
 class BooleanGeneratorSpec {
     private val random = RandomStub()

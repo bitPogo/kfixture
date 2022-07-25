@@ -18,12 +18,4 @@ internal class IntArrayGenerator(
         size: Int,
         onEach: (idx: Int) -> Int,
     ): IntArray = IntArray(size, onEach)
-
-    override fun generate(from: Int, to: Int, predicate: (Int) -> Boolean): IntArray {
-        TODO("Not yet implemented")
-    }
-
-    override fun generate(sign: PublicApi.Sign, predicate: (Int) -> Boolean): IntArray {
-        TODO("Not yet implemented")
-    }
 }

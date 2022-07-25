@@ -22,7 +22,7 @@ public inline fun <reified RangeType, reified FixtureType : RangeType?> PublicAp
     from: RangeType & Any,
     to: RangeType & Any,
     qualifier: PublicApi.Qualifier? = null,
-    noinline predicate: (FixtureType) -> Boolean = { true },
+    noinline predicate: (FixtureType) -> Boolean = ::defaultPredicate,
 ): FixtureType {
     val returnNull = random.returnNull<FixtureType>()
     val id = resolveIdentifier<FixtureType>(qualifier)
@@ -37,7 +37,7 @@ public inline fun <reified RangeType, reified FixtureType : RangeType?> PublicAp
         else -> (generator as PublicApi.RangedGenerator<Comparable<Any>, *>).generate(
             from = from as Comparable<Any>,
             to = to as Comparable<Any>,
-            predicate = predicate as (Any?) -> Boolean,
+            predicate = predicate as Function1<Any?, Boolean>,
         ) as FixtureType
     }
 }
@@ -55,7 +55,7 @@ public inline fun <reified RangeType, reified FixtureType : RangeType?> PublicAp
 public inline fun <reified RangeType, reified FixtureType : RangeType?> PublicApi.Fixture.fixture(
     range: ClosedRange<RangeType>,
     qualifier: PublicApi.Qualifier? = null,
-    noinline predicate: (FixtureType) -> Boolean = { true },
+    noinline predicate: (FixtureType) -> Boolean = ::defaultPredicate,
 ): FixtureType where RangeType : Comparable<RangeType> = fixture(
     from = range.start,
     to = range.endInclusive,

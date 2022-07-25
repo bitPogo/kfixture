@@ -22,6 +22,6 @@ internal abstract class SignedArrayNumberGenerator<T, R>(
 
     override fun generate(
         sign: PublicApi.Sign,
-        predicate: (T) -> Boolean,
+        predicate: (R?) -> Boolean,
     ): R = generate(sign, chooseSize())
 }

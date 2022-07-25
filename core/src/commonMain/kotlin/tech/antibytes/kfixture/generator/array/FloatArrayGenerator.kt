@@ -17,8 +17,4 @@ internal class FloatArrayGenerator(
         size: Int,
         onEach: (idx: Int) -> Float,
     ): FloatArray = FloatArray(size, onEach)
-
-    override fun generate(from: Float, to: Float, predicate: (Float) -> Boolean): FloatArray {
-        TODO("Not yet implemented")
-    }
 }

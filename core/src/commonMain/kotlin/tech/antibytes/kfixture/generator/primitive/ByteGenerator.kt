@@ -18,13 +18,13 @@ internal class ByteGenerator(
     override fun generate(): Byte = generate(MIN_VALUE, MAX_VALUE)
 
     override fun generate(
-        predicate: (Byte) -> Boolean
+        predicate: (Byte) -> Boolean,
     ): Byte = returnFilteredValue(predicate, ::generate)
 
     override fun generate(
         from: Byte,
         to: Byte,
-        predicate: (Byte) -> Boolean
+        predicate: (Byte?) -> Boolean,
     ): Byte = returnFilteredValue(predicate) {
         random.nextInt(
             from = from.toInt(),
@@ -42,7 +42,7 @@ internal class ByteGenerator(
 
     override fun generate(
         sign: PublicApi.Sign,
-        predicate: (Byte) -> Boolean
+        predicate: (Byte?) -> Boolean,
     ): Byte {
         val (from, to) = resolveBoundary(sign)
         return returnFilteredValue(predicate) { generate(from, to) }

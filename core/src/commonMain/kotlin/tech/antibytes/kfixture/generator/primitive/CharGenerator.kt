@@ -19,5 +19,5 @@ internal class CharGenerator(
         TODO("Not yet implemented")
     }
 
-    override fun generate(from: Char, to: Char, predicate: (Char) -> Boolean): Char = random.nextInt(from.code, to.code).toChar()
+    override fun generate(from: Char, to: Char, predicate: (Char?) -> Boolean): Char = random.nextInt(from.code, to.code).toChar()
 }

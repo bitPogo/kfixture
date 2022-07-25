@@ -12,6 +12,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertNull
+import kotlin.test.assertSame
 import kotlin.test.assertTrue
 import kotlinx.atomicfu.atomic
 import tech.antibytes.kfixture.Fixture
@@ -23,7 +24,6 @@ import tech.antibytes.kfixture.mock.RandomStub
 import tech.antibytes.kfixture.mock.RangedGeneratorStub
 import tech.antibytes.kfixture.qualifier.StringQualifier
 import tech.antibytes.kfixture.resolveClassName
-import kotlin.test.assertSame
 
 class RangedFixtureSpec {
     private val random = RandomStub()
@@ -339,7 +339,7 @@ class RangedFixtureSpec {
         val result: Int? = fixture.fixture(
             from = expectedFrom,
             to = expectedTo,
-            predicate = expectedPredicate
+            predicate = expectedPredicate,
         )
 
         // Then
@@ -437,7 +437,7 @@ class RangedFixtureSpec {
             from = expectedFrom,
             to = expectedTo,
             qualifier = StringQualifier(qualifier),
-            predicate = expectedPredicate
+            predicate = expectedPredicate,
         )
 
         // Then
@@ -507,7 +507,7 @@ class RangedFixtureSpec {
         val error = assertFailsWith<RuntimeException> {
             // When
             fixture.fixture<Int, Int>(
-                range = 0..23
+                range = 0..23,
             ) { false }
         }
 
@@ -698,8 +698,6 @@ class RangedFixtureSpec {
         assertNull(capturedTo)
     }
 
-
-
     @Test
     @Suppress("UNCHECKED_CAST")
     @JsName("fn18")
@@ -826,7 +824,7 @@ class RangedFixtureSpec {
         val result: Int = fixture.fixture(
             expectedFrom..expectedTo,
             qualifier = StringQualifier(qualifier),
-            predicate = expectedPredicate
+            predicate = expectedPredicate,
         )
 
         // Then

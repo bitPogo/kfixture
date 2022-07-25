@@ -7,9 +7,12 @@
 package tech.antibytes.kfixture.generator
 
 import tech.antibytes.kfixture.PublicApi
+import tech.antibytes.kfixture.defaultPredicate
 
 internal abstract class Generator<T : Any> : PublicApi.Generator<T> {
-    protected fun returnFilteredValue(
+    private val defaultPredicate: Function1<T?, Boolean> = ::defaultPredicate
+
+    private fun filterValues(
         predicate: (T) -> Boolean,
         generate: () -> T,
     ): T {
@@ -20,5 +23,16 @@ internal abstract class Generator<T : Any> : PublicApi.Generator<T> {
         } while (!predicate(returnValue))
 
         return returnValue
+    }
+
+    protected fun returnFilteredValue(
+        predicate: (T) -> Boolean,
+        generate: () -> T,
+    ): T {
+        return if (predicate == defaultPredicate) {
+            generate()
+        } else {
+            filterValues(predicate, generate)
+        }
     }
 }

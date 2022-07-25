@@ -26,7 +26,7 @@ internal class DoubleGenerator(
         }
     }
 
-    override fun generate(from: Double, to: Double, predicate: (Double) -> Boolean): Double {
+    override fun generate(from: Double, to: Double, predicate: (Double?) -> Boolean): Double {
         val number = random.nextDouble(from, to)
         val difference = to - number
 
@@ -45,7 +45,7 @@ internal class DoubleGenerator(
         }
     }
 
-    override fun generate(sign: PublicApi.Sign, predicate: (Double) -> Boolean): Double {
+    override fun generate(sign: PublicApi.Sign, predicate: (Double?) -> Boolean): Double {
         val (from, to) = resolveBoundary(sign)
         return generate(from, to)
     }

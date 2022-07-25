@@ -19,5 +19,5 @@ internal class ULongGenerator(
         TODO("Not yet implemented")
     }
 
-    override fun generate(from: ULong, to: ULong, predicate: (ULong) -> Boolean): ULong = random.nextULong(ULongRange(from, to))
+    override fun generate(from: ULong, to: ULong, predicate: (ULong?) -> Boolean): ULong = random.nextULong(ULongRange(from, to))
 }

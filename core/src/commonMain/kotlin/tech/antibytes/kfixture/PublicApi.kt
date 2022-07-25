@@ -9,6 +9,10 @@ package tech.antibytes.kfixture
 import kotlin.random.Random
 import kotlin.reflect.KClass
 
+@Suppress("UNUSED_PARAMETER")
+@PublishedApi
+internal fun <T> defaultPredicate(value: T): Boolean = true
+
 /**
  * Contract Container of KFixture
  * @author Matthias Geisler
@@ -52,7 +56,7 @@ public interface PublicApi {
         public fun generate(
             from: T,
             to: T,
-            predicate: (T) -> Boolean = { true }
+            predicate: (R?) -> Boolean = ::defaultPredicate,
         ): R
     }
 
@@ -140,7 +144,7 @@ public interface PublicApi {
          */
         public fun generate(
             sign: Sign,
-            predicate: (T) -> Boolean = { true }
+            predicate: (R?) -> Boolean = ::defaultPredicate,
         ): R
     }
 

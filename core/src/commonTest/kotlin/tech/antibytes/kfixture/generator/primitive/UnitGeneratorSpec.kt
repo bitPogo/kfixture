@@ -8,11 +8,11 @@ package tech.antibytes.kfixture.generator.primitive
 
 import kotlin.js.JsName
 import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 import kotlin.test.assertSame
 import kotlin.test.assertTrue
 import tech.antibytes.kfixture.PublicApi
-import kotlin.test.assertEquals
-import kotlin.test.assertFailsWith
 
 class UnitGeneratorSpec {
     @Test

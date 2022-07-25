@@ -32,7 +32,7 @@ class RangedNumericArrayGeneratorStub<T, R : Any>(
             ?: throw RuntimeException("Missing SideEffect for generateWithRange.")
     }
 
-    override fun generate(from: T, to: T, predicate: (T) -> Boolean): R {
+    override fun generate(from: T, to: T, predicate: (R?) -> Boolean): R {
         TODO("Not yet implemented")
     }
 

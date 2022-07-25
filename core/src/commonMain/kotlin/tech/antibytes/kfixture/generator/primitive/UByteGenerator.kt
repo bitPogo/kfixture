@@ -21,7 +21,7 @@ internal class UByteGenerator(
         TODO("Not yet implemented")
     }
 
-    override fun generate(from: UByte, to: UByte, predicate: (UByte) -> Boolean): UByte {
+    override fun generate(from: UByte, to: UByte, predicate: (UByte?) -> Boolean): UByte {
         return random.nextInt(
             from = from.toInt(),
             until = to.toInt() + 1,
