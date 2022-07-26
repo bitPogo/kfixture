@@ -51,7 +51,7 @@ class TripleFixtureSpec {
     fun `Given tripleFixture is called it fails if the Type has no corresponding Generator`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
         generator.generate = { expected }
 
         // Ensure stable names since reified is in play
@@ -77,7 +77,7 @@ class TripleFixtureSpec {
     fun `Given tripleFixture is called it returns a Fixture for the derrived Type`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
         generator.generate = { expected }
 
         // Ensure stable names since reified is in play
@@ -101,7 +101,7 @@ class TripleFixtureSpec {
     fun `Given tripleFixture is called it returns a Fixture while respecting nullability`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextBoolean = { true }
@@ -130,7 +130,7 @@ class TripleFixtureSpec {
         val firstQualifier = "testFirst"
         val secondQualifier = "testSecond"
         val thirdQualifier = "testThird"
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
         generator.generate = { expected }
 
         // Ensure stable names since reified is in play
@@ -168,7 +168,7 @@ class TripleFixtureSpec {
         val firstQualifier = "testFirst"
         val secondQualifier = "testSecond"
         val thirdQualifier = "testThird"
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
         generator.generate = { expected }
 
         // Ensure stable names since reified is in play

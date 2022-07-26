@@ -9,15 +9,18 @@ package tech.antibytes.kfixture.mock
 import kotlin.js.JsName
 import tech.antibytes.kfixture.PublicApi
 
-class GeneratorStub<T : Any>(
+class GeneratorStub<T : Any, R : Any>(
     @JsName("generateStub")
-    var generate: (() -> T)? = null,
-) : PublicApi.Generator<T> {
-    override fun generate(): T {
+    var generate: (() -> R)? = null,
+    @JsName("generateWithPredicateStub")
+    var generateWithPredicate: ((Function1<T?, Boolean>) -> R)? = null,
+) : PublicApi.FilterableGenerator<T, R> {
+    override fun generate(): R {
         return generate?.invoke() ?: throw RuntimeException("Missing sideeffect for generate.")
     }
 
-    override fun generate(predicate: (T) -> Boolean): T {
-        TODO("Not yet implemented")
+    override fun generate(predicate: (T?) -> Boolean): R {
+        return generateWithPredicate?.invoke(predicate)
+            ?: throw RuntimeException("Missing sideeffect for generateWithPredicate.")
     }
 }

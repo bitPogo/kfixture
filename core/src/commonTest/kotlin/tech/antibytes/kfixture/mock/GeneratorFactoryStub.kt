@@ -17,13 +17,13 @@ class GeneratorFactoryStub<T : Any>(
     var generate: (() -> T)? = null,
 ) : PublicApi.GeneratorFactory<T> {
     private val _lastRandom: AtomicRef<Random> = atomic(Random(49))
-    private val _lastInstance: AtomicRef<GeneratorStub<T>?> = atomic(null)
+    private val _lastInstance: AtomicRef<GeneratorStub<T, T>?> = atomic(null)
 
     var lastRandom by _lastRandom
     var lastInstance by _lastInstance
 
     override fun getInstance(random: Random): PublicApi.Generator<T> {
-        return GeneratorStub(generate).also {
+        return GeneratorStub<T, T>(generate).also {
             lastRandom = random
             lastInstance = it
         }

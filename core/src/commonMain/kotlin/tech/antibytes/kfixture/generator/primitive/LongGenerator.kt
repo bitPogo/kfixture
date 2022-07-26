@@ -9,14 +9,13 @@ package tech.antibytes.kfixture.generator.primitive
 import kotlin.random.Random
 import kotlin.random.nextLong
 import tech.antibytes.kfixture.PublicApi
-import tech.antibytes.kfixture.generator.Generator
 
 internal class LongGenerator(
     private val random: Random,
 ) : PublicApi.SignedNumberGenerator<Long, Long>, Generator<Long>() {
     override fun generate(): Long = random.nextLong()
 
-    override fun generate(predicate: (Long) -> Boolean): Long = returnFilteredValue(predicate, ::generate)
+    override fun generate(predicate: (Long?) -> Boolean): Long = returnFilteredValue(predicate, ::generate)
 
     override fun generate(
         from: Long,

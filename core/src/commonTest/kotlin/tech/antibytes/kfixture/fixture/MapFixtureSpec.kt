@@ -53,7 +53,7 @@ class MapFixtureSpec {
     fun `Given mapFixture is called it fails if the Type has no corresponding Generator`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { _, _ -> 42 }
@@ -82,7 +82,7 @@ class MapFixtureSpec {
         // Given
         val size = 5
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { givenMinimum, givenMaximum ->
@@ -131,7 +131,7 @@ class MapFixtureSpec {
         // Given
         val size = 5
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { givenMinimum, givenMaximum ->
@@ -182,7 +182,7 @@ class MapFixtureSpec {
         val expected = 23
         val keyQualifier = "testKey"
         val valueQualifier = "testValue"
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { _, _ -> size }
@@ -221,7 +221,7 @@ class MapFixtureSpec {
     fun `Given mapFixture is called with a size it returns a Fixture for the derived Type for the given Size`() {
         // Given
         val size = 5
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         val randomValues = sharedMutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
@@ -252,7 +252,7 @@ class MapFixtureSpec {
     fun `Given fixture is called with a size it returns a Fixture for the derived Type for the given Size`() {
         // Given
         val size = 5
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         val randomValues = sharedMutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
@@ -286,7 +286,7 @@ class MapFixtureSpec {
     fun `Given mutableMapFixture is called it fails if the Type has no corresponding Generator`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { _, _ -> 42 }
@@ -315,7 +315,7 @@ class MapFixtureSpec {
         // Given
         val size = 5
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { givenMinimum, givenMaximum ->
@@ -364,7 +364,7 @@ class MapFixtureSpec {
         // Given
         val size = 5
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { givenMinimum, givenMaximum ->
@@ -415,7 +415,7 @@ class MapFixtureSpec {
         val expected = 23
         val keyQualifier = "testKey"
         val valueQualifier = "testValue"
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { _, _ -> size }
@@ -454,7 +454,7 @@ class MapFixtureSpec {
     fun `Given mutableMapFixture is called with a size it returns a Fixture for the derived Type for the given Size`() {
         // Given
         val size = 5
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         val randomValues = sharedMutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
@@ -485,7 +485,7 @@ class MapFixtureSpec {
     fun `Given fixture is called with a size it returns a Fixture for the derived Type for the given Size as MutableMap`() {
         // Given
         val size = 5
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         val randomValues = sharedMutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 

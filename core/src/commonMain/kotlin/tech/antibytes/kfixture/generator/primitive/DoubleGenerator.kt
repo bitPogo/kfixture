@@ -8,7 +8,6 @@ package tech.antibytes.kfixture.generator.primitive
 
 import kotlin.random.Random
 import tech.antibytes.kfixture.PublicApi
-import tech.antibytes.kfixture.generator.Generator
 
 internal class DoubleGenerator(
     private val random: Random,
@@ -16,7 +15,7 @@ internal class DoubleGenerator(
     override fun generate(): Double = generate(Double.MIN_VALUE, Double.MAX_VALUE)
 
     override fun generate(
-        predicate: (Double) -> Boolean,
+        predicate: (Double?) -> Boolean,
     ): Double = returnFilteredValue(predicate, ::generate)
 
     private fun fill(lowerBound: Double, limit: Double): Double {

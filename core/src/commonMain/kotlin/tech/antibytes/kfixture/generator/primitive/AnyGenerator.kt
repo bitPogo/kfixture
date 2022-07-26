@@ -10,7 +10,4 @@ import tech.antibytes.kfixture.PublicApi
 
 internal object AnyGenerator : PublicApi.Generator<Any> {
     override fun generate() = Any()
-    override fun generate(predicate: (Any) -> Boolean): Any {
-        throw IllegalStateException("Any cannot be filtered!")
-    }
 }

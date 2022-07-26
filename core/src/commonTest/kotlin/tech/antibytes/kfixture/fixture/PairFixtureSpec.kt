@@ -51,7 +51,7 @@ class PairFixtureSpec {
     fun `Given pairFixture is called it fails if the Type has no corresponding Generator`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
         generator.generate = { expected }
 
         // Ensure stable names since reified is in play
@@ -77,7 +77,7 @@ class PairFixtureSpec {
     fun `Given pairFixture is called it returns a Fixture for the derrived Type`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
         generator.generate = { expected }
 
         // Ensure stable names since reified is in play
@@ -101,7 +101,7 @@ class PairFixtureSpec {
     fun `Given pairFixture is called it returns a Fixture while respecting nullability`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextBoolean = { true }
@@ -129,7 +129,7 @@ class PairFixtureSpec {
         val expected = 23
         val keyQualifier = "testKey"
         val valueQualifier = "testValue"
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
         generator.generate = { expected }
 
         // Ensure stable names since reified is in play
@@ -164,7 +164,7 @@ class PairFixtureSpec {
         val expected = 23
         val keyQualifier = "testKey"
         val valueQualifier = "testValue"
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
         generator.generate = { expected }
 
         // Ensure stable names since reified is in play

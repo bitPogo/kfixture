@@ -10,7 +10,6 @@ import kotlin.Byte.Companion.MAX_VALUE
 import kotlin.Byte.Companion.MIN_VALUE
 import kotlin.random.Random
 import tech.antibytes.kfixture.PublicApi
-import tech.antibytes.kfixture.generator.Generator
 
 internal class ByteGenerator(
     private val random: Random,
@@ -18,7 +17,7 @@ internal class ByteGenerator(
     override fun generate(): Byte = generate(MIN_VALUE, MAX_VALUE)
 
     override fun generate(
-        predicate: (Byte) -> Boolean,
+        predicate: (Byte?) -> Boolean,
     ): Byte = returnFilteredValue(predicate, ::generate)
 
     override fun generate(

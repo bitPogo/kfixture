@@ -51,7 +51,7 @@ class CollectionFixtureSpec {
     fun `Given collectionFixture is called it fails if the Type has no corresponding Generator`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
         generator.generate = { expected }
         random.nextIntRanged = { _, _ -> 42 }
 
@@ -79,7 +79,7 @@ class CollectionFixtureSpec {
         // Given
         val size = 5
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { givenMinimum, givenMaximum ->
@@ -129,7 +129,7 @@ class CollectionFixtureSpec {
         // Given
         val size = 5
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { givenMinimum, givenMaximum ->
@@ -181,7 +181,7 @@ class CollectionFixtureSpec {
         val size = 5
         val expected = 23
         val qualifier = "test"
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { _, _ -> size }
@@ -214,7 +214,7 @@ class CollectionFixtureSpec {
         // Given
         val size = 5
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { _, _ -> size }
@@ -247,7 +247,7 @@ class CollectionFixtureSpec {
         // Given
         val size = 5
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { _, _ -> size }
@@ -281,7 +281,7 @@ class CollectionFixtureSpec {
     fun `Given mutableCollectionFixture is called it fails if the Type has no corresponding Generator`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
         generator.generate = { expected }
         random.nextIntRanged = { _, _ -> 42 }
 
@@ -309,7 +309,7 @@ class CollectionFixtureSpec {
         // Given
         val size = 5
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { givenMinimum, givenMaximum ->
@@ -359,7 +359,7 @@ class CollectionFixtureSpec {
         // Given
         val size = 5
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { givenMinimum, givenMaximum ->
@@ -411,7 +411,7 @@ class CollectionFixtureSpec {
         val size = 5
         val expected = 23
         val qualifier = "test"
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { _, _ -> size }
@@ -444,7 +444,7 @@ class CollectionFixtureSpec {
         // Given
         val size = 5
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { _, _ -> size }
@@ -477,7 +477,7 @@ class CollectionFixtureSpec {
         // Given
         val size = 5
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { _, _ -> size }

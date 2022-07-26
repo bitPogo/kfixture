@@ -8,7 +8,6 @@ package tech.antibytes.kfixture.generator.primitive
 
 import kotlin.random.Random
 import tech.antibytes.kfixture.PublicApi
-import tech.antibytes.kfixture.generator.Generator
 
 internal class ShortGenerator(
     private val random: Random,
@@ -16,7 +15,7 @@ internal class ShortGenerator(
     override fun generate(): Short = generate(Short.MIN_VALUE, Short.MAX_VALUE)
 
     override fun generate(
-        predicate: (Short) -> Boolean,
+        predicate: (Short?) -> Boolean,
     ): Short = returnFilteredValue(predicate, ::generate)
 
     override fun generate(

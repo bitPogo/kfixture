@@ -52,7 +52,7 @@ class SetFixtureSpec {
     fun `Given setFixture is called it fails if the Type has no corresponding Generator`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
         generator.generate = { expected }
         random.nextIntRanged = { _, _ -> 42 }
 
@@ -80,7 +80,7 @@ class SetFixtureSpec {
         // Given
         val size = 5
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { givenMinimum, givenMaximum ->
@@ -126,7 +126,7 @@ class SetFixtureSpec {
         // Given
         val size = 5
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { givenMinimum, givenMaximum ->
@@ -174,7 +174,7 @@ class SetFixtureSpec {
         val size = 5
         val expected = 23
         val qualifier = "test"
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { _, _ -> size }
@@ -207,7 +207,7 @@ class SetFixtureSpec {
         // Given
         val size = 5
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { _, _ -> size }
@@ -240,7 +240,7 @@ class SetFixtureSpec {
         // Given
         val size = 5
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { _, _ -> size }
@@ -274,7 +274,7 @@ class SetFixtureSpec {
     fun `Given mutableSetFixture is called it fails if the Type has no corresponding Generator`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
         generator.generate = { expected }
         random.nextIntRanged = { _, _ -> 42 }
 
@@ -302,7 +302,7 @@ class SetFixtureSpec {
         // Given
         val size = 5
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { givenMinimum, givenMaximum ->
@@ -348,7 +348,7 @@ class SetFixtureSpec {
         // Given
         val size = 5
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { givenMinimum, givenMaximum ->
@@ -396,7 +396,7 @@ class SetFixtureSpec {
         val size = 5
         val expected = 23
         val qualifier = "test"
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { _, _ -> size }
@@ -429,7 +429,7 @@ class SetFixtureSpec {
         // Given
         val size = 5
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { _, _ -> size }
@@ -462,7 +462,7 @@ class SetFixtureSpec {
         // Given
         val size = 5
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { _, _ -> size }

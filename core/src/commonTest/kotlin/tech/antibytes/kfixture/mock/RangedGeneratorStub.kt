@@ -12,19 +12,22 @@ import tech.antibytes.kfixture.PublicApi
 class RangedGeneratorStub<T, R : Any>(
     @JsName("generateStub")
     var generate: (() -> R)? = null,
+    @JsName("generateWithPredicateStub")
+    var generateWithPredicate: (((T?) -> Boolean) -> R)? = null,
     @JsName("generateWithRangeStub")
-    var generateWithRange: ((T, T, predicate: (R?) -> Boolean) -> R)? = null,
+    var generateWithRange: ((T, T, predicate: (T?) -> Boolean) -> R)? = null,
 ) : PublicApi.RangedGenerator<T, R> where T : Any, T : Comparable<T> {
     override fun generate(): R {
         return generate?.invoke() ?: throw RuntimeException("Missing SideEffect for generate.")
     }
 
-    override fun generate(from: T, to: T, predicate: (R?) -> Boolean): R {
-        return generateWithRange?.invoke(from, to, predicate)
-            ?: throw RuntimeException("Missing SideEffect for generateWithRange.")
+    override fun generate(predicate: (T?) -> Boolean): R {
+        return generateWithPredicate?.invoke(predicate)
+            ?: throw RuntimeException("Missing SideEffect for generateWithPredicate.")
     }
 
-    override fun generate(predicate: (R) -> Boolean): R {
-        TODO("Not yet implemented")
+    override fun generate(from: T, to: T, predicate: (T?) -> Boolean): R {
+        return generateWithRange?.invoke(from, to, predicate)
+            ?: throw RuntimeException("Missing SideEffect for generateWithRange.")
     }
 }

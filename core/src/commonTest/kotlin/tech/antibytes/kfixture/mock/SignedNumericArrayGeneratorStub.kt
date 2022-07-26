@@ -25,16 +25,12 @@ class SignedNumericArrayGeneratorStub<T, R : Any>(
         return generate?.invoke(size) ?: throw RuntimeException("Missing SideEffect for generate.")
     }
 
-    override fun generate(from: T, to: T, predicate: (R?) -> Boolean): R {
-        TODO("Not yet implemented")
-    }
-
     override fun generate(from: T, to: T, size: Int): R {
         return generateWithRange?.invoke(from, to, size)
             ?: throw RuntimeException("Missing SideEffect for generateWithRange.")
     }
 
-    override fun generate(sign: PublicApi.Sign, predicate: (R?) -> Boolean): R {
+    override fun generate(sign: PublicApi.Sign, predicate: (T?) -> Boolean): R {
         TODO("Not yet implemented")
     }
 
@@ -51,7 +47,11 @@ class SignedNumericArrayGeneratorStub<T, R : Any>(
         TODO("Not yet implemented")
     }
 
-    override fun generate(predicate: (R) -> Boolean): R {
+    override fun generate(predicate: (T?) -> Boolean): R {
+        TODO("Not yet implemented")
+    }
+
+    override fun generate(from: T, to: T, predicate: (T?) -> Boolean): R {
         TODO("Not yet implemented")
     }
 }

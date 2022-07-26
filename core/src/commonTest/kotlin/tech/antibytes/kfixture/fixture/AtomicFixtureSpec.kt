@@ -53,7 +53,7 @@ class AtomicFixtureSpec {
     fun `Given fixture is called it fails if the Type has no corresponding Generator`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
         generator.generate = { expected }
 
         // Ensure stable names since reified is in play
@@ -79,7 +79,7 @@ class AtomicFixtureSpec {
     fun `Given fixture is called it returns a Fixture for the derived Type`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
         generator.generate = { expected }
 
         // Ensure stable names since reified is in play
@@ -104,7 +104,7 @@ class AtomicFixtureSpec {
         // Given
         val expected = 23
         val expectedSize = 42
-        val generator = ArrayGeneratorStub<Int>()
+        val generator = ArrayGeneratorStub<Int, Int>()
 
         var capturedSize: Int? = null
 
@@ -139,7 +139,7 @@ class AtomicFixtureSpec {
     fun `Given fixture is called it returns a Fixture while respecting nullability`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
 
         random.nextBoolean = { true }
         generator.generate = { expected }
@@ -163,7 +163,7 @@ class AtomicFixtureSpec {
         // Given
         val expected = 23
         val expectedSize = 42
-        val generator = ArrayGeneratorStub<Int>()
+        val generator = ArrayGeneratorStub<Int, Int>()
 
         var capturedSize: Int? = null
 
@@ -194,7 +194,7 @@ class AtomicFixtureSpec {
         // Given
         val expected = 23
         val qualifier = "test"
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
         generator.generate = { expected }
 
         // Ensure stable names since reified is in play
@@ -223,7 +223,7 @@ class AtomicFixtureSpec {
         val expected = 23
         val qualifier = "test"
         val expectedSize = 42
-        val generator = ArrayGeneratorStub<Int>()
+        val generator = ArrayGeneratorStub<Int, Int>()
 
         var capturedSize: Int? = null
 
@@ -261,7 +261,7 @@ class AtomicFixtureSpec {
     fun `Given fixture is called it returns a type for a Number Type`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
         generator.generate = { expected }
         random.nextIntRanged = { _, _ -> 2 }
 
@@ -290,7 +290,7 @@ class AtomicFixtureSpec {
         // Given
         val expected = 23
         val expectedSize = 42
-        val generator = ArrayGeneratorStub<Int>()
+        val generator = ArrayGeneratorStub<Int, Int>()
 
         var capturedSize: Int? = null
 
@@ -330,7 +330,7 @@ class AtomicFixtureSpec {
         // Given
         val expected = 23
         val qualifier = "test"
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
         generator.generate = { expected }
         random.nextIntRanged = { _, _ -> 2 }
 
@@ -360,7 +360,7 @@ class AtomicFixtureSpec {
         val expected = 23
         val qualifier = "test"
         val expectedSize = 42
-        val generator = ArrayGeneratorStub<Int>()
+        val generator = ArrayGeneratorStub<Int, Int>()
 
         var capturedSize: Int? = null
 

@@ -114,7 +114,7 @@ class RangedFixtureSpec {
     fun `Given fixture is called with a upper and lower bound it fails the corresponding Generator is not a RangedGenerator`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
         generator.generate = { expected }
 
         // Ensure stable names since reified is in play
@@ -143,7 +143,7 @@ class RangedFixtureSpec {
     fun `Given fixture is called with a upper and lower bound and predicate it fails the corresponding Generator is not a RangedGenerator`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
         generator.generate = { expected }
 
         // Ensure stable names since reified is in play
@@ -523,7 +523,7 @@ class RangedFixtureSpec {
     fun `Given fixture is called with a range it fails the corresponding Generator is not a RangedGenerator`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
         generator.generate = { expected }
 
         // Ensure stable names since reified is in play
@@ -549,7 +549,7 @@ class RangedFixtureSpec {
     fun `Given fixture is called with a range and a predicate it fails the corresponding Generator is not a RangedGenerator`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = GeneratorStub<Int, Int>()
         generator.generate = { expected }
 
         // Ensure stable names since reified is in play

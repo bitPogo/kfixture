@@ -11,6 +11,7 @@ import kotlin.js.JsName
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertSame
 import kotlin.test.assertTrue
 import kotlinx.atomicfu.AtomicRef
 import kotlinx.atomicfu.atomic
@@ -70,6 +71,47 @@ class UShortArrayGeneratorSpec {
 
     @Test
     @Suppress("UNCHECKED_CAST")
+    @JsName("fn1a")
+    fun `Given generate is called and a predicate it returns a UShortArray`() {
+        // Given
+        val size = 23
+        val expectedValue = 23.toUShort()
+        val expected = UShortArray(size) { expectedValue }
+        val expectedPredicate: Function1<UShort?, Boolean> = { true }
+        var capturedPredicate: Function<Boolean>? = null
+
+        val auxiliaryGenerator = RangedGeneratorStub<UShort, UShort>()
+
+        auxiliaryGenerator.generateWithPredicate = { givenPredicate ->
+            capturedPredicate = givenPredicate
+
+            expectedValue
+        }
+        random.nextIntRanged = { from, to ->
+            range.update { Pair(from, to) }
+            size
+        }
+
+        // When
+        val generator = UShortArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(expectedPredicate)
+
+        // Then
+        assertEquals(
+            actual = Pair(1, 10),
+            expected = range.value,
+        )
+        assertSame(
+            actual = capturedPredicate,
+            expected = expectedPredicate,
+        )
+        assertTrue(
+            expected.contentEquals(result),
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
     @JsName("fn2")
     fun `Given generate is called with a size it returns a UShortArray in the given size`() {
         // Given
@@ -88,6 +130,43 @@ class UShortArrayGeneratorSpec {
         assertEquals(
             actual = result.size,
             expected = size,
+        )
+        assertTrue(
+            expected.contentEquals(result),
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn2a")
+    fun `Given generate is called with a size and a predicate it returns a UShortArray in the given size`() {
+        // Given
+        val size = 12
+        val expectedValue = 23.toUShort()
+        val expected = UShortArray(size) { expectedValue }
+        val expectedPredicate: Function1<UShort?, Boolean> = { true }
+        var capturedPredicate: Function<Boolean>? = null
+
+        val auxiliaryGenerator = RangedGeneratorStub<UShort, UShort>()
+
+        auxiliaryGenerator.generateWithPredicate = { givenPredicate ->
+            capturedPredicate = givenPredicate
+
+            expectedValue
+        }
+
+        // When
+        val generator = UShortArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(size, expectedPredicate)
+
+        // Then
+        assertEquals(
+            actual = result.size,
+            expected = size,
+        )
+        assertSame(
+            actual = capturedPredicate,
+            expected = expectedPredicate,
         )
         assertTrue(
             expected.contentEquals(result),

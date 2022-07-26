@@ -13,7 +13,7 @@ import tech.antibytes.kfixture.PublicApi
 internal abstract class RangedArrayNumberGenerator<T, R>(
     private val random: Random,
     private val numberGenerator: PublicApi.RangedGenerator<T, T>,
-) : PublicApi.RangedArrayGenerator<T, R>, ArrayGenerator<T, R>(random, numberGenerator)
+) : PublicApi.RangedArrayGenerator<T, R>, FilterableArrayGenerator<T, R>(random, numberGenerator)
     where T : Any, T : Comparable<T>, R : Any {
     private fun unpackRange(
         ranges: Array<out ClosedRange<T>>,
@@ -36,7 +36,7 @@ internal abstract class RangedArrayNumberGenerator<T, R>(
     override fun generate(
         from: T,
         to: T,
-        predicate: (R?) -> Boolean,
+        predicate: (T?) -> Boolean,
     ): R = generate(from = from, to = to, size = chooseSize())
 
     override fun generate(

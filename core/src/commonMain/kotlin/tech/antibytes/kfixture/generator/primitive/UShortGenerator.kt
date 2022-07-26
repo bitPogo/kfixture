@@ -8,7 +8,6 @@ package tech.antibytes.kfixture.generator.primitive
 
 import kotlin.random.Random
 import tech.antibytes.kfixture.PublicApi
-import tech.antibytes.kfixture.generator.Generator
 
 internal class UShortGenerator(
     private val random: Random,
@@ -18,7 +17,7 @@ internal class UShortGenerator(
         to = UShort.MAX_VALUE,
     )
 
-    override fun generate(predicate: (UShort) -> Boolean): UShort = returnFilteredValue(predicate, ::generate)
+    override fun generate(predicate: (UShort?) -> Boolean): UShort = returnFilteredValue(predicate, ::generate)
 
     override fun generate(
         from: UShort,
