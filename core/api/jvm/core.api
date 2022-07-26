@@ -77,9 +77,13 @@ public abstract interface class tech/antibytes/kfixture/PublicApi$Qualifier {
 }
 
 public abstract interface class tech/antibytes/kfixture/PublicApi$RangedArrayGenerator : tech/antibytes/kfixture/PublicApi$ArrayGenerator, tech/antibytes/kfixture/PublicApi$RangedGenerator {
-	public abstract fun generate (Ljava/lang/Object;Ljava/lang/Object;I)Ljava/lang/Object;
-	public abstract fun generate ([Lkotlin/ranges/ClosedRange;)Ljava/lang/Object;
-	public abstract fun generate ([Lkotlin/ranges/ClosedRange;I)Ljava/lang/Object;
+	public abstract fun generate (Ljava/lang/Object;Ljava/lang/Object;ILkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+	public abstract fun generate ([Lkotlin/ranges/ClosedRange;Ljava/lang/Integer;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+}
+
+public final class tech/antibytes/kfixture/PublicApi$RangedArrayGenerator$DefaultImpls {
+	public static synthetic fun generate$default (Ltech/antibytes/kfixture/PublicApi$RangedArrayGenerator;Ljava/lang/Object;Ljava/lang/Object;ILkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun generate$default (Ltech/antibytes/kfixture/PublicApi$RangedArrayGenerator;[Lkotlin/ranges/ClosedRange;Ljava/lang/Integer;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
 public abstract interface class tech/antibytes/kfixture/PublicApi$RangedGenerator : tech/antibytes/kfixture/PublicApi$FilterableGenerator {

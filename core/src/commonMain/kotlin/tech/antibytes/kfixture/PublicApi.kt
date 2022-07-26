@@ -40,7 +40,7 @@ public interface PublicApi {
     public interface FilterableGenerator<T : Any, R : Any> : Generator<R> {
         /**
          * Generates a instance of given type if it matches the given predicate.
-         * @param predicate which filters the the generated instances.
+         * @param predicate which filters non matching values.
          * @return a instance of a given type.
          */
         public fun generate(predicate: (T?) -> Boolean): R
@@ -58,6 +58,7 @@ public interface PublicApi {
          * Generates a instance of given type in a given range.
          * @param from the lower boundary of the value.
          * @param to the upper boundary of the value.
+         * @param predicate which filters non matching values.
          * @throws IllegalArgumentException if start value is greater than the end value.
          * @return a instance of a given type.
          */
@@ -93,7 +94,7 @@ public interface PublicApi {
     public interface FilterableArrayGenerator<T : Any, R : Any> : ArrayGenerator<R>, FilterableGenerator<T, R> {
         /**
          * Generates a instance of given type if it matches the given predicate.
-         * @param predicate which filters the the generated instances.
+         * @param predicate which filters non matching values.
          * @return a instance of a given type.
          */
         public fun generate(size: Int, predicate: (T?) -> Boolean): R
@@ -114,6 +115,7 @@ public interface PublicApi {
          * @param to the upper boundary of the value.
          * @param size a fixed given size for the resulting Array.
          * If none size is given it chooses a arbitrary size of in between 1 and 10 items.
+         * @param predicate which filters non matching values.
          * @throws IllegalArgumentException if start value is greater than the end value.
          * @return a instance of a given type.
          */
@@ -122,30 +124,22 @@ public interface PublicApi {
             from: T,
             to: T,
             size: Int,
-        ): R
-
-        /**
-         * Generates a instance of given type in a given range.
-         * @param ranges arbitrary amount of boundaries.
-         * @throws IllegalArgumentException if start value is greater than the end value.
-         * @return a instance of a given type.
-         */
-        @Throws(IllegalArgumentException::class)
-        public fun generate(
-            vararg ranges: ClosedRange<T>,
+            predicate: (T?) -> Boolean = ::defaultPredicate,
         ): R
 
         /**
          * Generates a instance of given type in a given range for a given Size.
          * @param ranges arbitrary amount of boundaries.
          * @param size a fixed given size for the resulting Array.
+         * @param predicate which filters non matching values.
          * @throws IllegalArgumentException if start value is greater than the end value.
          * @return a instance of a given type.
          */
         @Throws(IllegalArgumentException::class)
         public fun generate(
             vararg ranges: ClosedRange<T>,
-            size: Int,
+            size: Int? = null,
+            predicate: (T?) -> Boolean = ::defaultPredicate,
         ): R
     }
 
@@ -166,6 +160,8 @@ public interface PublicApi {
     public interface SignedNumberGenerator<T, R : Any> : RangedGenerator<T, R> where T : Any, T : Comparable<T> {
         /**
          * Generates a instance of given type in a given range.
+         * @param sign indicates the if the result is positive or negative.
+         * @param predicate which filters non matching values.
          * @return a instance of a given type.
          */
         public fun generate(
@@ -185,6 +181,7 @@ public interface PublicApi {
         SignedNumberGenerator<T, R> where T : Any, T : Comparable<T> {
         /**
          * Generates a instance of given type in a given range.
+         * @param sign indicates the if the result is positive or negative.
          * @param size a fixed given size for the resulting Array.
          * @return a instance of a given type.
          */

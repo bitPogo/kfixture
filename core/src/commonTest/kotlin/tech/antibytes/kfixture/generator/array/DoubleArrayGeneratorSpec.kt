@@ -230,6 +230,68 @@ class DoubleArrayGeneratorSpec {
 
     @Test
     @Suppress("UNCHECKED_CAST")
+    @JsName("fn3a")
+    fun `Given generate is called with boundaries and a predicate it returns a DoubleArray`() {
+        // Given
+        val size = 3
+        val expectedMin = 0.toDouble()
+        val expectedMax = 42.toDouble()
+        val expectedPredicate: Function1<Double?, Boolean> = { true }
+
+        var capturedMin: Int? = null
+        var capturedMax: Int? = null
+        var capturedPredicate: Function<Boolean>? = null
+
+        val auxiliaryGenerator = RangedGeneratorStub<Double, Double>()
+
+        val expected = listOf(
+            23.toDouble(),
+            7.toDouble(),
+            39.toDouble(),
+        )
+        val consumableItem = expected.toSharedMutableList()
+
+        random.nextIntRanged = { from, to ->
+            range.update { Pair(from, to) }
+            size
+        }
+
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax, givenPredicate ->
+            capturedMin = givenMin.toInt()
+            capturedMax = givenMax.toInt()
+            capturedPredicate = givenPredicate
+
+            consumableItem.removeFirst()
+        }
+
+        // When
+        val generator = DoubleArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(from = expectedMin, to = expectedMax, predicate = expectedPredicate)
+
+        // Then
+        assertEquals(
+            actual = Pair(1, 10),
+            expected = range.value,
+        )
+        assertEquals(
+            actual = capturedMin,
+            expected = expectedMin.toInt(),
+        )
+        assertEquals(
+            actual = capturedMax,
+            expected = expectedMax.toInt(),
+        )
+        assertSame(
+            actual = capturedPredicate,
+            expected = expectedPredicate,
+        )
+        assertTrue(
+            expected.toDoubleArray().contentEquals(result),
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
     @JsName("fn4")
     fun `Given generate is called with boundaries it returns a DoubleArray with a given Size`() {
         // Given
@@ -268,6 +330,64 @@ class DoubleArrayGeneratorSpec {
         assertEquals(
             actual = capturedMax,
             expected = expectedMax.toInt(),
+        )
+        assertTrue(
+            expected.toDoubleArray().contentEquals(result),
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn4a")
+    fun `Given generate is called with boundaries and a size and a predicate it returns a DoubleArray`() {
+        // Given
+        val size = 3
+        val expectedMin = 0.toDouble()
+        val expectedMax = 42.toDouble()
+        val expectedPredicate: Function1<Double?, Boolean> = { true }
+
+        var capturedMin: Int? = null
+        var capturedMax: Int? = null
+        var capturedPredicate: Function<Boolean>? = null
+
+        val auxiliaryGenerator = RangedGeneratorStub<Double, Double>()
+
+        val expected = listOf(
+            23.toDouble(),
+            7.toDouble(),
+            39.toDouble(),
+        )
+        val consumableItem = expected.toSharedMutableList()
+
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax, givenPredicate ->
+            capturedMin = givenMin.toInt()
+            capturedMax = givenMax.toInt()
+            capturedPredicate = givenPredicate
+
+            consumableItem.removeFirst()
+        }
+
+        // When
+        val generator = DoubleArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(
+            from = expectedMin,
+            to = expectedMax,
+            size = size,
+            predicate = expectedPredicate,
+        )
+
+        // Then
+        assertEquals(
+            actual = capturedMin,
+            expected = expectedMin.toInt(),
+        )
+        assertEquals(
+            actual = capturedMax,
+            expected = expectedMax.toInt(),
+        )
+        assertSame(
+            actual = capturedPredicate,
+            expected = expectedPredicate,
         )
         assertTrue(
             expected.toDoubleArray().contentEquals(result),
@@ -342,6 +462,84 @@ class DoubleArrayGeneratorSpec {
 
     @Test
     @Suppress("UNCHECKED_CAST")
+    @JsName("fn5a")
+    fun `Given generate is called with ranges and a predicate it returns a DoubleArray`() {
+        // Given
+        val expectedMin1 = 0.toDouble()
+        val expectedMax1 = 42.toDouble()
+        val expectedMin2 = 3.toDouble()
+        val expectedMax2 = 41.toDouble()
+        val expectedPredicate: Function1<Double?, Boolean> = { true }
+
+        val capturedMin: MutableList<Int> = sharedMutableListOf()
+        val capturedMax: MutableList<Int> = sharedMutableListOf()
+        val capturedPredicate: MutableList<Function<Boolean>> = sharedMutableListOf()
+
+        val auxiliaryGenerator = RangedGeneratorStub<Double, Double>()
+
+        val expected = listOf(
+            23.toDouble(),
+            7.toDouble(),
+            39.toDouble(),
+        )
+        val ranges = sharedMutableListOf(3, 1, 0, 1)
+
+        val consumableItem = expected.toSharedMutableList()
+
+        random.nextIntRanged = { from, to ->
+            range.update { Pair(from, to) }
+            ranges.removeFirst()
+        }
+
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax, givenPredicate ->
+            capturedMin.add(givenMin.toInt())
+            capturedMax.add(givenMax.toInt())
+            capturedPredicate.add(givenPredicate)
+
+            consumableItem.removeFirst()
+        }
+
+        // When
+        val generator = DoubleArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(
+            DoubleRange(expectedMin1, expectedMax1),
+            DoubleRange(expectedMin2, expectedMax2),
+            predicate = expectedPredicate,
+        )
+
+        // Then
+        assertEquals(
+            actual = range.value,
+            expected = Pair(1, 2),
+        )
+        assertTrue(
+            actual = expectedMin1.toInt() in capturedMin,
+        )
+        assertTrue(
+            actual = expectedMin2.toInt() in capturedMin,
+        )
+        assertTrue(
+            actual = expectedMax1.toInt() in capturedMax,
+        )
+        assertTrue(
+            actual = expectedMax2.toInt() in capturedMax,
+        )
+        assertSame(
+            actual = capturedPredicate[0],
+            expected = expectedPredicate,
+        )
+        assertSame(
+            actual = capturedPredicate[1],
+            expected = expectedPredicate,
+        )
+
+        assertTrue(
+            expected.toDoubleArray().contentEquals(result),
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
     @JsName("fn6")
     fun `Given generate is called with ranges it returns a DoubleArray with a given Size`() {
         // Given
@@ -401,6 +599,86 @@ class DoubleArrayGeneratorSpec {
         )
         assertTrue(
             actual = expectedMax2.toInt() in capturedMax,
+        )
+
+        assertTrue(
+            expected.toDoubleArray().contentEquals(result),
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn6a")
+    fun `Given generate is called with ranges and a size and a predicate it returns a DoubleArray`() {
+        // Given
+        val expectedSize = 3
+        val expectedMin1 = 0.toDouble()
+        val expectedMax1 = 42.toDouble()
+        val expectedMin2 = 3.toDouble()
+        val expectedMax2 = 41.toDouble()
+        val expectedPredicate: Function1<Double?, Boolean> = { true }
+
+        val capturedMin: MutableList<Int> = sharedMutableListOf()
+        val capturedMax: MutableList<Int> = sharedMutableListOf()
+        val capturedPredicate: MutableList<Function<Boolean>> = sharedMutableListOf()
+
+        val auxiliaryGenerator = RangedGeneratorStub<Double, Double>()
+
+        val expected = listOf(
+            23.toDouble(),
+            7.toDouble(),
+            39.toDouble(),
+        )
+        val ranges = sharedMutableListOf(1, 0, 1)
+
+        val consumableItem = expected.toSharedMutableList()
+
+        random.nextIntRanged = { from, to ->
+            range.update { Pair(from, to) }
+            ranges.removeFirst()
+        }
+
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax, givenPredicate ->
+            capturedMin.add(givenMin.toInt())
+            capturedMax.add(givenMax.toInt())
+            capturedPredicate.add(givenPredicate)
+
+            consumableItem.removeFirst()
+        }
+
+        // When
+        val generator = DoubleArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(
+            DoubleRange(expectedMin1, expectedMax1),
+            DoubleRange(expectedMin2, expectedMax2),
+            size = expectedSize,
+            predicate = expectedPredicate,
+        )
+
+        // Then
+        assertEquals(
+            actual = range.value,
+            expected = Pair(1, 2),
+        )
+        assertTrue(
+            actual = expectedMin1.toInt() in capturedMin,
+        )
+        assertTrue(
+            actual = expectedMin2.toInt() in capturedMin,
+        )
+        assertTrue(
+            actual = expectedMax1.toInt() in capturedMax,
+        )
+        assertTrue(
+            actual = expectedMax2.toInt() in capturedMax,
+        )
+        assertSame(
+            actual = capturedPredicate[0],
+            expected = expectedPredicate,
+        )
+        assertSame(
+            actual = capturedPredicate[1],
+            expected = expectedPredicate,
         )
 
         assertTrue(

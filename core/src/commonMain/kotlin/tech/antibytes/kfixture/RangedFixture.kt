@@ -14,15 +14,15 @@ package tech.antibytes.kfixture
  * @param RangeType the type which is supposed to be created and is bounded to its boundaries.
  * @param from the lower boundary of the value.
  * @param to the upper boundary of the value.
- * @param predicate which filters the the generated instances.
  * @param qualifier a optional qualifier for a special flavour of a type.
+ * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 public inline fun <reified RangeType, reified FixtureType : RangeType?> PublicApi.Fixture.fixture(
     from: RangeType & Any,
     to: RangeType & Any,
     qualifier: PublicApi.Qualifier? = null,
-    noinline predicate: (FixtureType) -> Boolean = ::defaultPredicate,
+    noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
 ): FixtureType {
     val returnNull = random.returnNull<FixtureType>()
     val id = resolveIdentifier<FixtureType>(qualifier)
@@ -48,14 +48,14 @@ public inline fun <reified RangeType, reified FixtureType : RangeType?> PublicAp
  * @param FixtureType the type which is supposed to be created.
  * @param RangeType the type which is supposed to be created and is bounded to its boundaries.
  * @param range the lower boundary of the value.
- * @param predicate which filters the the generated instances.
  * @param qualifier a optional qualifier for a special flavour of a type.
+ * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 public inline fun <reified RangeType, reified FixtureType : RangeType?> PublicApi.Fixture.fixture(
     range: ClosedRange<RangeType>,
     qualifier: PublicApi.Qualifier? = null,
-    noinline predicate: (FixtureType) -> Boolean = ::defaultPredicate,
+    noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
 ): FixtureType where RangeType : Comparable<RangeType> = fixture(
     from = range.start,
     to = range.endInclusive,

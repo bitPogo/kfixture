@@ -31,7 +31,6 @@ class StringGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn0")
     fun `It fulfils RangedArrayGenerator`() {
         val generator: Any = StringGenerator(random, RangedGeneratorStub())
@@ -40,7 +39,6 @@ class StringGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn1")
     fun `Given generate is called it returns a String`() {
         // Given
@@ -71,7 +69,6 @@ class StringGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn1a")
     fun `Given generate is called and a predicate it returns a String`() {
         // Given
@@ -113,7 +110,6 @@ class StringGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn2")
     fun `Given generate is called with a size it returns a String in the given size`() {
         // Given
@@ -141,7 +137,6 @@ class StringGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn2a")
     fun `Given generate is called with a size and a predicate it returns a String in the given size`() {
         // Given
@@ -149,6 +144,7 @@ class StringGeneratorSpec {
         val expectedValue = 23.toChar()
         val expected = CharArray(size) { expectedValue }
         val expectedPredicate: Function1<Char?, Boolean> = { true }
+
         var capturedPredicate: Function<Boolean>? = null
 
         val auxiliaryGenerator = RangedGeneratorStub<Char, Char>()
@@ -179,7 +175,6 @@ class StringGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn3")
     fun `Given generate is called with boundaries it returns a String`() {
         // Given
@@ -235,9 +230,70 @@ class StringGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
+    @JsName("fn3a")
+    fun `Given generate is called with boundaries and a predicate it returns a String`() {
+        // Given
+        val size = 3
+        val expectedMin = 0.toChar()
+        val expectedMax = 42.toChar()
+        val expectedPredicate: Function1<Char?, Boolean> = { true }
+
+        var capturedMin: Int? = null
+        var capturedMax: Int? = null
+        var capturedPredicate: Function<Boolean>? = null
+
+        val auxiliaryGenerator = RangedGeneratorStub<Char, Char>()
+
+        val expected = listOf(
+            23.toChar(),
+            7.toChar(),
+            39.toChar(),
+        )
+        val consumableItem = expected.toSharedMutableList()
+
+        random.nextIntRanged = { from, to ->
+            range.update { Pair(from, to) }
+            size
+        }
+
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax, givenPredicate ->
+            capturedMin = givenMin.code
+            capturedMax = givenMax.code
+            capturedPredicate = givenPredicate
+
+            consumableItem.removeFirst()
+        }
+
+        // When
+        val generator = StringGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(from = expectedMin, to = expectedMax, predicate = expectedPredicate)
+
+        // Then
+        assertEquals(
+            actual = Pair(1, 10),
+            expected = range.value,
+        )
+        assertEquals(
+            actual = capturedMin,
+            expected = expectedMin.code,
+        )
+        assertEquals(
+            actual = capturedMax,
+            expected = expectedMax.code,
+        )
+        assertSame(
+            actual = capturedPredicate,
+            expected = expectedPredicate,
+        )
+        assertEquals(
+            actual = result,
+            expected = expected.joinToString(""),
+        )
+    }
+
+    @Test
     @JsName("fn4")
-    fun `Given generate is called with boundaries it returns a String with a given Size`() {
+    fun `Given generate is called with boundaries and size it returns a String`() {
         // Given
         val size = 3
         val expectedMin = 0.toChar()
@@ -264,7 +320,11 @@ class StringGeneratorSpec {
 
         // When
         val generator = StringGenerator(random, auxiliaryGenerator)
-        val result = generator.generate(from = expectedMin, to = expectedMax, size = size)
+        val result = generator.generate(
+            from = expectedMin,
+            to = expectedMax,
+            size = size,
+        )
 
         // Then
         assertEquals(
@@ -282,7 +342,65 @@ class StringGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
+    @JsName("fn4a")
+    fun `Given generate is called with boundaries and size and predicate it returns a String`() {
+        // Given
+        val size = 3
+        val expectedMin = 0.toChar()
+        val expectedMax = 42.toChar()
+
+        val expectedPredicate: Function1<Char?, Boolean> = { true }
+
+        var capturedMin: Int? = null
+        var capturedMax: Int? = null
+        var capturedPredicate: Function<Boolean>? = null
+
+        val auxiliaryGenerator = RangedGeneratorStub<Char, Char>()
+
+        val expected = listOf(
+            23.toChar(),
+            7.toChar(),
+            39.toChar(),
+        )
+        val consumableItem = expected.toSharedMutableList()
+
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax, givenPredicate ->
+            capturedMin = givenMin.code
+            capturedMax = givenMax.code
+            capturedPredicate = givenPredicate
+
+            consumableItem.removeFirst()
+        }
+
+        // When
+        val generator = StringGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(
+            from = expectedMin,
+            to = expectedMax,
+            size = size,
+            predicate = expectedPredicate,
+        )
+
+        // Then
+        assertEquals(
+            actual = capturedMin,
+            expected = expectedMin.code,
+        )
+        assertEquals(
+            actual = capturedMax,
+            expected = expectedMax.code,
+        )
+        assertSame(
+            actual = capturedPredicate,
+            expected = expectedPredicate,
+        )
+        assertEquals(
+            actual = result,
+            expected = expected.joinToString(""),
+        )
+    }
+
+    @Test
     @JsName("fn5")
     fun `Given generate is called with ranges it returns a String`() {
         // Given
@@ -320,8 +438,8 @@ class StringGeneratorSpec {
         // When
         val generator = StringGenerator(random, auxiliaryGenerator)
         val result = generator.generate(
-            tech.antibytes.kfixture.generator.array.StringRange(expectedMin1, expectedMax1),
-            tech.antibytes.kfixture.generator.array.StringRange(expectedMin2, expectedMax2),
+            StringRange(expectedMin1, expectedMax1),
+            StringRange(expectedMin2, expectedMax2),
         )
 
         // Then
@@ -348,7 +466,83 @@ class StringGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
+    @JsName("fn5a")
+    fun `Given generate is called with ranges and a predicate it returns a String`() {
+        // Given
+        val expectedMin1 = 0.toChar()
+        val expectedMax1 = 42.toChar()
+        val expectedMin2 = 3.toChar()
+        val expectedMax2 = 41.toChar()
+        val expectedPredicate: Function1<Char?, Boolean> = { true }
+
+        val capturedMin: MutableList<Int> = sharedMutableListOf()
+        val capturedMax: MutableList<Int> = sharedMutableListOf()
+        val capturedPredicate: MutableList<Function<Boolean>> = sharedMutableListOf()
+
+        val auxiliaryGenerator = RangedGeneratorStub<Char, Char>()
+
+        val expected = listOf(
+            23.toChar(),
+            7.toChar(),
+            39.toChar(),
+        )
+        val ranges = sharedMutableListOf(3, 1, 0, 1)
+
+        val consumableItem = expected.toSharedMutableList()
+
+        random.nextIntRanged = { from, to ->
+            range.update { Pair(from, to) }
+            ranges.removeFirst()
+        }
+
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax, givenPredicate ->
+            capturedMin.add(givenMin.code)
+            capturedMax.add(givenMax.code)
+            capturedPredicate.add(givenPredicate)
+
+            consumableItem.removeFirst()
+        }
+
+        // When
+        val generator = StringGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(
+            StringRange(expectedMin1, expectedMax1),
+            StringRange(expectedMin2, expectedMax2),
+            predicate = expectedPredicate,
+        )
+
+        // Then
+        assertEquals(
+            actual = range.value,
+            expected = Pair(1, 2),
+        )
+        assertTrue(
+            actual = expectedMin1.code in capturedMin,
+        )
+        assertTrue(
+            actual = expectedMin2.code in capturedMin,
+        )
+        assertTrue(
+            actual = expectedMax1.code in capturedMax,
+        )
+        assertTrue(
+            actual = expectedMax2.code in capturedMax,
+        )
+        assertSame(
+            actual = capturedPredicate[0],
+            expected = expectedPredicate,
+        )
+        assertSame(
+            actual = capturedPredicate[1],
+            expected = expectedPredicate,
+        )
+        assertEquals(
+            actual = result,
+            expected = expected.joinToString(""),
+        )
+    }
+
+    @Test
     @JsName("fn6")
     fun `Given generate is called with ranges it returns a String with a given Size`() {
         // Given
@@ -387,8 +581,8 @@ class StringGeneratorSpec {
         // When
         val generator = StringGenerator(random, auxiliaryGenerator)
         val result = generator.generate(
-            tech.antibytes.kfixture.generator.array.StringRange(expectedMin1, expectedMax1),
-            tech.antibytes.kfixture.generator.array.StringRange(expectedMin2, expectedMax2),
+            StringRange(expectedMin1, expectedMax1),
+            StringRange(expectedMin2, expectedMax2),
             size = expectedSize,
         )
 
@@ -408,6 +602,85 @@ class StringGeneratorSpec {
         )
         assertTrue(
             actual = expectedMax2.code in capturedMax,
+        )
+        assertEquals(
+            actual = result,
+            expected = expected.joinToString(""),
+        )
+    }
+
+    @Test
+    @JsName("fn6a")
+    fun `Given generate is called with ranges a size and a predicate it returns a String`() {
+        // Given
+        val expectedSize = 3
+        val expectedMin1 = 0.toChar()
+        val expectedMax1 = 42.toChar()
+        val expectedMin2 = 3.toChar()
+        val expectedMax2 = 41.toChar()
+        val expectedPredicate: Function1<Char?, Boolean> = { true }
+
+        val capturedMin: MutableList<Int> = sharedMutableListOf()
+        val capturedMax: MutableList<Int> = sharedMutableListOf()
+        val capturedPredicate: MutableList<Function<Boolean>> = sharedMutableListOf()
+
+        val auxiliaryGenerator = RangedGeneratorStub<Char, Char>()
+
+        val expected = listOf(
+            23.toChar(),
+            7.toChar(),
+            39.toChar(),
+        )
+        val ranges = sharedMutableListOf(1, 0, 1)
+
+        val consumableItem = expected.toSharedMutableList()
+
+        random.nextIntRanged = { from, to ->
+            range.update { Pair(from, to) }
+            ranges.removeFirst()
+        }
+
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax, givenPredicate ->
+            capturedMin.add(givenMin.code)
+            capturedMax.add(givenMax.code)
+            capturedPredicate.add(givenPredicate)
+
+            consumableItem.removeFirst()
+        }
+
+        // When
+        val generator = StringGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(
+            StringRange(expectedMin1, expectedMax1),
+            StringRange(expectedMin2, expectedMax2),
+            size = expectedSize,
+            predicate = expectedPredicate,
+        )
+
+        // Then
+        assertEquals(
+            actual = range.value,
+            expected = Pair(1, 2),
+        )
+        assertTrue(
+            actual = expectedMin1.code in capturedMin,
+        )
+        assertTrue(
+            actual = expectedMin2.code in capturedMin,
+        )
+        assertTrue(
+            actual = expectedMax1.code in capturedMax,
+        )
+        assertTrue(
+            actual = expectedMax2.code in capturedMax,
+        )
+        assertSame(
+            actual = capturedPredicate[0],
+            expected = expectedPredicate,
+        )
+        assertSame(
+            actual = capturedPredicate[1],
+            expected = expectedPredicate,
         )
         assertEquals(
             actual = result,
