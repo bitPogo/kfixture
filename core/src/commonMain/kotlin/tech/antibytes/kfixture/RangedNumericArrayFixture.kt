@@ -15,6 +15,7 @@ package tech.antibytes.kfixture
  * @param from the lower boundary of the value.
  * @param to the upper boundary of the value.
  * @param size determines amount of items.
+ * @param predicate which filters non matching values.
  * @param qualifier a optional qualifier for a special flavour of a type.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
@@ -23,6 +24,7 @@ public inline fun <reified RangeType, reified FixtureType : RangeType?> PublicAp
     to: RangeType & Any,
     size: Int,
     qualifier: PublicApi.Qualifier? = null,
+    noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
 ): FixtureType {
     val returnNull = random.returnNull<FixtureType>()
     val id = resolveIdentifier<FixtureType>(qualifier)
@@ -38,6 +40,7 @@ public inline fun <reified RangeType, reified FixtureType : RangeType?> PublicAp
             from = from as Comparable<Any>,
             to = to as Comparable<Any>,
             size = size,
+            predicate = predicate as Function1<Any?, Boolean>,
         ) as FixtureType
     }
 }
@@ -62,6 +65,7 @@ internal inline fun <reified RangeType, reified FixtureType : RangeType?> Public
     }
 }
 
+@Suppress("UNCHECKED_CAST")
 @Throws(IllegalStateException::class)
 /**
  * Creates a value for a given type in a given range, excluding generics like List or Array.
@@ -70,19 +74,23 @@ internal inline fun <reified RangeType, reified FixtureType : RangeType?> Public
  * @param ranges the lower boundary of the value.
  * @param size determines amount of items.
  * @param qualifier a optional qualifier for a special flavour of a type.
+ * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 public inline fun <reified RangeType, reified FixtureType : RangeType?> PublicApi.Fixture.fixture(
     vararg ranges: ClosedRange<RangeType>,
     size: Int,
     qualifier: PublicApi.Qualifier? = null,
+    noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
 ): FixtureType where RangeType : Comparable<RangeType> = guardRangedReturn<RangeType, FixtureType>(qualifier) {
     this.generate(
         ranges = ranges,
         size = size,
+        predicate = predicate as Function1<Any?, Boolean>,
     ) as FixtureType
 }
 
+@Suppress("UNCHECKED_CAST")
 @Throws(IllegalStateException::class)
 /**
  * Creates a value for a given type in a given range, excluding generics like List or Array.
@@ -90,11 +98,16 @@ public inline fun <reified RangeType, reified FixtureType : RangeType?> PublicAp
  * @param RangeType the type which is supposed to be created and is bounded to its boundaries.
  * @param ranges the lower boundary of the value.
  * @param qualifier a optional qualifier for a special flavour of a type.
+ * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 public inline fun <reified RangeType, reified FixtureType : RangeType?> PublicApi.Fixture.fixture(
     vararg ranges: ClosedRange<RangeType>,
     qualifier: PublicApi.Qualifier? = null,
+    noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
 ): FixtureType where RangeType : Comparable<RangeType> = guardRangedReturn<RangeType, FixtureType>(qualifier) {
-    this.generate(ranges = ranges) as FixtureType
+    this.generate(
+        ranges = ranges,
+        predicate = predicate as Function1<Any?, Boolean>,
+    ) as FixtureType
 }

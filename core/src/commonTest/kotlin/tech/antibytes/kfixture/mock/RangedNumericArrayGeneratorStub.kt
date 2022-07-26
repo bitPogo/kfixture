@@ -14,8 +14,6 @@ class RangedNumericArrayGeneratorStub<T, R : Any>(
     var generate: ((Int) -> R)? = null,
     @JsName("generateWithRangeStub")
     var generateWithRange: ((T, T, Int, Function1<T?, Boolean>) -> R)? = null,
-    @JsName("generateWithRangesStub")
-    var generateWithRanges: ((Array<out ClosedRange<T>>) -> R)? = null,
     @JsName("generateWithSizedRangesStub")
     var generateWithRangesAndSize: ((Array<out ClosedRange<T>>, Int?, Function1<T?, Boolean>) -> R)? = null,
 ) : PublicApi.RangedArrayGenerator<T, R> where T : Any, T : Comparable<T> {

@@ -213,17 +213,17 @@ class RangedFixtureSpec {
         val expected = 23
         val expectedFrom = 12
         val expectedTo = 42
-        val expectedPredicate: Function1<Int, Boolean> = { true }
+        val expectedPredicate: Function1<Int?, Boolean> = { true }
         val generator = RangedGeneratorStub<Int, Int>()
 
         var capturedFrom: Int? = null
         var capturedTo: Int? = null
-        var caputedPredicate: Function1<Int, Boolean>? = null
+        var capturedPredicate: Function1<Int?, Boolean>? = null
 
         generator.generateWithRange = { givenFrom, givenTo, givenPredicate ->
             capturedFrom = givenFrom
             capturedTo = givenTo
-            caputedPredicate = givenPredicate
+            capturedPredicate = givenPredicate
 
             expected
         }
@@ -254,7 +254,7 @@ class RangedFixtureSpec {
             expected = expectedTo,
         )
         assertSame(
-            actual = caputedPredicate,
+            actual = capturedPredicate,
             expected = expectedPredicate,
         )
     }

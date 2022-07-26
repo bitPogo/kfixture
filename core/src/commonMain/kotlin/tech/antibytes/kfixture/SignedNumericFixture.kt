@@ -13,12 +13,13 @@ package tech.antibytes.kfixture
  * @param T the type which is supposed to be created.
  * @param sign determines if the resulting number is strict positive or negative
  * @param qualifier a optional qualifier for a special flavour of a type.
+ * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 public inline fun <reified T> PublicApi.Fixture.fixture(
     sign: PublicApi.Sign,
     qualifier: PublicApi.Qualifier? = null,
-    noinline predicate: (T?) -> Boolean = ::defaultPredicate,
+    noinline predicate: Function1<T?, Boolean> = ::defaultPredicate,
 ): T where T : Number? {
     val returnNull = random.returnNull<T>()
     val id = resolveIdentifier<T>(qualifier)
