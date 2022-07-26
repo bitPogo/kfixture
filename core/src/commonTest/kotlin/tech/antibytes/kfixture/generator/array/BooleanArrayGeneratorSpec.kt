@@ -15,7 +15,7 @@ import kotlinx.atomicfu.AtomicRef
 import kotlinx.atomicfu.atomic
 import kotlinx.atomicfu.update
 import tech.antibytes.kfixture.PublicApi
-import tech.antibytes.kfixture.mock.GeneratorStub
+import tech.antibytes.kfixture.mock.FilterableGeneratorStub
 import tech.antibytes.kfixture.mock.RandomStub
 
 class BooleanArrayGeneratorSpec {
@@ -32,7 +32,7 @@ class BooleanArrayGeneratorSpec {
     @Suppress("UNCHECKED_CAST")
     @JsName("fn0")
     fun `It fulfils FilterableArrayGenerator`() {
-        val generator: Any = BooleanArrayGenerator(random, GeneratorStub<Boolean, Boolean>())
+        val generator: Any = BooleanArrayGenerator(random, FilterableGeneratorStub<Boolean, Boolean>())
 
         assertTrue(generator is PublicApi.ArrayGenerator<*>)
     }
@@ -45,7 +45,7 @@ class BooleanArrayGeneratorSpec {
         val size = 23
         val expectedValue = false
         val expected = BooleanArray(size) { expectedValue }
-        val auxiliaryGenerator = GeneratorStub<Boolean, Boolean>()
+        val auxiliaryGenerator = FilterableGeneratorStub<Boolean, Boolean>()
 
         auxiliaryGenerator.generate = { expectedValue }
         random.nextIntRanged = { from, to ->
@@ -75,7 +75,7 @@ class BooleanArrayGeneratorSpec {
         val size = 12
         val expectedValue = true
         val expected = BooleanArray(size) { expectedValue }
-        val auxiliaryGenerator = GeneratorStub<Boolean, Boolean>()
+        val auxiliaryGenerator = FilterableGeneratorStub<Boolean, Boolean>()
 
         auxiliaryGenerator.generate = { expectedValue }
 

@@ -17,13 +17,12 @@ import tech.antibytes.kfixture.Fixture
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.fixture
 import tech.antibytes.kfixture.int
-import tech.antibytes.kfixture.mock.GeneratorStub
+import tech.antibytes.kfixture.mock.FilterableGeneratorStub
 import tech.antibytes.kfixture.mock.RandomStub
 import tech.antibytes.kfixture.qualifier.StringQualifier
 import tech.antibytes.kfixture.resolveClassName
 import tech.antibytes.kfixture.tripleFixture
 
-@Suppress("USELESS_CAST")
 class TripleFixtureSpec {
     private val random = RandomStub()
     private val capturedMinimum = atomic(-1)
@@ -37,7 +36,6 @@ class TripleFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn0")
     fun `It fulfils Fixture`() {
         val fixture: Any = Fixture(random, emptyMap())
@@ -46,12 +44,11 @@ class TripleFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn1")
     fun `Given tripleFixture is called it fails if the Type has no corresponding Generator`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int, Int>()
+        val generator = FilterableGeneratorStub<Int, Int>()
         generator.generate = { expected }
 
         // Ensure stable names since reified is in play
@@ -72,12 +69,11 @@ class TripleFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn2")
     fun `Given tripleFixture is called it returns a Fixture for the derrived Type`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int, Int>()
+        val generator = FilterableGeneratorStub<Int, Int>()
         generator.generate = { expected }
 
         // Ensure stable names since reified is in play
@@ -96,12 +92,11 @@ class TripleFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn3")
     fun `Given tripleFixture is called it returns a Fixture while respecting nullability`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int, Int>()
+        val generator = FilterableGeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextBoolean = { true }
@@ -122,7 +117,6 @@ class TripleFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn4")
     fun `Given tripleFixture is called with qualifiers it returns a Fixture for the derived Type`() {
         // Given
@@ -130,7 +124,7 @@ class TripleFixtureSpec {
         val firstQualifier = "testFirst"
         val secondQualifier = "testSecond"
         val thirdQualifier = "testThird"
-        val generator = GeneratorStub<Int, Int>()
+        val generator = FilterableGeneratorStub<Int, Int>()
         generator.generate = { expected }
 
         // Ensure stable names since reified is in play
@@ -160,7 +154,6 @@ class TripleFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn5")
     fun `Given fixture is called with qualifiers and a Type it returns a Fixture for the derived Type`() {
         // Given
@@ -168,7 +161,7 @@ class TripleFixtureSpec {
         val firstQualifier = "testFirst"
         val secondQualifier = "testSecond"
         val thirdQualifier = "testThird"
-        val generator = GeneratorStub<Int, Int>()
+        val generator = FilterableGeneratorStub<Int, Int>()
         generator.generate = { expected }
 
         // Ensure stable names since reified is in play

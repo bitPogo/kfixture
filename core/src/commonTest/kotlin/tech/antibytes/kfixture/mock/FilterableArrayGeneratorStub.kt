@@ -9,7 +9,7 @@ package tech.antibytes.kfixture.mock
 import kotlin.js.JsName
 import tech.antibytes.kfixture.PublicApi
 
-class ArrayGeneratorStub<T : Any, R : Any>(
+class FilterableArrayGeneratorStub<T : Any, R : Any>(
     @JsName("generateStub")
     var generate: ((Int) -> R)? = null,
     @JsName("generateWithPredicateStub")

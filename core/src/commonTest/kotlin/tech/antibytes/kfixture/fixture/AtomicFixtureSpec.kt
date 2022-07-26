@@ -19,13 +19,12 @@ import tech.antibytes.kfixture.Fixture
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.fixture
 import tech.antibytes.kfixture.int
-import tech.antibytes.kfixture.mock.ArrayGeneratorStub
-import tech.antibytes.kfixture.mock.GeneratorStub
+import tech.antibytes.kfixture.mock.FilterableArrayGeneratorStub
+import tech.antibytes.kfixture.mock.FilterableGeneratorStub
 import tech.antibytes.kfixture.mock.RandomStub
 import tech.antibytes.kfixture.qualifier.StringQualifier
 import tech.antibytes.kfixture.resolveClassName
 
-@Suppress("USELESS_CAST")
 class AtomicFixtureSpec {
     private val random = RandomStub()
     private val capturedMinimum = atomic(-1)
@@ -39,7 +38,6 @@ class AtomicFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn0")
     fun `It fulfils Fixture`() {
         val fixture: Any = Fixture(random, emptyMap())
@@ -48,12 +46,11 @@ class AtomicFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn1")
     fun `Given fixture is called it fails if the Type has no corresponding Generator`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int, Int>()
+        val generator = FilterableGeneratorStub<Int, Int>()
         generator.generate = { expected }
 
         // Ensure stable names since reified is in play
@@ -74,12 +71,11 @@ class AtomicFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn2")
     fun `Given fixture is called it returns a Fixture for the derived Type`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int, Int>()
+        val generator = FilterableGeneratorStub<Int, Int>()
         generator.generate = { expected }
 
         // Ensure stable names since reified is in play
@@ -98,13 +94,12 @@ class AtomicFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn3")
     fun `Given fixture is called with size it returns a Fixture for the derived Type`() {
         // Given
         val expected = 23
         val expectedSize = 42
-        val generator = ArrayGeneratorStub<Int, Int>()
+        val generator = FilterableArrayGeneratorStub<Int, Int>()
 
         var capturedSize: Int? = null
 
@@ -134,12 +129,11 @@ class AtomicFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn4")
     fun `Given fixture is called it returns a Fixture while respecting nullability`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int, Int>()
+        val generator = FilterableGeneratorStub<Int, Int>()
 
         random.nextBoolean = { true }
         generator.generate = { expected }
@@ -157,13 +151,12 @@ class AtomicFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn5")
     fun `Given fixture is called with size it returns a Fixture while respecting nullability`() {
         // Given
         val expected = 23
         val expectedSize = 42
-        val generator = ArrayGeneratorStub<Int, Int>()
+        val generator = FilterableArrayGeneratorStub<Int, Int>()
 
         var capturedSize: Int? = null
 
@@ -188,13 +181,12 @@ class AtomicFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn6")
     fun `Given fixture is called with a qualifier it returns a Fixture for the derived Type`() {
         // Given
         val expected = 23
         val qualifier = "test"
-        val generator = GeneratorStub<Int, Int>()
+        val generator = FilterableGeneratorStub<Int, Int>()
         generator.generate = { expected }
 
         // Ensure stable names since reified is in play
@@ -216,14 +208,13 @@ class AtomicFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn7")
     fun `Given fixture is called with a qualifier and size it returns a Fixture for the derived Type`() {
         // Given
         val expected = 23
         val qualifier = "test"
         val expectedSize = 42
-        val generator = ArrayGeneratorStub<Int, Int>()
+        val generator = FilterableArrayGeneratorStub<Int, Int>()
 
         var capturedSize: Int? = null
 
@@ -256,12 +247,11 @@ class AtomicFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn8")
     fun `Given fixture is called it returns a type for a Number Type`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int, Int>()
+        val generator = FilterableGeneratorStub<Int, Int>()
         generator.generate = { expected }
         random.nextIntRanged = { _, _ -> 2 }
 
@@ -284,13 +274,12 @@ class AtomicFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn9")
     fun `Given fixture is called with size it returns a type for a Number Type`() {
         // Given
         val expected = 23
         val expectedSize = 42
-        val generator = ArrayGeneratorStub<Int, Int>()
+        val generator = FilterableArrayGeneratorStub<Int, Int>()
 
         var capturedSize: Int? = null
 
@@ -324,13 +313,12 @@ class AtomicFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn10")
     fun `Given fixture is called with a qualifier it returns a type for a Number Type`() {
         // Given
         val expected = 23
         val qualifier = "test"
-        val generator = GeneratorStub<Int, Int>()
+        val generator = FilterableGeneratorStub<Int, Int>()
         generator.generate = { expected }
         random.nextIntRanged = { _, _ -> 2 }
 
@@ -353,14 +341,13 @@ class AtomicFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn11")
     fun `Given fixture is called with a qualifier and size it returns a type for a Number Type`() {
         // Given
         val expected = 23
         val qualifier = "test"
         val expectedSize = 42
-        val generator = ArrayGeneratorStub<Int, Int>()
+        val generator = FilterableArrayGeneratorStub<Int, Int>()
 
         var capturedSize: Int? = null
 
@@ -394,7 +381,6 @@ class AtomicFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn12")
     fun `Given fixture is called with Iterable it returns a random picked item out of it`() {
         // Given

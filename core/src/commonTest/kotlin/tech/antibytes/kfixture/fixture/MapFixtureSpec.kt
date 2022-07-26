@@ -19,13 +19,12 @@ import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.fixture
 import tech.antibytes.kfixture.int
 import tech.antibytes.kfixture.mapFixture
-import tech.antibytes.kfixture.mock.GeneratorStub
+import tech.antibytes.kfixture.mock.FilterableGeneratorStub
 import tech.antibytes.kfixture.mock.RandomStub
 import tech.antibytes.kfixture.mutableMapFixture
 import tech.antibytes.kfixture.qualifier.StringQualifier
 import tech.antibytes.kfixture.resolveClassName
 
-@Suppress("USELESS_CAST")
 class MapFixtureSpec {
     private val random = RandomStub()
     private val capturedMinimum = atomic(-1)
@@ -39,7 +38,6 @@ class MapFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn0")
     fun `It fulfils Fixture`() {
         val fixture: Any = Fixture(random, emptyMap())
@@ -48,12 +46,11 @@ class MapFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn1")
     fun `Given mapFixture is called it fails if the Type has no corresponding Generator`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int, Int>()
+        val generator = FilterableGeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { _, _ -> 42 }
@@ -76,13 +73,12 @@ class MapFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn2")
     fun `Given mapFixture is called it returns a Fixture for the derived Type`() {
         // Given
         val size = 5
         val expected = 23
-        val generator = GeneratorStub<Int, Int>()
+        val generator = FilterableGeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { givenMinimum, givenMaximum ->
@@ -125,13 +121,12 @@ class MapFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn3")
     fun `Given mapFixture is called it returns a Fixture while respecting nullability`() {
         // Given
         val size = 5
         val expected = 23
-        val generator = GeneratorStub<Int, Int>()
+        val generator = FilterableGeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { givenMinimum, givenMaximum ->
@@ -174,7 +169,6 @@ class MapFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn4")
     fun `Given mapFixture is called with a Key and ValueQualifier it returns a Fixture for the derived Type`() {
         // Given
@@ -182,7 +176,7 @@ class MapFixtureSpec {
         val expected = 23
         val keyQualifier = "testKey"
         val valueQualifier = "testValue"
-        val generator = GeneratorStub<Int, Int>()
+        val generator = FilterableGeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { _, _ -> size }
@@ -216,12 +210,11 @@ class MapFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn5")
     fun `Given mapFixture is called with a size it returns a Fixture for the derived Type for the given Size`() {
         // Given
         val size = 5
-        val generator = GeneratorStub<Int, Int>()
+        val generator = FilterableGeneratorStub<Int, Int>()
 
         val randomValues = sharedMutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
@@ -247,12 +240,11 @@ class MapFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn6")
     fun `Given fixture is called with a size it returns a Fixture for the derived Type for the given Size`() {
         // Given
         val size = 5
-        val generator = GeneratorStub<Int, Int>()
+        val generator = FilterableGeneratorStub<Int, Int>()
 
         val randomValues = sharedMutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
@@ -281,12 +273,11 @@ class MapFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn7")
     fun `Given mutableMapFixture is called it fails if the Type has no corresponding Generator`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int, Int>()
+        val generator = FilterableGeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { _, _ -> 42 }
@@ -309,13 +300,12 @@ class MapFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn8")
     fun `Given mutableMapFixture is called it returns a Fixture for the derived Type`() {
         // Given
         val size = 5
         val expected = 23
-        val generator = GeneratorStub<Int, Int>()
+        val generator = FilterableGeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { givenMinimum, givenMaximum ->
@@ -358,13 +348,12 @@ class MapFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn9")
     fun `Given mutableMapFixture is called it returns a Fixture while respecting nullability`() {
         // Given
         val size = 5
         val expected = 23
-        val generator = GeneratorStub<Int, Int>()
+        val generator = FilterableGeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { givenMinimum, givenMaximum ->
@@ -407,7 +396,6 @@ class MapFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn10")
     fun `Given mutableMapFixture is called with a Key and ValueQualifier it returns a Fixture for the derived Type`() {
         // Given
@@ -415,7 +403,7 @@ class MapFixtureSpec {
         val expected = 23
         val keyQualifier = "testKey"
         val valueQualifier = "testValue"
-        val generator = GeneratorStub<Int, Int>()
+        val generator = FilterableGeneratorStub<Int, Int>()
 
         generator.generate = { expected }
         random.nextIntRanged = { _, _ -> size }
@@ -449,12 +437,11 @@ class MapFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn11")
     fun `Given mutableMapFixture is called with a size it returns a Fixture for the derived Type for the given Size`() {
         // Given
         val size = 5
-        val generator = GeneratorStub<Int, Int>()
+        val generator = FilterableGeneratorStub<Int, Int>()
 
         val randomValues = sharedMutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
@@ -480,12 +467,11 @@ class MapFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn12")
     fun `Given fixture is called with a size it returns a Fixture for the derived Type for the given Size as MutableMap`() {
         // Given
         val size = 5
-        val generator = GeneratorStub<Int, Int>()
+        val generator = FilterableGeneratorStub<Int, Int>()
 
         val randomValues = sharedMutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
