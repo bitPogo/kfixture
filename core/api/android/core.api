@@ -58,6 +58,14 @@ public abstract interface class tech/antibytes/kfixture/PublicApi$DependentGener
 	public abstract fun getInstance (Lkotlin/random/Random;Ljava/util/Map;)Ltech/antibytes/kfixture/PublicApi$Generator;
 }
 
+public abstract interface class tech/antibytes/kfixture/PublicApi$FilterableArrayGenerator : tech/antibytes/kfixture/PublicApi$ArrayGenerator, tech/antibytes/kfixture/PublicApi$FilterableGenerator {
+	public abstract fun generate (ILkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+}
+
+public abstract interface class tech/antibytes/kfixture/PublicApi$FilterableGenerator : tech/antibytes/kfixture/PublicApi$Generator {
+	public abstract fun generate (Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+}
+
 public abstract interface class tech/antibytes/kfixture/PublicApi$Fixture {
 	public abstract fun getGenerators ()Ljava/util/Map;
 	public abstract fun getRandom ()Lkotlin/random/Random;
@@ -65,7 +73,6 @@ public abstract interface class tech/antibytes/kfixture/PublicApi$Fixture {
 
 public abstract interface class tech/antibytes/kfixture/PublicApi$Generator {
 	public abstract fun generate ()Ljava/lang/Object;
-	public abstract fun generate (Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 }
 
 public abstract interface class tech/antibytes/kfixture/PublicApi$GeneratorFactory {
@@ -82,7 +89,7 @@ public abstract interface class tech/antibytes/kfixture/PublicApi$RangedArrayGen
 	public abstract fun generate ([Lkotlin/ranges/ClosedRange;I)Ljava/lang/Object;
 }
 
-public abstract interface class tech/antibytes/kfixture/PublicApi$RangedGenerator : tech/antibytes/kfixture/PublicApi$Generator {
+public abstract interface class tech/antibytes/kfixture/PublicApi$RangedGenerator : tech/antibytes/kfixture/PublicApi$FilterableGenerator {
 	public abstract fun generate (Ljava/lang/Object;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
 }
 

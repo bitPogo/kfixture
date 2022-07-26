@@ -21,8 +21,4 @@ internal class SelectorGenerator<T : Any>(
 
         return options[pick]
     }
-
-    override fun generate(predicate: (T) -> Boolean): T {
-        TODO("Not yet implemented")
-    }
 }

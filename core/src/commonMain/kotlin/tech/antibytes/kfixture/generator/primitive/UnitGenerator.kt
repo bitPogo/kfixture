@@ -10,7 +10,4 @@ import tech.antibytes.kfixture.PublicApi
 
 internal object UnitGenerator : PublicApi.Generator<Unit> {
     override fun generate() = Unit
-    override fun generate(predicate: (Unit) -> Boolean) {
-        throw IllegalStateException("Unit cannot be filtered!")
-    }
 }

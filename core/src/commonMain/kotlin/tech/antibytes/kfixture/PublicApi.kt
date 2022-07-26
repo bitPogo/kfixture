@@ -29,21 +29,30 @@ public interface PublicApi {
          * @return a instance of a given type.
          */
         public fun generate(): T
+    }
 
+    /**
+     * Generator of values for specific type.
+     * @param T the type which the Generator is referring to.
+     * @param R the type which the Generator will instantiate.
+     * @author Matthias Geisler
+     */
+    public interface FilterableGenerator<T : Any, R : Any> : Generator<R> {
         /**
          * Generates a instance of given type if it matches the given predicate.
          * @param predicate which filters the the generated instances.
          * @return a instance of a given type.
          */
-        public fun generate(predicate: (T) -> Boolean): T
+        public fun generate(predicate: (T?) -> Boolean): R
     }
 
     /**
      * Generator of values for specific type in a given Range.
      * @param T the type which the Generator is referring to.
+     * @param R the type which the Generator will instantiate.
      * @author Matthias Geisler
      */
-    public interface RangedGenerator<T, R : Any> : Generator<R> where T : Any, T : Comparable<T> {
+    public interface RangedGenerator<T, R : Any> : FilterableGenerator<T, R> where T : Any, T : Comparable<T> {
 
         /**
          * Generates a instance of given type in a given range.
@@ -56,7 +65,7 @@ public interface PublicApi {
         public fun generate(
             from: T,
             to: T,
-            predicate: (R?) -> Boolean = ::defaultPredicate,
+            predicate: (T?) -> Boolean = ::defaultPredicate,
         ): R
     }
 
@@ -76,8 +85,24 @@ public interface PublicApi {
     }
 
     /**
+     * Generator of values for specific type.
+     * @param T the type which the Generator is referring to.
+     * @param R the type which the Generator will instantiate.
+     * @author Matthias Geisler
+     */
+    public interface FilterableArrayGenerator<T : Any, R : Any> : ArrayGenerator<R>, FilterableGenerator<T, R> {
+        /**
+         * Generates a instance of given type if it matches the given predicate.
+         * @param predicate which filters the the generated instances.
+         * @return a instance of a given type.
+         */
+        public fun generate(size: Int, predicate: (T?) -> Boolean): R
+    }
+
+    /**
      * Generator of values for specific array types in a given Range.
      * @param T the type which the Generator is referring to.
+     * @param R the type which the Generator will instantiate.
      * @author Matthias Geisler
      */
     public interface RangedArrayGenerator<T, R : Any> :
@@ -135,6 +160,7 @@ public interface PublicApi {
     /**
      * Generator of values for specific type in a given Range of signed Numbers.
      * @param T the type which the Generator is referring to.
+     * @param R the type which the Generator will instantiate.
      * @author Matthias Geisler
      */
     public interface SignedNumberGenerator<T, R : Any> : RangedGenerator<T, R> where T : Any, T : Comparable<T> {
@@ -144,13 +170,14 @@ public interface PublicApi {
          */
         public fun generate(
             sign: Sign,
-            predicate: (R?) -> Boolean = ::defaultPredicate,
+            predicate: (T?) -> Boolean = ::defaultPredicate,
         ): R
     }
 
     /**
      * Generator of values for specific type in a given Range of signed Numbers for Arrays.
      * @param T the type which the Generator is referring to.
+     * @param R the type which the Generator will instantiate.
      * @author Matthias Geisler
      */
     public interface SignedNumericArrayGenerator<T, R : Any> :

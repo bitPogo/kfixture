@@ -10,14 +10,13 @@ import kotlin.random.Random
 import tech.antibytes.kfixture.FixtureContract.CHAR_LOWER_BOUND
 import tech.antibytes.kfixture.FixtureContract.CHAR_UPPER_BOUND
 import tech.antibytes.kfixture.PublicApi
-import tech.antibytes.kfixture.generator.Generator
 
 internal class CharGenerator(
     private val random: Random,
 ) : PublicApi.RangedGenerator<Char, Char>, Generator<Char>() {
     override fun generate(): Char = generate(CHAR_LOWER_BOUND, CHAR_UPPER_BOUND)
 
-    override fun generate(predicate: (Char) -> Boolean): Char = returnFilteredValue(predicate, ::generate)
+    override fun generate(predicate: (Char?) -> Boolean): Char = returnFilteredValue(predicate, ::generate)
 
     override fun generate(
         from: Char,

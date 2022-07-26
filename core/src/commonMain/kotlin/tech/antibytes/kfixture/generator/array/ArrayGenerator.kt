@@ -19,11 +19,21 @@ internal abstract class ArrayGenerator<T : Any, R : Any>(
 
     protected fun chooseSize(): Int = random.nextInt(ARRAY_LOWER_BOUND, ARRAY_UPPER_BOUND)
 
-    override fun generate(size: Int): R = arrayBuilder(size) { generator.generate() }
-
     override fun generate(): R = generate(chooseSize())
 
-    override fun generate(predicate: (R) -> Boolean): R {
-        TODO("Not yet implemented")
-    }
+    override fun generate(size: Int): R = arrayBuilder(size) { generator.generate() }
+}
+
+internal abstract class FilterableArrayGenerator<T : Any, R : Any>(
+    random: Random,
+    private val generator: PublicApi.FilterableGenerator<T, T>,
+) : PublicApi.FilterableArrayGenerator<T, R>, ArrayGenerator<T, R>(random, generator) {
+    override fun generate(
+        predicate: (T?) -> Boolean,
+    ): R = generate(chooseSize(), predicate)
+
+    override fun generate(
+        size: Int,
+        predicate: (T?) -> Boolean,
+    ): R = arrayBuilder(size) { generator.generate(predicate) }
 }

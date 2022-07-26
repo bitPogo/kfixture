@@ -11,6 +11,7 @@ import kotlin.js.JsName
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertSame
 import kotlin.test.assertTrue
 import kotlinx.atomicfu.AtomicRef
 import kotlinx.atomicfu.atomic
@@ -71,6 +72,47 @@ class ByteArrayGeneratorSpec {
     @Test
     @Suppress("UNCHECKED_CAST")
     @JsName("fn2")
+    fun `Given generate is called with a predicate it returns a ByteArray`() {
+        // Given
+        val size = 23
+        val expectedValue = 23.toByte()
+        val expectedPredicate: Function1<Byte?, Boolean> = { true }
+
+        val expected = ByteArray(size) { expectedValue }
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Byte, Byte>()
+        var capturedPredicate: Function<Boolean>? = null
+
+        auxiliaryGenerator.generateWithPredicate = { givenPredicate ->
+            capturedPredicate = givenPredicate
+
+            expectedValue
+        }
+        random.nextIntRanged = { from, to ->
+            range.update { Pair(from, to) }
+            size
+        }
+
+        // When
+        val generator = ByteArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(expectedPredicate)
+
+        // Then
+        assertEquals(
+            actual = Pair(1, 10),
+            expected = range.value,
+        )
+        assertSame(
+            actual = capturedPredicate,
+            expected = expectedPredicate,
+        )
+        assertTrue(
+            expected.contentEquals(result),
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn3")
     fun `Given generate is called with a size it returns a ByteArray in the given size`() {
         // Given
         val size = 12
@@ -97,7 +139,46 @@ class ByteArrayGeneratorSpec {
 
     @Test
     @Suppress("UNCHECKED_CAST")
-    @JsName("fn3")
+    @JsName("fn3a")
+    fun `Given generate is called with a size and a predicate it returns a ByteArray in the given size`() {
+        // Given
+        val size = 12
+        val expectedValue = 23.toByte()
+        val expectedPredicate: Function1<Byte?, Boolean> = { true }
+
+        val expected = ByteArray(size) { expectedValue }
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Byte, Byte>()
+        var capturedPredicate: Function<Boolean>? = null
+
+        random.nextBytesArray = { arraySize -> ByteArray(arraySize) }
+
+        auxiliaryGenerator.generateWithPredicate = { givenPredicate ->
+            capturedPredicate = givenPredicate
+
+            expectedValue
+        }
+
+        // When
+        val generator = ByteArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(size, expectedPredicate)
+
+        // Then
+        assertEquals(
+            actual = result.size,
+            expected = size,
+        )
+        assertSame(
+            actual = capturedPredicate,
+            expected = expectedPredicate,
+        )
+        assertTrue(
+            expected.contentEquals(result),
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn4")
     fun `Given generate is called with boundaries it returns a ByteArray`() {
         // Given
         val size = 3
@@ -152,7 +233,7 @@ class ByteArrayGeneratorSpec {
 
     @Test
     @Suppress("UNCHECKED_CAST")
-    @JsName("fn4")
+    @JsName("fn5")
     fun `Given generate is called with boundaries it returns a ByteArray with a given Size`() {
         // Given
         val size = 3
@@ -198,7 +279,7 @@ class ByteArrayGeneratorSpec {
 
     @Test
     @Suppress("UNCHECKED_CAST")
-    @JsName("fn5")
+    @JsName("fn6")
     fun `Given generate is called with ranges it returns a ByteArray`() {
         // Given
         val expectedMin1 = 0.toByte()
@@ -264,7 +345,7 @@ class ByteArrayGeneratorSpec {
 
     @Test
     @Suppress("UNCHECKED_CAST")
-    @JsName("fn6")
+    @JsName("fn7")
     fun `Given generate is called with ranges it returns a ByteArray with a given Size`() {
         // Given
         val expectedSize = 3
@@ -332,7 +413,7 @@ class ByteArrayGeneratorSpec {
 
     @Test
     @Suppress("UNCHECKED_CAST")
-    @JsName("fn7")
+    @JsName("fn8")
     fun `Given generate is called with a Sign it returns a ByteArray`() {
         // Given
         val expectedSign = PublicApi.Sign.NEGATIVE
@@ -375,7 +456,7 @@ class ByteArrayGeneratorSpec {
 
     @Test
     @Suppress("UNCHECKED_CAST")
-    @JsName("fn8")
+    @JsName("fn9")
     fun `Given generate is called with a Sign and Size it returns a ByteArray`() {
         // Given
         val expectedSign = PublicApi.Sign.NEGATIVE

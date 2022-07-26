@@ -4,7 +4,7 @@
  * Use of this source code is governed by Apache v2.0
  */
 
-package tech.antibytes.kfixture.generator
+package tech.antibytes.kfixture.generator.primitive
 
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.defaultPredicate
@@ -13,7 +13,7 @@ internal abstract class Generator<T : Any> : PublicApi.Generator<T> {
     private val defaultPredicate: Function1<T?, Boolean> = ::defaultPredicate
 
     private fun filterValues(
-        predicate: (T) -> Boolean,
+        predicate: (T?) -> Boolean,
         generate: () -> T,
     ): T {
         var returnValue: T
@@ -26,7 +26,7 @@ internal abstract class Generator<T : Any> : PublicApi.Generator<T> {
     }
 
     protected fun returnFilteredValue(
-        predicate: (T) -> Boolean,
+        predicate: (T?) -> Boolean,
         generate: () -> T,
     ): T {
         return if (predicate == defaultPredicate) {

@@ -9,14 +9,12 @@ package tech.antibytes.kfixture.mock
 import kotlin.js.JsName
 import tech.antibytes.kfixture.PublicApi
 
-class RangedGeneratorStub<T, R : Any>(
+class FilterableGeneratorStub<T : Any, R : Any>(
     @JsName("generateStub")
     var generate: (() -> R)? = null,
     @JsName("generateWithPredicateStub")
-    var generateWithPredicate: (((T?) -> Boolean) -> R)? = null,
-    @JsName("generateWithRangeStub")
-    var generateWithRange: ((T, T, predicate: (T?) -> Boolean) -> R)? = null,
-) : PublicApi.RangedGenerator<T, R> where T : Any, T : Comparable<T> {
+    var generateWithPredicate: ((Function1<T?, Boolean>) -> R)? = null,
+) : PublicApi.FilterableGenerator<T, R> {
     override fun generate(): R {
         return generate?.invoke() ?: throw RuntimeException("Missing SideEffect for generate.")
     }
@@ -24,10 +22,5 @@ class RangedGeneratorStub<T, R : Any>(
     override fun generate(predicate: (T?) -> Boolean): R {
         return generateWithPredicate?.invoke(predicate)
             ?: throw RuntimeException("Missing SideEffect for generateWithPredicate.")
-    }
-
-    override fun generate(from: T, to: T, predicate: (T?) -> Boolean): R {
-        return generateWithRange?.invoke(from, to, predicate)
-            ?: throw RuntimeException("Missing SideEffect for generateWithRange.")
     }
 }

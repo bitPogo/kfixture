@@ -9,7 +9,6 @@ package tech.antibytes.kfixture.generator.primitive
 import kotlin.random.Random
 import kotlin.random.nextInt
 import tech.antibytes.kfixture.PublicApi
-import tech.antibytes.kfixture.generator.Generator
 
 internal class FloatGenerator(
     private val random: Random,
@@ -17,7 +16,7 @@ internal class FloatGenerator(
     override fun generate(): Float = random.nextFloat() + random.nextInt()
 
     override fun generate(
-        predicate: (Float) -> Boolean,
+        predicate: (Float?) -> Boolean,
     ): Float = returnFilteredValue(predicate, ::generate)
 
     private fun generate(from: Float, to: Float): Float {

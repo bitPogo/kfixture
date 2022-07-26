@@ -10,7 +10,6 @@ import kotlin.js.JsName
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.mock.RandomStub
@@ -49,29 +48,6 @@ class BooleanGeneratorSpec {
         assertEquals(
             actual = result,
             expected = expected,
-        )
-    }
-
-    @Test
-    @Suppress("UNCHECKED_CAST")
-    @JsName("fn2")
-    fun `Given generate is called with a filter it fails`() {
-        // Given
-        val expected = true
-        random.nextBoolean = { expected }
-
-        val generator = BooleanGenerator(random)
-
-        // Then
-        val error = assertFailsWith<IllegalStateException> {
-            // When
-            generator.generate { true }
-        }
-
-        // Then
-        assertEquals(
-            actual = error.message,
-            expected = "Boolean cannot be filtered, use a constant value instead!",
         )
     }
 }

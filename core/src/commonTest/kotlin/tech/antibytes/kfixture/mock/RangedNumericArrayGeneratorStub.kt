@@ -27,13 +27,17 @@ class RangedNumericArrayGeneratorStub<T, R : Any>(
         TODO("Not yet implemented")
     }
 
+    override fun generate(predicate: (T?) -> Boolean): R {
+        TODO("Not yet implemented")
+    }
+
+    override fun generate(from: T, to: T, predicate: (T?) -> Boolean): R {
+        TODO("Not yet implemented")
+    }
+
     override fun generate(from: T, to: T, size: Int): R {
         return generateWithRange?.invoke(from, to, size)
             ?: throw RuntimeException("Missing SideEffect for generateWithRange.")
-    }
-
-    override fun generate(from: T, to: T, predicate: (R?) -> Boolean): R {
-        TODO("Not yet implemented")
     }
 
     override fun generate(vararg ranges: ClosedRange<T>): R {
@@ -44,9 +48,5 @@ class RangedNumericArrayGeneratorStub<T, R : Any>(
     override fun generate(vararg ranges: ClosedRange<T>, size: Int): R {
         return generateWithRangesAndSize?.invoke(ranges, size)
             ?: throw RuntimeException("Missing SideEffect for generateWithRangesAndSize.")
-    }
-
-    override fun generate(predicate: (R) -> Boolean): R {
-        TODO("Not yet implemented")
     }
 }

@@ -14,10 +14,6 @@ class GeneratorStub<T : Any>(
     var generate: (() -> T)? = null,
 ) : PublicApi.Generator<T> {
     override fun generate(): T {
-        return generate?.invoke() ?: throw RuntimeException("Missing sideeffect for generate.")
-    }
-
-    override fun generate(predicate: (T) -> Boolean): T {
-        TODO("Not yet implemented")
+        return generate?.invoke() ?: throw RuntimeException("Missing SideEffect for generate.")
     }
 }

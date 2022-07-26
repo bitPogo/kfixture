@@ -19,7 +19,7 @@ import tech.antibytes.kfixture.Fixture
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.fixture
 import tech.antibytes.kfixture.int
-import tech.antibytes.kfixture.mock.GeneratorStub
+import tech.antibytes.kfixture.mock.FilterableGeneratorStub
 import tech.antibytes.kfixture.mock.RandomStub
 import tech.antibytes.kfixture.mock.RangedGeneratorStub
 import tech.antibytes.kfixture.qualifier.StringQualifier
@@ -38,7 +38,6 @@ class RangedFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn0")
     fun `It fulfils Fixture`() {
         val fixture: Any = Fixture(random, emptyMap())
@@ -47,7 +46,6 @@ class RangedFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn1")
     fun `Given fixture is called with a upper and lower bound it fails if the Type has no corresponding Generator`() {
         // Given
@@ -78,7 +76,6 @@ class RangedFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn2")
     fun `Given fixture is called with a upper and lower bound and a predicate it fails if the Type has no corresponding Generator`() {
         // Given
@@ -109,12 +106,11 @@ class RangedFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn3")
     fun `Given fixture is called with a upper and lower bound it fails the corresponding Generator is not a RangedGenerator`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = FilterableGeneratorStub<Int, Int>()
         generator.generate = { expected }
 
         // Ensure stable names since reified is in play
@@ -138,12 +134,11 @@ class RangedFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn4")
     fun `Given fixture is called with a upper and lower bound and predicate it fails the corresponding Generator is not a RangedGenerator`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = FilterableGeneratorStub<Int, Int>()
         generator.generate = { expected }
 
         // Ensure stable names since reified is in play
@@ -167,7 +162,6 @@ class RangedFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn5")
     fun `Given fixture is called with a upper and lower bound it returns a Fixture for the derived Type`() {
         // Given
@@ -213,7 +207,6 @@ class RangedFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn6")
     fun `Given fixture is called with a upper and lower bound and predicate it returns a Fixture for the derived Type`() {
         // Given
@@ -267,7 +260,6 @@ class RangedFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn7")
     fun `Given fixture is called with a upper and lower bound it returns a Fixture while respecting nullability`() {
         // Given
@@ -306,7 +298,6 @@ class RangedFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn8")
     fun `Given fixture is called with a upper and lower bound with a predicate it returns a Fixture while respecting nullability`() {
         // Given
@@ -350,7 +341,6 @@ class RangedFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn9")
     fun `Given fixture is called  with a upper and lower bound and a qualifier it returns a Fixture for the derived Type`() {
         // Given
@@ -401,7 +391,6 @@ class RangedFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn10")
     fun `Given fixture is called  with a upper and lower bound and a qualifier and a predicate it returns a Fixture for the derived Type`() {
         // Given
@@ -460,7 +449,6 @@ class RangedFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn11")
     fun `Given fixture is called with a range it fails if the Type has no corresponding Generator`() {
         // Given
@@ -488,7 +476,6 @@ class RangedFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn12")
     fun `Given fixture is called with a range and a predicate it fails if the Type has no corresponding Generator`() {
         // Given
@@ -518,12 +505,11 @@ class RangedFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn13")
     fun `Given fixture is called with a range it fails the corresponding Generator is not a RangedGenerator`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = FilterableGeneratorStub<Int, Int>()
         generator.generate = { expected }
 
         // Ensure stable names since reified is in play
@@ -544,12 +530,11 @@ class RangedFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn14")
     fun `Given fixture is called with a range and a predicate it fails the corresponding Generator is not a RangedGenerator`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = FilterableGeneratorStub<Int, Int>()
         generator.generate = { expected }
 
         // Ensure stable names since reified is in play
@@ -570,7 +555,6 @@ class RangedFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn15")
     fun `Given fixture is called with a range it returns a Fixture for the derived Type`() {
         // Given
@@ -613,7 +597,6 @@ class RangedFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn16")
     fun `Given fixture is called with a range and a predicate it returns a Fixture for the derived Type`() {
         // Given
@@ -663,7 +646,6 @@ class RangedFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn17")
     fun `Given fixture is called with a range it returns a Fixture while respecting nullability`() {
         // Given
@@ -699,7 +681,6 @@ class RangedFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn18")
     fun `Given fixture is called with a range and a predicate it returns a Fixture while respecting nullability`() {
         // Given
@@ -739,7 +720,6 @@ class RangedFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn19")
     fun `Given fixture is called with a range and a qualifier it returns a Fixture for the derived Type`() {
         // Given
@@ -789,7 +769,6 @@ class RangedFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn20")
     fun `Given fixture is called with a range and a qualifier and a predicate it returns a Fixture for the derived Type`() {
         // Given

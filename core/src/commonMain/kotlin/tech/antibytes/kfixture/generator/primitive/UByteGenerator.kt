@@ -8,7 +8,6 @@ package tech.antibytes.kfixture.generator.primitive
 
 import kotlin.random.Random
 import tech.antibytes.kfixture.PublicApi
-import tech.antibytes.kfixture.generator.Generator
 
 internal class UByteGenerator(
     private val random: Random,
@@ -18,7 +17,7 @@ internal class UByteGenerator(
         to = UByte.MAX_VALUE,
     )
 
-    override fun generate(predicate: (UByte) -> Boolean): UByte = returnFilteredValue(predicate, ::generate)
+    override fun generate(predicate: (UByte?) -> Boolean): UByte = returnFilteredValue(predicate, ::generate)
 
     override fun generate(
         from: UByte,

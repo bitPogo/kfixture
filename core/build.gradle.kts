@@ -51,17 +51,18 @@ antiBytesCoverage {
     val branchCoverage = JacocoVerificationRule(
         counter = JacocoCounter.BRANCH,
         measurement = JacocoMeasurement.COVERED_RATIO,
-        minimum = BigDecimal(0.90)
+        minimum = BigDecimal(0.97)
     )
 
     val instructionCoverage = JacocoVerificationRule(
         counter = JacocoCounter.INSTRUCTION,
         measurement = JacocoMeasurement.COVERED_RATIO,
-        minimum = BigDecimal(0.90)
+        minimum = BigDecimal(0.97)
     )
 
     val excludes = setOf(
         "**/FixtureKt*",
+        "**/FilterableFixtureKt*",
         "**/RangedFixtureKt*",
         "**/RangedNumericArrayFixtureKt*",
         "**/SignedNumericFixtureKt*",

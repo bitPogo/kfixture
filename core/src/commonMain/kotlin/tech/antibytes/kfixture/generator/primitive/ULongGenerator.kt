@@ -9,7 +9,6 @@ package tech.antibytes.kfixture.generator.primitive
 import kotlin.random.Random
 import kotlin.random.nextULong
 import tech.antibytes.kfixture.PublicApi
-import tech.antibytes.kfixture.generator.Generator
 
 internal class ULongGenerator(
     private val random: Random,
@@ -17,7 +16,7 @@ internal class ULongGenerator(
     override fun generate(): ULong = random.nextULong()
 
     override fun generate(
-        predicate: (ULong) -> Boolean,
+        predicate: (ULong?) -> Boolean,
     ): ULong = returnFilteredValue(predicate, ::generate)
 
     override fun generate(

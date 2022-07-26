@@ -19,7 +19,7 @@ import tech.antibytes.kfixture.Fixture
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.fixture
 import tech.antibytes.kfixture.int
-import tech.antibytes.kfixture.mock.GeneratorStub
+import tech.antibytes.kfixture.mock.FilterableGeneratorStub
 import tech.antibytes.kfixture.mock.RandomStub
 import tech.antibytes.kfixture.mock.SignedNumberGeneratorStub
 import tech.antibytes.kfixture.qualifier.StringQualifier
@@ -38,7 +38,6 @@ class SignedNumberFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn0")
     fun `It fulfils Fixture`() {
         val fixture: Any = Fixture(random, emptyMap())
@@ -47,7 +46,6 @@ class SignedNumberFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn1")
     fun `Given fixture is called with a upper and lower bound it fails if the Type has no corresponding Generator`() {
         // Given
@@ -73,14 +71,8 @@ class SignedNumberFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn2")
     fun `Given fixture is called with a upper and lower bound and  a predicate it fails if the Type has no corresponding Generator`() {
-        // Given
-        val expected = 23
-        val generator = SignedNumberGeneratorStub<Int, Int>()
-        generator.generateWithSign = { _, _ -> expected }
-
         // Ensure stable names since reified is in play
         resolveClassName(Int::class)
 
@@ -99,13 +91,10 @@ class SignedNumberFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn4")
     fun `Given fixture is called with a upper and lower bound it fails the corresponding Generator is not a RangedGenerator`() {
         // Given
-        val expected = 23
-        val generator = GeneratorStub<Int>()
-        generator.generate = { expected }
+        val generator = FilterableGeneratorStub<Int, Int>()
 
         // Ensure stable names since reified is in play
         resolveClassName(Int::class)
@@ -125,12 +114,11 @@ class SignedNumberFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn5")
     fun `Given fixture is called with a upper and lower bound and a predicate it fails the corresponding Generator is not a RangedGenerator`() {
         // Given
         val expected = 23
-        val generator = GeneratorStub<Int>()
+        val generator = FilterableGeneratorStub<Int, Int>()
         generator.generate = { expected }
 
         // Ensure stable names since reified is in play
@@ -151,7 +139,6 @@ class SignedNumberFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn6")
     fun `Given fixture is called with a upper and lower bound it returns a Fixture for the derived Type`() {
         // Given
@@ -187,7 +174,6 @@ class SignedNumberFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn7")
     fun `Given fixture is called with a upper and lower bound and predicate it returns a Fixture for the derived Type`() {
         // Given
@@ -230,7 +216,6 @@ class SignedNumberFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn8")
     fun `Given fixture is called with a upper and lower bound it returns a Fixture while respecting nullability`() {
         // Given
@@ -262,7 +247,6 @@ class SignedNumberFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn9")
     fun `Given fixture is called with a upper and lower bound and a predicate it returns a Fixture while respecting nullability`() {
         // Given
@@ -298,7 +282,6 @@ class SignedNumberFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn10")
     fun `Given fixture is called  with a upper and lower bound and a qualifier it returns a Fixture for the derived Type`() {
         // Given
@@ -341,7 +324,6 @@ class SignedNumberFixtureSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn11")
     fun `Given fixture is called  with a upper and lower bound and a qualifier and a predicate it returns a Fixture for the derived Type`() {
         // Given
