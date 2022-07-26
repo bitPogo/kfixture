@@ -40,7 +40,7 @@ internal class ShortGenerator(
 
     override fun generate(sign: PublicApi.Sign, predicate: (Short?) -> Boolean): Short {
         val (from, to) = resolveBoundary(sign)
-        return returnFilteredValue(predicate) { generate(from, to) }
+        return generate(from, to, predicate)
     }
 
     private companion object {

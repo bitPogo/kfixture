@@ -66,6 +66,36 @@ class CharGeneratorSpec {
     @Test
     @Suppress("UNCHECKED_CAST")
     @JsName("fn2")
+    fun `Given generate is called with a predicate it returns a Char`() {
+        // Given
+        val expected = 100
+        val chars = mutableListOf(42, 78, expected)
+
+        random.nextIntRanged = { from, to ->
+            range.update { Pair(from, to) }
+
+            chars.removeFirst()
+        }
+
+        val generator = CharGenerator(random)
+
+        // When
+        val result = generator.generate { char -> char == expected.toChar() }
+
+        // Then
+        assertEquals(
+            actual = range.value,
+            expected = Pair(32, 126),
+        )
+        assertEquals(
+            actual = result,
+            expected = expected.toChar(),
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn3")
     fun `Given generate is called it returns a Char in given boundaries`() {
         // Given
         val expectedMin = 102.toChar()
@@ -81,6 +111,41 @@ class CharGeneratorSpec {
 
         // When
         val result = generator.generate(expectedMin, expectedMax)
+
+        // Then
+        assertEquals(
+            actual = range.value,
+            expected = Pair(expectedMin.code, expectedMax.code),
+        )
+        assertEquals(
+            actual = result,
+            expected = expected.toChar(),
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn4")
+    fun `Given generate is called with a predicate it returns a Char in given boundaries`() {
+        // Given
+        val expectedMin = 102.toChar()
+        val expectedMax = 189.toChar()
+        val expected = 100
+        val chars = mutableListOf(42, 78, expected)
+
+        random.nextIntRanged = { from, to ->
+            range.update { Pair(from, to) }
+
+            chars.removeFirst()
+        }
+
+        val generator = CharGenerator(random)
+
+        // When
+        val result = generator.generate(
+            from = expectedMin,
+            to = expectedMax,
+        ) { char -> char == expected.toChar() }
 
         // Then
         assertEquals(
