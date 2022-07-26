@@ -31,7 +31,6 @@ class LongArrayGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn0")
     fun `It fulfils SignedNumericArrayGenerator`() {
         val generator: Any = LongArrayGenerator(random, SignedNumberGeneratorStub())
@@ -40,7 +39,6 @@ class LongArrayGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn1")
     fun `Given generate is called it returns a LongArray`() {
         // Given
@@ -70,7 +68,6 @@ class LongArrayGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn1a")
     fun `Given generate is called and a predicate it returns a LongArray`() {
         // Given
@@ -111,7 +108,6 @@ class LongArrayGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn2")
     fun `Given generate is called with a size it returns a LongArray in the given size`() {
         // Given
@@ -137,7 +133,6 @@ class LongArrayGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn2a")
     fun `Given generate is called with a size and a predicate it returns a LongArray in the given size`() {
         // Given
@@ -174,7 +169,6 @@ class LongArrayGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn3")
     fun `Given generate is called with boundaries it returns a LongArray`() {
         // Given
@@ -182,8 +176,8 @@ class LongArrayGeneratorSpec {
         val expectedMin = 0.toLong()
         val expectedMax = 42.toLong()
 
-        var capturedMin: Int? = null
-        var capturedMax: Int? = null
+        var capturedMin: Long? = null
+        var capturedMax: Long? = null
 
         val auxiliaryGenerator = SignedNumberGeneratorStub<Long, Long>()
 
@@ -200,8 +194,8 @@ class LongArrayGeneratorSpec {
         }
 
         auxiliaryGenerator.generateWithRange = { givenMin, givenMax, _ ->
-            capturedMin = givenMin.toInt()
-            capturedMax = givenMax.toInt()
+            capturedMin = givenMin
+            capturedMax = givenMax
 
             consumableItem.removeFirst()
         }
@@ -217,11 +211,11 @@ class LongArrayGeneratorSpec {
         )
         assertEquals(
             actual = capturedMin,
-            expected = expectedMin.toInt(),
+            expected = expectedMin,
         )
         assertEquals(
             actual = capturedMax,
-            expected = expectedMax.toInt(),
+            expected = expectedMax,
         )
         assertTrue(
             expected.toLongArray().contentEquals(result),
@@ -229,7 +223,67 @@ class LongArrayGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
+    @JsName("fn3a")
+    fun `Given generate is called with boundaries and a predicate it returns a LongArray`() {
+        // Given
+        val size = 3
+        val expectedMin = 0.toLong()
+        val expectedMax = 42.toLong()
+        val expectedPredicate: Function1<Long?, Boolean> = { true }
+
+        var capturedMin: Long? = null
+        var capturedMax: Long? = null
+        var capturedPredicate: Function<Boolean>? = null
+
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Long, Long>()
+
+        val expected = listOf(
+            23.toLong(),
+            7.toLong(),
+            39.toLong(),
+        )
+        val consumableItem = expected.toSharedMutableList()
+
+        random.nextIntRanged = { from, to ->
+            range.update { Pair(from, to) }
+            size
+        }
+
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax, givenPredicate ->
+            capturedMin = givenMin
+            capturedMax = givenMax
+            capturedPredicate = givenPredicate
+
+            consumableItem.removeFirst()
+        }
+
+        // When
+        val generator = LongArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(from = expectedMin, to = expectedMax, predicate = expectedPredicate)
+
+        // Then
+        assertEquals(
+            actual = Pair(1, 10),
+            expected = range.value,
+        )
+        assertEquals(
+            actual = capturedMin,
+            expected = expectedMin,
+        )
+        assertEquals(
+            actual = capturedMax,
+            expected = expectedMax,
+        )
+        assertSame(
+            actual = capturedPredicate,
+            expected = expectedPredicate,
+        )
+        assertTrue(
+            expected.toLongArray().contentEquals(result),
+        )
+    }
+
+    @Test
     @JsName("fn4")
     fun `Given generate is called with boundaries it returns a LongArray with a given Size`() {
         // Given
@@ -237,8 +291,8 @@ class LongArrayGeneratorSpec {
         val expectedMin = 0.toLong()
         val expectedMax = 42.toLong()
 
-        var capturedMin: Int? = null
-        var capturedMax: Int? = null
+        var capturedMin: Long? = null
+        var capturedMax: Long? = null
 
         val auxiliaryGenerator = SignedNumberGeneratorStub<Long, Long>()
 
@@ -250,8 +304,8 @@ class LongArrayGeneratorSpec {
         val consumableItem = expected.toSharedMutableList()
 
         auxiliaryGenerator.generateWithRange = { givenMin, givenMax, _ ->
-            capturedMin = givenMin.toInt()
-            capturedMax = givenMax.toInt()
+            capturedMin = givenMin
+            capturedMax = givenMax
 
             consumableItem.removeFirst()
         }
@@ -263,11 +317,11 @@ class LongArrayGeneratorSpec {
         // Then
         assertEquals(
             actual = capturedMin,
-            expected = expectedMin.toInt(),
+            expected = expectedMin,
         )
         assertEquals(
             actual = capturedMax,
-            expected = expectedMax.toInt(),
+            expected = expectedMax,
         )
         assertTrue(
             expected.toLongArray().contentEquals(result),
@@ -275,7 +329,62 @@ class LongArrayGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
+    @JsName("fn4a")
+    fun `Given generate is called with boundaries and a size and a predicate it returns a LongArray`() {
+        // Given
+        val size = 3
+        val expectedMin = 0.toLong()
+        val expectedMax = 42.toLong()
+        val expectedPredicate: Function1<Long?, Boolean> = { true }
+
+        var capturedMin: Long? = null
+        var capturedMax: Long? = null
+        var capturedPredicate: Function<Boolean>? = null
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Long, Long>()
+
+        val expected = listOf(
+            23.toLong(),
+            7.toLong(),
+            39.toLong(),
+        )
+        val consumableItem = expected.toSharedMutableList()
+
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax, givenPredicate ->
+            capturedMin = givenMin
+            capturedMax = givenMax
+            capturedPredicate = givenPredicate
+
+            consumableItem.removeFirst()
+        }
+
+        // When
+        val generator = LongArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(
+            from = expectedMin,
+            to = expectedMax,
+            size = size,
+            predicate = expectedPredicate,
+        )
+
+        // Then
+        assertEquals(
+            actual = capturedMin,
+            expected = expectedMin,
+        )
+        assertEquals(
+            actual = capturedMax,
+            expected = expectedMax,
+        )
+        assertSame(
+            actual = capturedPredicate,
+            expected = expectedPredicate,
+        )
+        assertTrue(
+            expected.toLongArray().contentEquals(result),
+        )
+    }
+
+    @Test
     @JsName("fn5")
     fun `Given generate is called with ranges it returns a LongArray`() {
         // Given
@@ -284,8 +393,8 @@ class LongArrayGeneratorSpec {
         val expectedMin2 = 3.toLong()
         val expectedMax2 = 41.toLong()
 
-        val capturedMin: MutableList<Int> = sharedMutableListOf()
-        val capturedMax: MutableList<Int> = sharedMutableListOf()
+        val capturedMin: MutableList<Long> = sharedMutableListOf()
+        val capturedMax: MutableList<Long> = sharedMutableListOf()
 
         val auxiliaryGenerator = SignedNumberGeneratorStub<Long, Long>()
 
@@ -304,8 +413,8 @@ class LongArrayGeneratorSpec {
         }
 
         auxiliaryGenerator.generateWithRange = { givenMin, givenMax, _ ->
-            capturedMin.add(givenMin.toInt())
-            capturedMax.add(givenMax.toInt())
+            capturedMin.add(givenMin)
+            capturedMax.add(givenMax)
 
             consumableItem.removeFirst()
         }
@@ -323,16 +432,16 @@ class LongArrayGeneratorSpec {
             expected = Pair(1, 2),
         )
         assertTrue(
-            actual = expectedMin1.toInt() in capturedMin,
+            actual = expectedMin1 in capturedMin,
         )
         assertTrue(
-            actual = expectedMin2.toInt() in capturedMin,
+            actual = expectedMin2 in capturedMin,
         )
         assertTrue(
-            actual = expectedMax1.toInt() in capturedMax,
+            actual = expectedMax1 in capturedMax,
         )
         assertTrue(
-            actual = expectedMax2.toInt() in capturedMax,
+            actual = expectedMax2 in capturedMax,
         )
 
         assertTrue(
@@ -341,7 +450,83 @@ class LongArrayGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
+    @JsName("fn5a")
+    fun `Given generate is called with ranges and a predicate it returns a LongArray`() {
+        // Given
+        val expectedMin1 = 0.toLong()
+        val expectedMax1 = 42.toLong()
+        val expectedMin2 = 3.toLong()
+        val expectedMax2 = 41.toLong()
+        val expectedPredicate: Function1<Long?, Boolean> = { true }
+
+        val capturedMin: MutableList<Long> = sharedMutableListOf()
+        val capturedMax: MutableList<Long> = sharedMutableListOf()
+        val capturedPredicate: MutableList<Function<Boolean>> = sharedMutableListOf()
+
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Long, Long>()
+
+        val expected = listOf(
+            23.toLong(),
+            7.toLong(),
+            39.toLong(),
+        )
+        val ranges = sharedMutableListOf(3, 1, 0, 1)
+
+        val consumableItem = expected.toSharedMutableList()
+
+        random.nextIntRanged = { from, to ->
+            range.update { Pair(from, to) }
+            ranges.removeFirst()
+        }
+
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax, givenPredicate ->
+            capturedMin.add(givenMin)
+            capturedMax.add(givenMax)
+            capturedPredicate.add(givenPredicate)
+
+            consumableItem.removeFirst()
+        }
+
+        // When
+        val generator = LongArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(
+            LongRange(expectedMin1, expectedMax1),
+            LongRange(expectedMin2, expectedMax2),
+            predicate = expectedPredicate,
+        )
+
+        // Then
+        assertEquals(
+            actual = range.value,
+            expected = Pair(1, 2),
+        )
+        assertTrue(
+            actual = expectedMin1 in capturedMin,
+        )
+        assertTrue(
+            actual = expectedMin2 in capturedMin,
+        )
+        assertTrue(
+            actual = expectedMax1 in capturedMax,
+        )
+        assertTrue(
+            actual = expectedMax2 in capturedMax,
+        )
+        assertSame(
+            actual = capturedPredicate[0],
+            expected = expectedPredicate,
+        )
+        assertSame(
+            actual = capturedPredicate[1],
+            expected = expectedPredicate,
+        )
+
+        assertTrue(
+            expected.toLongArray().contentEquals(result),
+        )
+    }
+
+    @Test
     @JsName("fn6")
     fun `Given generate is called with ranges it returns a LongArray with a given Size`() {
         // Given
@@ -351,8 +536,8 @@ class LongArrayGeneratorSpec {
         val expectedMin2 = 3.toLong()
         val expectedMax2 = 41.toLong()
 
-        val capturedMin: MutableList<Int> = sharedMutableListOf()
-        val capturedMax: MutableList<Int> = sharedMutableListOf()
+        val capturedMin: MutableList<Long> = sharedMutableListOf()
+        val capturedMax: MutableList<Long> = sharedMutableListOf()
 
         val auxiliaryGenerator = SignedNumberGeneratorStub<Long, Long>()
 
@@ -371,8 +556,8 @@ class LongArrayGeneratorSpec {
         }
 
         auxiliaryGenerator.generateWithRange = { givenMin, givenMax, _ ->
-            capturedMin.add(givenMin.toInt())
-            capturedMax.add(givenMax.toInt())
+            capturedMin.add(givenMin)
+            capturedMax.add(givenMax)
 
             consumableItem.removeFirst()
         }
@@ -391,16 +576,16 @@ class LongArrayGeneratorSpec {
             expected = Pair(1, 2),
         )
         assertTrue(
-            actual = expectedMin1.toInt() in capturedMin,
+            actual = expectedMin1 in capturedMin,
         )
         assertTrue(
-            actual = expectedMin2.toInt() in capturedMin,
+            actual = expectedMin2 in capturedMin,
         )
         assertTrue(
-            actual = expectedMax1.toInt() in capturedMax,
+            actual = expectedMax1 in capturedMax,
         )
         assertTrue(
-            actual = expectedMax2.toInt() in capturedMax,
+            actual = expectedMax2 in capturedMax,
         )
 
         assertTrue(
@@ -409,7 +594,85 @@ class LongArrayGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
+    @JsName("fn6a")
+    fun `Given generate is called with ranges and a size and a predicate it returns a LongArray`() {
+        // Given
+        val expectedSize = 3
+        val expectedMin1 = 0.toLong()
+        val expectedMax1 = 42.toLong()
+        val expectedMin2 = 3.toLong()
+        val expectedMax2 = 41.toLong()
+        val expectedPredicate: Function1<Long?, Boolean> = { true }
+
+        val capturedMin: MutableList<Long> = sharedMutableListOf()
+        val capturedMax: MutableList<Long> = sharedMutableListOf()
+        val capturedPredicate: MutableList<Function<Boolean>> = sharedMutableListOf()
+
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Long, Long>()
+
+        val expected = listOf(
+            23L,
+            7L,
+            39L,
+        )
+        val ranges = sharedMutableListOf(1, 0, 1)
+
+        val consumableItem = expected.toSharedMutableList()
+
+        random.nextIntRanged = { from, to ->
+            range.update { Pair(from, to) }
+            ranges.removeFirst()
+        }
+
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax, givenPredicate ->
+            capturedMin.add(givenMin)
+            capturedMax.add(givenMax)
+            capturedPredicate.add(givenPredicate)
+
+            consumableItem.removeFirst()
+        }
+
+        // When
+        val generator = LongArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(
+            LongRange(expectedMin1, expectedMax1),
+            LongRange(expectedMin2, expectedMax2),
+            size = expectedSize,
+            predicate = expectedPredicate,
+        )
+
+        // Then
+        assertEquals(
+            actual = range.value,
+            expected = Pair(1, 2),
+        )
+        assertTrue(
+            actual = expectedMin1 in capturedMin,
+        )
+        assertTrue(
+            actual = expectedMin2 in capturedMin,
+        )
+        assertTrue(
+            actual = expectedMax1 in capturedMax,
+        )
+        assertTrue(
+            actual = expectedMax2 in capturedMax,
+        )
+        assertSame(
+            actual = capturedPredicate[0],
+            expected = expectedPredicate,
+        )
+        assertSame(
+            actual = capturedPredicate[1],
+            expected = expectedPredicate,
+        )
+
+        assertTrue(
+            expected.toLongArray().contentEquals(result),
+        )
+    }
+
+    @Test
     @JsName("fn7")
     fun `Given generate is called with a Sign it returns a LongArray`() {
         // Given
@@ -452,7 +715,6 @@ class LongArrayGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn8")
     fun `Given generate is called with a Sign and Size it returns a LongArray`() {
         // Given

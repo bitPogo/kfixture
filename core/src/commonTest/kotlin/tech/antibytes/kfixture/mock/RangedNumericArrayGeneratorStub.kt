@@ -13,11 +13,11 @@ class RangedNumericArrayGeneratorStub<T, R : Any>(
     @JsName("generateStub")
     var generate: ((Int) -> R)? = null,
     @JsName("generateWithRangeStub")
-    var generateWithRange: ((T, T, Int) -> R)? = null,
+    var generateWithRange: ((T, T, Int, Function1<T?, Boolean>) -> R)? = null,
     @JsName("generateWithRangesStub")
     var generateWithRanges: ((Array<out ClosedRange<T>>) -> R)? = null,
     @JsName("generateWithSizedRangesStub")
-    var generateWithRangesAndSize: ((Array<out ClosedRange<T>>, Int) -> R)? = null,
+    var generateWithRangesAndSize: ((Array<out ClosedRange<T>>, Int?, Function1<T?, Boolean>) -> R)? = null,
 ) : PublicApi.RangedArrayGenerator<T, R> where T : Any, T : Comparable<T> {
     override fun generate(size: Int): R {
         return generate?.invoke(size) ?: throw RuntimeException("Missing SideEffect for generate.")
@@ -35,18 +35,13 @@ class RangedNumericArrayGeneratorStub<T, R : Any>(
         TODO("Not yet implemented")
     }
 
-    override fun generate(from: T, to: T, size: Int): R {
-        return generateWithRange?.invoke(from, to, size)
+    override fun generate(from: T, to: T, size: Int, predicate: (T?) -> Boolean): R {
+        return generateWithRange?.invoke(from, to, size, predicate)
             ?: throw RuntimeException("Missing SideEffect for generateWithRange.")
     }
 
-    override fun generate(vararg ranges: ClosedRange<T>): R {
-        return generateWithRanges?.invoke(ranges)
-            ?: throw RuntimeException("Missing SideEffect for generateWithRanges.")
-    }
-
-    override fun generate(vararg ranges: ClosedRange<T>, size: Int): R {
-        return generateWithRangesAndSize?.invoke(ranges, size)
+    override fun generate(vararg ranges: ClosedRange<T>, size: Int?, predicate: (T?) -> Boolean): R {
+        return generateWithRangesAndSize?.invoke(ranges, size, predicate)
             ?: throw RuntimeException("Missing SideEffect for generateWithRangesAndSize.")
     }
 }

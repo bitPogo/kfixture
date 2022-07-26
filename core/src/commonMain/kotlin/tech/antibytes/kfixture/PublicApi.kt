@@ -122,17 +122,7 @@ public interface PublicApi {
             from: T,
             to: T,
             size: Int,
-        ): R
-
-        /**
-         * Generates a instance of given type in a given range.
-         * @param ranges arbitrary amount of boundaries.
-         * @throws IllegalArgumentException if start value is greater than the end value.
-         * @return a instance of a given type.
-         */
-        @Throws(IllegalArgumentException::class)
-        public fun generate(
-            vararg ranges: ClosedRange<T>,
+            predicate: (T?) -> Boolean = ::defaultPredicate,
         ): R
 
         /**
@@ -145,7 +135,8 @@ public interface PublicApi {
         @Throws(IllegalArgumentException::class)
         public fun generate(
             vararg ranges: ClosedRange<T>,
-            size: Int,
+            size: Int? = null,
+            predicate: (T?) -> Boolean = ::defaultPredicate,
         ): R
     }
 

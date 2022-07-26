@@ -23,34 +23,30 @@ internal abstract class RangedArrayNumberGenerator<T, R>(
         return ranges[range].start to ranges[range].endInclusive
     }
 
-    override fun generate(size: Int): R = arrayBuilder(size) { numberGenerator.generate() }
-
-    override fun generate(): R = generate(chooseSize())
-
     override fun generate(
         from: T,
         to: T,
         size: Int,
-    ): R = arrayBuilder(size) { numberGenerator.generate(from = from, to = to) }
+        predicate: (T?) -> Boolean,
+    ): R = arrayBuilder(size) { numberGenerator.generate(from = from, to = to, predicate = predicate) }
 
     override fun generate(
         from: T,
         to: T,
         predicate: (T?) -> Boolean,
-    ): R = generate(from = from, to = to, size = chooseSize())
+    ): R = generate(from = from, to = to, size = chooseSize(), predicate = predicate)
 
     override fun generate(
         vararg ranges: ClosedRange<T>,
-        size: Int,
+        size: Int?,
+        predicate: (T?) -> Boolean,
     ): R {
-        return arrayBuilder(size) {
+        val actualSize = size ?: chooseSize()
+
+        return arrayBuilder(actualSize) {
             val (from, to) = unpackRange(ranges)
 
-            numberGenerator.generate(from = from, to = to)
+            numberGenerator.generate(from = from, to = to, predicate = predicate)
         }
     }
-
-    override fun generate(
-        vararg ranges: ClosedRange<T>,
-    ): R = generate(ranges = ranges, size = chooseSize())
 }

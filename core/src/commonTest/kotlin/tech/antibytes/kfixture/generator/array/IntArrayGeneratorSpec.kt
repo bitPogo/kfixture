@@ -31,7 +31,6 @@ class IntArrayGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn0")
     fun `It fulfils SignedNumericArrayGenerator`() {
         val generator: Any = IntArrayGenerator(random, SignedNumberGeneratorStub())
@@ -40,7 +39,6 @@ class IntArrayGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn1")
     fun `Given generate is called it returns a IntArray`() {
         // Given
@@ -70,7 +68,6 @@ class IntArrayGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn1a")
     fun `Given generate is called with a predicate it returns a IntArray`() {
         // Given
@@ -111,7 +108,6 @@ class IntArrayGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn2")
     fun `Given generate is called with a size it returns a IntArray in the given size`() {
         // Given
@@ -137,7 +133,6 @@ class IntArrayGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn2a")
     fun `Given generate is called with a size and a predicate it returns a IntArray in the given size`() {
         // Given
@@ -174,7 +169,6 @@ class IntArrayGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn3")
     fun `Given generate is called with boundaries it returns a IntArray`() {
         // Given
@@ -229,7 +223,67 @@ class IntArrayGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
+    @JsName("fn3a")
+    fun `Given generate is called with boundaries with a predicate it returns a IntArray`() {
+        // Given
+        val size = 3
+        val expectedMin = 0
+        val expectedMax = 42
+        val expectedPredicate: Function1<Int?, Boolean> = { true }
+
+        var capturedMin: Int? = null
+        var capturedMax: Int? = null
+        var capturedPredicate: Function<Boolean>? = null
+
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Int, Int>()
+
+        val expected = listOf(
+            23,
+            7,
+            39,
+        )
+        val consumableItem = expected.toSharedMutableList()
+
+        random.nextIntRanged = { from, to ->
+            range.update { Pair(from, to) }
+            size
+        }
+
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax, givenPredicate ->
+            capturedMin = givenMin
+            capturedMax = givenMax
+            capturedPredicate = givenPredicate
+
+            consumableItem.removeFirst()
+        }
+
+        // When
+        val generator = IntArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(from = expectedMin, to = expectedMax, predicate = expectedPredicate)
+
+        // Then
+        assertEquals(
+            actual = Pair(1, 10),
+            expected = range.value,
+        )
+        assertEquals(
+            actual = capturedMin,
+            expected = expectedMin,
+        )
+        assertEquals(
+            actual = capturedMax,
+            expected = expectedMax,
+        )
+        assertSame(
+            actual = capturedPredicate,
+            expected = expectedPredicate,
+        )
+        assertTrue(
+            expected.toIntArray().contentEquals(result),
+        )
+    }
+
+    @Test
     @JsName("fn4")
     fun `Given generate is called with boundaries it returns a IntArray with a given Size`() {
         // Given
@@ -275,7 +329,62 @@ class IntArrayGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
+    @JsName("fn4a")
+    fun `Given generate is called with boundaries and a size and a preditcate it returns a IntArray`() {
+        // Given
+        val size = 3
+        val expectedMin = 0
+        val expectedMax = 42
+        val expectedPredicate: Function1<Int?, Boolean> = { true }
+
+        var capturedMin: Int? = null
+        var capturedMax: Int? = null
+        var capturedPredicate: Function<Boolean>? = null
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Int, Int>()
+
+        val expected = listOf(
+            23,
+            7,
+            39,
+        )
+        val consumableItem = expected.toSharedMutableList()
+
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax, givenPredicate ->
+            capturedMin = givenMin
+            capturedMax = givenMax
+            capturedPredicate = givenPredicate
+
+            consumableItem.removeFirst()
+        }
+
+        // When
+        val generator = IntArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(
+            from = expectedMin,
+            to = expectedMax,
+            size = size,
+            predicate = expectedPredicate,
+        )
+
+        // Then
+        assertEquals(
+            actual = capturedMin,
+            expected = expectedMin,
+        )
+        assertEquals(
+            actual = capturedMax,
+            expected = expectedMax,
+        )
+        assertSame(
+            actual = capturedPredicate,
+            expected = expectedPredicate,
+        )
+        assertTrue(
+            expected.toIntArray().contentEquals(result),
+        )
+    }
+
+    @Test
     @JsName("fn5")
     fun `Given generate is called with ranges it returns a IntArray`() {
         // Given
@@ -341,7 +450,83 @@ class IntArrayGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
+    @JsName("fn5a")
+    fun `Given generate is called with ranges and a predicate it returns a IntArray`() {
+        // Given
+        val expectedMin1 = 0
+        val expectedMax1 = 42
+        val expectedMin2 = 3
+        val expectedMax2 = 41
+        val expectedPredicate: Function1<Int?, Boolean> = { true }
+
+        val capturedMin: MutableList<Int> = sharedMutableListOf()
+        val capturedMax: MutableList<Int> = sharedMutableListOf()
+        val capturedPredicate: MutableList<Function<Boolean>> = sharedMutableListOf()
+
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Int, Int>()
+
+        val expected = listOf(
+            23,
+            7,
+            39,
+        )
+        val ranges = sharedMutableListOf(3, 1, 0, 1)
+
+        val consumableItem = expected.toSharedMutableList()
+
+        random.nextIntRanged = { from, to ->
+            range.update { Pair(from, to) }
+            ranges.removeFirst()
+        }
+
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax, givenPredicate ->
+            capturedMin.add(givenMin)
+            capturedMax.add(givenMax)
+            capturedPredicate.add(givenPredicate)
+
+            consumableItem.removeFirst()
+        }
+
+        // When
+        val generator = IntArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(
+            IntRange(expectedMin1, expectedMax1),
+            IntRange(expectedMin2, expectedMax2),
+            predicate = expectedPredicate,
+        )
+
+        // Then
+        assertEquals(
+            actual = range.value,
+            expected = Pair(1, 2),
+        )
+        assertTrue(
+            actual = expectedMin1 in capturedMin,
+        )
+        assertTrue(
+            actual = expectedMin2 in capturedMin,
+        )
+        assertTrue(
+            actual = expectedMax1 in capturedMax,
+        )
+        assertTrue(
+            actual = expectedMax2 in capturedMax,
+        )
+        assertSame(
+            actual = capturedPredicate[0],
+            expected = expectedPredicate,
+        )
+        assertSame(
+            actual = capturedPredicate[1],
+            expected = expectedPredicate,
+        )
+
+        assertTrue(
+            expected.toIntArray().contentEquals(result),
+        )
+    }
+
+    @Test
     @JsName("fn6")
     fun `Given generate is called with ranges it returns a IntArray with a given Size`() {
         // Given
@@ -409,7 +594,85 @@ class IntArrayGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
+    @JsName("fn6a")
+    fun `Given generate is called with ranges and a size and a predicate it returns a IntArray`() {
+        // Given
+        val expectedSize = 3
+        val expectedMin1 = 0
+        val expectedMax1 = 42
+        val expectedMin2 = 3
+        val expectedMax2 = 41
+        val expectedPredicate: Function1<Int?, Boolean> = { true }
+
+        val capturedMin: MutableList<Int> = sharedMutableListOf()
+        val capturedMax: MutableList<Int> = sharedMutableListOf()
+        val capturedPredicate: MutableList<Function<Boolean>> = sharedMutableListOf()
+
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Int, Int>()
+
+        val expected = listOf(
+            23,
+            7,
+            39,
+        )
+        val ranges = sharedMutableListOf(1, 0, 1)
+
+        val consumableItem = expected.toSharedMutableList()
+
+        random.nextIntRanged = { from, to ->
+            range.update { Pair(from, to) }
+            ranges.removeFirst()
+        }
+
+        auxiliaryGenerator.generateWithRange = { givenMin, givenMax, givenPredicate ->
+            capturedMin.add(givenMin)
+            capturedMax.add(givenMax)
+            capturedPredicate.add(givenPredicate)
+
+            consumableItem.removeFirst()
+        }
+
+        // When
+        val generator = IntArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(
+            IntRange(expectedMin1, expectedMax1),
+            IntRange(expectedMin2, expectedMax2),
+            size = expectedSize,
+            predicate = expectedPredicate,
+        )
+
+        // Then
+        assertEquals(
+            actual = range.value,
+            expected = Pair(1, 2),
+        )
+        assertTrue(
+            actual = expectedMin1 in capturedMin,
+        )
+        assertTrue(
+            actual = expectedMin2 in capturedMin,
+        )
+        assertTrue(
+            actual = expectedMax1 in capturedMax,
+        )
+        assertTrue(
+            actual = expectedMax2 in capturedMax,
+        )
+        assertSame(
+            actual = capturedPredicate[0],
+            expected = expectedPredicate,
+        )
+        assertSame(
+            actual = capturedPredicate[1],
+            expected = expectedPredicate,
+        )
+
+        assertTrue(
+            expected.toIntArray().contentEquals(result),
+        )
+    }
+
+    @Test
     @JsName("fn7")
     fun `Given generate is called with a Sign it returns a IntArray`() {
         // Given
@@ -452,7 +715,6 @@ class IntArrayGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn8")
     fun `Given generate is called with a Sign and Size it returns a IntArray`() {
         // Given
