@@ -120,6 +120,54 @@ class ListFixtureSpec {
     }
 
     @Test
+    @JsName("fn7a")
+    fun `Given listFixture is called with a nestedGenerator it returns a Fixture for the derived Type`() {
+        // Given
+        val size = 5
+        val expected = 23
+        val generator = FilterableGeneratorStub<Int, Int>()
+
+        random.nextIntRanged = { givenMinimum, givenMaximum ->
+            capturedMinimum.getAndSet(givenMinimum)
+            capturedMaximum.getAndSet(givenMaximum)
+            size
+        }
+
+        // Ensure stable names since reified is in play
+        resolveClassName(Int::class)
+
+        val fixture = Fixture(random, mapOf(int to generator))
+
+        // When
+        val result: Any = fixture.listFixture { expected }
+
+        // Then
+        assertTrue(result is List<*>)
+        assertEquals(
+            actual = capturedMinimum.value,
+            expected = 1,
+        )
+        assertEquals(
+            actual = capturedMaximum.value,
+            expected = 10,
+        )
+        assertEquals(
+            actual = result.size,
+            expected = size,
+        )
+        assertEquals(
+            actual = result,
+            expected = listOf(
+                expected,
+                expected,
+                expected,
+                expected,
+                expected,
+            ),
+        )
+    }
+
+    @Test
     @JsName("fn8")
     fun `Given listFixture is called it returns a Fixture while respecting nullability`() {
         // Given
@@ -171,7 +219,7 @@ class ListFixtureSpec {
 
     @Test
     @JsName("fn9")
-    fun `Given listFixture is called with a qualifier it returns a Fixture for the derrived Type`() {
+    fun `Given listFixture is called with a qualifier it returns a Fixture for the derived Type`() {
         // Given
         val size = 5
         val expected = 23
@@ -199,6 +247,48 @@ class ListFixtureSpec {
                 expected,
                 expected,
             ),
+        )
+    }
+
+    @Test
+    @JsName("fn9a")
+    fun `Given listFixture is called with a qualifier and a nestedGenerator it returns a Fixture for the derived Type`() {
+        // Given
+        val size = 5
+        val expected = 23
+        val qualifier = "test"
+        val generator = FilterableGeneratorStub<Int, Int>()
+
+        var capturedQualifier: PublicApi.Qualifier? = null
+
+        random.nextIntRanged = { _, _ -> size }
+
+        // Ensure stable names since reified is in play
+        resolveClassName(Int::class)
+
+        val fixture = Fixture(random, mapOf("q:$qualifier:$int" to generator))
+
+        // When
+        val result = fixture.listFixture(StringQualifier(qualifier)) { givenQualifier ->
+            capturedQualifier = givenQualifier
+
+            expected
+        }
+
+        // Then
+        assertEquals(
+            actual = result,
+            expected = listOf(
+                expected,
+                expected,
+                expected,
+                expected,
+                expected,
+            ),
+        )
+        assertEquals(
+            actual = capturedQualifier?.value,
+            expected = StringQualifier(qualifier).value,
         )
     }
 
@@ -235,6 +325,37 @@ class ListFixtureSpec {
     }
 
     @Test
+    @JsName("fn10a")
+    fun `Given listFixture is called with a size and a nestedGenerator it returns a Fixture for the derived Type in the given size`() {
+        // Given
+        val size = 5
+        val expected = 23
+        val generator = FilterableGeneratorStub<Int, Int>()
+
+        random.nextIntRanged = { _, _ -> size }
+
+        // Ensure stable names since reified is in play
+        resolveClassName(Int::class)
+
+        val fixture = Fixture(random, mapOf(int to generator))
+
+        // When
+        val result = fixture.listFixture(size = size) { expected }
+
+        // Then
+        assertEquals(
+            actual = result,
+            expected = listOf(
+                expected,
+                expected,
+                expected,
+                expected,
+                expected,
+            ),
+        )
+    }
+
+    @Test
     @JsName("fn11")
     fun `Given fixture is called with a size it returns a Fixture for the derived List Type in the given size`() {
         // Given
@@ -254,6 +375,39 @@ class ListFixtureSpec {
         val result: List<Int> = fixture.fixture(
             type = List::class,
         )
+
+        // Then
+        assertEquals(
+            actual = result,
+            expected = listOf(
+                expected,
+                expected,
+                expected,
+                expected,
+                expected,
+            ),
+        )
+    }
+
+    @Test
+    @JsName("fn11a")
+    fun `Given fixture is called with a size and a nestedGenerator it returns a Fixture for the derived List Type in the given size`() {
+        // Given
+        val size = 5
+        val expected = 23
+        val generator = FilterableGeneratorStub<Int, Int>()
+
+        random.nextIntRanged = { _, _ -> size }
+
+        // Ensure stable names since reified is in play
+        resolveClassName(Int::class)
+
+        val fixture = Fixture(random, mapOf(int to generator))
+
+        // When
+        val result: List<Int> = fixture.fixture(
+            type = List::class,
+        ) { expected }
 
         // Then
         assertEquals(
@@ -344,6 +498,54 @@ class ListFixtureSpec {
     }
 
     @Test
+    @JsName("fn13a")
+    fun `Given mutableListFixture is called and a nestedGenerator it returns a Fixture for the derived Type`() {
+        // Given
+        val size = 5
+        val expected = 23
+        val generator = FilterableGeneratorStub<Int, Int>()
+
+        random.nextIntRanged = { givenMinimum, givenMaximum ->
+            capturedMinimum.getAndSet(givenMinimum)
+            capturedMaximum.getAndSet(givenMaximum)
+            size
+        }
+
+        // Ensure stable names since reified is in play
+        resolveClassName(Int::class)
+
+        val fixture = Fixture(random, mapOf(int to generator))
+
+        // When
+        val result: Any = fixture.mutableListFixture { expected }
+
+        // Then
+        assertTrue(result is MutableList<*>)
+        assertEquals(
+            actual = capturedMinimum.value,
+            expected = 1,
+        )
+        assertEquals(
+            actual = capturedMaximum.value,
+            expected = 10,
+        )
+        assertEquals(
+            actual = result.size,
+            expected = size,
+        )
+        assertEquals(
+            actual = result,
+            expected = mutableListOf(
+                expected,
+                expected,
+                expected,
+                expected,
+                expected,
+            ),
+        )
+    }
+
+    @Test
     @JsName("fn14")
     fun `Given mutableListFixture is called it returns a Fixture while respecting nullability`() {
         // Given
@@ -395,7 +597,7 @@ class ListFixtureSpec {
 
     @Test
     @JsName("fn15")
-    fun `Given mutableListFixture is called with a qualifier it returns a Fixture for the derrived Type`() {
+    fun `Given mutableListFixture is called with a qualifier it returns a Fixture for the derived Type`() {
         // Given
         val size = 5
         val expected = 23
@@ -423,6 +625,48 @@ class ListFixtureSpec {
                 expected,
                 expected,
             ),
+        )
+    }
+
+    @Test
+    @JsName("fn15a")
+    fun `Given mutableListFixture is called with a qualifier and a nestedGenerator it returns a Fixture for the derived Type`() {
+        // Given
+        val size = 5
+        val expected = 23
+        val qualifier = "test"
+        val generator = FilterableGeneratorStub<Int, Int>()
+
+        var capturedQualifier: PublicApi.Qualifier? = null
+
+        random.nextIntRanged = { _, _ -> size }
+
+        // Ensure stable names since reified is in play
+        resolveClassName(Int::class)
+
+        val fixture = Fixture(random, mapOf("q:$qualifier:$int" to generator))
+
+        // When
+        val result = fixture.mutableListFixture(StringQualifier(qualifier)) { givenQualifier ->
+            capturedQualifier = givenQualifier
+
+            expected
+        }
+
+        // Then
+        assertEquals(
+            actual = result,
+            expected = listOf(
+                expected,
+                expected,
+                expected,
+                expected,
+                expected,
+            ),
+        )
+        assertEquals(
+            actual = capturedQualifier?.value,
+            expected = StringQualifier(qualifier).value,
         )
     }
 
@@ -459,6 +703,37 @@ class ListFixtureSpec {
     }
 
     @Test
+    @JsName("fn16a")
+    fun `Given mutableListFixture is called with a size and a nestedGenerator it returns a Fixture for the derived Type in the given size`() {
+        // Given
+        val size = 5
+        val expected = 23
+        val generator = FilterableGeneratorStub<Int, Int>()
+
+        random.nextIntRanged = { _, _ -> size }
+
+        // Ensure stable names since reified is in play
+        resolveClassName(Int::class)
+
+        val fixture = Fixture(random, mapOf(int to generator))
+
+        // When
+        val result = fixture.mutableListFixture(size = size) { expected }
+
+        // Then
+        assertEquals(
+            actual = result,
+            expected = listOf(
+                expected,
+                expected,
+                expected,
+                expected,
+                expected,
+            ),
+        )
+    }
+
+    @Test
     @JsName("fn17")
     fun `Given fixture is called with a size it returns a Fixture for the derived MutableList Type in the given size`() {
         // Given
@@ -478,6 +753,39 @@ class ListFixtureSpec {
         val result: MutableList<Int> = fixture.fixture(
             type = MutableList::class,
         )
+
+        // Then
+        assertEquals(
+            actual = result,
+            expected = listOf(
+                expected,
+                expected,
+                expected,
+                expected,
+                expected,
+            ),
+        )
+    }
+
+    @Test
+    @JsName("fn17a")
+    fun `Given fixture is called with a size and a nested generator it returns a Fixture for the derived MutableList Type in the given size`() {
+        // Given
+        val size = 5
+        val expected = 23
+        val generator = FilterableGeneratorStub<Int, Int>()
+
+        random.nextIntRanged = { _, _ -> size }
+
+        // Ensure stable names since reified is in play
+        resolveClassName(Int::class)
+
+        val fixture = Fixture(random, mapOf(int to generator))
+
+        // When
+        val result: MutableList<Int> = fixture.fixture(
+            type = MutableList::class,
+        ) { expected }
 
         // Then
         assertEquals(

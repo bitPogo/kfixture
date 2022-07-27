@@ -8,6 +8,7 @@ package tech.antibytes.kfixture
 
 import kotlin.jvm.JvmName
 import kotlin.reflect.KClass
+import tech.antibytes.kfixture.PublicApi.Qualifier
 
 /**
  * Creates a MutableList of values for a given type.
@@ -18,13 +19,14 @@ import kotlin.reflect.KClass
  */
 @Throws(IllegalStateException::class)
 public inline fun <reified T> PublicApi.Fixture.mutableListFixture(
-    qualifier: PublicApi.Qualifier? = null,
+    qualifier: Qualifier? = null,
     size: Int? = null,
+    nestedGenerator: Function1<Qualifier?, T> = ::fixture,
 ): MutableList<T> {
     val actualSize = determineCollectionSize(size)
 
     return MutableList(actualSize) {
-        fixture(qualifier)
+        nestedGenerator.invoke(qualifier)
     }
 }
 
@@ -42,11 +44,13 @@ public inline fun <reified T> PublicApi.Fixture.mutableListFixture(
 @Throws(IllegalStateException::class)
 public inline fun <reified C : MutableList<T>, reified T> PublicApi.Fixture.fixture(
     type: KClass<MutableList<*>>,
-    qualifier: PublicApi.Qualifier? = null,
+    qualifier: Qualifier? = null,
     size: Int? = null,
-): C = mutableListFixture<T>(
+    nestedGenerator: Function1<Qualifier?, T> = ::fixture,
+): C = mutableListFixture(
     qualifier = qualifier,
     size = size,
+    nestedGenerator = nestedGenerator,
 ) as C
 
 /**
@@ -58,11 +62,13 @@ public inline fun <reified C : MutableList<T>, reified T> PublicApi.Fixture.fixt
  */
 @Throws(IllegalStateException::class)
 public inline fun <reified T> PublicApi.Fixture.listFixture(
-    qualifier: PublicApi.Qualifier? = null,
+    qualifier: Qualifier? = null,
     size: Int? = null,
+    nestedGenerator: Function1<Qualifier?, T> = ::fixture,
 ): List<T> = mutableListFixture(
     qualifier = qualifier,
     size = size,
+    nestedGenerator = nestedGenerator,
 )
 
 @Suppress("UNUSED_PARAMETER")
@@ -79,9 +85,11 @@ public inline fun <reified T> PublicApi.Fixture.listFixture(
 @Throws(IllegalStateException::class)
 public inline fun <reified C : List<T>, reified T> PublicApi.Fixture.fixture(
     type: KClass<List<*>>,
-    qualifier: PublicApi.Qualifier? = null,
+    qualifier: Qualifier? = null,
     size: Int? = null,
-): C = listFixture<T>(
+    nestedGenerator: Function1<Qualifier?, T> = ::fixture,
+): C = listFixture(
     qualifier = qualifier,
     size = size,
+    nestedGenerator = nestedGenerator,
 ) as C
