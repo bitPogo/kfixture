@@ -396,9 +396,9 @@ class FloatGeneratorSpec {
     @JsName("fn7")
     fun `Given generate is called with boundaries it returns a Float while cutting the float point number`() {
         // Given
-        val expected = Float.MAX_VALUE.toInt()
+        val expected = 123
         val expectedMin = 0.1f
-        val expectedMax = Float.MAX_VALUE
+        val expectedMax = 123f
 
         var capturedMin: Int? = null
         var capturedMax: Int? = null
@@ -407,7 +407,7 @@ class FloatGeneratorSpec {
             capturedMin = givenMin
             capturedMax = givenMax
 
-            expected - 1
+            expected
         }
 
         random.nextFloat = { 0.999f }
@@ -427,11 +427,11 @@ class FloatGeneratorSpec {
         )
         assertEquals(
             actual = capturedMin,
-            expected = -1,
+            expected = 0,
         )
         assertEquals(
             actual = capturedMax,
-            expected = expectedMax.toInt(),
+            expected = expectedMax.toInt() + 1,
         )
     }
 
@@ -440,9 +440,9 @@ class FloatGeneratorSpec {
     @JsName("fn8")
     fun `Given generate is called with boundaries and a predicate it returns a Float while cutting the float point number`() {
         // Given
-        val expected = Float.MAX_VALUE.toInt()
+        val expected = 123
         val expectedMin = 0.1f
-        val expectedMax = Float.MAX_VALUE
+        val expectedMax = 123f
 
         var capturedMin: Int? = null
         var capturedMax: Int? = null
@@ -451,7 +451,7 @@ class FloatGeneratorSpec {
             capturedMin = givenMin
             capturedMax = givenMax
 
-            expected - 1
+            expected
         }
 
         random.nextFloat = { 0.999f }
@@ -471,11 +471,11 @@ class FloatGeneratorSpec {
         )
         assertEquals(
             actual = capturedMin,
-            expected = -1,
+            expected = 0,
         )
         assertEquals(
             actual = capturedMax,
-            expected = expectedMax.toInt(),
+            expected = expectedMax.toInt() + 1,
         )
     }
 }

@@ -40,6 +40,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - DoubleArray
 * BooleanArrayGenerator is now a ArrayGenerator
 * DependentGeneratorFactory in order to build Generators on top of other Generators
+* Filter
 
 ### Changed
 
