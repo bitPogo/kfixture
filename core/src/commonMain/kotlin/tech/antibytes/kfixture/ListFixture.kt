@@ -15,13 +15,14 @@ import tech.antibytes.kfixture.PublicApi.Qualifier
  * @param T the type which is supposed to be created.
  * @param qualifier a optional qualifier for a special flavour of a type.
  * @param size the size of the List.
+ * @param nestedGenerator a generator (like fixture) which can be delegated for customization.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
 public inline fun <reified T> PublicApi.Fixture.mutableListFixture(
     qualifier: Qualifier? = null,
     size: Int? = null,
-    nestedGenerator: Function1<Qualifier?, T> = ::fixture,
+    nestedGenerator: Function1<Qualifier?, T>,
 ): MutableList<T> {
     val actualSize = determineCollectionSize(size)
 
@@ -29,6 +30,43 @@ public inline fun <reified T> PublicApi.Fixture.mutableListFixture(
         nestedGenerator.invoke(qualifier)
     }
 }
+
+/**
+ * Creates a MutableList of values for a given type.
+ * @param T the type which is supposed to be created.
+ * @param qualifier a optional qualifier for a special flavour of a type.
+ * @param size the size of the List.
+ * @throws IllegalStateException if the no matching Generator was found for the given type.
+ */
+@Throws(IllegalStateException::class)
+public expect inline fun <reified T> PublicApi.Fixture.mutableListFixture(
+    qualifier: Qualifier? = null,
+    size: Int? = null,
+): MutableList<T>
+
+@Suppress("UNUSED_PARAMETER")
+@JvmName("mutableListFixtureAlias")
+/**
+ * Creates a MutableList of values for a given type.
+ * @param T the type which is supposed to be created.
+ * @param C the enclosing List.
+ * @param type the identifying type of the generic.
+ * @param qualifier a optional qualifier for a special flavour of a type.
+ * @param size the size of the List.
+ * @param nestedGenerator a generator (like fixture) which can be delegated for customization.
+ * @throws IllegalStateException if the no matching Generator was found for the given type.
+ */
+@Throws(IllegalStateException::class)
+public inline fun <reified C : MutableList<T>, reified T> PublicApi.Fixture.fixture(
+    type: KClass<MutableList<*>>,
+    qualifier: Qualifier? = null,
+    size: Int? = null,
+    nestedGenerator: Function1<Qualifier?, T>,
+): C = mutableListFixture(
+    qualifier = qualifier,
+    size = size,
+    nestedGenerator = nestedGenerator,
+) as C
 
 @Suppress("UNUSED_PARAMETER")
 @JvmName("mutableListFixtureAlias")
@@ -42,16 +80,30 @@ public inline fun <reified T> PublicApi.Fixture.mutableListFixture(
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified C : MutableList<T>, reified T> PublicApi.Fixture.fixture(
+public expect inline fun <reified C : MutableList<T>, reified T> PublicApi.Fixture.fixture(
     type: KClass<MutableList<*>>,
     qualifier: Qualifier? = null,
     size: Int? = null,
-    nestedGenerator: Function1<Qualifier?, T> = ::fixture,
-): C = mutableListFixture(
+): C
+
+/**
+ * Creates a List of values for a given type.
+ * @param T the type which is supposed to be created.
+ * @param qualifier a optional qualifier for a special flavour of a type.
+ * @param size the size of the List.
+ * @param nestedGenerator a generator (like fixture) which can be delegated for customization.
+ * @throws IllegalStateException if the no matching Generator was found for the given type.
+ */
+@Throws(IllegalStateException::class)
+public inline fun <reified T> PublicApi.Fixture.listFixture(
+    qualifier: Qualifier? = null,
+    size: Int? = null,
+    nestedGenerator: Function1<Qualifier?, T>,
+): List<T> = mutableListFixture(
     qualifier = qualifier,
     size = size,
     nestedGenerator = nestedGenerator,
-) as C
+)
 
 /**
  * Creates a List of values for a given type.
@@ -61,15 +113,34 @@ public inline fun <reified C : MutableList<T>, reified T> PublicApi.Fixture.fixt
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified T> PublicApi.Fixture.listFixture(
+public expect inline fun <reified T> PublicApi.Fixture.listFixture(
     qualifier: Qualifier? = null,
     size: Int? = null,
-    nestedGenerator: Function1<Qualifier?, T> = ::fixture,
-): List<T> = mutableListFixture(
+): List<T>
+
+@Suppress("UNUSED_PARAMETER")
+@JvmName("listFixtureAlias")
+/**
+ * Creates a List of values for a given type.
+ * @param T the type which is supposed to be created.
+ * @param C the enclosing List.
+ * @param type the identifying type of the generic.
+ * @param qualifier a optional qualifier for a special flavour of a type.
+ * @param size the size of the List.
+ * @param nestedGenerator a generator (like fixture) which can be delegated for customization.
+ * @throws IllegalStateException if the no matching Generator was found for the given type.
+ */
+@Throws(IllegalStateException::class)
+public inline fun <reified C : List<T>, reified T> PublicApi.Fixture.fixture(
+    type: KClass<List<*>>,
+    qualifier: Qualifier? = null,
+    size: Int? = null,
+    nestedGenerator: Function1<Qualifier?, T>,
+): C = listFixture(
     qualifier = qualifier,
     size = size,
     nestedGenerator = nestedGenerator,
-)
+) as C
 
 @Suppress("UNUSED_PARAMETER")
 @JvmName("listFixtureAlias")
@@ -83,13 +154,8 @@ public inline fun <reified T> PublicApi.Fixture.listFixture(
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified C : List<T>, reified T> PublicApi.Fixture.fixture(
+public expect inline fun <reified C : List<T>, reified T> PublicApi.Fixture.fixture(
     type: KClass<List<*>>,
     qualifier: Qualifier? = null,
     size: Int? = null,
-    nestedGenerator: Function1<Qualifier?, T> = ::fixture,
-): C = listFixture(
-    qualifier = qualifier,
-    size = size,
-    nestedGenerator = nestedGenerator,
-) as C
+): C

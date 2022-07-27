@@ -62,6 +62,14 @@ antiBytesCoverage {
 
     val excludes = setOf(
         "**/FixtureKt*",
+        "**/ListFixtureNoJsKt*",
+        "**/ListFixtureKt*",
+        "**/SetFixtureKt*",
+        "**/TupleFixtureKt*",
+        "**/MapFixtureKt**",
+        "**/CollectionFixtureKt*",
+        "**/SequenceFixtureKt**",
+        "**/ArrayFixtureKt**",
         "**/FilterableFixtureKt*",
         "**/RangedFixtureKt*",
         "**/RangedNumericArrayFixtureKt*",
@@ -139,17 +147,33 @@ kotlin {
             }
         }
 
+        val noJsMain by creating {
+            dependsOn(commonMain)
+        }
+        val noJsTest by creating {
+            dependsOn(commonTest)
+        }
+
         val androidMain by getting {
+            dependsOn(noJsMain)
             dependencies {
-                dependsOn(commonMain)
                 implementation(Dependency.multiplatform.kotlin.android)
             }
         }
-        val androidAndroidTestRelease by getting
-        val androidTestFixtures by getting
-        val androidTestFixturesDebug by getting
-        val androidTestFixturesRelease by getting
+        val androidAndroidTestRelease by getting {
+            dependsOn(noJsTest)
+        }
+        val androidTestFixtures by getting {
+            dependsOn(noJsTest)
+        }
+        val androidTestFixturesDebug by getting {
+            dependsOn(noJsTest)
+        }
+        val androidTestFixturesRelease by getting {
+            dependsOn(noJsTest)
+        }
         val androidTest by getting {
+            dependsOn(noJsTest)
             dependsOn(androidAndroidTestRelease)
             dependsOn(androidTestFixtures)
             dependsOn(androidTestFixturesDebug)
@@ -163,90 +187,68 @@ kotlin {
 
         val jsMain by getting {
             dependencies {
-                dependsOn(commonMain)
                 implementation(Dependency.multiplatform.kotlin.js)
                 implementation(Dependency.js.nodejs)
             }
         }
         val jsTest by getting {
             dependencies {
-                dependsOn(commonTest)
                 implementation(Dependency.multiplatform.test.js)
             }
         }
 
         val jvmMain by getting {
+            dependsOn(noJsMain)
             dependencies {
-                dependsOn(commonMain)
                 implementation(Dependency.multiplatform.kotlin.jdk8)
             }
         }
         val jvmTest by getting {
+            dependsOn(noJsTest)
             dependencies {
-                dependsOn(commonTest)
                 implementation(Dependency.multiplatform.test.jvm)
                 implementation(Dependency.multiplatform.test.junit)
             }
         }
 
         val nativeMain by creating {
-            dependencies {
-                dependsOn(commonMain)
-            }
+            dependsOn(noJsMain)
         }
 
         val nativeTest by creating {
-            dependencies {
-                dependsOn(commonTest)
-            }
+            dependsOn(noJsTest)
         }
 
         val darwinMain by creating {
-            dependencies {
-                dependsOn(nativeMain)
-            }
+            dependsOn(nativeMain)
         }
 
         val darwinTest by creating {
-            dependencies {
-                dependsOn(nativeTest)
-            }
+            dependsOn(nativeTest)
         }
 
         val otherMain by creating {
-            dependencies {
-                dependsOn(nativeMain)
-            }
+            dependsOn(nativeMain)
         }
 
         val otherTest by creating {
-            dependencies {
-                dependsOn(nativeTest)
-            }
+            dependsOn(nativeTest)
         }
 
         val linuxX64Main by getting {
-            dependencies {
-                dependsOn(otherMain)
-            }
+            dependsOn(otherMain)
         }
 
         val linuxX64Test by getting {
-            dependencies {
-                dependsOn(otherTest)
-            }
+            dependsOn(otherTest)
         }
 
         val iosMain by getting {
-            dependencies {
-                dependsOn(darwinMain)
-            }
+            dependsOn(darwinMain)
         }
 
         val iosTest by getting {
-            dependencies {
-                dependsOn(darwinTest)
-            }
+            dependsOn(darwinTest)
         }
 
         val iosSimulatorArm64Main by getting {
