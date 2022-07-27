@@ -11,23 +11,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * SelectorGenerator
 * RangedGenerator for:
-    - Byte
     - UByte
     - Short
     - UShort
-    - Int
     - UInt
-    - Long
     - ULong
     - Float
-    - Double
     - Char
 * SignedNumberGenerator for:
     - Byte
     - Short
     - Int
     - Long
-    - Float
     - Double
 * RangedArrayGenerator for:
     - UByteArray
@@ -35,7 +30,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - UIntArray
     - ULongArray
     - FloatArray
-    - DoubleArray
     - CharArray
     - String
 * SignedArrayNumberGenerator for:
@@ -43,8 +37,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - ShortArray
     - IntArray
     - LongArray
+    - DoubleArray
 * BooleanArrayGenerator is now a ArrayGenerator
 * DependentGeneratorFactory in order to build Generators on top of other Generators
+* Filter
 
 ### Changed
 

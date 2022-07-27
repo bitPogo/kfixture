@@ -716,6 +716,55 @@ class ShortArrayGeneratorSpec {
     }
 
     @Test
+    @JsName("fn7a")
+    fun `Given generate is called with a Sign and a Predicate it returns a ShortArray`() {
+        // Given
+        val expectedSign = PublicApi.Sign.NEGATIVE
+        val expectedPredicate: Function1<Short?, Boolean> = { true }
+        val size = 23
+
+        var capturedSign: PublicApi.Sign? = null
+        var capturedPredicate: Function1<Short?, Boolean>? = null
+
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Short, Short>()
+
+        val expectedValue = 42.toShort()
+        val expected = ShortArray(size) { expectedValue }
+
+        auxiliaryGenerator.generateWithSign = { givenSign, givenPredicate ->
+            capturedSign = givenSign
+            capturedPredicate = givenPredicate
+
+            expectedValue
+        }
+        random.nextIntRanged = { from, to ->
+            range.update { Pair(from, to) }
+            size
+        }
+
+        // When
+        val generator = ShortArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(expectedSign, expectedPredicate)
+
+        // Then
+        assertEquals(
+            actual = Pair(1, 10),
+            expected = range.value,
+        )
+        assertEquals(
+            actual = capturedSign,
+            expected = expectedSign,
+        )
+        assertSame(
+            actual = capturedPredicate,
+            expected = expectedPredicate,
+        )
+        assertTrue(
+            expected.contentEquals(result),
+        )
+    }
+
+    @Test
     @JsName("fn8")
     fun `Given generate is called with a Sign and Size it returns a ShortArray`() {
         // Given
@@ -743,6 +792,47 @@ class ShortArrayGeneratorSpec {
         assertEquals(
             actual = capturedSign,
             expected = expectedSign,
+        )
+        assertTrue(
+            expected.contentEquals(result),
+        )
+    }
+
+    @Test
+    @JsName("fn8a")
+    fun `Given generate is called with a Sign and Size and a Predicate it returns a ShortArray`() {
+        // Given
+        val expectedSign = PublicApi.Sign.NEGATIVE
+        val expectedPredicate: Function1<Short?, Boolean> = { true }
+        val size = 23
+
+        var capturedSign: PublicApi.Sign? = null
+        var capturedPredicate: Function1<Short?, Boolean>? = null
+
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Short, Short>()
+
+        val expectedValue = 42.toShort()
+        val expected = ShortArray(size) { expectedValue }
+
+        auxiliaryGenerator.generateWithSign = { givenSign, givenPredicate ->
+            capturedSign = givenSign
+            capturedPredicate = givenPredicate
+
+            expectedValue
+        }
+
+        // When
+        val generator = ShortArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(expectedSign, size, expectedPredicate)
+
+        // Then
+        assertEquals(
+            actual = capturedSign,
+            expected = expectedSign,
+        )
+        assertSame(
+            actual = capturedPredicate,
+            expected = expectedPredicate,
         )
         assertTrue(
             expected.contentEquals(result),

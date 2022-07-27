@@ -11,13 +11,9 @@
     <ID>MagicNumber:build.gradle.kts$0.97</ID>
     <ID>MagicNumber:build.gradle.kts$8</ID>
     <ID>MagicNumber:settings.gradle.kts$30</ID>
-    <ID>MaxLineLength:CharGenerator.kt$CharGenerator$override fun generate(from: Char, to: Char, predicate: (Char?) -> Boolean): Char</ID>
     <ID>MaxLineLength:Dangerfile.df.kts$val</ID>
     <ID>MaxLineLength:Fixture.kt$public</ID>
     <ID>MaxLineLength:GradlePlugin.kt$GradlePlugin$const val runtimeConfig = "tech.antibytes.gradle-plugins:antibytes-runtime-configuration:${Version.Gradle.antibytes}"</ID>
-    <ID>MaxLineLength:LongGenerator.kt$LongGenerator$override fun generate(from: Long, to: Long, predicate: (Long?) -> Boolean): Long</ID>
-    <ID>MaxLineLength:UIntegerGenerator.kt$UIntegerGenerator$override fun generate(from: UInt, to: UInt, predicate: (UInt?) -> Boolean): UInt</ID>
-    <ID>MaxLineLength:ULongGenerator.kt$ULongGenerator$override fun generate(from: ULong, to: ULong, predicate: (ULong?) -> Boolean): ULong</ID>
     <ID>MaxLineLength:build.gradle.kts$config = files("$projectDir/detekt/config.yml")</ID>
     <ID>TooManyFunctions:Fixture.kt$tech.antibytes.kfixture.Fixture.kt</ID>
     <ID>TooManyFunctions:RandomWrapper.kt$RandomWrapper : Random</ID>

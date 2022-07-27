@@ -110,7 +110,11 @@ public final class tech/antibytes/kfixture/PublicApi$SignedNumberGenerator$Defau
 }
 
 public abstract interface class tech/antibytes/kfixture/PublicApi$SignedNumericArrayGenerator : tech/antibytes/kfixture/PublicApi$RangedArrayGenerator, tech/antibytes/kfixture/PublicApi$SignedNumberGenerator {
-	public abstract fun generate (Ltech/antibytes/kfixture/PublicApi$Sign;I)Ljava/lang/Object;
+	public abstract fun generate (Ltech/antibytes/kfixture/PublicApi$Sign;ILkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+}
+
+public final class tech/antibytes/kfixture/PublicApi$SignedNumericArrayGenerator$DefaultImpls {
+	public static synthetic fun generate$default (Ltech/antibytes/kfixture/PublicApi$SignedNumericArrayGenerator;Ltech/antibytes/kfixture/PublicApi$Sign;ILkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
 public final class tech/antibytes/kfixture/PublicApiKt {

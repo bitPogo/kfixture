@@ -27,10 +27,10 @@ class FloatGeneratorSpec {
     @Test
     @Suppress("UNCHECKED_CAST")
     @JsName("fn0")
-    fun `It fulfils SignedNumberGenerator`() {
+    fun `It fulfils RangedGenerator`() {
         val generator: Any = FloatGenerator(random)
 
-        assertTrue(generator is PublicApi.SignedNumberGenerator<*, *>)
+        assertTrue(generator is PublicApi.RangedGenerator<*, *>)
     }
 
     @Test
@@ -133,7 +133,7 @@ class FloatGeneratorSpec {
         // Given
         val expected = 107
         val expectedMin = 0.1f
-        val expectedMax = 42.23f
+        val expectedMax = 1000.23f
         val expectedFloat = 0.23f
 
         var capturedMin: Int? = null
@@ -172,12 +172,188 @@ class FloatGeneratorSpec {
 
     @Test
     @Suppress("UNCHECKED_CAST")
+    @JsName("fn5a")
+    fun `Given generate is called with boundaries it returns a Float while respecting the lower bound`() {
+        // Given
+        val expected = -107
+        val expectedMin = -42.23f
+        val expectedMax = 0f
+        val expectedFloat = 0.23f
+
+        var capturedMin: Int? = null
+        var capturedMax: Int? = null
+
+        random.nextIntRanged = { givenMin, givenMax ->
+            capturedMin = givenMin
+            capturedMax = givenMax
+
+            expected
+        }
+        random.nextFloat = { expectedFloat }
+
+        val generator = FloatGenerator(random)
+
+        // When
+        val result = generator.generate(
+            from = expectedMin,
+            to = expectedMax,
+        )
+
+        // Then
+        assertEquals(
+            actual = result,
+            expected = expected.toFloat(),
+        )
+        assertEquals(
+            actual = capturedMin,
+            expected = expectedMin.toInt(),
+        )
+        assertEquals(
+            actual = capturedMax,
+            expected = 1,
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn5b")
+    fun `Given generate is called with boundaries it returns a Float while respecting the lower bound exactly`() {
+        // Given
+        val expected = -107
+        val expectedMin = -107.23f
+        val expectedMax = 0f
+        val expectedFloat = 0.23f
+
+        var capturedMin: Int? = null
+        var capturedMax: Int? = null
+
+        random.nextIntRanged = { givenMin, givenMax ->
+            capturedMin = givenMin
+            capturedMax = givenMax
+
+            expected
+        }
+        random.nextFloat = { expectedFloat }
+
+        val generator = FloatGenerator(random)
+
+        // When
+        val result = generator.generate(
+            from = expectedMin,
+            to = expectedMax,
+        )
+
+        // Then
+        assertEquals(
+            actual = result,
+            expected = expected + (-expectedFloat),
+        )
+        assertEquals(
+            actual = capturedMin,
+            expected = expectedMin.toInt(),
+        )
+        assertEquals(
+            actual = capturedMax,
+            expected = 1,
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn5c")
+    fun `Given generate is called with boundaries it returns a Float while respecting the upper bound`() {
+        // Given
+        val expected = 23
+        val expectedMin = -42.23f
+        val expectedMax = 0f
+        val expectedFloat = 0.0f
+
+        var capturedMin: Int? = null
+        var capturedMax: Int? = null
+
+        random.nextIntRanged = { givenMin, givenMax ->
+            capturedMin = givenMin
+            capturedMax = givenMax
+
+            expected
+        }
+        random.nextFloat = { expectedFloat }
+
+        val generator = FloatGenerator(random)
+
+        // When
+        val result = generator.generate(
+            from = expectedMin,
+            to = expectedMax,
+        )
+
+        // Then
+        assertEquals(
+            actual = result,
+            expected = 23F,
+        )
+        assertEquals(
+            actual = capturedMin,
+            expected = expectedMin.toInt(),
+        )
+        assertEquals(
+            actual = capturedMax,
+            expected = 1,
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
+    @JsName("fn5d")
+    fun `Given generate is called with boundaries it returns a Float while respecting the upper bound exactly`() {
+        // Given
+        val expected = 0
+        val expectedMin = 0f
+        val expectedMax = 0.23f
+        val expectedFloat = 0.23f
+
+        var capturedMin: Int? = null
+        var capturedMax: Int? = null
+
+        random.nextIntRanged = { givenMin, givenMax ->
+            capturedMin = givenMin
+            capturedMax = givenMax
+
+            expected
+        }
+        random.nextFloat = { expectedFloat }
+
+        val generator = FloatGenerator(random)
+
+        // When
+        val result = generator.generate(
+            from = expectedMin,
+            to = expectedMax,
+        )
+
+        // Then
+        assertEquals(
+            actual = result,
+            expected = 0.23f,
+        )
+        assertEquals(
+            actual = capturedMin,
+            expected = expectedMin.toInt(),
+        )
+        assertEquals(
+            actual = capturedMax,
+            expected = 1,
+        )
+    }
+
+    @Test
+    @Suppress("UNCHECKED_CAST")
     @JsName("fn6")
     fun `Given generate is called with boundaries and a predicates it returns a Float`() {
         // Given
         val expected = 107
         val expectedMin = 0.1f
-        val expectedMax = 42.23f
+        val expectedMax = 1000.23f
         val expectedFloat = 0.23f
         val floats = mutableListOf(0.12f, 0.13f, expectedFloat)
 
@@ -220,9 +396,9 @@ class FloatGeneratorSpec {
     @JsName("fn7")
     fun `Given generate is called with boundaries it returns a Float while cutting the float point number`() {
         // Given
-        val expected = Float.MAX_VALUE.toInt()
+        val expected = 123
         val expectedMin = 0.1f
-        val expectedMax = Float.MAX_VALUE
+        val expectedMax = 123f
 
         var capturedMin: Int? = null
         var capturedMax: Int? = null
@@ -231,8 +407,10 @@ class FloatGeneratorSpec {
             capturedMin = givenMin
             capturedMax = givenMax
 
-            expected - 1
+            expected
         }
+
+        random.nextFloat = { 0.999f }
 
         val generator = FloatGenerator(random)
 
@@ -249,11 +427,11 @@ class FloatGeneratorSpec {
         )
         assertEquals(
             actual = capturedMin,
-            expected = -1,
+            expected = 0,
         )
         assertEquals(
             actual = capturedMax,
-            expected = expectedMax.toInt(),
+            expected = expectedMax.toInt() + 1,
         )
     }
 
@@ -262,9 +440,9 @@ class FloatGeneratorSpec {
     @JsName("fn8")
     fun `Given generate is called with boundaries and a predicate it returns a Float while cutting the float point number`() {
         // Given
-        val expected = Float.MAX_VALUE.toInt()
+        val expected = 123
         val expectedMin = 0.1f
-        val expectedMax = Float.MAX_VALUE
+        val expectedMax = 123f
 
         var capturedMin: Int? = null
         var capturedMax: Int? = null
@@ -273,8 +451,10 @@ class FloatGeneratorSpec {
             capturedMin = givenMin
             capturedMax = givenMax
 
-            expected - 1
+            expected
         }
+
+        random.nextFloat = { 0.999f }
 
         val generator = FloatGenerator(random)
 
@@ -291,177 +471,11 @@ class FloatGeneratorSpec {
         )
         assertEquals(
             actual = capturedMin,
-            expected = -1,
+            expected = 0,
         )
         assertEquals(
             actual = capturedMax,
-            expected = expectedMax.toInt(),
-        )
-    }
-
-    @Test
-    @Suppress("UNCHECKED_CAST")
-    @JsName("fn9")
-    fun `Given generate is called with POSITIVE it returns a Float`() {
-        // Given
-        val expected = 107
-        val expectedFloat = 0.23f
-
-        var capturedMin: Int? = null
-        var capturedMax: Int? = null
-
-        random.nextIntRanged = { givenMin, givenMax ->
-            capturedMin = givenMin
-            capturedMax = givenMax
-
-            expected - 1
-        }
-        random.nextFloat = { expectedFloat }
-
-        val generator = FloatGenerator(random)
-
-        // When
-        val result = generator.generate(
-            PublicApi.Sign.POSITIVE,
-        )
-
-        // Then
-        assertEquals(
-            actual = result,
-            expected = expected + expectedFloat,
-        )
-        assertEquals(
-            actual = capturedMin,
-            expected = -1,
-        )
-        assertEquals(
-            actual = capturedMax,
-            expected = Float.MAX_VALUE.toInt(),
-        )
-    }
-
-    @Test
-    @Suppress("UNCHECKED_CAST")
-    @JsName("fn10")
-    fun `Given generate is called with POSITIVE and a predicate it returns a Float`() {
-        // Given
-        val expected = 107
-        val expectedFloat = 0.23f
-        val floats = mutableListOf(0.12f, 0.13f, expectedFloat)
-
-        var capturedMin: Int? = null
-        var capturedMax: Int? = null
-
-        random.nextIntRanged = { givenMin, givenMax ->
-            capturedMin = givenMin
-            capturedMax = givenMax
-
-            expected - 1
-        }
-        random.nextFloat = { floats.removeFirst() }
-
-        val generator = FloatGenerator(random)
-
-        // When
-        val result = generator.generate(
-            PublicApi.Sign.POSITIVE,
-        ) { float -> float == expected + expectedFloat }
-
-        // Then
-        assertEquals(
-            actual = result,
-            expected = expected + expectedFloat,
-        )
-        assertEquals(
-            actual = capturedMin,
-            expected = -1,
-        )
-        assertEquals(
-            actual = capturedMax,
-            expected = Float.MAX_VALUE.toInt(),
-        )
-    }
-
-    @Test
-    @Suppress("UNCHECKED_CAST")
-    @JsName("fn11")
-    fun `Given generate is called with NEGATIVE it returns a Float`() {
-        // Given
-        val expected = 107
-        val expectedFloat = 0.23f
-
-        var capturedMin: Int? = null
-        var capturedMax: Int? = null
-
-        random.nextIntRanged = { givenMin, givenMax ->
-            capturedMin = givenMin
-            capturedMax = givenMax
-
-            expected
-        }
-        random.nextFloat = { expectedFloat }
-
-        val generator = FloatGenerator(random)
-
-        // When
-        val result = generator.generate(
-            PublicApi.Sign.NEGATIVE,
-        )
-
-        // Then
-        assertEquals(
-            actual = result,
-            expected = expected + expectedFloat,
-        )
-        assertEquals(
-            actual = capturedMin,
-            expected = Float.MIN_VALUE.toInt(),
-        )
-        assertEquals(
-            actual = capturedMax,
-            expected = 1,
-        )
-    }
-
-    @Test
-    @Suppress("UNCHECKED_CAST")
-    @JsName("fn12")
-    fun `Given generate is called with NEGATIVE and a predicate it returns a Float`() {
-        // Given
-        val expected = 107
-        val expectedFloat = 0.23f
-        val floats = mutableListOf(0.12f, 0.13f, expectedFloat)
-
-        var capturedMin: Int? = null
-        var capturedMax: Int? = null
-
-        random.nextIntRanged = { givenMin, givenMax ->
-            capturedMin = givenMin
-            capturedMax = givenMax
-
-            expected
-        }
-        random.nextFloat = { floats.removeFirst() }
-
-        val generator = FloatGenerator(random)
-
-        // When
-        val result = generator.generate(
-            PublicApi.Sign.NEGATIVE,
-        ) { float -> float == expectedFloat + expected }
-
-        // Then
-        assertEquals(
-            actual = result,
-            expected = expected + expectedFloat,
-        )
-        assertEquals(
-            actual = capturedMin,
-            expected = Float.MIN_VALUE.toInt(),
-        )
-        assertEquals(
-            actual = capturedMax,
-            expected = 1,
+            expected = expectedMax.toInt() + 1,
         )
     }
 }

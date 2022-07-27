@@ -183,9 +183,14 @@ public interface PublicApi {
          * Generates a instance of given type in a given range.
          * @param sign indicates the if the result is positive or negative.
          * @param size a fixed given size for the resulting Array.
+         * @param predicate which filters non matching values.
          * @return a instance of a given type.
          */
-        public fun generate(sign: Sign, size: Int): R
+        public fun generate(
+            sign: Sign,
+            size: Int,
+            predicate: (T?) -> Boolean = ::defaultPredicate,
+        ): R
     }
 
     /**

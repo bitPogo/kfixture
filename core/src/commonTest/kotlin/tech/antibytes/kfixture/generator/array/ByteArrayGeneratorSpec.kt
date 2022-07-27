@@ -69,7 +69,7 @@ class ByteArrayGeneratorSpec {
 
     @Test
     @JsName("fn2")
-    fun `Given generate is called with a predicate it returns a ByteArray`() {
+    fun `Given generate is called with a Predicate it returns a ByteArray`() {
         // Given
         val size = 23
         val expectedValue = 23.toByte()
@@ -135,7 +135,7 @@ class ByteArrayGeneratorSpec {
 
     @Test
     @JsName("fn3a")
-    fun `Given generate is called with a size and a predicate it returns a ByteArray in the given size`() {
+    fun `Given generate is called with a size and a Predicate it returns a ByteArray in the given size`() {
         // Given
         val size = 12
         val expectedValue = 23.toByte()
@@ -227,7 +227,7 @@ class ByteArrayGeneratorSpec {
 
     @Test
     @JsName("fn4a")
-    fun `Given generate is called with a predicate with boundaries it returns a ByteArray`() {
+    fun `Given generate is called with a Predicate with boundaries it returns a ByteArray`() {
         // Given
         val size = 3
         val expectedMin = 0.toByte()
@@ -333,7 +333,7 @@ class ByteArrayGeneratorSpec {
 
     @Test
     @JsName("fn5a")
-    fun `Given generate is called with boundaries and a predicate it returns a ByteArray with a given Size`() {
+    fun `Given generate is called with boundaries and a Predicate it returns a ByteArray with a given Size`() {
         // Given
         val size = 3
         val expectedMin = 0.toByte()
@@ -455,7 +455,7 @@ class ByteArrayGeneratorSpec {
 
     @Test
     @JsName("fn6a")
-    fun `Given generate is called with ranges and a predicate it returns a ByteArray`() {
+    fun `Given generate is called with ranges and a Predicate it returns a ByteArray`() {
         // Given
         val expectedMin1 = 0.toByte()
         val expectedMax1 = 42.toByte()
@@ -598,7 +598,7 @@ class ByteArrayGeneratorSpec {
 
     @Test
     @JsName("fn7a")
-    fun `Given generate is called with ranges and a size and a predicate it returns a ByteArray`() {
+    fun `Given generate is called with ranges and a size and a Predicate it returns a ByteArray`() {
         // Given
         val expectedSize = 3
         val expectedMin1 = 0.toByte()
@@ -718,6 +718,55 @@ class ByteArrayGeneratorSpec {
     }
 
     @Test
+    @JsName("fn8a")
+    fun `Given generate is called with a Sign and a Predicate it returns a ByteArray`() {
+        // Given
+        val expectedSign = PublicApi.Sign.NEGATIVE
+        val expectedPredicate: Function1<Byte?, Boolean> = { true }
+        val size = 23
+
+        var capturedSign: PublicApi.Sign? = null
+        var capturedPredicate: Function1<Byte?, Boolean>? = null
+
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Byte, Byte>()
+
+        val expectedValue = 42.toByte()
+        val expected = ByteArray(size) { expectedValue }
+
+        auxiliaryGenerator.generateWithSign = { givenSign, givenPredicate ->
+            capturedSign = givenSign
+            capturedPredicate = givenPredicate
+
+            expectedValue
+        }
+        random.nextIntRanged = { from, to ->
+            range.update { Pair(from, to) }
+            size
+        }
+
+        // When
+        val generator = ByteArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(expectedSign, expectedPredicate)
+
+        // Then
+        assertEquals(
+            actual = Pair(1, 10),
+            expected = range.value,
+        )
+        assertEquals(
+            actual = capturedSign,
+            expected = expectedSign,
+        )
+        assertSame(
+            actual = capturedPredicate,
+            expected = expectedPredicate,
+        )
+        assertTrue(
+            expected.contentEquals(result),
+        )
+    }
+
+    @Test
     @JsName("fn9")
     fun `Given generate is called with a Sign and Size it returns a ByteArray`() {
         // Given
@@ -745,6 +794,47 @@ class ByteArrayGeneratorSpec {
         assertEquals(
             actual = capturedSign,
             expected = expectedSign,
+        )
+        assertTrue(
+            expected.contentEquals(result),
+        )
+    }
+
+    @Test
+    @JsName("fn9a")
+    fun `Given generate is called with a Sign and Size and a Predicate it returns a ByteArray`() {
+        // Given
+        val expectedSign = PublicApi.Sign.NEGATIVE
+        val expectedPredicate: Function1<Byte?, Boolean> = { true }
+        val size = 23
+
+        var capturedSign: PublicApi.Sign? = null
+        var capturedPredicate: Function1<Byte?, Boolean>? = null
+
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Byte, Byte>()
+
+        val expectedValue = 42.toByte()
+        val expected = ByteArray(size) { expectedValue }
+
+        auxiliaryGenerator.generateWithSign = { givenSign, givenPredicate ->
+            capturedSign = givenSign
+            capturedPredicate = givenPredicate
+
+            expectedValue
+        }
+
+        // When
+        val generator = ByteArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(expectedSign, size, expectedPredicate)
+
+        // Then
+        assertEquals(
+            actual = capturedSign,
+            expected = expectedSign,
+        )
+        assertSame(
+            actual = capturedPredicate,
+            expected = expectedPredicate,
         )
         assertTrue(
             expected.contentEquals(result),

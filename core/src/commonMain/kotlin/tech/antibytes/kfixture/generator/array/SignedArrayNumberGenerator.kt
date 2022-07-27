@@ -18,10 +18,11 @@ internal abstract class SignedArrayNumberGenerator<T, R>(
     override fun generate(
         sign: PublicApi.Sign,
         size: Int,
-    ): R = arrayBuilder(size) { numberGenerator.generate(sign) }
+        predicate: (T?) -> Boolean,
+    ): R = arrayBuilder(size) { numberGenerator.generate(sign, predicate) }
 
     override fun generate(
         sign: PublicApi.Sign,
         predicate: (T?) -> Boolean,
-    ): R = generate(sign, chooseSize())
+    ): R = generate(sign, chooseSize(), predicate)
 }

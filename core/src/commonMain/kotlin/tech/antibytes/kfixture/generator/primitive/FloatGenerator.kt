@@ -6,27 +6,45 @@
 
 package tech.antibytes.kfixture.generator.primitive
 
+import kotlin.math.abs
 import kotlin.random.Random
 import kotlin.random.nextInt
 import tech.antibytes.kfixture.PublicApi
 
 internal class FloatGenerator(
     private val random: Random,
-) : PublicApi.SignedNumberGenerator<Float, Float>, Generator<Float>() {
+) : PublicApi.RangedGenerator<Float, Float>, Generator<Float>() {
     override fun generate(): Float = random.nextFloat() + random.nextInt()
 
     override fun generate(
         predicate: (Float?) -> Boolean,
     ): Float = returnFilteredValue(predicate, ::generate)
 
-    private fun generate(from: Float, to: Float): Float {
-        val limit = to.toInt()
-        val base = random.nextInt(IntRange(from.toInt(), limit))
+    private fun determineSign(from: Float, to: Float): Int {
+        return if (to - abs(from) < 0) {
+            -1
+        } else {
+            1
+        }
+    }
 
-        return if (base == limit) {
+    private fun Random.nextSignedFloat(lowerBound: Float, upperBound: Float): Float {
+        return nextFloat() * determineSign(lowerBound, upperBound)
+    }
+
+    private fun Int.assembleFloat(
+        from: Float,
+        to: Float,
+    ): Float = this + random.nextSignedFloat(from, to)
+
+    private fun generate(from: Float, to: Float): Float {
+        val base = random.nextInt(IntRange(from.toInt(), to.toInt()))
+        val float = base.assembleFloat(from, to)
+
+        return if (float < from || float > to) {
             base.toFloat()
         } else {
-            base + random.nextFloat()
+            float
         }
     }
 
@@ -35,21 +53,4 @@ internal class FloatGenerator(
         to: Float,
         predicate: (Float?) -> Boolean,
     ): Float = returnFilteredValue(predicate) { generate(from, to) }
-
-    private fun resolveBoundary(sign: PublicApi.Sign): Pair<Float, Float> {
-        return if (sign == PublicApi.Sign.POSITIVE) {
-            ZERO to Float.MAX_VALUE
-        } else {
-            Float.MIN_VALUE to ZERO
-        }
-    }
-
-    override fun generate(sign: PublicApi.Sign, predicate: (Float?) -> Boolean): Float {
-        val (from, to) = resolveBoundary(sign)
-        return generate(from, to, predicate)
-    }
-
-    private companion object {
-        const val ZERO = 0F
-    }
 }
