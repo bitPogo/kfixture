@@ -11,8 +11,8 @@ import tech.antibytes.kfixture.PublicApi
 
 internal class DoubleArrayGenerator(
     random: Random,
-    doubleGenerator: PublicApi.RangedGenerator<Double, Double>,
-) : RangedArrayNumberGenerator<Double, DoubleArray>(random, doubleGenerator) {
+    doubleGenerator: PublicApi.SignedNumberGenerator<Double, Double>,
+) : SignedArrayNumberGenerator<Double, DoubleArray>(random, doubleGenerator) {
     override fun arrayBuilder(
         size: Int,
         onEach: (idx: Int) -> Double,

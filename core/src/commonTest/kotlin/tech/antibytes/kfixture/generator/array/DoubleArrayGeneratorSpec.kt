@@ -18,7 +18,7 @@ import kotlinx.atomicfu.atomic
 import kotlinx.atomicfu.update
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.mock.RandomStub
-import tech.antibytes.kfixture.mock.RangedGeneratorStub
+import tech.antibytes.kfixture.mock.SignedNumberGeneratorStub
 
 class DoubleArrayGeneratorSpec {
     private val random = RandomStub()
@@ -34,7 +34,7 @@ class DoubleArrayGeneratorSpec {
     @Suppress("UNCHECKED_CAST")
     @JsName("fn0")
     fun `It fulfils RangedArrayGenerator`() {
-        val generator: Any = DoubleArrayGenerator(random, RangedGeneratorStub())
+        val generator: Any = DoubleArrayGenerator(random, SignedNumberGeneratorStub())
 
         assertTrue(generator is PublicApi.RangedArrayGenerator<*, *>)
     }
@@ -47,7 +47,7 @@ class DoubleArrayGeneratorSpec {
         val size = 23
         val expectedValue = 23.toDouble()
         val expected = DoubleArray(size) { expectedValue }
-        val auxiliaryGenerator = RangedGeneratorStub<Double, Double>()
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Double, Double>()
 
         auxiliaryGenerator.generate = { expectedValue }
         random.nextIntRanged = { from, to ->
@@ -80,7 +80,7 @@ class DoubleArrayGeneratorSpec {
         val expectedPredicate: Function1<Double?, Boolean> = { true }
         var capturedPredicate: Function<Boolean>? = null
 
-        val auxiliaryGenerator = RangedGeneratorStub<Double, Double>()
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Double, Double>()
 
         auxiliaryGenerator.generateWithPredicate = { givenPredicate ->
             capturedPredicate = givenPredicate
@@ -118,7 +118,7 @@ class DoubleArrayGeneratorSpec {
         val size = 12
         val expectedValue = 23.toDouble()
         val expected = DoubleArray(size) { expectedValue }
-        val auxiliaryGenerator = RangedGeneratorStub<Double, Double>()
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Double, Double>()
 
         auxiliaryGenerator.generate = { expectedValue }
 
@@ -146,7 +146,7 @@ class DoubleArrayGeneratorSpec {
         val expected = DoubleArray(size) { expectedValue }
         val expectedPredicate: Function1<Double?, Boolean> = { true }
 
-        val auxiliaryGenerator = RangedGeneratorStub<Double, Double>()
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Double, Double>()
         var capturedPredicate: Function<Boolean>? = null
 
         auxiliaryGenerator.generateWithPredicate = { givenPredicate ->
@@ -185,7 +185,7 @@ class DoubleArrayGeneratorSpec {
         var capturedMin: Int? = null
         var capturedMax: Int? = null
 
-        val auxiliaryGenerator = RangedGeneratorStub<Double, Double>()
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Double, Double>()
 
         val expected = listOf(
             23.toDouble(),
@@ -242,7 +242,7 @@ class DoubleArrayGeneratorSpec {
         var capturedMax: Int? = null
         var capturedPredicate: Function<Boolean>? = null
 
-        val auxiliaryGenerator = RangedGeneratorStub<Double, Double>()
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Double, Double>()
 
         val expected = listOf(
             23.toDouble(),
@@ -302,7 +302,7 @@ class DoubleArrayGeneratorSpec {
         var capturedMin: Int? = null
         var capturedMax: Int? = null
 
-        val auxiliaryGenerator = RangedGeneratorStub<Double, Double>()
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Double, Double>()
 
         val expected = listOf(
             23.toDouble(),
@@ -350,7 +350,7 @@ class DoubleArrayGeneratorSpec {
         var capturedMax: Int? = null
         var capturedPredicate: Function<Boolean>? = null
 
-        val auxiliaryGenerator = RangedGeneratorStub<Double, Double>()
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Double, Double>()
 
         val expected = listOf(
             23.toDouble(),
@@ -407,7 +407,7 @@ class DoubleArrayGeneratorSpec {
         val capturedMin: MutableList<Int> = sharedMutableListOf()
         val capturedMax: MutableList<Int> = sharedMutableListOf()
 
-        val auxiliaryGenerator = RangedGeneratorStub<Double, Double>()
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Double, Double>()
 
         val expected = listOf(
             23.toDouble(),
@@ -475,7 +475,7 @@ class DoubleArrayGeneratorSpec {
         val capturedMax: MutableList<Int> = sharedMutableListOf()
         val capturedPredicate: MutableList<Function<Boolean>> = sharedMutableListOf()
 
-        val auxiliaryGenerator = RangedGeneratorStub<Double, Double>()
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Double, Double>()
 
         val expected = listOf(
             23.toDouble(),
@@ -552,7 +552,7 @@ class DoubleArrayGeneratorSpec {
         val capturedMin: MutableList<Int> = sharedMutableListOf()
         val capturedMax: MutableList<Int> = sharedMutableListOf()
 
-        val auxiliaryGenerator = RangedGeneratorStub<Double, Double>()
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Double, Double>()
 
         val expected = listOf(
             23.toDouble(),
@@ -622,7 +622,7 @@ class DoubleArrayGeneratorSpec {
         val capturedMax: MutableList<Int> = sharedMutableListOf()
         val capturedPredicate: MutableList<Function<Boolean>> = sharedMutableListOf()
 
-        val auxiliaryGenerator = RangedGeneratorStub<Double, Double>()
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Double, Double>()
 
         val expected = listOf(
             23.toDouble(),
@@ -683,6 +683,172 @@ class DoubleArrayGeneratorSpec {
 
         assertTrue(
             expected.toDoubleArray().contentEquals(result),
+        )
+    }
+
+    @Test
+    @JsName("fn7")
+    fun `Given generate is called with a Sign it returns a DoubleArray`() {
+        // Given
+        val expectedSign = PublicApi.Sign.NEGATIVE
+        val size = 23
+
+        var capturedSign: PublicApi.Sign? = null
+
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Double, Double>()
+
+        val expectedValue = 42.toDouble()
+        val expected = DoubleArray(size) { expectedValue }
+
+        auxiliaryGenerator.generateWithSign = { givenSign, _ ->
+            capturedSign = givenSign
+
+            expectedValue
+        }
+        random.nextIntRanged = { from, to ->
+            range.update { Pair(from, to) }
+            size
+        }
+
+        // When
+        val generator = DoubleArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(expectedSign)
+
+        // Then
+        assertEquals(
+            actual = Pair(1, 10),
+            expected = range.value,
+        )
+        assertEquals(
+            actual = capturedSign,
+            expected = expectedSign,
+        )
+        assertTrue(
+            expected.contentEquals(result),
+        )
+    }
+
+    @Test
+    @JsName("fn7a")
+    fun `Given generate is called with a Sign and a Predicate it returns a DoubleArray`() {
+        // Given
+        val expectedSign = PublicApi.Sign.NEGATIVE
+        val expectedPredicate: Function1<Double?, Boolean> = { true }
+        val size = 23
+
+        var capturedSign: PublicApi.Sign? = null
+        var capturedPredicate: Function1<Double?, Boolean>? = null
+
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Double, Double>()
+
+        val expectedValue = 42.toDouble()
+        val expected = DoubleArray(size) { expectedValue }
+
+        auxiliaryGenerator.generateWithSign = { givenSign, givenPredicate ->
+            capturedSign = givenSign
+            capturedPredicate = givenPredicate
+
+            expectedValue
+        }
+        random.nextIntRanged = { from, to ->
+            range.update { Pair(from, to) }
+            size
+        }
+
+        // When
+        val generator = DoubleArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(expectedSign, expectedPredicate)
+
+        // Then
+        assertEquals(
+            actual = Pair(1, 10),
+            expected = range.value,
+        )
+        assertEquals(
+            actual = capturedSign,
+            expected = expectedSign,
+        )
+        assertSame(
+            actual = capturedPredicate,
+            expected = expectedPredicate,
+        )
+        assertTrue(
+            expected.contentEquals(result),
+        )
+    }
+
+    @Test
+    @JsName("fn8")
+    fun `Given generate is called with a Sign and Size it returns a DoubleArray`() {
+        // Given
+        val expectedSign = PublicApi.Sign.NEGATIVE
+        val size = 23
+
+        var capturedSign: PublicApi.Sign? = null
+
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Double, Double>()
+
+        val expectedValue = 42.toDouble()
+        val expected = DoubleArray(size) { expectedValue }
+
+        auxiliaryGenerator.generateWithSign = { givenSign, _ ->
+            capturedSign = givenSign
+
+            expectedValue
+        }
+
+        // When
+        val generator = DoubleArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(expectedSign, size)
+
+        // Then
+        assertEquals(
+            actual = capturedSign,
+            expected = expectedSign,
+        )
+        assertTrue(
+            expected.contentEquals(result),
+        )
+    }
+
+    @Test
+    @JsName("fn8a")
+    fun `Given generate is called with a Sign and Size and a Predicate it returns a DoubleArray`() {
+        // Given
+        val expectedSign = PublicApi.Sign.NEGATIVE
+        val expectedPredicate: Function1<Double?, Boolean> = { true }
+        val size = 23
+
+        var capturedSign: PublicApi.Sign? = null
+        var capturedPredicate: Function1<Double?, Boolean>? = null
+
+        val auxiliaryGenerator = SignedNumberGeneratorStub<Double, Double>()
+
+        val expectedValue = 42.toDouble()
+        val expected = DoubleArray(size) { expectedValue }
+
+        auxiliaryGenerator.generateWithSign = { givenSign, givenPredicate ->
+            capturedSign = givenSign
+            capturedPredicate = givenPredicate
+
+            expectedValue
+        }
+
+        // When
+        val generator = DoubleArrayGenerator(random, auxiliaryGenerator)
+        val result = generator.generate(expectedSign, size, expectedPredicate)
+
+        // Then
+        assertEquals(
+            actual = capturedSign,
+            expected = expectedSign,
+        )
+        assertSame(
+            actual = capturedPredicate,
+            expected = expectedPredicate,
+        )
+        assertTrue(
+            expected.contentEquals(result),
         )
     }
 }

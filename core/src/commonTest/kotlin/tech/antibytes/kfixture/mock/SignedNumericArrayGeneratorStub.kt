@@ -15,7 +15,7 @@ class SignedNumericArrayGeneratorStub<T, R : Any>(
     @JsName("generateWithRangeStub")
     var generateWithRange: ((T, T, Int, Function1<T?, Boolean>) -> R)? = null,
     @JsName("generateWithSignStub")
-    var generateWithSign: ((PublicApi.Sign, Int) -> R)? = null,
+    var generateWithSign: ((PublicApi.Sign, Int, Function1<T?, Boolean>) -> R)? = null,
 ) : PublicApi.SignedNumericArrayGenerator<T, R> where T : Number, T : Comparable<T> {
     override fun generate(): R {
         TODO("Not yet implemented")
@@ -46,8 +46,8 @@ class SignedNumericArrayGeneratorStub<T, R : Any>(
         TODO("Not yet implemented")
     }
 
-    override fun generate(sign: PublicApi.Sign, size: Int): R {
-        return generateWithSign?.invoke(sign, size)
+    override fun generate(sign: PublicApi.Sign, size: Int, predicate: (T?) -> Boolean): R {
+        return generateWithSign?.invoke(sign, size, predicate)
             ?: throw RuntimeException("Missing SideEffect for generateWithType.")
     }
 }

@@ -50,7 +50,7 @@ class SignedNumericArrayFixtureSpec {
         // Given
         val expected = 23
         val generator = SignedNumericArrayGeneratorStub<Int, Int>()
-        generator.generateWithSign = { _, _ -> expected }
+        generator.generateWithSign = { _, _, _ -> expected }
 
         // Ensure stable names since reified is in play
         resolveClassName(Int::class)
@@ -106,7 +106,7 @@ class SignedNumericArrayFixtureSpec {
         var capturedSign: PublicApi.Sign? = null
         var capturedSize: Int? = null
 
-        generator.generateWithSign = { givenType, givenSize ->
+        generator.generateWithSign = { givenType, givenSize, _ ->
             capturedSign = givenType
             capturedSize = givenSize
 
@@ -148,7 +148,7 @@ class SignedNumericArrayFixtureSpec {
         var capturedSign: PublicApi.Sign? = null
         var capturedSize: Int? = null
 
-        generator.generateWithSign = { givenType, givenSize ->
+        generator.generateWithSign = { givenType, givenSize, _ ->
             capturedSign = givenType
             capturedSize = givenSize
 
@@ -184,7 +184,7 @@ class SignedNumericArrayFixtureSpec {
         var capturedSign: PublicApi.Sign? = null
         var capturedSize: Int? = null
 
-        generator.generateWithSign = { givenType, givenSize ->
+        generator.generateWithSign = { givenType, givenSize, _ ->
             capturedSign = givenType
             capturedSize = givenSize
 
