@@ -2,47 +2,47 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://bitpogo.github.io/kfixture/0.2.0-SNAPSHOT/</loc>
-         <lastmod>2022-07-26</lastmod>
+         <lastmod>2022-07-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bitpogo.github.io/kfixture/0.2.0-SNAPSHOT/changelog/</loc>
-         <lastmod>2022-07-26</lastmod>
+         <lastmod>2022-07-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bitpogo.github.io/kfixture/0.2.0-SNAPSHOT/license/</loc>
-         <lastmod>2022-07-26</lastmod>
+         <lastmod>2022-07-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bitpogo.github.io/kfixture/0.2.0-SNAPSHOT/security/</loc>
-         <lastmod>2022-07-26</lastmod>
+         <lastmod>2022-07-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bitpogo.github.io/kfixture/0.2.0-SNAPSHOT/usage/</loc>
-         <lastmod>2022-07-26</lastmod>
+         <lastmod>2022-07-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bitpogo.github.io/kfixture/0.2.0-SNAPSHOT/development/badges/</loc>
-         <lastmod>2022-07-26</lastmod>
+         <lastmod>2022-07-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bitpogo.github.io/kfixture/0.2.0-SNAPSHOT/development/code-of-conduct/</loc>
-         <lastmod>2022-07-26</lastmod>
+         <lastmod>2022-07-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bitpogo.github.io/kfixture/0.2.0-SNAPSHOT/development/contributing/</loc>
-         <lastmod>2022-07-26</lastmod>
+         <lastmod>2022-07-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bitpogo.github.io/kfixture/0.2.0-SNAPSHOT/development/releasing/</loc>
-         <lastmod>2022-07-26</lastmod>
+         <lastmod>2022-07-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
