@@ -4,6 +4,7 @@
   <CurrentIssues>
     <ID>ArrayPrimitive:ArrayFixtureSpec.kt$ArrayFixtureSpec$Array&lt;Int></ID>
     <ID>FunctionOnlyReturningConstant:PublicApi.kt$@Suppress("UNUSED_PARAMETER") @PublishedApi internal fun &lt;T> defaultPredicate(value: T): Boolean</ID>
+    <ID>LongParameterList:TupleFixture.kt$( type: KClass&lt;Triple&lt;*, *, *>>, firstQualifier: Qualifier? = null, firstGenerator: Function1&lt;Qualifier?, First>, secondQualifier: Qualifier? = null, secondGenerator: Function1&lt;Qualifier?, Second>, thirdQualifier: Qualifier? = null, thirdGenerator: Function1&lt;Qualifier?, Third>, )</ID>
     <ID>MagicNumber:Dangerfile.df.kts$1000</ID>
     <ID>MagicNumber:Dangerfile.df.kts$20</ID>
     <ID>MagicNumber:Dangerfile.df.kts$2000</ID>
@@ -16,6 +17,7 @@
     <ID>MaxLineLength:TupleFixture.kt$public</ID>
     <ID>MaxLineLength:build.gradle.kts$config = files("$projectDir/detekt/config.yml")</ID>
     <ID>TooManyFunctions:RandomWrapper.kt$RandomWrapper : Random</ID>
+    <ID>TooManyFunctions:TupleFixture.kt$tech.antibytes.kfixture.TupleFixture.kt</ID>
     <ID>UnusedPrivateMember:build.gradle.kts$val androidMain by getting { dependsOn(noJsMain) dependencies { implementation(Dependency.multiplatform.kotlin.android) } }</ID>
     <ID>UnusedPrivateMember:build.gradle.kts$val androidTest by getting { dependsOn(noJsTest) dependsOn(androidAndroidTestRelease) dependsOn(androidTestFixtures) dependsOn(androidTestFixturesDebug) dependsOn(androidTestFixturesRelease) dependencies { implementation(Dependency.multiplatform.test.jvm) implementation(Dependency.multiplatform.test.junit) } }</ID>
     <ID>UnusedPrivateMember:build.gradle.kts$val iosSimulatorArm64Main by getting { dependsOn(iosMain) }</ID>

@@ -70,7 +70,7 @@ class PairFixtureSpec {
 
     @Test
     @JsName("fn2")
-    fun `Given pairFixture is called it returns a Fixture for the derrived Type`() {
+    fun `Given pairFixture is called it returns a Fixture for the derived Type`() {
         // Given
         val expected = 23
         val generator = FilterableGeneratorStub<Int, Int>()
@@ -88,6 +88,84 @@ class PairFixtureSpec {
         assertEquals(
             actual = result,
             expected = Pair(expected, expected),
+        )
+    }
+
+    @Test
+    @JsName("fn2a")
+    fun `Given pairFixture is called with a nested generator for first it returns a Fixture for the derived Type`() {
+        // Given
+        val expectedFirst = 42
+        val expectedSecond = 23
+        val generator = FilterableGeneratorStub<Int, Int>()
+        generator.generate = { expectedSecond }
+
+        // Ensure stable names since reified is in play
+        resolveClassName(Int::class)
+
+        val fixture = Fixture(random, mapOf(int to generator))
+
+        // When
+        val result = fixture.pairFixture<Int, Int>(
+            firstGenerator = { expectedFirst },
+        )
+
+        // Then
+        assertEquals(
+            actual = result,
+            expected = Pair(expectedFirst, expectedSecond),
+        )
+    }
+
+    @Test
+    @JsName("fn2b")
+    fun `Given pairFixture is called with a nested generator for second it returns a Fixture for the derived Type`() {
+        // Given
+        val expectedFirst = 42
+        val expectedSecond = 23
+        val generator = FilterableGeneratorStub<Int, Int>()
+        generator.generate = { expectedFirst }
+
+        // Ensure stable names since reified is in play
+        resolveClassName(Int::class)
+
+        val fixture = Fixture(random, mapOf(int to generator))
+
+        // When
+        val result = fixture.pairFixture<Int, Int>(
+            secondGenerator = { expectedSecond },
+        )
+
+        // Then
+        assertEquals(
+            actual = result,
+            expected = Pair(expectedFirst, expectedSecond),
+        )
+    }
+
+    @Test
+    @JsName("fn2c")
+    fun `Given pairFixture is called with a nested generator for bth it returns a Fixture for the derived Type`() {
+        // Given
+        val expectedFirst = 42
+        val expectedSecond = 23
+        val generator = FilterableGeneratorStub<Int, Int>()
+
+        // Ensure stable names since reified is in play
+        resolveClassName(Int::class)
+
+        val fixture = Fixture(random, mapOf(int to generator))
+
+        // When
+        val result = fixture.pairFixture(
+            firstGenerator = { expectedFirst },
+            secondGenerator = { expectedSecond },
+        )
+
+        // Then
+        assertEquals(
+            actual = result,
+            expected = Pair(expectedFirst, expectedSecond),
         )
     }
 
@@ -151,6 +229,154 @@ class PairFixtureSpec {
     }
 
     @Test
+    @JsName("fn4a")
+    fun `Given pairFixture is called with qualifiers and nested generator for first it returns a Fixture for the derived Type`() {
+        // Given
+        val expectedFirst = 42
+        val expectedSecond = 23
+        val keyQualifier = "testKey"
+        val valueQualifier = "testValue"
+        val generator = FilterableGeneratorStub<Int, Int>()
+
+        var capturedQualifier: PublicApi.Qualifier? = null
+        generator.generate = { expectedSecond }
+
+        // Ensure stable names since reified is in play
+        resolveClassName(Int::class)
+
+        val fixture = Fixture(
+            random,
+            mapOf(
+                "q:$keyQualifier:$int" to generator,
+                "q:$valueQualifier:$int" to generator,
+            ),
+        )
+
+        // When
+        val result = fixture.pairFixture<Int, Int>(
+            firstQualifier = StringQualifier(keyQualifier),
+            firstGenerator = { givenQualifier ->
+                capturedQualifier = givenQualifier
+
+                expectedFirst
+            },
+            secondQualifier = StringQualifier(valueQualifier),
+        )
+
+        // Then
+        assertEquals(
+            actual = result,
+            expected = Pair(expectedFirst, expectedSecond),
+        )
+        assertEquals(
+            actual = capturedQualifier?.value,
+            expected = StringQualifier(keyQualifier).value,
+        )
+    }
+
+    @Test
+    @JsName("fn4b")
+    fun `Given pairFixture is called with qualifiers and nested generator for second it returns a Fixture for the derived Type`() {
+        // Given
+        val expectedFirst = 42
+        val expectedSecond = 23
+        val keyQualifier = "testKey"
+        val valueQualifier = "testValue"
+        val generator = FilterableGeneratorStub<Int, Int>()
+
+        var capturedQualifier: PublicApi.Qualifier? = null
+        generator.generate = { expectedFirst }
+
+        // Ensure stable names since reified is in play
+        resolveClassName(Int::class)
+
+        val fixture = Fixture(
+            random,
+            mapOf(
+                "q:$keyQualifier:$int" to generator,
+                "q:$valueQualifier:$int" to generator,
+            ),
+        )
+
+        // When
+        val result = fixture.pairFixture<Int, Int>(
+            firstQualifier = StringQualifier(keyQualifier),
+            secondQualifier = StringQualifier(valueQualifier),
+            secondGenerator = { givenQualifier ->
+                capturedQualifier = givenQualifier
+
+                expectedSecond
+            },
+        )
+
+        // Then
+        assertEquals(
+            actual = result,
+            expected = Pair(expectedFirst, expectedSecond),
+        )
+        assertEquals(
+            actual = capturedQualifier?.value,
+            expected = StringQualifier(valueQualifier).value,
+        )
+    }
+
+    @Test
+    @JsName("fn4c")
+    fun `Given pairFixture is called with qualifiers and nested generator for both it returns a Fixture for the derived Type`() {
+        // Given
+        val expectedFirst = 42
+        val expectedSecond = 23
+        val keyQualifier = "testKey"
+        val valueQualifier = "testValue"
+        val generator = FilterableGeneratorStub<Int, Int>()
+
+        var capturedFirstQualifier: PublicApi.Qualifier? = null
+        var capturedSecondQualifier: PublicApi.Qualifier? = null
+        generator.generate = { expectedFirst }
+
+        // Ensure stable names since reified is in play
+        resolveClassName(Int::class)
+
+        val fixture = Fixture(
+            random,
+            mapOf(
+                "q:$keyQualifier:$int" to generator,
+                "q:$valueQualifier:$int" to generator,
+            ),
+        )
+
+        // When
+        val result = fixture.pairFixture(
+            firstQualifier = StringQualifier(keyQualifier),
+            firstGenerator = { givenQualifier ->
+                capturedFirstQualifier = givenQualifier
+
+                expectedFirst
+            },
+            secondQualifier = StringQualifier(valueQualifier),
+            secondGenerator = { givenQualifier ->
+                capturedSecondQualifier = givenQualifier
+
+                expectedSecond
+            },
+        )
+
+        // Then
+        assertEquals(
+            actual = result,
+            expected = Pair(expectedFirst, expectedSecond),
+        )
+        assertEquals(
+            actual = capturedFirstQualifier?.value,
+            expected = StringQualifier(keyQualifier).value,
+        )
+        assertEquals(
+            actual = capturedSecondQualifier?.value,
+            expected = StringQualifier(valueQualifier).value,
+        )
+    }
+
+    @Test
     @JsName("fn5")
     fun `Given fixture is called with qualifiers and a Type it returns a Fixture for the derived Type`() {
         // Given
@@ -182,6 +408,157 @@ class PairFixtureSpec {
         assertEquals(
             actual = result,
             expected = Pair(expected, expected),
+        )
+    }
+
+    @Test
+    @JsName("fn5a")
+    fun `Given fixture is called with qualifiers and nested generator for first it returns a Fixture for the derived Type`() {
+        // Given
+        val expectedFirst = 42
+        val expectedSecond = 23
+        val keyQualifier = "testKey"
+        val valueQualifier = "testValue"
+        val generator = FilterableGeneratorStub<Int, Int>()
+
+        var capturedQualifier: PublicApi.Qualifier? = null
+        generator.generate = { expectedSecond }
+
+        // Ensure stable names since reified is in play
+        resolveClassName(Int::class)
+
+        val fixture = Fixture(
+            random,
+            mapOf(
+                "q:$keyQualifier:$int" to generator,
+                "q:$valueQualifier:$int" to generator,
+            ),
+        )
+
+        // When
+        val result: Pair<Int, Int> = fixture.fixture(
+            type = Pair::class,
+            firstQualifier = StringQualifier(keyQualifier),
+            firstGenerator = { givenQualifier ->
+                capturedQualifier = givenQualifier
+
+                expectedFirst
+            },
+            secondQualifier = StringQualifier(valueQualifier),
+        )
+
+        // Then
+        assertEquals(
+            actual = result,
+            expected = Pair(expectedFirst, expectedSecond),
+        )
+        assertEquals(
+            actual = capturedQualifier?.value,
+            expected = StringQualifier(keyQualifier).value,
+        )
+    }
+
+    @Test
+    @JsName("fn5b")
+    fun `Given fixture is called with qualifiers and nested generator for second it returns a Fixture for the derived Type`() {
+        // Given
+        val expectedFirst = 42
+        val expectedSecond = 23
+        val keyQualifier = "testKey"
+        val valueQualifier = "testValue"
+        val generator = FilterableGeneratorStub<Int, Int>()
+
+        var capturedQualifier: PublicApi.Qualifier? = null
+        generator.generate = { expectedFirst }
+
+        // Ensure stable names since reified is in play
+        resolveClassName(Int::class)
+
+        val fixture = Fixture(
+            random,
+            mapOf(
+                "q:$keyQualifier:$int" to generator,
+                "q:$valueQualifier:$int" to generator,
+            ),
+        )
+
+        // When
+        val result: Pair<Int, Int> = fixture.fixture(
+            firstQualifier = StringQualifier(keyQualifier),
+            secondQualifier = StringQualifier(valueQualifier),
+            secondGenerator = { givenQualifier ->
+                capturedQualifier = givenQualifier
+
+                expectedSecond
+            },
+            type = Pair::class,
+        )
+
+        // Then
+        assertEquals(
+            actual = result,
+            expected = Pair(expectedFirst, expectedSecond),
+        )
+        assertEquals(
+            actual = capturedQualifier?.value,
+            expected = StringQualifier(valueQualifier).value,
+        )
+    }
+
+    @Test
+    @JsName("fn5c")
+    fun `Given fixture is called with qualifiers and nested generator for both it returns a Fixture for the derived Type`() {
+        // Given
+        val expectedFirst = 42
+        val expectedSecond = 23
+        val keyQualifier = "testKey"
+        val valueQualifier = "testValue"
+        val generator = FilterableGeneratorStub<Int, Int>()
+
+        var capturedFirstQualifier: PublicApi.Qualifier? = null
+        var capturedSecondQualifier: PublicApi.Qualifier? = null
+        generator.generate = { expectedFirst }
+
+        // Ensure stable names since reified is in play
+        resolveClassName(Int::class)
+
+        val fixture = Fixture(
+            random,
+            mapOf(
+                "q:$keyQualifier:$int" to generator,
+                "q:$valueQualifier:$int" to generator,
+            ),
+        )
+
+        // When
+        val result: Pair<Int, Int> = fixture.fixture(
+            firstQualifier = StringQualifier(keyQualifier),
+            firstGenerator = { givenQualifier ->
+                capturedFirstQualifier = givenQualifier
+
+                expectedFirst
+            },
+            secondQualifier = StringQualifier(valueQualifier),
+            secondGenerator = { givenQualifier ->
+                capturedSecondQualifier = givenQualifier
+
+                expectedSecond
+            },
+            type = Pair::class,
+        )
+
+        // Then
+        assertEquals(
+            actual = result,
+            expected = Pair(expectedFirst, expectedSecond),
+        )
+        assertEquals(
+            actual = capturedFirstQualifier?.value,
+            expected = StringQualifier(keyQualifier).value,
+        )
+        assertEquals(
+            actual = capturedSecondQualifier?.value,
+            expected = StringQualifier(valueQualifier).value,
         )
     }
 }
