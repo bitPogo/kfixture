@@ -120,6 +120,55 @@ class ArrayFixtureSpec {
     }
 
     @Test
+    @JsName("fn7a")
+    fun `Given arrayFixture is called with a nested generator it returns a Fixture for the derived Type`() {
+        // Given
+        val size = 5
+        val expected = 23
+        val generator = FilterableGeneratorStub<Int, Int>()
+
+        random.nextIntRanged = { givenMinimum, givenMaximum ->
+            capturedMinimum.getAndSet(givenMinimum)
+            capturedMaximum.getAndSet(givenMaximum)
+            size
+        }
+
+        // Ensure stable names since reified is in play
+        resolveClassName(Int::class)
+
+        val fixture = Fixture(random, mapOf(int to generator))
+
+        // When
+        val result: Any = fixture.arrayFixture { expected }
+
+        // Then
+        assertTrue(result is Array<*>)
+        assertEquals(
+            actual = capturedMinimum.value,
+            expected = 1,
+        )
+        assertEquals(
+            actual = capturedMaximum.value,
+            expected = 10,
+        )
+        assertEquals(
+            actual = result.size,
+            expected = size,
+        )
+        assertTrue(
+            result.contentDeepEquals(
+                arrayOf(
+                    expected,
+                    expected,
+                    expected,
+                    expected,
+                    expected,
+                ),
+            ),
+        )
+    }
+
+    @Test
     @JsName("fn8")
     fun `Given arrayFixture is called it returns a Fixture while respecting nullability`() {
         // Given
@@ -205,6 +254,50 @@ class ArrayFixtureSpec {
     }
 
     @Test
+    @JsName("fna9")
+    fun `Given arrayFixture is called with a qualifier and a nest generator it returns a Fixture for the derived Type`() {
+        // Given
+        val size = 5
+        val expected = 23
+        val qualifier = "test"
+        val generator = FilterableGeneratorStub<Int, Int>()
+
+        var capturedQualifier: PublicApi.Qualifier? = null
+
+        random.nextIntRanged = { _, _ -> size }
+
+        // Ensure stable names since reified is in play
+        resolveClassName(Int::class)
+
+        val fixture = Fixture(random, mapOf("q:$qualifier:$int" to generator))
+
+        // When
+        val result = fixture.arrayFixture(StringQualifier(qualifier)) { givenQualfier ->
+            capturedQualifier = givenQualfier
+
+            expected
+        }
+
+        // Then
+        assertTrue(
+            result.contentDeepEquals(
+                arrayOf(
+                    expected,
+                    expected,
+                    expected,
+                    expected,
+                    expected,
+                ),
+            ),
+        )
+
+        assertEquals(
+            actual = capturedQualifier?.value,
+            expected = StringQualifier(qualifier).value,
+        )
+    }
+
+    @Test
     @JsName("fn10")
     fun `Given arrayFixture is called with a size it returns a Fixture for the derived Type in the given size`() {
         // Given
@@ -222,6 +315,38 @@ class ArrayFixtureSpec {
 
         // When
         val result = fixture.arrayFixture<Int>(size = size)
+
+        // Then
+        assertTrue(
+            result.contentDeepEquals(
+                arrayOf(
+                    expected,
+                    expected,
+                    expected,
+                    expected,
+                    expected,
+                ),
+            ),
+        )
+    }
+
+    @Test
+    @JsName("fn10a")
+    fun `Given arrayFixture is called with a size and a nest generator it returns a Fixture for the derived Type in the given size`() {
+        // Given
+        val size = 5
+        val expected = 23
+        val generator = FilterableGeneratorStub<Int, Int>()
+
+        random.nextIntRanged = { _, _ -> size }
+
+        // Ensure stable names since reified is in play
+        resolveClassName(Int::class)
+
+        val fixture = Fixture(random, mapOf(int to generator))
+
+        // When
+        val result = fixture.arrayFixture(size = size) { expected }
 
         // Then
         assertTrue(
@@ -257,6 +382,40 @@ class ArrayFixtureSpec {
         val result: Array<Int> = fixture.fixture(
             type = Array::class,
         )
+
+        // Then
+        assertTrue(
+            result.contentDeepEquals(
+                arrayOf(
+                    expected,
+                    expected,
+                    expected,
+                    expected,
+                    expected,
+                ),
+            ),
+        )
+    }
+
+    @Test
+    @JsName("fn11a")
+    fun `Given fixture is called with a size and a nested generator it returns a Fixture for the derived Array Type in the given size`() {
+        // Given
+        val size = 5
+        val expected = 23
+        val generator = FilterableGeneratorStub<Int, Int>()
+
+        random.nextIntRanged = { _, _ -> size }
+
+        // Ensure stable names since reified is in play
+        resolveClassName(Int::class)
+
+        val fixture = Fixture(random, mapOf(int to generator))
+
+        // When
+        val result: Array<Int> = fixture.fixture(
+            type = Array::class,
+        ) { expected }
 
         // Then
         assertTrue(
