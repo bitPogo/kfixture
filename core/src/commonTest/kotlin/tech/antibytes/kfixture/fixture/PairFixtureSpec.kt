@@ -107,7 +107,7 @@ class PairFixtureSpec {
 
         // When
         val result = fixture.pairFixture<Int, Int>(
-            firstGenerator = { expectedFirst }
+            firstGenerator = { expectedFirst },
         )
 
         // Then
@@ -133,7 +133,7 @@ class PairFixtureSpec {
 
         // When
         val result = fixture.pairFixture<Int, Int>(
-            secondGenerator = { expectedSecond }
+            secondGenerator = { expectedSecond },
         )
 
         // Then
@@ -159,7 +159,7 @@ class PairFixtureSpec {
         // When
         val result = fixture.pairFixture(
             firstGenerator = { expectedFirst },
-            secondGenerator = { expectedSecond }
+            secondGenerator = { expectedSecond },
         )
 
         // Then
@@ -270,7 +270,7 @@ class PairFixtureSpec {
         )
         assertEquals(
             actual = capturedQualifier?.value,
-            expected = StringQualifier(keyQualifier).value
+            expected = StringQualifier(keyQualifier).value,
         )
     }
 
@@ -316,7 +316,7 @@ class PairFixtureSpec {
         )
         assertEquals(
             actual = capturedQualifier?.value,
-            expected = StringQualifier(valueQualifier).value
+            expected = StringQualifier(valueQualifier).value,
         )
     }
 
@@ -368,11 +368,11 @@ class PairFixtureSpec {
         )
         assertEquals(
             actual = capturedFirstQualifier?.value,
-            expected = StringQualifier(keyQualifier).value
+            expected = StringQualifier(keyQualifier).value,
         )
         assertEquals(
             actual = capturedSecondQualifier?.value,
-            expected = StringQualifier(valueQualifier).value
+            expected = StringQualifier(valueQualifier).value,
         )
     }
 
@@ -454,7 +454,7 @@ class PairFixtureSpec {
         )
         assertEquals(
             actual = capturedQualifier?.value,
-            expected = StringQualifier(keyQualifier).value
+            expected = StringQualifier(keyQualifier).value,
         )
     }
 
@@ -501,7 +501,7 @@ class PairFixtureSpec {
         )
         assertEquals(
             actual = capturedQualifier?.value,
-            expected = StringQualifier(valueQualifier).value
+            expected = StringQualifier(valueQualifier).value,
         )
     }
 
@@ -554,11 +554,11 @@ class PairFixtureSpec {
         )
         assertEquals(
             actual = capturedFirstQualifier?.value,
-            expected = StringQualifier(keyQualifier).value
+            expected = StringQualifier(keyQualifier).value,
         )
         assertEquals(
             actual = capturedSecondQualifier?.value,
-            expected = StringQualifier(valueQualifier).value
+            expected = StringQualifier(valueQualifier).value,
         )
     }
 }
