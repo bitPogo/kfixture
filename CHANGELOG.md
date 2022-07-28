@@ -41,6 +41,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * BooleanArrayGenerator is now a ArrayGenerator
 * DependentGeneratorFactory in order to build Generators on top of other Generators
 * Filter
+* custom generator for Generics
 
 ### Changed
 
