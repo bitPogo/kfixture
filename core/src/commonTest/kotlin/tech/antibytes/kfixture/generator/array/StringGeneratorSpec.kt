@@ -59,7 +59,7 @@ class StringGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = Pair(1, 10),
+            actual = Pair(1, 11),
             expected = range.value,
         )
         assertEquals(
@@ -96,7 +96,7 @@ class StringGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = Pair(1, 10),
+            actual = Pair(1, 11),
             expected = range.value,
         )
         assertSame(
@@ -212,7 +212,7 @@ class StringGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = Pair(1, 10),
+            actual = Pair(1, 11),
             expected = range.value,
         )
         assertEquals(
@@ -270,7 +270,7 @@ class StringGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = Pair(1, 10),
+            actual = Pair(1, 11),
             expected = range.value,
         )
         assertEquals(

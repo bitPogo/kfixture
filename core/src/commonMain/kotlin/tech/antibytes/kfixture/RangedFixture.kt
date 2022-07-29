@@ -12,8 +12,8 @@ package tech.antibytes.kfixture
  * Creates a value for a given type in given boundaries, excluding generics like List or Array.
  * @param FixtureType the type which is supposed to be created.
  * @param RangeType the type which is supposed to be created and is bounded to its boundaries.
- * @param from the lower boundary of the value.
- * @param to the upper boundary of the value.
+ * @param from the lower boundary of the value (inclusive).
+ * @param to the upper boundary of the value (inclusive).
  * @param qualifier a optional qualifier for a special flavour of a type.
  * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.

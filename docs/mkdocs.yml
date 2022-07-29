@@ -107,8 +107,11 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - Usage: usage.md
   - Changelog: changelog.md
+  - Usage:
+      - Basic: usage/basic.md
+      - Customization: usage/customization.md
+      - Extension: usage/extension.md
   - Development:
       - Code of Conduct: development/code-of-conduct.md
       - Contributing: development/contributing.md

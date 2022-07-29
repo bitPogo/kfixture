@@ -99,7 +99,7 @@ class SequenceFixtureSpec {
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = 10,
+            expected = 11,
         )
         assertEquals(
             actual = result.toList().size,
@@ -147,7 +147,7 @@ class SequenceFixtureSpec {
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = 10,
+            expected = 11,
         )
         assertEquals(
             actual = result.toList().size,
@@ -197,7 +197,7 @@ class SequenceFixtureSpec {
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = 10,
+            expected = 11,
         )
         assertEquals(
             actual = result.toList().size,

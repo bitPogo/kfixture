@@ -59,7 +59,7 @@ class ByteArrayGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = Pair(1, 10),
+            actual = Pair(1, 11),
             expected = range.value,
         )
         assertTrue(
@@ -95,7 +95,7 @@ class ByteArrayGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = Pair(1, 10),
+            actual = Pair(1, 11),
             expected = range.value,
         )
         assertSame(
@@ -209,7 +209,7 @@ class ByteArrayGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = Pair(1, 10),
+            actual = Pair(1, 11),
             expected = range.value,
         )
         assertEquals(
@@ -266,7 +266,7 @@ class ByteArrayGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = Pair(1, 10),
+            actual = Pair(1, 11),
             expected = range.value,
         )
         assertEquals(
@@ -705,7 +705,7 @@ class ByteArrayGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = Pair(1, 10),
+            actual = Pair(1, 11),
             expected = range.value,
         )
         assertEquals(
@@ -750,7 +750,7 @@ class ByteArrayGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = Pair(1, 10),
+            actual = Pair(1, 11),
             expected = range.value,
         )
         assertEquals(

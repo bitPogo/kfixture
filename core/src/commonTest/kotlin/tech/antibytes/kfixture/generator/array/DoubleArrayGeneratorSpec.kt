@@ -61,7 +61,7 @@ class DoubleArrayGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = Pair(1, 10),
+            actual = Pair(1, 11),
             expected = range.value,
         )
         assertTrue(
@@ -98,7 +98,7 @@ class DoubleArrayGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = Pair(1, 10),
+            actual = Pair(1, 11),
             expected = range.value,
         )
         assertSame(
@@ -212,7 +212,7 @@ class DoubleArrayGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = Pair(1, 10),
+            actual = Pair(1, 11),
             expected = range.value,
         )
         assertEquals(
@@ -270,7 +270,7 @@ class DoubleArrayGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = Pair(1, 10),
+            actual = Pair(1, 11),
             expected = range.value,
         )
         assertEquals(
@@ -716,7 +716,7 @@ class DoubleArrayGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = Pair(1, 10),
+            actual = Pair(1, 11),
             expected = range.value,
         )
         assertEquals(
@@ -761,7 +761,7 @@ class DoubleArrayGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = Pair(1, 10),
+            actual = Pair(1, 11),
             expected = range.value,
         )
         assertEquals(

@@ -8,7 +8,7 @@ A tool to generate randomized test values for Kotlin Multiplatform.
 
 ## About The Project
 Tired of writing potato or 42 for your test values? - KFixture is a (limited) extendable generator test value generator for Kotlin Multiplatform which can help you out there.
-The project is heavily influenced by [appmattus kotlinfixture](https://github.com/appmattus/kotlinfixture) and was started to ease a bit testing on KMP.
+The project is heavily influenced by [appmattus kotlinfixture](https://github.com/appmattus/kotlinfixture) and inspired by [Kotest Generators](https://kotest.io/docs/proptest/property-test-generators.html).
 If you want to know more take a look into the [Documentation](https://bitpogo.github.io/kfixture/).
 
 ## Requirements
