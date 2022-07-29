@@ -111,8 +111,8 @@ public interface PublicApi {
         ArrayGenerator<R> where T : Any, T : Comparable<T> {
         /**
          * Generates a instance of given type in a given range.
-         * @param from the lower boundary of the value.
-         * @param to the upper boundary of the value.
+         * @param from the lower boundary of the value (inclusive).
+         * @param to the upper boundary of the value (inclusive).
          * @param size a fixed given size for the resulting Array.
          * If none size is given it chooses a arbitrary size of in between 1 and 10 items.
          * @param predicate which filters non matching values.

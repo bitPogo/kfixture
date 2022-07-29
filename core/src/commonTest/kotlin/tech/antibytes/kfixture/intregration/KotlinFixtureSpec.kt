@@ -13,7 +13,9 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.fixture
+import tech.antibytes.kfixture.listFixture
 import tech.antibytes.kfixture.kotlinFixture
+import kotlin.test.assertNotNull
 
 class KotlinFixtureSpec {
     @Test
@@ -42,5 +44,21 @@ class KotlinFixtureSpec {
             actual = fixture.fixture(),
             expected = Random(givenSeed).nextInt(),
         )
+    }
+
+    @Test
+    @JsName("fn2")
+    fun `Given kotlinFixture is called with a ConfigurationAction it returns a Fixture for Generics`() {
+        val givenSeed = 23
+
+        val fixture = kotlinFixture {
+            seed = givenSeed
+        }
+
+        val result: List<List<String>> = fixture.listFixture(
+            nestedGenerator = { fixture.listFixture() }
+        )
+
+        assertNotNull(result)
     }
 }
