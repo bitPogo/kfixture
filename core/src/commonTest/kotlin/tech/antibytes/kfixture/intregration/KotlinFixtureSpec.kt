@@ -10,12 +10,12 @@ import kotlin.js.JsName
 import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.fixture
-import tech.antibytes.kfixture.listFixture
 import tech.antibytes.kfixture.kotlinFixture
-import kotlin.test.assertNotNull
+import tech.antibytes.kfixture.listFixture
 
 class KotlinFixtureSpec {
     @Test
@@ -56,7 +56,7 @@ class KotlinFixtureSpec {
         }
 
         val result: List<List<String>> = fixture.listFixture(
-            nestedGenerator = { fixture.listFixture() }
+            nestedGenerator = { fixture.listFixture() },
         )
 
         assertNotNull(result)

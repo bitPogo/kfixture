@@ -100,7 +100,7 @@ class ArrayFixtureSpec {
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = 10,
+            expected = 11,
         )
         assertEquals(
             actual = result.size,
@@ -149,7 +149,7 @@ class ArrayFixtureSpec {
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = 10,
+            expected = 11,
         )
         assertEquals(
             actual = result.size,
@@ -200,7 +200,7 @@ class ArrayFixtureSpec {
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = 10,
+            expected = 11,
         )
         assertEquals(
             actual = result.size,

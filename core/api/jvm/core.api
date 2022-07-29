@@ -13,8 +13,6 @@ public final class tech/antibytes/kfixture/FixtureContract {
 	public static final field INSTANCE Ltech/antibytes/kfixture/FixtureContract;
 	public static final field QUALIFIER_PREFIX Ljava/lang/String;
 	public static final field SEPARATOR Ljava/lang/String;
-	public static final field STRING_LOWER_BOUND I
-	public static final field STRING_UPPER_BOUND I
 }
 
 public abstract interface class tech/antibytes/kfixture/FixtureContract$Configuration : tech/antibytes/kfixture/PublicApi$Configuration {

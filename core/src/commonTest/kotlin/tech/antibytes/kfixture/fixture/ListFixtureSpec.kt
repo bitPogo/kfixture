@@ -101,7 +101,7 @@ class ListFixtureSpec {
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = 10,
+            expected = 11,
         )
         assertEquals(
             actual = result.size,
@@ -149,7 +149,7 @@ class ListFixtureSpec {
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = 10,
+            expected = 11,
         )
         assertEquals(
             actual = result.size,
@@ -199,7 +199,7 @@ class ListFixtureSpec {
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = 10,
+            expected = 11,
         )
         assertEquals(
             actual = result.size,
@@ -479,7 +479,7 @@ class ListFixtureSpec {
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = 10,
+            expected = 11,
         )
         assertEquals(
             actual = result.size,
@@ -527,7 +527,7 @@ class ListFixtureSpec {
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = 10,
+            expected = 11,
         )
         assertEquals(
             actual = result.size,
@@ -577,7 +577,7 @@ class ListFixtureSpec {
         )
         assertEquals(
             actual = capturedMaximum.value,
-            expected = 10,
+            expected = 11,
         )
         assertEquals(
             actual = result.size,

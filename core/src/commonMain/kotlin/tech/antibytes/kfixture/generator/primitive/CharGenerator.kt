@@ -22,5 +22,5 @@ internal class CharGenerator(
         from: Char,
         to: Char,
         predicate: (Char?) -> Boolean,
-    ): Char = returnFilteredValue(predicate) { random.nextInt(from.code, to.code).toChar() }
+    ): Char = returnFilteredValue(predicate) { random.nextInt(from.code, to.code + 1).toChar() }
 }

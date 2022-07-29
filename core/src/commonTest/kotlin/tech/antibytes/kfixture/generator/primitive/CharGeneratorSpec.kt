@@ -27,7 +27,6 @@ class CharGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn0")
     fun `It fulfils RangedGenerator`() {
         val generator: Any = CharGenerator(random)
@@ -36,7 +35,6 @@ class CharGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn1")
     fun `Given generate is called it returns a Char`() {
         // Given
@@ -55,7 +53,7 @@ class CharGeneratorSpec {
         // Then
         assertEquals(
             actual = range.value,
-            expected = Pair(32, 126),
+            expected = Pair(32, 127),
         )
         assertEquals(
             actual = result,
@@ -64,7 +62,6 @@ class CharGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn2")
     fun `Given generate is called with a predicate it returns a Char`() {
         // Given
@@ -85,7 +82,7 @@ class CharGeneratorSpec {
         // Then
         assertEquals(
             actual = range.value,
-            expected = Pair(32, 126),
+            expected = Pair(32, 127),
         )
         assertEquals(
             actual = result,
@@ -94,7 +91,6 @@ class CharGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn3")
     fun `Given generate is called it returns a Char in given boundaries`() {
         // Given
@@ -115,7 +111,7 @@ class CharGeneratorSpec {
         // Then
         assertEquals(
             actual = range.value,
-            expected = Pair(expectedMin.code, expectedMax.code),
+            expected = Pair(expectedMin.code, expectedMax.code + 1),
         )
         assertEquals(
             actual = result,
@@ -124,7 +120,6 @@ class CharGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn4")
     fun `Given generate is called with a predicate it returns a Char in given boundaries`() {
         // Given
@@ -150,7 +145,7 @@ class CharGeneratorSpec {
         // Then
         assertEquals(
             actual = range.value,
-            expected = Pair(expectedMin.code, expectedMax.code),
+            expected = Pair(expectedMin.code, expectedMax.code + 1),
         )
         assertEquals(
             actual = result,
