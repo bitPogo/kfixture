@@ -25,7 +25,7 @@ internal val numberTypes: List<KClass<*>> = listOf(
 
 @InternalAPI
 @PublishedApi
-internal const val LIST_LOWER_BOUND: Int = 0
+internal const val ITERABLE_LOWER_BOUND: Int = 0
 
 @InternalAPI
 @PublishedApi
@@ -43,6 +43,15 @@ internal inline fun <reified T> Random.returnNull(): Boolean {
 
 @InternalAPI
 @PublishedApi
+internal fun PublicApi.Fixture.pickAnIndex(
+    upperBound: Int,
+): Int = random.nextInt(
+    from = ITERABLE_LOWER_BOUND,
+    until = upperBound,
+)
+
+@InternalAPI
+@PublishedApi
 internal fun PublicApi.Fixture.determineCollectionSize(
     size: Int?,
 ): Int = size ?: random.nextInt(COLLECTION_LOWER_BOUND, COLLECTION_UPPER_BOUND)
@@ -52,7 +61,7 @@ internal fun PublicApi.Fixture.determineCollectionSize(
 internal fun PublicApi.Fixture.chooseNumberType(
     qualifier: PublicApi.Qualifier?,
 ): String {
-    val typeIdx = pickAnListIndex(numberTypes)
+    val typeIdx = pickAnIndex(numberTypes.size)
 
     return resolveGeneratorId(
         numberTypes[typeIdx],

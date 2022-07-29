@@ -62,6 +62,7 @@ antiBytesCoverage {
 
     val excludes = setOf(
         "**/FixtureKt*",
+        "**/EnumFixtureKt*",
         "**/ListFixtureNoJsKt*",
         "**/ListFixtureKt*",
         "**/SetFixtureKt*",

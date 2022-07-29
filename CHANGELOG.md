@@ -42,6 +42,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * DependentGeneratorFactory in order to build Generators on top of other Generators
 * Filter
 * custom generator for Generics
+* support for enums
 
 ### Changed
 
