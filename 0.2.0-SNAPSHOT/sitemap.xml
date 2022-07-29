@@ -45,4 +45,19 @@
          <lastmod>2022-07-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
+    <url>
+         <loc>https://bitpogo.github.io/kfixture/0.2.0-SNAPSHOT/usage/basic/</loc>
+         <lastmod>2022-07-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://bitpogo.github.io/kfixture/0.2.0-SNAPSHOT/usage/customization/</loc>
+         <lastmod>2022-07-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://bitpogo.github.io/kfixture/0.2.0-SNAPSHOT/usage/extension/</loc>
+         <lastmod>2022-07-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
 </urlset>
