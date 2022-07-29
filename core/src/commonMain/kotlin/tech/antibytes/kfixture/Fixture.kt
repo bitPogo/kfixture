@@ -33,12 +33,6 @@ public fun kotlinFixture(
     return configuration.build()
 }
 
-@InternalAPI
-@PublishedApi
-internal fun PublicApi.Fixture.pickAnListIndex(
-    list: List<*>,
-): Int = random.nextInt(LIST_LOWER_BOUND, list.size)
-
 /**
  * Picks an value from a given Iterable.
  * @param T the type which is supposed to be created.
@@ -47,7 +41,7 @@ internal fun PublicApi.Fixture.pickAnListIndex(
 public fun <T> PublicApi.Fixture.fixture(options: Iterable<T>): T {
     val values = options.toList()
 
-    return values[pickAnListIndex(values)]
+    return values[pickAnIndex(values.size)]
 }
 
 /**
