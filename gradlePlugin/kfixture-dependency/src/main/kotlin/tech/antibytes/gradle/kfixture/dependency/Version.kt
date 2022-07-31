@@ -34,7 +34,7 @@ object Version {
         /**
          * [MkDocs Include Plugin](https://github.com/mondeja/mkdocs-include-markdown-plugin/releases)
          */
-        const val includeMarkdown = "3.5.1"
+        const val includeMarkdown = "3.6.1"
 
         /**
          * [MkDocs Kroki](https://pypi.org/project/mkdocs-kroki-plugin/)
@@ -49,7 +49,7 @@ object Version {
         /**
          * [MkDocs Material](https://github.com/squidfunk/mkdocs-material/releases)
          */
-        const val material = "8.2.15"
+        const val material = "8.3.9"
 
         /**
          * [MkDocs Minfier](https://pypi.org/project/mkdocs-minify-plugin/)
@@ -69,6 +69,6 @@ object Version {
         /**
          * (PyMdown)(https://github.com/facelessuser/pymdown-extensions/releases)
          */
-        const val pymdown = "9.4"
+        const val pymdown = "9.5"
     }
 }
