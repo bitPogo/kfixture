@@ -5,48 +5,11 @@ All important changes of this project must be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/bitPogo/kfixture/compare/main)
+## [Unreleased](https://github.com/bitPogo/kfixture/compare/v0.3.0...main)
 
 ### Added
 
-* SelectorGenerator
-* RangedGenerator for:
-    - UByte
-    - Short
-    - UShort
-    - UInt
-    - ULong
-    - Float
-    - Char
-* SignedNumberGenerator for:
-    - Byte
-    - Short
-    - Int
-    - Long
-    - Double
-* RangedArrayGenerator for:
-    - UByteArray
-    - UShortArray
-    - UIntArray
-    - ULongArray
-    - FloatArray
-    - CharArray
-    - String
-* SignedArrayNumberGenerator for:
-    - ByteArray
-    - ShortArray
-    - IntArray
-    - LongArray
-    - DoubleArray
-* BooleanArrayGenerator is now a ArrayGenerator
-* DependentGeneratorFactory in order to build Generators on top of other Generators
-* Filter
-* custom generator for Generics
-* support for enums
-
 ### Changed
-
-* iterable of fixture is now called option
 
 ### Deprecated
 
@@ -55,6 +18,51 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 ### Security
+
+### Bumped
+
+## [0.3.0](https://github.com/bitPogo/kfixture/compare/v0.2.0...v0.3.0)
+
+### Added
+
+* SelectorGenerator
+* RangedGenerator for:
+  - UByte
+  - Short
+  - UShort
+  - UInt
+  - ULong
+  - Float
+  - Char
+* SignedNumberGenerator for:
+  - Byte
+  - Short
+  - Int
+  - Long
+  - Double
+* RangedArrayGenerator for:
+  - UByteArray
+  - UShortArray
+  - UIntArray
+  - ULongArray
+  - FloatArray
+  - CharArray
+  - String
+* SignedArrayNumberGenerator for:
+  - ByteArray
+  - ShortArray
+  - IntArray
+  - LongArray
+  - DoubleArray
+* BooleanArrayGenerator is now a ArrayGenerator
+* DependentGeneratorFactory in order to build Generators on top of other Generators
+* Filter
+* custom generator for Generics
+* support for Enums
+
+### Changed
+
+* iterable of fixture is now called option
 
 ### Bumped
 
