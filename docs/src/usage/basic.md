@@ -23,7 +23,7 @@ class MySpec {
 
 In opposite to JVM libraries, KFixture cannot generate values for arbitrary types due to the nature of KMP.
 This goes especially for Generics like List or Array.
-However KFixture has a preset of supported generic Types which can accessed like:
+However KFixture has a preset of supported generic types which can accessed like:
 
 ```kotlin
 class MySpec {
@@ -52,7 +52,7 @@ class MySpec {
 ```
 
 !!!note
-    Nested Generics are not supported which means things like `List<List<String>>` cannot not be derived in the default setting.
+    Nested Generics are not supported which means things like `List<List<String>>` cannot be derived in the default setting.
 
 ## Setting a Seed
 

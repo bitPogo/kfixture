@@ -4,7 +4,7 @@ Since the default Generators may produce values in undesired range, KFixture has
 ## Ranges
 ### Atomics
 Let's say you need an integer in the range of 12 to 42.
-You can set an additional range arguments:
+You can set an additional range argument:
 
 ```kotlin
 class MySpec {
@@ -21,7 +21,7 @@ class MySpec {
 }
 ```
 
-Alternatively you can also use a ClosedRange directly:
+Alternatively you can also use a ClosedRange:
 
 ```kotlin
 class MySpec {
@@ -41,7 +41,7 @@ class MySpec {
     For numbers the default range goes over the entire range of the type.
     Chars however will be chosen between ` ` (32) and `~` (126).
 
-If you want simply to express that you want only positive/negative Number, KFixture allows a short cut for that:
+If you want simply to express that you want only positive/negative number, KFixture has a short cut for that:
 
 ```kotlin
 class MySpec {
@@ -61,8 +61,8 @@ class MySpec {
     Float does not support signing.
 
 ### AtomicArrays
-AtomicArrays (e.g. ByteArray) have similar capacities to Atomics.
-They can be use ranges arguments:
+AtomicArrays (e.g. ByteArray) have similar capacities as Atomics.
+They can use range arguments:
 
 ```kotlin
 class MySpec {
@@ -79,7 +79,7 @@ class MySpec {
 }
 ```
 
-or a ClosedRange directly:
+or ClosedRange:
 
 ```kotlin
 class MySpec {
@@ -111,7 +111,6 @@ class MySpec {
 }
 ```
 
-
 Additionally AtomicArrays can take multiple ranges.
 KFixture will randomly select a range per item:
 
@@ -134,7 +133,7 @@ class MySpec {
 ## Size
 
 AtomicArrays and build-in Generics (except Tuples and Enums) are also sizeable.
-This means they take an additional parameter `size`:
+This means they take an additional parameter - `size` - in order to determine the amount of items:
 
 ```kotlin
 class MySpec {
@@ -156,8 +155,8 @@ class MySpec {
 ## Filter
 
 In some cases it might be desired to filter certain values out.
-KFixture provides for this also a handle.
-Similar to Kotlin's `filter` function you simply provide `fixture` a predicate:
+KFixture provides for this a handle similar to Kotlin's `filter`.
+You may simply provide a `predicate`:
 
 ```kotlin
 class MySpec {
@@ -178,8 +177,6 @@ class MySpec {
 
 In order to keep Generics agnostic they will not take a concrete parameter like `predicate`.
 However all Generic Generators will allow you to inject a customized Generator via `nestedGenerator` or similar:
-
-
 
 ```kotlin
 class MySpec {
@@ -222,7 +219,7 @@ class MySpec {
 
 ### Selection Generator
 
-If you want to distribute Options over the entire lifetime of `fixture` you can use the `SelectionGenerator`:
+If you want to distribute options over the entire lifetime of `fixture` you can use the `SelectionGenerator`:
 
 ```kotlin
 class MySpec {
