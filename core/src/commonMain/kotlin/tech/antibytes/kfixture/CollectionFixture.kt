@@ -103,7 +103,7 @@ public inline fun <reified T> PublicApi.Fixture.collectionFixture(
     qualifier: Qualifier? = null,
     size: Int? = null,
     nestedGenerator: Function1<Qualifier?, T>,
-): MutableCollection<T> = mutableListFixture(
+): Collection<T> = mutableListFixture(
     qualifier = qualifier,
     size = size,
     nestedGenerator = nestedGenerator,
@@ -120,7 +120,7 @@ public inline fun <reified T> PublicApi.Fixture.collectionFixture(
 public inline fun <reified T> PublicApi.Fixture.collectionFixture(
     qualifier: Qualifier? = null,
     size: Int? = null,
-): MutableCollection<T> = mutableListFixture(
+): Collection<T> = mutableListFixture(
     qualifier = qualifier,
     size = size,
 )

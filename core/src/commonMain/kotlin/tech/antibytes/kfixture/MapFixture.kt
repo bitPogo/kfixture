@@ -237,7 +237,7 @@ public inline fun <reified Key, reified Value> PublicApi.Fixture.mutableMapFixtu
     keyGenerator: Function1<PublicApi.Qualifier?, Key>,
     valueQualifier: PublicApi.Qualifier? = null,
     size: Int? = null,
-): Map<Key, Value> = mapFixture<Key, Value>(
+): MutableMap<Key, Value> = mapFixture<Key, Value>(
     keyQualifier = keyQualifier,
     keyGenerator = keyGenerator,
     valueQualifier = valueQualifier,
@@ -259,7 +259,7 @@ public inline fun <reified Key, reified Value> PublicApi.Fixture.mutableMapFixtu
     valueQualifier: PublicApi.Qualifier? = null,
     valueGenerator: Function1<PublicApi.Qualifier?, Value>,
     size: Int? = null,
-): Map<Key, Value> = mapFixture<Key, Value>(
+): MutableMap<Key, Value> = mapFixture<Key, Value>(
     keyQualifier = keyQualifier,
     valueQualifier = valueQualifier,
     valueGenerator = valueGenerator,
@@ -282,7 +282,7 @@ public inline fun <reified Key, reified Value> PublicApi.Fixture.mutableMapFixtu
     valueQualifier: PublicApi.Qualifier? = null,
     valueGenerator: Function1<PublicApi.Qualifier?, Value>,
     size: Int? = null,
-): Map<Key, Value> = mapFixture(
+): MutableMap<Key, Value> = mapFixture(
     keyQualifier = keyQualifier,
     keyGenerator = keyGenerator,
     valueQualifier = valueQualifier,
@@ -304,7 +304,7 @@ public inline fun <reified Key, reified Value> PublicApi.Fixture.mutableMapFixtu
     keyQualifier: PublicApi.Qualifier? = null,
     valueQualifier: PublicApi.Qualifier? = null,
     size: Int? = null,
-): Map<Key, Value> = mapFixture<Key, Value>(
+): MutableMap<Key, Value> = mapFixture<Key, Value>(
     keyQualifier = keyQualifier,
     valueQualifier = valueQualifier,
     size = size,
