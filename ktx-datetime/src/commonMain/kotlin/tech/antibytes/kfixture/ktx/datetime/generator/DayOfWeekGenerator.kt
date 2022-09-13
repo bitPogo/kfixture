@@ -6,14 +6,14 @@
 
 package tech.antibytes.kfixture.ktx.datetime.generator
 
-import tech.antibytes.kfixture.PublicApi
+import kotlin.random.Random
 import kotlinx.datetime.DayOfWeek
+import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.ktx.datetime.defaultPredicate
 import tech.antibytes.kfixture.qualifier.resolveGeneratorId
-import kotlin.random.Random
 
 internal class DayOfWeekGenerator(
-    private val dayGenerator: PublicApi.RangedGenerator<Int, Int>
+    private val dayGenerator: PublicApi.RangedGenerator<Int, Int>,
 ) : PublicApi.FilterableGenerator<Int, DayOfWeek> {
     private val daysOfWeek = DayOfWeek.values()
     override fun generate(): DayOfWeek = generate(predicate = ::defaultPredicate)
@@ -23,7 +23,7 @@ internal class DayOfWeekGenerator(
         val day = dayGenerator.generate(
             from = 1,
             to = 7,
-            predicate = predicate
+            predicate = predicate,
         )
 
         return daysOfWeek[day - 1]
@@ -33,7 +33,7 @@ internal class DayOfWeekGenerator(
         @Suppress("UNCHECKED_CAST")
         override fun getInstance(
             random: Random,
-            generators: Map<String, PublicApi.Generator<out Any>>
+            generators: Map<String, PublicApi.Generator<out Any>>,
         ): PublicApi.Generator<DayOfWeek> {
             val id = resolveGeneratorId(Int::class)
 

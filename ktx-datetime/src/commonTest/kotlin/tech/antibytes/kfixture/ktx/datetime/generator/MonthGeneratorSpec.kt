@@ -12,13 +12,13 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertSame
 import kotlin.test.assertTrue
-import kotlinx.datetime.DayOfWeek
+import kotlinx.datetime.Month
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.mock.RandomStub
 import tech.antibytes.kfixture.mock.RangedGeneratorStub
 import tech.antibytes.kfixture.qualifier.resolveGeneratorId
 
-class DayOfWeekGeneratorSpec {
+class MonthGeneratorSpec {
     private val dependencyGenerator = RangedGeneratorStub<Int, Int>()
 
     @AfterTest
@@ -30,7 +30,7 @@ class DayOfWeekGeneratorSpec {
     @Suppress("UNCHECKED_CAST")
     @JsName("fn0")
     fun `It fulfils DependentGeneratorFactory`() {
-        val generator: Any = DayOfWeekGenerator
+        val generator: Any = MonthGenerator
 
         assertTrue(generator is PublicApi.DependentGeneratorFactory<*>)
     }
@@ -40,7 +40,7 @@ class DayOfWeekGeneratorSpec {
     @JsName("fn1")
     fun `Given getInstance is called it returns an FilterableGenerator`() {
         val intId = resolveGeneratorId(Int::class)
-        val generator: Any = DayOfWeekGenerator.getInstance(RandomStub(), mapOf(intId to dependencyGenerator))
+        val generator: Any = MonthGenerator.getInstance(RandomStub(), mapOf(intId to dependencyGenerator))
 
         assertTrue(generator is PublicApi.FilterableGenerator<*, *>)
     }
@@ -62,8 +62,8 @@ class DayOfWeekGeneratorSpec {
             expected
         }
 
-        val generator = DayOfWeekGenerator(
-            dayGenerator = dependencyGenerator,
+        val generator = MonthGenerator(
+            monthGenerator = dependencyGenerator,
         )
 
         // When
@@ -72,7 +72,7 @@ class DayOfWeekGeneratorSpec {
         // Then
         assertEquals(
             actual = result,
-            expected = DayOfWeek.FRIDAY,
+            expected = Month.MAY,
         )
         assertEquals(
             actual = capturedFrom,
@@ -80,7 +80,7 @@ class DayOfWeekGeneratorSpec {
         )
         assertEquals(
             actual = capturedTo,
-            expected = 7,
+            expected = 12,
         )
     }
 
@@ -104,8 +104,8 @@ class DayOfWeekGeneratorSpec {
             expected
         }
 
-        val generator = DayOfWeekGenerator(
-            dayGenerator = dependencyGenerator,
+        val generator = MonthGenerator(
+            monthGenerator = dependencyGenerator,
         )
 
         // When
@@ -114,7 +114,7 @@ class DayOfWeekGeneratorSpec {
         // Then
         assertEquals(
             actual = result,
-            expected = DayOfWeek.THURSDAY,
+            expected = Month.APRIL,
         )
         assertEquals(
             actual = capturedFrom,
@@ -122,7 +122,7 @@ class DayOfWeekGeneratorSpec {
         )
         assertEquals(
             actual = capturedTo,
-            expected = 7,
+            expected = 12,
         )
         assertSame(
             actual = capturedPredicate,
