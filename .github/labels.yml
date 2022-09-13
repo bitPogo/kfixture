@@ -59,18 +59,10 @@
   color: e56992
 
 # Library
-- name: test-utils
-  description: Test Utils
+- name: core
+  description: KFixture Core
   color: 000080
 
-- name: test-utils-coroutine
-  description: Test Utils Coroutine
-  color: 000080
-
-- name: test-utils-ktor
-  description: Test Utils Ktor
-  color: 000080
-
-- name: test-utils-fixture
-  description: Test Fixtures
+- name: ktx-datetime
+  description: KFixture KTX DateTime
   color: 000080

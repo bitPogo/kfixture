@@ -1,0 +1,4 @@
+public final class tech/antibytes/kfixture/ktx/datetime/DefaultPredicateKt {
+	public static final fun defaultPredicate (Ljava/lang/Object;)Z
+}
+

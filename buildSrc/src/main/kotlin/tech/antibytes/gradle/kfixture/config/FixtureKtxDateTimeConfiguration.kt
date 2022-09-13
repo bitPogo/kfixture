@@ -9,7 +9,7 @@ package tech.antibytes.gradle.kfixture.config
 import tech.antibytes.gradle.publishing.api.PackageConfiguration
 import tech.antibytes.gradle.publishing.api.PomConfiguration
 
-object FixtureConfiguration {
+object FixtureKtxDateTimeConfiguration {
     const val group = "tech.antibytes.kfixture"
 
     val publishing = Publishing
@@ -17,8 +17,8 @@ object FixtureConfiguration {
     object Publishing : FixturePublishingConfiguration() {
         val packageConfiguration = PackageConfiguration(
             pom = PomConfiguration(
-                name = "KFixture Core",
-                description = "A tool to generate randomized test values for Kotlin Multiplatform.",
+                name = "KFixture Ktx DateTime",
+                description = "A tool to generate randomized date-time test values for Kotlin Multiplatform.",
                 year = 2022,
                 url = "https://$gitHubRepositoryPath",
             ),

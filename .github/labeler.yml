@@ -18,14 +18,8 @@ documentation:
   - readmeOSS.adoc
 
 # Library
-test-utils:
-  - test-utils/**/*
+core:
+  - core/**/*
 
-test-utils-coroutine:
-  - test-utils-coroutine/**/*
-
-test-utils-ktor:
-  - test-utils-ktor/**/*
-
-test-utils-fixture:
-  - test-utils-fixture/**/*
+ktx-datetime:
+  - ktx-datetime/**/*

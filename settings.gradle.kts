@@ -15,6 +15,7 @@ includeBuild("gradlePlugin/kfixture-dependency")
 
 include(
     ":core",
+    ":ktx-datetime",
     ":docs"
 )
 
