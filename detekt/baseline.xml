@@ -18,6 +18,7 @@
     <ID>MaxLineLength:build.gradle.kts$config = files("$projectDir/detekt/config.yml")</ID>
     <ID>TooManyFunctions:MapFixture.kt$tech.antibytes.kfixture.MapFixture.kt</ID>
     <ID>TooManyFunctions:RandomWrapper.kt$RandomWrapper : Random</ID>
+    <ID>TooManyFunctions:RangedSpecialArrayFixture.kt$tech.antibytes.kfixture.RangedSpecialArrayFixture.kt</ID>
     <ID>TooManyFunctions:TupleFixture.kt$tech.antibytes.kfixture.TupleFixture.kt</ID>
     <ID>UnusedPrivateMember:build.gradle.kts$val androidMain by getting { dependsOn(noJsMain) dependencies { implementation(Dependency.multiplatform.kotlin.android) } }</ID>
     <ID>UnusedPrivateMember:build.gradle.kts$val androidTest by getting { dependsOn(noJsTest) dependsOn(androidAndroidTestRelease) dependsOn(androidTestFixtures) dependsOn(androidTestFixturesDebug) dependsOn(androidTestFixturesRelease) dependencies { implementation(Dependency.multiplatform.test.jvm) implementation(Dependency.multiplatform.test.junit) } }</ID>

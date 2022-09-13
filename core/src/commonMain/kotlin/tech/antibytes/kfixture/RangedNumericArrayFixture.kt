@@ -19,7 +19,7 @@ package tech.antibytes.kfixture
  * @param qualifier a optional qualifier for a special flavour of a type.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
-public inline fun <reified RangeType, reified FixtureType : RangeType?> PublicApi.Fixture.fixture(
+public inline fun <reified RangeType, reified FixtureType> PublicApi.Fixture.fixture(
     from: RangeType & Any,
     to: RangeType & Any,
     size: Int,
@@ -47,7 +47,7 @@ public inline fun <reified RangeType, reified FixtureType : RangeType?> PublicAp
 
 @InternalAPI
 @PublishedApi
-internal inline fun <reified RangeType, reified FixtureType : RangeType?> PublicApi.Fixture.guardRangedReturn(
+internal inline fun <reified RangeType, reified FixtureType> PublicApi.Fixture.guardRangedReturn(
     qualifier: PublicApi.Qualifier? = null,
     resolve: PublicApi.RangedArrayGenerator<RangeType, *>.() -> FixtureType,
 ): FixtureType where RangeType : Comparable<RangeType> {
@@ -77,12 +77,12 @@ internal inline fun <reified RangeType, reified FixtureType : RangeType?> Public
  * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
-public inline fun <reified RangeType, reified FixtureType : RangeType?> PublicApi.Fixture.fixture(
+public inline fun <reified RangeType, reified FixtureType> PublicApi.Fixture.fixture(
     vararg ranges: ClosedRange<RangeType>,
     size: Int,
     qualifier: PublicApi.Qualifier? = null,
     noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType where RangeType : Comparable<RangeType> = guardRangedReturn<RangeType, FixtureType>(qualifier) {
+): FixtureType where RangeType : Comparable<RangeType> = guardRangedReturn(qualifier) {
     this.generate(
         ranges = ranges,
         size = size,
@@ -101,11 +101,11 @@ public inline fun <reified RangeType, reified FixtureType : RangeType?> PublicAp
  * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
-public inline fun <reified RangeType, reified FixtureType : RangeType?> PublicApi.Fixture.fixture(
+public inline fun <reified RangeType, reified FixtureType> PublicApi.Fixture.fixture(
     vararg ranges: ClosedRange<RangeType>,
     qualifier: PublicApi.Qualifier? = null,
     noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType where RangeType : Comparable<RangeType> = guardRangedReturn<RangeType, FixtureType>(qualifier) {
+): FixtureType where RangeType : Comparable<RangeType> = guardRangedReturn(qualifier) {
     this.generate(
         ranges = ranges,
         predicate = predicate as Function1<Any?, Boolean>,

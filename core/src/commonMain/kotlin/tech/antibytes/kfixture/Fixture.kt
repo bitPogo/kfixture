@@ -35,10 +35,10 @@ public fun kotlinFixture(
 
 /**
  * Picks an value from a given Iterable.
- * @param T the type which is supposed to be created.
+ * @param FixtureType the type which is supposed to be created.
  * @param options - an iterable with values where to pick from.
  */
-public fun <T> PublicApi.Fixture.fixture(options: Iterable<T>): T {
+public fun <FixtureType> PublicApi.Fixture.fixture(options: Iterable<FixtureType>): FixtureType {
     val values = options.toList()
 
     return values[pickAnIndex(values.size)]
@@ -46,43 +46,43 @@ public fun <T> PublicApi.Fixture.fixture(options: Iterable<T>): T {
 
 /**
  * Creates a value for a given type, excluding generics like List or Array.
- * @param T the type which is supposed to be created.
+ * @param FixtureType the type which is supposed to be created.
  * @param qualifier a optional qualifier for a special flavour of a type.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified T> PublicApi.Fixture.fixture(
+public inline fun <reified FixtureType> PublicApi.Fixture.fixture(
     qualifier: PublicApi.Qualifier? = null,
-): T {
-    val returnNull = random.returnNull<T>()
-    val id = resolveIdentifier<T>(qualifier)
+): FixtureType {
+    val returnNull = random.returnNull<FixtureType>()
+    val id = resolveIdentifier<FixtureType>(qualifier)
 
     return when {
         !generators.containsKey(id) -> throw IllegalStateException("Missing Generator for ClassID ($id).")
-        returnNull -> null as T
-        else -> generators[id]!!.generate() as T
+        returnNull -> null as FixtureType
+        else -> generators[id]!!.generate() as FixtureType
     }
 }
 
 /**
  * Creates a value for a given type, excluding generics like List or Array.
- * @param T the type which is supposed to be created.
+ * @param FixtureType the type which is supposed to be created.
  * @param size determines amount of items.
  * @param qualifier a optional qualifier for a special flavour of a type.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified T> PublicApi.Fixture.fixture(
+public inline fun <reified FixtureType> PublicApi.Fixture.fixture(
     size: Int,
     qualifier: PublicApi.Qualifier? = null,
-): T {
-    val returnNull = random.returnNull<T>()
-    val id = resolveIdentifier<T>(qualifier)
+): FixtureType {
+    val returnNull = random.returnNull<FixtureType>()
+    val id = resolveIdentifier<FixtureType>(qualifier)
     val generator = generators[id]
 
     return when {
         generator !is PublicApi.ArrayGenerator<*> -> throw IllegalStateException("Missing Generator for ClassID ($id).")
-        returnNull -> null as T
-        else -> generator.generate(size) as T
+        returnNull -> null as FixtureType
+        else -> generator.generate(size) as FixtureType
     }
 }
