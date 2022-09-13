@@ -63,7 +63,7 @@ class InstantGeneratorSpec {
         }
 
         val generator = InstantGenerator(
-            longGenerator = dependencyGenerator,
+            epochMilliSecondsGenerator = dependencyGenerator,
         )
 
         // When
@@ -105,7 +105,7 @@ class InstantGeneratorSpec {
         }
 
         val generator = InstantGenerator(
-            longGenerator = dependencyGenerator,
+            epochMilliSecondsGenerator = dependencyGenerator,
         )
 
         // When
@@ -140,7 +140,7 @@ class InstantGeneratorSpec {
         val expectedPredicate: Function1<Long?, Boolean> = { true }
 
         val generator = InstantGenerator(
-            longGenerator = dependencyGenerator,
+            epochMilliSecondsGenerator = dependencyGenerator,
         )
 
         // Then
@@ -169,7 +169,7 @@ class InstantGeneratorSpec {
         val expectedPredicate: Function1<Long?, Boolean> = { true }
 
         val generator = InstantGenerator(
-            longGenerator = dependencyGenerator,
+            epochMilliSecondsGenerator = dependencyGenerator,
         )
 
         // Then
@@ -198,7 +198,7 @@ class InstantGeneratorSpec {
         val expectedPredicate: Function1<Long?, Boolean> = { true }
 
         val generator = InstantGenerator(
-            longGenerator = dependencyGenerator,
+            epochMilliSecondsGenerator = dependencyGenerator,
         )
 
         // Then
@@ -238,7 +238,7 @@ class InstantGeneratorSpec {
         }
 
         val generator = InstantGenerator(
-            longGenerator = dependencyGenerator,
+            epochMilliSecondsGenerator = dependencyGenerator,
         )
 
         // When
