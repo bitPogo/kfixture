@@ -20,6 +20,11 @@ import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.mock.RandomStub
 import tech.antibytes.kfixture.mock.SignedNumberGeneratorStub
 
+private data class ByteRange(
+    override val start: Byte,
+    override val endInclusive: Byte,
+) : ClosedRange<Byte>
+
 class ByteArrayGeneratorSpec {
     private val random = RandomStub()
     private val range: AtomicRef<Pair<Int, Int>?> = atomic(null)
@@ -841,8 +846,3 @@ class ByteArrayGeneratorSpec {
         )
     }
 }
-
-private data class ByteRange(
-    override val start: Byte,
-    override val endInclusive: Byte,
-) : ClosedRange<Byte>

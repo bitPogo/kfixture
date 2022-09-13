@@ -20,6 +20,11 @@ import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.mock.RandomStub
 import tech.antibytes.kfixture.mock.SignedNumberGeneratorStub
 
+private data class ShortRange(
+    override val start: Short,
+    override val endInclusive: Short,
+) : ClosedRange<Short>
+
 class ShortArrayGeneratorSpec {
     private val random = RandomStub()
     private val range: AtomicRef<Pair<Int, Int>?> = atomic(null)
@@ -839,8 +844,3 @@ class ShortArrayGeneratorSpec {
         )
     }
 }
-
-private data class ShortRange(
-    override val start: Short,
-    override val endInclusive: Short,
-) : ClosedRange<Short>

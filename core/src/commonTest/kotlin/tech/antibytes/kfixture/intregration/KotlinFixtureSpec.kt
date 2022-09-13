@@ -61,4 +61,16 @@ class KotlinFixtureSpec {
 
         assertNotNull(result)
     }
+
+    @Test
+    @JsName("fn3")
+    fun `Given kotlinFixture is called with a ConfigurationAction it returns a Fixture for Strings`() {
+        val fixture = kotlinFixture()
+
+        val result: String = fixture.fixture(
+            range = 'a'..'z',
+        )
+
+        assertNotNull(result)
+    }
 }

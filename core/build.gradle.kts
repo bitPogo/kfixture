@@ -77,6 +77,7 @@ antiBytesCoverage {
         "**/SignedNumericFixtureKt*",
         "**/SignedNumericArrayFixtureKt*",
         "**/BindingKt*",
+        "**/RangedSpecialArrayFixtureKt*",
     ) // Inline Function cannot be covered
 
     val jvmCoverage = JvmJacocoConfiguration.createJvmKmpConfiguration(
