@@ -5,7 +5,7 @@
  */
 
 import tech.antibytes.gradle.dependency.Dependency
-import tech.antibytes.gradle.kfixture.config.FixtureCoreConfiguration
+import tech.antibytes.gradle.kfixture.config.FixtureKtxDateTimeConfiguration
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import tech.antibytes.gradle.coverage.api.JvmJacocoConfiguration
 import tech.antibytes.gradle.coverage.api.AndroidJacocoConfiguration
@@ -33,18 +33,18 @@ plugins {
     id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.11.0"
 }
 
-group = FixtureCoreConfiguration.group
+group = FixtureKtxDateTimeConfiguration.group
 val dokkaDir = buildDir.resolve("dokka")
 
 antiBytesPublishing {
-    packageConfiguration = FixtureCoreConfiguration.publishing.packageConfiguration
-    repositoryConfiguration = FixtureCoreConfiguration.publishing.repositories
-    versioning = FixtureCoreConfiguration.publishing.versioning
+    packageConfiguration = FixtureKtxDateTimeConfiguration.publishing.packageConfiguration
+    repositoryConfiguration = FixtureKtxDateTimeConfiguration.publishing.repositories
+    versioning = FixtureKtxDateTimeConfiguration.publishing.versioning
     documentation = DocumentationConfiguration(
         tasks = setOf("dokkaHtml"),
         outputDir = dokkaDir
     )
-    signingConfiguration = FixtureCoreConfiguration.publishing.signing
+    signingConfiguration = FixtureKtxDateTimeConfiguration.publishing.signing
 }
 
 antiBytesCoverage {
@@ -60,24 +60,8 @@ antiBytesCoverage {
         minimum = BigDecimal(0.97)
     )
 
-    val excludes = setOf(
-        "**/FixtureKt*",
-        "**/EnumFixtureKt*",
-        "**/ListFixtureNoJsKt*",
-        "**/ListFixtureKt*",
-        "**/SetFixtureKt*",
-        "**/TupleFixtureKt*",
-        "**/MapFixtureKt**",
-        "**/CollectionFixtureKt*",
-        "**/SequenceFixtureKt**",
-        "**/ArrayFixtureKt**",
-        "**/FilterableFixtureKt*",
-        "**/RangedFixtureKt*",
-        "**/RangedNumericArrayFixtureKt*",
-        "**/SignedNumericFixtureKt*",
-        "**/SignedNumericArrayFixtureKt*",
-        "**/BindingKt*",
-        "**/RangedSpecialArrayFixtureKt*",
+    val excludes = setOf<String>(
+        // "**/FixtureKt*",
     ) // Inline Function cannot be covered
 
     val jvmCoverage = JvmJacocoConfiguration.createJvmKmpConfiguration(
@@ -136,16 +120,15 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(Dependency.multiplatform.kotlin.common)
-                implementation(Dependency.multiplatform.stately.isolate)
-                implementation(Dependency.multiplatform.atomicFu.common)
+                implementation(Dependency.multiplatform.dateTime)
+                implementation(project(":core"))
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(Dependency.multiplatform.test.common)
                 implementation(Dependency.multiplatform.test.annotations)
-                implementation(Dependency.multiplatform.stately.freeze)
-                implementation(Dependency.multiplatform.stately.collections)
+                implementation(Dependency.multiplatform.atomicFu.common)
             }
         }
 
@@ -271,7 +254,7 @@ tasks.withType<KotlinCompile> {
 tasks.withType<DokkaTask>(DokkaTask::class.java).configureEach {
     outputDirectory.set(buildDir.resolve("dokka"))
 
-    moduleName.set("KFixture")
+    moduleName.set("KFixture-Ktx-DateTime")
     offlineMode.set(true)
     suppressObviousFunctions.set(true)
 

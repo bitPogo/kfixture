@@ -3,6 +3,7 @@
   <ManuallySuppressedIssues/>
   <CurrentIssues>
     <ID>ArrayPrimitive:ArrayFixtureSpec.kt$ArrayFixtureSpec$Array&lt;Int></ID>
+    <ID>FunctionOnlyReturningConstant:DefaultPredicate.kt$@Suppress("UNUSED_PARAMETER") @PublishedApi internal fun &lt;T> defaultPredicate(value: T): Boolean</ID>
     <ID>FunctionOnlyReturningConstant:PublicApi.kt$@Suppress("UNUSED_PARAMETER") @PublishedApi internal fun &lt;T> defaultPredicate(value: T): Boolean</ID>
     <ID>LongParameterList:TupleFixture.kt$( type: KClass&lt;Triple&lt;*, *, *>>, firstQualifier: Qualifier? = null, firstGenerator: Function1&lt;Qualifier?, First>, secondQualifier: Qualifier? = null, secondGenerator: Function1&lt;Qualifier?, Second>, thirdQualifier: Qualifier? = null, thirdGenerator: Function1&lt;Qualifier?, Third>, )</ID>
     <ID>MagicNumber:Dangerfile.df.kts$1000</ID>
