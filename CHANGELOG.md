@@ -25,6 +25,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
+* Special Arrays (like CharArray) did not work with ranges
+
 ### Security
 
 ### Bumped
