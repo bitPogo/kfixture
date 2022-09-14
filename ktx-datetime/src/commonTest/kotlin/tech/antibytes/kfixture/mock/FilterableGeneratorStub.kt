@@ -23,4 +23,9 @@ class FilterableGeneratorStub<T : Any, R : Any>(
         return generateWithPredicate?.invoke(predicate)
             ?: throw RuntimeException("Missing SideEffect for generateWithPredicate.")
     }
+
+    fun clear() {
+        generate = null
+        generateWithPredicate = null
+    }
 }

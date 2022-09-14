@@ -16,6 +16,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   - TimeZone
   - DateTimePeriod
   - DatePeriod
+  - UtcOffset
+  - FixedOffsetTimeZone
 
 ### Changed
 
@@ -24,6 +26,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Removed
 
 ### Fixed
+
+* Special Arrays (like CharArray) did not work with ranges
 
 ### Security
 

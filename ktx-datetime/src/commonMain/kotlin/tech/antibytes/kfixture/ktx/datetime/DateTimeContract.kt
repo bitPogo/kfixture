@@ -12,4 +12,6 @@ internal object DateTimeContract {
     const val MAX_MONTH = 11
     const val MAX_MINUTES_SECONDS = 59
     const val MAX_NANOSECONDS = 999999999L
+    const val MIN_TIME_OFFSET = 0
+    const val MAX_HOUR_OFFSET = 18
 }

@@ -11,7 +11,6 @@ import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
-import kotlin.time.Duration
 import kotlinx.datetime.DatePeriod
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.mock.RandomStub
@@ -30,8 +29,6 @@ class DatePeriodSpec {
     @JsName("fn9")
     fun `It fulfils DependentGenerator`() {
         val generator: Any = DatePeriodGenerator
-
-        Duration
 
         assertTrue(generator is PublicApi.DependentGeneratorFactory<*>)
     }
