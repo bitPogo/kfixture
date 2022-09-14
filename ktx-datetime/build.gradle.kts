@@ -5,6 +5,7 @@
  */
 
 import tech.antibytes.gradle.dependency.Dependency
+import tech.antibytes.gradle.kfixture.dependency.Dependency as LocalDependency
 import tech.antibytes.gradle.kfixture.config.FixtureKtxDateTimeConfiguration
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import tech.antibytes.gradle.coverage.api.JvmJacocoConfiguration
@@ -179,6 +180,7 @@ kotlin {
         val jsTest by getting {
             dependencies {
                 implementation(Dependency.multiplatform.test.js)
+                implementation(npm(LocalDependency.npm.joda.name, LocalDependency.npm.joda.version))
             }
         }
 

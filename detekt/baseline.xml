@@ -21,11 +21,13 @@
     <ID>TooManyFunctions:RandomWrapper.kt$RandomWrapper : Random</ID>
     <ID>TooManyFunctions:RangedSpecialArrayFixture.kt$tech.antibytes.kfixture.RangedSpecialArrayFixture.kt</ID>
     <ID>TooManyFunctions:TupleFixture.kt$tech.antibytes.kfixture.TupleFixture.kt</ID>
+    <ID>UnusedPrivateMember:JsJodaTimeZoneModule.kt$private val jsJodaTz = JsJodaTimeZoneModule</ID>
     <ID>UnusedPrivateMember:build.gradle.kts$val androidMain by getting { dependsOn(noJsMain) dependencies { implementation(Dependency.multiplatform.kotlin.android) } }</ID>
     <ID>UnusedPrivateMember:build.gradle.kts$val androidTest by getting { dependsOn(noJsTest) dependsOn(androidAndroidTestRelease) dependsOn(androidTestFixtures) dependsOn(androidTestFixturesDebug) dependsOn(androidTestFixturesRelease) dependencies { implementation(Dependency.multiplatform.test.jvm) implementation(Dependency.multiplatform.test.junit) } }</ID>
     <ID>UnusedPrivateMember:build.gradle.kts$val iosSimulatorArm64Main by getting { dependsOn(iosMain) }</ID>
     <ID>UnusedPrivateMember:build.gradle.kts$val iosSimulatorArm64Test by getting { dependsOn(iosTest) }</ID>
     <ID>UnusedPrivateMember:build.gradle.kts$val jsMain by getting { dependencies { implementation(Dependency.multiplatform.kotlin.js) implementation(Dependency.js.nodejs) } }</ID>
+    <ID>UnusedPrivateMember:build.gradle.kts$val jsTest by getting { dependencies { implementation(Dependency.multiplatform.test.js) implementation(npm(LocalDependency.npm.joda.name, LocalDependency.npm.joda.version)) } }</ID>
     <ID>UnusedPrivateMember:build.gradle.kts$val jsTest by getting { dependencies { implementation(Dependency.multiplatform.test.js) } }</ID>
     <ID>UnusedPrivateMember:build.gradle.kts$val jvmMain by getting { dependsOn(noJsMain) dependencies { implementation(Dependency.multiplatform.kotlin.jdk8) } }</ID>
     <ID>UnusedPrivateMember:build.gradle.kts$val jvmTest by getting { dependsOn(noJsTest) dependencies { implementation(Dependency.multiplatform.test.jvm) implementation(Dependency.multiplatform.test.junit) } }</ID>

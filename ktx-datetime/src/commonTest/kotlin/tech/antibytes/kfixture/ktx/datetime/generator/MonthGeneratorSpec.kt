@@ -27,7 +27,6 @@ class MonthGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn0")
     fun `It fulfils DependentGeneratorFactory`() {
         val generator: Any = MonthGenerator
@@ -36,7 +35,6 @@ class MonthGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn1")
     fun `Given getInstance is called it returns an FilterableGenerator`() {
         val intId = resolveGeneratorId(Int::class)
@@ -46,7 +44,6 @@ class MonthGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn2")
     fun `Given generate is called it returns a DayOfWeek`() {
         // Given
@@ -85,7 +82,6 @@ class MonthGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn3")
     fun `Given generate is called with a predicate it returns a DayOfWeek`() {
         // Given
