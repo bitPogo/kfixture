@@ -10,23 +10,15 @@ import kotlin.random.Random
 import kotlinx.datetime.TimeZone
 import tech.antibytes.kfixture.PublicApi
 
-internal class TimeZoneGenerator(
-    private val random: Random,
-) : FilterableGenerator<TimeZone>() {
-    private val zones = TimeZone.availableZoneIds.toList()
+internal class ShallowTimeZoneGenerator : PublicApi.FilterableGenerator<TimeZone, TimeZone> {
 
-    override fun generate(): TimeZone {
-        val zone = random.nextInt(
-            from = 0,
-            until = zones.size,
-        )
+    override fun generate(): TimeZone = TimeZone.UTC
 
-        return TimeZone.of(zones[zone])
-    }
+    override fun generate(predicate: (TimeZone?) -> Boolean): TimeZone = generate()
 
     companion object : PublicApi.GeneratorFactory<TimeZone> {
         override fun getInstance(
             random: Random,
-        ): PublicApi.Generator<TimeZone> = TimeZoneGenerator(random)
+        ): PublicApi.Generator<TimeZone> = ShallowTimeZoneGenerator()
     }
 }
