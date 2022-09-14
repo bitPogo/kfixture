@@ -12,7 +12,7 @@ import tech.antibytes.kfixture.PublicApi
 
 internal class TimeZoneGenerator(
     private val random: Random,
-) : PublicApi.FilterableGenerator<TimeZone, TimeZone> {
+) : FilterableGenerator<TimeZone>() {
     private val zones = TimeZone.availableZoneIds.toList()
 
     override fun generate(): TimeZone {
@@ -22,16 +22,6 @@ internal class TimeZoneGenerator(
         )
 
         return TimeZone.of(zones[zone])
-    }
-
-    override fun generate(predicate: (TimeZone?) -> Boolean): TimeZone {
-        var zone: TimeZone
-
-        do {
-            zone = generate()
-        } while (!predicate(zone))
-
-        return zone
     }
 
     companion object : PublicApi.GeneratorFactory<TimeZone> {
