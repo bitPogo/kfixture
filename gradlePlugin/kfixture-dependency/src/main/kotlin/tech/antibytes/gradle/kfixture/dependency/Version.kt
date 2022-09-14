@@ -71,4 +71,13 @@ object Version {
          */
         const val pymdown = "9.5"
     }
+
+    val npm = NPM
+
+    object NPM {
+        /**
+         * [Joda](https://github.com/JodaOrg/joda-time/releases)
+         */
+        const val joda = "2.11.1"
+    }
 }

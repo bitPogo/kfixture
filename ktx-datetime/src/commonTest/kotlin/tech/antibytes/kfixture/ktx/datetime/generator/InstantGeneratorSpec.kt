@@ -27,7 +27,6 @@ class InstantGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn0")
     fun `It fulfils DependentGeneratorFactory`() {
         val generator: Any = InstantGenerator
@@ -36,9 +35,8 @@ class InstantGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn1")
-    fun `Given getInstance is called it returns an FilterableGenerator`() {
+    fun `Given getInstance is called it returns an RangedGenerator`() {
         val longId = resolveGeneratorId(Long::class)
         val generator: Any = InstantGenerator.getInstance(RandomStub(), mapOf(longId to dependencyGenerator))
 
@@ -46,7 +44,6 @@ class InstantGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn2")
     fun `Given generate is called it returns a Instant`() {
         // Given
@@ -85,7 +82,6 @@ class InstantGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn3")
     fun `Given generate is called with a predicate it returns a Instant`() {
         // Given
@@ -131,7 +127,6 @@ class InstantGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn5")
     fun `Given generate is called with a range and a predicate it fails if the the lower bound is less than zero`() {
         // Given
@@ -160,7 +155,6 @@ class InstantGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn6")
     fun `Given generate is called with a range and a predicate it fails if the the upper bound is less than lower bound`() {
         // Given
@@ -189,7 +183,6 @@ class InstantGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn7")
     fun `Given generate is called with a range and a predicate it fails if the the upper bound is equal to the lower bound`() {
         // Given
@@ -218,7 +211,6 @@ class InstantGeneratorSpec {
     }
 
     @Test
-    @Suppress("UNCHECKED_CAST")
     @JsName("fn8")
     fun `Given generate is called with a range and a predicate it returns a Instant`() {
         // Given
