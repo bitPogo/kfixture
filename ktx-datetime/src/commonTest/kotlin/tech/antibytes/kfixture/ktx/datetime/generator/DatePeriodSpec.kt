@@ -12,26 +12,24 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 import kotlin.time.Duration
-import kotlinx.datetime.DateTimePeriod
+import kotlinx.datetime.DatePeriod
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.mock.RandomStub
 import tech.antibytes.kfixture.mock.RangedGeneratorStub
 import tech.antibytes.kfixture.qualifier.resolveGeneratorId
 
-class DateTimePeriodSpec {
-    private val longDependencyGenerator = RangedGeneratorStub<Long, Long>()
+class DatePeriodSpec {
     private val intDependencyGenerator = RangedGeneratorStub<Int, Int>()
 
     @AfterTest
     fun tearDown() {
-        longDependencyGenerator.clear()
         intDependencyGenerator.clear()
     }
 
     @Test
     @JsName("fn9")
     fun `It fulfils DependentGenerator`() {
-        val generator: Any = DateTimePeriodGenerator
+        val generator: Any = DatePeriodGenerator
 
         Duration
 
@@ -41,12 +39,10 @@ class DateTimePeriodSpec {
     @Test
     @JsName("fn1")
     fun `It fulfils FilterableGenerator`() {
-        val longId = resolveGeneratorId(Long::class)
         val intId = resolveGeneratorId(Int::class)
-        val generator: Any = DateTimePeriodGenerator.getInstance(
+        val generator: Any = DatePeriodGenerator.getInstance(
             RandomStub(),
             mapOf(
-                longId to longDependencyGenerator,
                 intId to intDependencyGenerator,
             ),
         )
@@ -56,7 +52,7 @@ class DateTimePeriodSpec {
 
     @Test
     @JsName("fn2")
-    fun `Given generate is called it returns a DateTimePeriod`() {
+    fun `Given generate is called it returns a DatePeriod`() {
         // Given
         val expectedMacro = mutableListOf(
             2929,
@@ -67,13 +63,8 @@ class DateTimePeriodSpec {
             13,
         )
 
-        val expectedMicro = 42L
-
         val capturedMacroFrom = mutableListOf<Int>()
-        var capturedMicroFrom: Long? = null
-
         val capturedMacroTo = mutableListOf<Int>()
-        var capturedMicroTo: Long? = null
 
         intDependencyGenerator.generateWithRange = { from, to, _ ->
             capturedMacroFrom.add(from)
@@ -82,30 +73,76 @@ class DateTimePeriodSpec {
             expectedMacro.removeFirst()
         }
 
-        longDependencyGenerator.generateWithRange = { from, to, _ ->
-            capturedMicroFrom = from
-            capturedMicroTo = to
-
-            expectedMicro
-        }
-
         // When
-        val actual = DateTimePeriodGenerator(
+        val actual = DatePeriodGenerator(
             intDependencyGenerator,
-            longDependencyGenerator,
         ).generate()
 
         // Then
         assertEquals(
             actual = actual,
-            expected = DateTimePeriod(
+            expected = DatePeriod(
                 years = 2929,
                 months = 5,
                 days = 3,
-                hours = 7,
-                minutes = 45,
-                seconds = 13,
-                nanoseconds = 42L,
+            ),
+        )
+
+        assertEquals(
+            actual = capturedMacroFrom,
+            expected = listOf(0, 0, 0),
+        )
+        assertEquals(
+            actual = capturedMacroTo,
+            expected = listOf(
+                Int.MAX_VALUE,
+                11,
+                Int.MAX_VALUE,
+            ),
+        )
+    }
+
+    @Test
+    @JsName("fn3")
+    fun `Given generate is called with a predicate it returns a DatePeriod`() {
+        // Given
+        val expectedMacro = mutableListOf(
+            2929,
+            5,
+            3,
+            2020,
+            5,
+            3,
+        )
+
+        val capturedMacroFrom = mutableListOf<Int>()
+        val capturedMacroTo = mutableListOf<Int>()
+
+        intDependencyGenerator.generateWithRange = { from, to, _ ->
+            capturedMacroFrom.add(from)
+            capturedMacroTo.add(to)
+
+            expectedMacro.removeFirst()
+        }
+
+        // When
+        val actual = DatePeriodGenerator(
+            intDependencyGenerator,
+        ).generate { datePeriod ->
+            datePeriod != DatePeriod(
+                years = 2929,
+                months = 5,
+                days = 3,
+            )
+        }
+
+        // Then
+        assertEquals(
+            actual = actual,
+            expected = DatePeriod(
+                years = 2020,
+                months = 5,
+                days = 3,
             ),
         )
 
@@ -120,111 +157,9 @@ class DateTimePeriodSpec {
                 11,
                 Int.MAX_VALUE,
                 Int.MAX_VALUE,
-                59,
-                59,
-            ),
-        )
-
-        assertEquals(
-            actual = capturedMicroFrom,
-            expected = 0,
-        )
-        assertEquals(
-            actual = capturedMicroTo,
-            expected = 999999999L,
-        )
-    }
-
-    @Test
-    @JsName("fn3")
-    fun `Given generate is called with a predicate it returns a DateTimePeriod`() {
-        // Given
-        val expectedMacro = mutableListOf(
-            2929, 5, 3, 7, 45, 13,
-            2020, 5, 3, 7, 45, 13,
-        )
-
-        val expectedMicro = 42L
-
-        val capturedMacroFrom = mutableListOf<Int>()
-        var capturedMicroFrom: Long? = null
-
-        val capturedMacroTo = mutableListOf<Int>()
-        var capturedMicroTo: Long? = null
-
-        intDependencyGenerator.generateWithRange = { from, to, _ ->
-            capturedMacroFrom.add(from)
-            capturedMacroTo.add(to)
-
-            expectedMacro.removeFirst()
-        }
-
-        longDependencyGenerator.generateWithRange = { from, to, _ ->
-            capturedMicroFrom = from
-            capturedMicroTo = to
-
-            expectedMicro
-        }
-
-        // When
-        val actual = DateTimePeriodGenerator(
-            intDependencyGenerator,
-            longDependencyGenerator,
-        ).generate { dateTimePeriod ->
-            dateTimePeriod != DateTimePeriod(
-                years = 2929,
-                months = 5,
-                days = 3,
-                hours = 7,
-                minutes = 45,
-                seconds = 13,
-                nanoseconds = 42L,
-            )
-        }
-
-        // Then
-        assertEquals(
-            actual = actual,
-            expected = DateTimePeriod(
-                years = 2020,
-                months = 5,
-                days = 3,
-                hours = 7,
-                minutes = 45,
-                seconds = 13,
-                nanoseconds = 42L,
-            ),
-        )
-
-        assertEquals(
-            actual = capturedMacroFrom,
-            expected = listOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-        )
-        assertEquals(
-            actual = capturedMacroTo,
-            expected = listOf(
-                Int.MAX_VALUE,
                 11,
                 Int.MAX_VALUE,
-                Int.MAX_VALUE,
-                59,
-                59,
-                Int.MAX_VALUE,
-                11,
-                Int.MAX_VALUE,
-                Int.MAX_VALUE,
-                59,
-                59,
             ),
-        )
-
-        assertEquals(
-            actual = capturedMicroFrom,
-            expected = 0,
-        )
-        assertEquals(
-            actual = capturedMicroTo,
-            expected = 999999999L,
         )
     }
 }
