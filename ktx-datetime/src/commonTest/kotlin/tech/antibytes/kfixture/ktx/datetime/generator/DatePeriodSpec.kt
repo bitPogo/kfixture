@@ -26,7 +26,7 @@ class DatePeriodSpec {
     }
 
     @Test
-    @JsName("fn9")
+    @JsName("fn0")
     fun `It fulfils DependentGenerator`() {
         val generator: Any = DatePeriodGenerator
 
