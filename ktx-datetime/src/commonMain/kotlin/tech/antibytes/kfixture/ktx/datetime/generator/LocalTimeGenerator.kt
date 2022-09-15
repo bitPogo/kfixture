@@ -12,7 +12,7 @@ import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
 import kotlinx.datetime.TimeZone
 import tech.antibytes.kfixture.PublicApi
-import tech.antibytes.kfixture.ktx.datetime.DateTimeContract.LocalizedDateTimeGenerator
+import tech.antibytes.kfixture.ktx.datetime.KtxDateTimeContract.LocalizedDateTimeGenerator
 import tech.antibytes.kfixture.qualifier.resolveGeneratorId
 
 internal class LocalTimeGenerator(

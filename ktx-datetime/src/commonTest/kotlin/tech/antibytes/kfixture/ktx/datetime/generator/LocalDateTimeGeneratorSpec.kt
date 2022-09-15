@@ -15,7 +15,7 @@ import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
 import tech.antibytes.kfixture.PublicApi
-import tech.antibytes.kfixture.ktx.datetime.DateTimeContract
+import tech.antibytes.kfixture.ktx.datetime.KtxDateTimeContract
 import tech.antibytes.kfixture.mock.GeneratorStub
 import tech.antibytes.kfixture.mock.RandomStub
 import tech.antibytes.kfixture.qualifier.resolveGeneratorId
@@ -67,7 +67,7 @@ class LocalDateTimeGeneratorSpec {
             ),
         )
 
-        assertTrue(generator is DateTimeContract.LocalizedDateTimeGenerator<*>)
+        assertTrue(generator is KtxDateTimeContract.LocalizedDateTimeGenerator<*>)
     }
 
     @Test

@@ -10,10 +10,12 @@
     <ID>MagicNumber:Dangerfile.df.kts$20</ID>
     <ID>MagicNumber:Dangerfile.df.kts$2000</ID>
     <ID>MagicNumber:Dangerfile.df.kts$500</ID>
+    <ID>MagicNumber:build.gradle.kts$0.90</ID>
     <ID>MagicNumber:build.gradle.kts$0.97</ID>
     <ID>MagicNumber:build.gradle.kts$8</ID>
     <ID>MagicNumber:settings.gradle.kts$30</ID>
     <ID>MaxLineLength:Dangerfile.df.kts$val</ID>
+    <ID>MaxLineLength:DateTimeFixture.kt$generator !is LocalizedDateTimeGenerator&lt;*> -> throw IllegalStateException("Missing Generator for ClassID ($id).")</ID>
     <ID>MaxLineLength:GradlePlugin.kt$GradlePlugin$const val runtimeConfig = "tech.antibytes.gradle-plugins:antibytes-runtime-configuration:${Version.Gradle.antibytes}"</ID>
     <ID>MaxLineLength:TupleFixture.kt$public</ID>
     <ID>MaxLineLength:build.gradle.kts$config = files("$projectDir/detekt/config.yml")</ID>

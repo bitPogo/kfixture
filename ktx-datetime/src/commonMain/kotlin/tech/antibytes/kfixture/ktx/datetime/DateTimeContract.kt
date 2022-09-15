@@ -10,14 +10,16 @@ import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
 import tech.antibytes.kfixture.PublicApi
 
-internal object DateTimeContract {
-    interface LocalizedDateTimeGenerator<T : Any> : PublicApi.Generator<T> {
-        fun generate(
+public interface KtxDateTimeContract {
+    public interface LocalizedDateTimeGenerator<T : Any> : PublicApi.Generator<T> {
+        public fun generate(
             instantGenerator: Function0<Instant>? = null,
             timeZoneGenerator: Function0<TimeZone>? = null,
         ): T
     }
+}
 
+internal object DateTimeContract {
     const val MIN_TIME_PERIOD = 0
     const val MIN_TIME_PERIOD_L = 0L
     const val MAX_MONTH = 11
