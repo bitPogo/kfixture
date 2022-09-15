@@ -264,8 +264,8 @@ public interface PublicApi {
          * @see Qualifier
          */
         public fun <T : Any> addGenerator(
-            clazz: KClass<T>,
-            factory: GeneratorFactory<T>,
+            clazz: KClass<out T>,
+            factory: GeneratorFactory<out T>,
             qualifier: Qualifier? = null,
         ): Configuration
 
@@ -282,8 +282,8 @@ public interface PublicApi {
          * @see Qualifier
          */
         public fun <T : Any> addGenerator(
-            clazz: KClass<T>,
-            factory: DependentGeneratorFactory<T>,
+            clazz: KClass<out T>,
+            factory: DependentGeneratorFactory<out T>,
             qualifier: Qualifier? = null,
         ): Configuration
     }
