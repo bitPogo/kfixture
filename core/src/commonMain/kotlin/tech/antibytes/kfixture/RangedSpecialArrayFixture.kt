@@ -13,9 +13,9 @@ import kotlin.jvm.JvmName
 
 @Throws(IllegalStateException::class)
 @PublishedApi
-internal inline fun <reified RangeType : Any, reified FixtureType> PublicApi.Fixture.specialArrayFixture(
-    from: RangeType,
-    to: RangeType,
+internal inline fun <reified RangeType, reified FixtureType> PublicApi.Fixture.specialArrayFixture(
+    from: RangeType & Any,
+    to: RangeType & Any,
     qualifier: PublicApi.Qualifier?,
     noinline predicate: Function1<RangeType?, Boolean>,
 ): FixtureType {

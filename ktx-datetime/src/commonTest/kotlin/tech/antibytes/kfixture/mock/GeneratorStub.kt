@@ -16,4 +16,8 @@ class GeneratorStub<T : Any>(
     override fun generate(): T {
         return generate?.invoke() ?: throw RuntimeException("Missing SideEffect for generate.")
     }
+
+    fun clear() {
+        generate = null
+    }
 }
