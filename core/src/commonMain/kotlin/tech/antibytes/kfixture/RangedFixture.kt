@@ -7,9 +7,11 @@
 
 package tech.antibytes.kfixture
 
+@InternalAPI
 @Throws(IllegalStateException::class)
 /**
  * Creates a value for a given type in given boundaries, excluding generics like List or Array.
+ * This method is internal - usage is at your own risk.
  * @param FixtureType the type which is supposed to be created.
  * @param RangeType the type which is supposed to be created and is bounded to its boundaries.
  * @param from the lower boundary of the value (inclusive).
@@ -18,11 +20,11 @@ package tech.antibytes.kfixture
  * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
-public inline fun <reified RangeType, reified FixtureType : RangeType?> PublicApi.Fixture.fixture(
+public inline fun <reified RangeType, reified FixtureType> PublicApi.Fixture.rangedFixture(
     from: RangeType & Any,
     to: RangeType & Any,
-    qualifier: PublicApi.Qualifier? = null,
-    noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
+    qualifier: PublicApi.Qualifier?,
+    noinline predicate: Function1<RangeType?, Boolean>,
 ): FixtureType {
     val returnNull = random.returnNull<FixtureType>()
     val id = resolveIdentifier<FixtureType>(qualifier)
@@ -41,6 +43,30 @@ public inline fun <reified RangeType, reified FixtureType : RangeType?> PublicAp
         ) as FixtureType
     }
 }
+
+@OptIn(InternalAPI::class)
+@Throws(IllegalStateException::class)
+/**
+ * Creates a value for a given type in given boundaries, excluding generics like List or Array.
+ * @param FixtureType the type which is supposed to be created.
+ * @param RangeType the type which is supposed to be created and is bounded to its boundaries.
+ * @param from the lower boundary of the value (inclusive).
+ * @param to the upper boundary of the value (inclusive).
+ * @param qualifier a optional qualifier for a special flavour of a type.
+ * @param predicate which filters non matching values.
+ * @throws IllegalStateException if the no matching Generator was found for the given type.
+ */
+public inline fun <reified RangeType, reified FixtureType : RangeType?> PublicApi.Fixture.fixture(
+    from: RangeType & Any,
+    to: RangeType & Any,
+    qualifier: PublicApi.Qualifier? = null,
+    noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
+): FixtureType = rangedFixture(
+    from = from,
+    to = to,
+    qualifier = qualifier,
+    predicate = predicate,
+)
 
 @Throws(IllegalStateException::class)
 /**

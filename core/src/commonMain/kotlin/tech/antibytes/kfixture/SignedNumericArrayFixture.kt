@@ -5,6 +5,8 @@
  * Use of this source code is governed by Apache v2.0
  */
 
+@file:Suppress("OPT_IN_USAGE")
+
 package tech.antibytes.kfixture
 
 import tech.antibytes.kfixture.PublicApi.SignedNumericArrayGenerator

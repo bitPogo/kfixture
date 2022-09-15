@@ -4,6 +4,8 @@
  * Use of this source code is governed by Apache v2.0
  */
 
+@file:Suppress("OPT_IN_USAGE")
+
 package tech.antibytes.kfixture.qualifier
 
 import tech.antibytes.kfixture.FixtureContract.QUALIFIER_PREFIX

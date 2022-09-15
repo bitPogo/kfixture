@@ -25,6 +25,10 @@ public final class tech/antibytes/kfixture/FixtureKt {
 	public static synthetic fun kotlinFixture$default (Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Ltech/antibytes/kfixture/PublicApi$Fixture;
 }
 
+public abstract interface annotation class tech/antibytes/kfixture/InternalAPI : java/lang/annotation/Annotation {
+	public abstract fun message ()Ljava/lang/String;
+}
+
 public abstract interface class tech/antibytes/kfixture/PublicApi {
 }
 

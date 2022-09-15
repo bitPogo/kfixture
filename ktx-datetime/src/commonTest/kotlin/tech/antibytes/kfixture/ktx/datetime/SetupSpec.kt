@@ -6,6 +6,10 @@
 
 package tech.antibytes.kfixture.ktx.datetime
 
+import kotlin.js.JsName
+import kotlin.reflect.KClass
+import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlinx.datetime.DatePeriod
 import kotlinx.datetime.DateTimePeriod
 import kotlinx.datetime.DayOfWeek
@@ -17,8 +21,8 @@ import kotlinx.datetime.LocalTime
 import kotlinx.datetime.Month
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.UtcOffset
-import tech.antibytes.kfixture.PublicApi.GeneratorFactory
 import tech.antibytes.kfixture.PublicApi.DependentGeneratorFactory
+import tech.antibytes.kfixture.PublicApi.GeneratorFactory
 import tech.antibytes.kfixture.ktx.datetime.generator.DatePeriodGenerator
 import tech.antibytes.kfixture.ktx.datetime.generator.DateTimePeriodGenerator
 import tech.antibytes.kfixture.ktx.datetime.generator.DayOfWeekGenerator
@@ -32,10 +36,6 @@ import tech.antibytes.kfixture.ktx.datetime.generator.ShallowTimeZoneGenerator
 import tech.antibytes.kfixture.ktx.datetime.generator.TimeZoneGenerator
 import tech.antibytes.kfixture.ktx.datetime.generator.UtcOffsetGenerator
 import tech.antibytes.kfixture.mock.ConfigurationStub
-import kotlin.js.JsName
-import kotlin.reflect.KClass
-import kotlin.test.Test
-import kotlin.test.assertEquals
 
 class SetupSpec {
     @Test
@@ -60,9 +60,9 @@ class SetupSpec {
         // Then
         assertEquals(
             expected = listOf<Pair<KClass<out Any>, GeneratorFactory<out Any>>>(
-                TimeZone::class to ShallowTimeZoneGenerator
+                TimeZone::class to ShallowTimeZoneGenerator,
             ),
-            actual = capturedTimeZoneGenerator
+            actual = capturedTimeZoneGenerator,
         )
         assertEquals(
             expected = listOf(
@@ -77,7 +77,7 @@ class SetupSpec {
                 LocalTime::class to LocalTimeGenerator,
                 LocalDateTime::class to LocalDateTimeGenerator,
             ),
-            actual = capturedDependentGenerators
+            actual = capturedDependentGenerators,
         )
     }
 
@@ -103,9 +103,9 @@ class SetupSpec {
         // Then
         assertEquals(
             expected = listOf<Pair<KClass<out Any>, GeneratorFactory<out Any>>>(
-                TimeZone::class to TimeZoneGenerator
+                TimeZone::class to TimeZoneGenerator,
             ),
-            actual = capturedTimeZoneGenerator
+            actual = capturedTimeZoneGenerator,
         )
         assertEquals(
             expected = listOf(
@@ -120,7 +120,7 @@ class SetupSpec {
                 LocalTime::class to LocalTimeGenerator,
                 LocalDateTime::class to LocalDateTimeGenerator,
             ),
-            actual = capturedDependentGenerators
+            actual = capturedDependentGenerators,
         )
     }
 }

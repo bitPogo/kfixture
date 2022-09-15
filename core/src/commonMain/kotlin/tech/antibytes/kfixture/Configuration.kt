@@ -4,6 +4,8 @@
  * Use of this source code is governed by Apache v2.0
  */
 
+@file:Suppress("OPT_IN_USAGE", "OPT_IN_OVERRIDE")
+
 package tech.antibytes.kfixture
 
 import co.touchlab.stately.isolate.IsolateState
@@ -44,7 +46,7 @@ import tech.antibytes.kfixture.generator.primitive.UShortGenerator
 import tech.antibytes.kfixture.generator.primitive.UnitGenerator
 import tech.antibytes.kfixture.qualifier.resolveGeneratorId
 
-internal class Configuration(
+internal class Configuration @InternalAPI constructor(
     override var seed: Int = 0,
 ) : FixtureContract.Configuration {
     private val customGenerators: MutableMap<String, GeneratorFactory<out Any>> = mutableMapOf()

@@ -5,37 +5,11 @@
  * Use of this source code is governed by Apache v2.0
  */
 
-@file:Suppress("FINAL_UPPER_BOUND")
+@file:Suppress("FINAL_UPPER_BOUND", "OPT_IN_USAGE")
 
 package tech.antibytes.kfixture
 
 import kotlin.jvm.JvmName
-
-@Throws(IllegalStateException::class)
-@PublishedApi
-internal inline fun <reified RangeType, reified FixtureType> PublicApi.Fixture.specialArrayFixture(
-    from: RangeType & Any,
-    to: RangeType & Any,
-    qualifier: PublicApi.Qualifier?,
-    noinline predicate: Function1<RangeType?, Boolean>,
-): FixtureType {
-    val returnNull = random.returnNull<FixtureType>()
-    val id = resolveIdentifier<FixtureType>(qualifier)
-    val generator = generators[id]
-
-    @Suppress("UNCHECKED_CAST")
-    return when {
-        generator !is PublicApi.RangedGenerator<*, *> -> {
-            throw IllegalStateException("Missing Generator for ClassID ($id).")
-        }
-        returnNull -> null as FixtureType
-        else -> (generator as PublicApi.RangedGenerator<Comparable<Any>, *>).generate(
-            from = from as Comparable<Any>,
-            to = to as Comparable<Any>,
-            predicate = predicate as Function1<Any?, Boolean>,
-        ) as FixtureType
-    }
-}
 
 @JvmName("rangedCharFixture")
 @Throws(IllegalStateException::class)
@@ -54,7 +28,7 @@ public inline fun <reified RangeType : Char, reified FixtureType> PublicApi.Fixt
     to: RangeType,
     qualifier: PublicApi.Qualifier? = null,
     noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType = specialArrayFixture(
+): FixtureType = rangedFixture(
     from = from,
     to = to,
     qualifier = qualifier,
@@ -78,7 +52,7 @@ public inline fun <reified RangeType : Byte, reified FixtureType> PublicApi.Fixt
     to: RangeType,
     qualifier: PublicApi.Qualifier? = null,
     noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType = specialArrayFixture(
+): FixtureType = rangedFixture(
     from = from,
     to = to,
     qualifier = qualifier,
@@ -102,7 +76,7 @@ public inline fun <reified RangeType : Short, reified FixtureType> PublicApi.Fix
     to: RangeType,
     qualifier: PublicApi.Qualifier? = null,
     noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType = specialArrayFixture(
+): FixtureType = rangedFixture(
     from = from,
     to = to,
     qualifier = qualifier,
@@ -126,7 +100,7 @@ public inline fun <reified RangeType : Int, reified FixtureType> PublicApi.Fixtu
     to: RangeType,
     qualifier: PublicApi.Qualifier? = null,
     noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType = specialArrayFixture(
+): FixtureType = rangedFixture(
     from = from,
     to = to,
     qualifier = qualifier,
@@ -150,7 +124,7 @@ public inline fun <reified RangeType : Float, reified FixtureType> PublicApi.Fix
     to: RangeType,
     qualifier: PublicApi.Qualifier? = null,
     noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType = specialArrayFixture(
+): FixtureType = rangedFixture(
     from = from,
     to = to,
     qualifier = qualifier,
@@ -174,7 +148,7 @@ public inline fun <reified RangeType : Long, reified FixtureType> PublicApi.Fixt
     to: RangeType,
     qualifier: PublicApi.Qualifier? = null,
     noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType = specialArrayFixture(
+): FixtureType = rangedFixture(
     from = from,
     to = to,
     qualifier = qualifier,
@@ -198,7 +172,7 @@ public inline fun <reified RangeType : Double, reified FixtureType> PublicApi.Fi
     to: RangeType,
     qualifier: PublicApi.Qualifier? = null,
     noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType = specialArrayFixture(
+): FixtureType = rangedFixture(
     from = from,
     to = to,
     qualifier = qualifier,
@@ -222,7 +196,7 @@ public inline fun <reified RangeType : UByte, reified FixtureType> PublicApi.Fix
     to: RangeType,
     qualifier: PublicApi.Qualifier? = null,
     noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType = specialArrayFixture(
+): FixtureType = rangedFixture(
     from = from,
     to = to,
     qualifier = qualifier,
@@ -246,7 +220,7 @@ public inline fun <reified RangeType : UShort, reified FixtureType> PublicApi.Fi
     to: RangeType,
     qualifier: PublicApi.Qualifier? = null,
     noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType = specialArrayFixture(
+): FixtureType = rangedFixture(
     from = from,
     to = to,
     qualifier = qualifier,
@@ -270,7 +244,7 @@ public inline fun <reified RangeType : UInt, reified FixtureType> PublicApi.Fixt
     to: RangeType,
     qualifier: PublicApi.Qualifier? = null,
     noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType = specialArrayFixture(
+): FixtureType = rangedFixture(
     from = from,
     to = to,
     qualifier = qualifier,
@@ -294,7 +268,7 @@ public inline fun <reified RangeType : ULong, reified FixtureType> PublicApi.Fix
     to: RangeType,
     qualifier: PublicApi.Qualifier? = null,
     noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType = specialArrayFixture(
+): FixtureType = rangedFixture(
     from = from,
     to = to,
     qualifier = qualifier,
