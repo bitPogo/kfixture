@@ -15,8 +15,8 @@ class ConfigurationStub(
     override var seed: Int = 23
 
     override fun <T : Any> addGenerator(
-        clazz: KClass<T>,
-        factory: PublicApi.GeneratorFactory<T>,
+        clazz: KClass<out T>,
+        factory: PublicApi.GeneratorFactory<out T>,
         qualifier: PublicApi.Qualifier?,
     ): PublicApi.Configuration {
         addGenerator?.invoke(clazz as KClass<*>, factory as PublicApi.GeneratorFactory<*>, qualifier)
@@ -26,8 +26,8 @@ class ConfigurationStub(
     }
 
     override fun <T : Any> addGenerator(
-        clazz: KClass<T>,
-        factory: PublicApi.DependentGeneratorFactory<T>,
+        clazz: KClass<out T>,
+        factory: PublicApi.DependentGeneratorFactory<out T>,
         qualifier: PublicApi.Qualifier?,
     ): PublicApi.Configuration {
         TODO("Not yet implemented")
