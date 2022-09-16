@@ -7,7 +7,6 @@
 package tech.antibytes.kfixture.ktx.datetime.fixture
 
 import kotlin.js.JsName
-import kotlin.random.Random
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -20,15 +19,11 @@ import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.fixture
 import tech.antibytes.kfixture.ktx.datetime.defaultPredicate
 import tech.antibytes.kfixture.mock.FilterableGeneratorStub
+import tech.antibytes.kfixture.mock.Fixture
 import tech.antibytes.kfixture.mock.RandomStub
 import tech.antibytes.kfixture.mock.RangedGeneratorStub
 import tech.antibytes.kfixture.qualifier.qualifiedBy
 import tech.antibytes.kfixture.qualifier.resolveGeneratorId
-
-private class Fixture(
-    override val random: Random,
-    override val generators: Map<String, PublicApi.Generator<out Any>>,
-) : PublicApi.Fixture
 
 private data class TypeDescriptor<RangeType, FixtureType : Any>(
     val from: RangeType,

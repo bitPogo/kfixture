@@ -9,6 +9,8 @@ package tech.antibytes.kfixture.ktx.datetime.generator
 import kotlin.random.Random
 import kotlinx.datetime.Instant
 import tech.antibytes.kfixture.PublicApi
+import tech.antibytes.kfixture.ktx.datetime.DateTimeContract.MAX_TIME_STAMP
+import tech.antibytes.kfixture.ktx.datetime.DateTimeContract.MIN_TIME_STAMP
 import tech.antibytes.kfixture.ktx.datetime.defaultPredicate
 import tech.antibytes.kfixture.qualifier.resolveGeneratorId
 
@@ -18,8 +20,8 @@ internal class InstantGenerator(
     override fun generate(): Instant = generate(predicate = ::defaultPredicate)
 
     override fun generate(predicate: (Long?) -> Boolean): Instant = generate(
-        from = 0L,
-        to = Long.MAX_VALUE,
+        from = MIN_TIME_STAMP,
+        to = MAX_TIME_STAMP,
         predicate = predicate,
     )
 
@@ -27,8 +29,12 @@ internal class InstantGenerator(
         from: Long,
         to: Long,
     ) {
-        if (from < 0) {
-            throw IllegalArgumentException("The lower bound of an Instant must be greater than -1!")
+        if (from < MIN_TIME_STAMP) {
+            throw IllegalArgumentException("The lower bound of an Instant must be greater than $MIN_TIME_STAMP!")
+        }
+
+        if (to > MAX_TIME_STAMP) {
+            throw IllegalArgumentException("The upper bound of an Instant must be smaller than $MAX_TIME_STAMP!")
         }
 
         if (to <= from) {

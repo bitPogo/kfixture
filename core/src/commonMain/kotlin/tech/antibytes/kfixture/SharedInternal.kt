@@ -32,8 +32,13 @@ internal const val ITERABLE_LOWER_BOUND: Int = 0
 internal inline fun <reified T> isNullable(): Boolean = null is T
 
 @InternalAPI
-@PublishedApi
-internal inline fun <reified T> Random.returnNull(): Boolean {
+/**
+ * Determines if a values should be a null or not.
+ * This is a Internal method - use it with caution!
+ * @param T - Type which is check for nullability
+ * @return Boolean - if the value of the type should be null
+ */
+public inline fun <reified T> Random.returnNull(): Boolean {
     return if (isNullable<T>()) {
         nextBoolean()
     } else {
@@ -70,8 +75,7 @@ internal fun PublicApi.Fixture.chooseNumberType(
 }
 
 @InternalAPI
-@PublishedApi
-internal inline fun <reified T> PublicApi.Fixture.resolveIdentifier(
+public inline fun <reified T> PublicApi.Fixture.resolveIdentifier(
     qualifier: PublicApi.Qualifier?,
 ): String {
     return if (T::class == Number::class) {

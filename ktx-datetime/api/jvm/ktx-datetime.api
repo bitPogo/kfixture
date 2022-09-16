@@ -2,8 +2,19 @@ public final class tech/antibytes/kfixture/ktx/datetime/DefaultPredicateKt {
 	public static final fun defaultPredicate (Ljava/lang/Object;)Z
 }
 
+public abstract interface class tech/antibytes/kfixture/ktx/datetime/KtxDateTimeContract {
+}
+
+public abstract interface class tech/antibytes/kfixture/ktx/datetime/KtxDateTimeContract$LocalizedDateTimeGenerator : tech/antibytes/kfixture/PublicApi$Generator {
+	public abstract fun generate (Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;)Ljava/lang/Object;
+}
+
+public final class tech/antibytes/kfixture/ktx/datetime/KtxDateTimeContract$LocalizedDateTimeGenerator$DefaultImpls {
+	public static synthetic fun generate$default (Ltech/antibytes/kfixture/ktx/datetime/KtxDateTimeContract$LocalizedDateTimeGenerator;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)Ljava/lang/Object;
+}
+
 public final class tech/antibytes/kfixture/ktx/datetime/SetupKt {
+	public static final fun useDateTimeWithOnlyUtc (Ltech/antibytes/kfixture/PublicApi$Configuration;)V
 	public static final fun useDateTimeWithTimeZones (Ltech/antibytes/kfixture/PublicApi$Configuration;)V
-	public static final fun useDateTimeWithoutTimeZones (Ltech/antibytes/kfixture/PublicApi$Configuration;)V
 }
 

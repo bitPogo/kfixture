@@ -12,13 +12,13 @@ import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import tech.antibytes.kfixture.PublicApi
-import tech.antibytes.kfixture.ktx.datetime.DateTimeContract
+import tech.antibytes.kfixture.ktx.datetime.KtxDateTimeContract
 import tech.antibytes.kfixture.qualifier.resolveGeneratorId
 
 internal class LocalDateTimeGenerator(
     private val instantGenerator: PublicApi.Generator<Instant>,
     private val timeZoneGenerator: PublicApi.Generator<TimeZone>,
-) : DateTimeContract.LocalizedDateTimeGenerator<LocalDateTime> {
+) : KtxDateTimeContract.LocalizedDateTimeGenerator<LocalDateTime> {
     override fun generate(): LocalDateTime = generate(null, null)
 
     override fun generate(

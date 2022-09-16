@@ -55,7 +55,7 @@ class SetupSpec {
         }
 
         // When
-        configuration.useDateTimeWithoutTimeZones()
+        configuration.useDateTimeWithOnlyUtc()
 
         // Then
         assertEquals(
@@ -73,9 +73,9 @@ class SetupSpec {
                 FixedOffsetTimeZone::class to FixedOffsetTimeZoneGenerator,
                 DatePeriod::class to DatePeriodGenerator,
                 DateTimePeriod::class to DateTimePeriodGenerator,
+                LocalDateTime::class to LocalDateTimeGenerator,
                 LocalDate::class to LocalDateGenerator,
                 LocalTime::class to LocalTimeGenerator,
-                LocalDateTime::class to LocalDateTimeGenerator,
             ),
             actual = capturedDependentGenerators,
         )
@@ -116,9 +116,9 @@ class SetupSpec {
                 FixedOffsetTimeZone::class to FixedOffsetTimeZoneGenerator,
                 DatePeriod::class to DatePeriodGenerator,
                 DateTimePeriod::class to DateTimePeriodGenerator,
+                LocalDateTime::class to LocalDateTimeGenerator,
                 LocalDate::class to LocalDateGenerator,
                 LocalTime::class to LocalTimeGenerator,
-                LocalDateTime::class to LocalDateTimeGenerator,
             ),
             actual = capturedDependentGenerators,
         )
