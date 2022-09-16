@@ -61,8 +61,9 @@ antiBytesCoverage {
         minimum = BigDecimal(0.97)
     )
 
-    val excludes = setOf<String>(
-        // "**/FixtureKt*",
+    val excludes = setOf(
+        "**/DateTimeFixtureKt*",
+        "**/InstantFixtureKt*",
     ) // Inline Function cannot be covered
 
     val jvmCoverage = JvmJacocoConfiguration.createJvmKmpConfiguration(

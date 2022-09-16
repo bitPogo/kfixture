@@ -14,7 +14,7 @@ public final class tech/antibytes/kfixture/ktx/datetime/KtxDateTimeContract$Loca
 }
 
 public final class tech/antibytes/kfixture/ktx/datetime/SetupKt {
+	public static final fun useDateTimeWithOnlyUtc (Ltech/antibytes/kfixture/PublicApi$Configuration;)V
 	public static final fun useDateTimeWithTimeZones (Ltech/antibytes/kfixture/PublicApi$Configuration;)V
-	public static final fun useDateTimeWithoutTimeZones (Ltech/antibytes/kfixture/PublicApi$Configuration;)V
 }
 

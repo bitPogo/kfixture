@@ -20,6 +20,8 @@ public interface KtxDateTimeContract {
 }
 
 internal object DateTimeContract {
+    const val MIN_TIME_STAMP = -9007199254740991L // js // native -31619087596800000L
+    const val MAX_TIME_STAMP = 9007199254740991L // js // native 31494784780799999L
     const val MIN_TIME_PERIOD = 0
     const val MIN_TIME_PERIOD_L = 0L
     const val MAX_MONTH = 11

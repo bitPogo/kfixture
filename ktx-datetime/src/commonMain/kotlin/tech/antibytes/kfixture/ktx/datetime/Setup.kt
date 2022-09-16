@@ -40,9 +40,9 @@ private val dependentGenerators = listOf(
     FixedOffsetTimeZone::class to FixedOffsetTimeZoneGenerator,
     DatePeriod::class to DatePeriodGenerator,
     DateTimePeriod::class to DateTimePeriodGenerator,
+    LocalDateTime::class to LocalDateTimeGenerator,
     LocalDate::class to LocalDateGenerator,
     LocalTime::class to LocalTimeGenerator,
-    LocalDateTime::class to LocalDateTimeGenerator,
 )
 
 private fun PublicApi.Configuration.addDependentGenerators() {
@@ -57,7 +57,7 @@ private fun PublicApi.Configuration.addDependentGenerators() {
     }
 }
 
-public fun PublicApi.Configuration.useDateTimeWithoutTimeZones() {
+public fun PublicApi.Configuration.useDateTimeWithOnlyUtc() {
     addGenerator(
         clazz = TimeZone::class,
         factory = ShallowTimeZoneGenerator,

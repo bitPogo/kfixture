@@ -73,11 +73,11 @@ class InstantGeneratorSpec {
         )
         assertEquals(
             actual = capturedFrom,
-            expected = 0L,
+            expected = -9007199254740991L,
         )
         assertEquals(
             actual = capturedTo,
-            expected = Long.MAX_VALUE,
+            expected = 9007199254740991L,
         )
     }
 
@@ -114,11 +114,11 @@ class InstantGeneratorSpec {
         )
         assertEquals(
             actual = capturedFrom,
-            expected = 0L,
+            expected = -9007199254740991L,
         )
         assertEquals(
             actual = capturedTo,
-            expected = Long.MAX_VALUE,
+            expected = 9007199254740991L,
         )
         assertSame(
             actual = capturedPredicate,
@@ -128,9 +128,9 @@ class InstantGeneratorSpec {
 
     @Test
     @JsName("fn5")
-    fun `Given generate is called with a range and a predicate it fails if the the lower bound is less than zero`() {
+    fun `Given generate is called with a range and a predicate it fails if the the lower bound is less than minmum Date`() {
         // Given
-        val expectedFrom = -1L
+        val expectedFrom = -31619087596800001L
         val expectedTo = 23L
         val expectedPredicate: Function1<Long?, Boolean> = { true }
 
@@ -150,7 +150,35 @@ class InstantGeneratorSpec {
 
         assertEquals(
             actual = error.message,
-            expected = "The lower bound of an Instant must be greater than -1!",
+            expected = "The lower bound of an Instant must be greater than -9007199254740991!",
+        )
+    }
+
+    @Test
+    @JsName("fn5a")
+    fun `Given generate is called with a range and a predicate it fails if the the upper bound is greater than maximum date boundary`() {
+        // Given
+        val expectedFrom = -9007199254740991L
+        val expectedTo = 31494784780800000L
+        val expectedPredicate: Function1<Long?, Boolean> = { true }
+
+        val generator = InstantGenerator(
+            epochMilliSecondsGenerator = dependencyGenerator,
+        )
+
+        // Then
+        val error = assertFailsWith<IllegalArgumentException> {
+            // When
+            generator.generate(
+                from = expectedFrom,
+                to = expectedTo,
+                predicate = expectedPredicate,
+            )
+        }
+
+        assertEquals(
+            actual = error.message,
+            expected = "The upper bound of an Instant must be smaller than 9007199254740991!",
         )
     }
 
@@ -243,11 +271,11 @@ class InstantGeneratorSpec {
         )
         assertEquals(
             actual = capturedFrom,
-            expected = 0L,
+            expected = -9007199254740991L,
         )
         assertEquals(
             actual = capturedTo,
-            expected = Long.MAX_VALUE,
+            expected = 9007199254740991L,
         )
         assertSame(
             actual = capturedPredicate,
