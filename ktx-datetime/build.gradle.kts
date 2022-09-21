@@ -15,6 +15,7 @@ import tech.antibytes.gradle.coverage.CoverageApiContract.JacocoCounter
 import tech.antibytes.gradle.coverage.CoverageApiContract.JacocoMeasurement
 import tech.antibytes.gradle.publishing.api.DocumentationConfiguration
 import org.jetbrains.dokka.gradle.DokkaTask
+import tech.antibytes.gradle.configuration.ensureIosDeviceCompatibility
 
 plugins {
     id("org.jetbrains.kotlin.multiplatform")
@@ -28,10 +29,10 @@ plugins {
 
     id("kotlinx-atomicfu")
 
-    id("org.jetbrains.dokka") version "1.7.0"
+    id("org.jetbrains.dokka") version "1.7.10"
 
     // Pin API
-    id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.11.0"
+    id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.11.1"
 }
 
 group = FixtureKtxDateTimeConfiguration.group
@@ -108,6 +109,7 @@ kotlin {
 
     ios()
     iosSimulatorArm64()
+    ensureIosDeviceCompatibility()
 
     linuxX64()
 
@@ -150,6 +152,11 @@ kotlin {
         val androidAndroidTestRelease by getting {
             dependsOn(noJsTest)
         }
+        val androidAndroidTest by getting {
+            dependsOn(noJsTest)
+            dependsOn(androidAndroidTestRelease)
+        }
+
         val androidTestFixtures by getting {
             dependsOn(noJsTest)
         }
@@ -161,7 +168,6 @@ kotlin {
         }
         val androidTest by getting {
             dependsOn(noJsTest)
-            dependsOn(androidAndroidTestRelease)
             dependsOn(androidTestFixtures)
             dependsOn(androidTestFixturesDebug)
             dependsOn(androidTestFixturesRelease)

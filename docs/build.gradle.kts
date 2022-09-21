@@ -4,7 +4,7 @@
  * Use of this source code is governed by Apache v2.0
  */
 
-import tech.antibytes.gradle.kfixture.dependency.MkDocs
+import tech.antibytes.gradle.dependency.MkDocs
 import tech.antibytes.gradle.kfixture.config.FixturePublishingConfiguration
 import tech.antibytes.gradle.versioning.Versioning
 
