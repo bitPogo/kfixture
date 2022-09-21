@@ -36,6 +36,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Bumped
 
+* Gradle 7.5 -> 7.5.1
+* Kotlin 1.7.0 -> 1.7.10
+* AtomicFu 0.18.2 -> 0.18.3
+* Android Target SDK 32 -> 33
+
 ## [0.3.1](https://github.com/bitPogo/kfixture/compare/v0.3.0...v0.3.1)
 
 ### Fixed

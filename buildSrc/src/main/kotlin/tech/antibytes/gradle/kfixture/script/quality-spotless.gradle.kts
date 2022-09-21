@@ -6,11 +6,11 @@
 
 package tech.antibytes.gradle.kfixture.script
 
+import tech.antibytes.gradle.dependency.Version
+
 plugins {
     id("com.diffplug.spotless")
 }
-
-val ktlintVersion = "0.46.1"
 
 spotless {
     kotlin {
@@ -19,9 +19,9 @@ spotless {
             "buildSrc/build/",
             "**/buildSrc/build/",
         )
-        ktlint(ktlintVersion).editorConfigOverride(
+        ktlint(Version.gradle.ktLint).editorConfigOverride(
             mapOf(
-                "disabled_rules" to "no-wildcard-imports",
+                "ktlint_disabled_rules" to "no-wildcard-imports",
                 "ij_kotlin_imports_layout" to "*",
                 "ij_kotlin_allow_trailing_comma" to "true",
                 "ij_kotlin_allow_trailing_comma_on_call_site" to "true",
@@ -33,7 +33,7 @@ spotless {
     }
     kotlinGradle {
         target("*.gradle.kts")
-        ktlint(ktlintVersion)
+        ktlint(Version.gradle.ktLint)
         trimTrailingWhitespace()
         indentWithSpaces()
         endWithNewline()

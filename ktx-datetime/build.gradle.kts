@@ -15,6 +15,7 @@ import tech.antibytes.gradle.coverage.CoverageApiContract.JacocoCounter
 import tech.antibytes.gradle.coverage.CoverageApiContract.JacocoMeasurement
 import tech.antibytes.gradle.publishing.api.DocumentationConfiguration
 import org.jetbrains.dokka.gradle.DokkaTask
+import tech.antibytes.gradle.configuration.ensureIosDeviceCompatibility
 
 plugins {
     id("org.jetbrains.kotlin.multiplatform")
@@ -28,14 +29,15 @@ plugins {
 
     id("kotlinx-atomicfu")
 
-    id("org.jetbrains.dokka") version "1.7.0"
+    id("org.jetbrains.dokka") version "1.7.10"
 
     // Pin API
-    id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.11.0"
+    id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.11.1"
 }
 
 group = FixtureKtxDateTimeConfiguration.group
 val dokkaDir = buildDir.resolve("dokka")
+val isIDEA = System.getProperty("idea.fatal.error.notification") != null
 
 antiBytesPublishing {
     packageConfiguration = FixtureKtxDateTimeConfiguration.publishing.packageConfiguration
@@ -108,6 +110,7 @@ kotlin {
 
     ios()
     iosSimulatorArm64()
+    ensureIosDeviceCompatibility()
 
     linuxX64()
 
@@ -147,24 +150,33 @@ kotlin {
                 implementation(Dependency.multiplatform.kotlin.android)
             }
         }
-        val androidAndroidTestRelease by getting {
-            dependsOn(noJsTest)
-        }
-        val androidTestFixtures by getting {
-            dependsOn(noJsTest)
-        }
-        val androidTestFixturesDebug by getting {
-            dependsOn(noJsTest)
-        }
-        val androidTestFixturesRelease by getting {
-            dependsOn(noJsTest)
+        if (!isIDEA) {
+            val androidAndroidTestRelease by getting {
+                dependsOn(noJsTest)
+            }
+            val androidAndroidTest by getting {
+                dependsOn(noJsTest)
+                dependsOn(androidAndroidTestRelease)
+            }
+            val androidTestFixturesDebug by getting {
+                dependsOn(noJsTest)
+            }
+            val androidTestFixturesRelease by getting {
+                dependsOn(noJsTest)
+            }
+
+            val androidTestFixtures by getting {
+                dependsOn(noJsTest)
+                dependsOn(androidTestFixturesDebug)
+                dependsOn(androidTestFixturesRelease)
+            }
+
+            val androidTest by getting {
+                dependsOn(androidTestFixtures)
+            }
         }
         val androidTest by getting {
             dependsOn(noJsTest)
-            dependsOn(androidAndroidTestRelease)
-            dependsOn(androidTestFixtures)
-            dependsOn(androidTestFixturesDebug)
-            dependsOn(androidTestFixturesRelease)
 
             dependencies {
                 implementation(Dependency.multiplatform.test.jvm)
@@ -176,6 +188,7 @@ kotlin {
             dependencies {
                 implementation(Dependency.multiplatform.kotlin.js)
                 implementation(Dependency.js.nodejs)
+                implementation(peerNpm(LocalDependency.npm.joda.name, LocalDependency.npm.joda.version))
             }
         }
         val jsTest by getting {
@@ -246,6 +259,10 @@ kotlin {
             dependsOn(iosTest)
         }
     }
+}
+
+android {
+    namespace = "tech.antibytes.kfixture.ktx.datetime"
 }
 
 tasks.withType<KotlinCompile> {

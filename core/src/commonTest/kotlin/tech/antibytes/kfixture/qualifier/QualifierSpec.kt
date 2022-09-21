@@ -69,5 +69,5 @@ class QualifierSpec {
 }
 
 private enum class TestEnum {
-    TEST
+    TEST,
 }
