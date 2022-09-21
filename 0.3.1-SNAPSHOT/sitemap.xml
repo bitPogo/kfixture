@@ -2,62 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://bitpogo.github.io/kfixture/0.3.1-SNAPSHOT/</loc>
-         <lastmod>2022-09-16</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bitpogo.github.io/kfixture/0.3.1-SNAPSHOT/changelog/</loc>
-         <lastmod>2022-09-16</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bitpogo.github.io/kfixture/0.3.1-SNAPSHOT/license/</loc>
-         <lastmod>2022-09-16</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bitpogo.github.io/kfixture/0.3.1-SNAPSHOT/security/</loc>
-         <lastmod>2022-09-16</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bitpogo.github.io/kfixture/0.3.1-SNAPSHOT/usage/</loc>
-         <lastmod>2022-09-16</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bitpogo.github.io/kfixture/0.3.1-SNAPSHOT/development/badges/</loc>
-         <lastmod>2022-09-16</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bitpogo.github.io/kfixture/0.3.1-SNAPSHOT/development/code-of-conduct/</loc>
-         <lastmod>2022-09-16</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bitpogo.github.io/kfixture/0.3.1-SNAPSHOT/development/contributing/</loc>
-         <lastmod>2022-09-16</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bitpogo.github.io/kfixture/0.3.1-SNAPSHOT/development/releasing/</loc>
-         <lastmod>2022-09-16</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bitpogo.github.io/kfixture/0.3.1-SNAPSHOT/usage/basic/</loc>
-         <lastmod>2022-09-16</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bitpogo.github.io/kfixture/0.3.1-SNAPSHOT/usage/customization/</loc>
-         <lastmod>2022-09-16</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bitpogo.github.io/kfixture/0.3.1-SNAPSHOT/usage/extension/</loc>
-         <lastmod>2022-09-16</lastmod>
+         <lastmod>2022-09-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
