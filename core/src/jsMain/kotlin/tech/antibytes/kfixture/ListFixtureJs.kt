@@ -4,6 +4,8 @@
  * Use of this source code is governed by Apache v2.0
  */
 
+@file:OptIn(InternalAPI::class)
+
 package tech.antibytes.kfixture
 
 import kotlin.reflect.KClass
