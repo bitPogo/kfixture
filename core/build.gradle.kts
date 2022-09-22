@@ -14,6 +14,7 @@ import tech.antibytes.gradle.coverage.CoverageApiContract.JacocoCounter
 import tech.antibytes.gradle.coverage.CoverageApiContract.JacocoMeasurement
 import tech.antibytes.gradle.publishing.api.DocumentationConfiguration
 import org.jetbrains.dokka.gradle.DokkaTask
+import tech.antibytes.gradle.configuration.ensureIosDeviceCompatibility
 
 plugins {
     id("org.jetbrains.kotlin.multiplatform")
@@ -112,6 +113,7 @@ kotlin {
 
     ios()
     iosSimulatorArm64()
+    ensureIosDeviceCompatibility()
 
     linuxX64()
 
