@@ -11,12 +11,12 @@ Tired of writing potato or 42 for your test values? - KFixture is a (limited) ex
 The project is heavily influenced by [appmattus kotlinfixture](https://github.com/appmattus/kotlinfixture) and inspired by [Kotest Generators](https://kotest.io/docs/proptest/property-test-generators.html).
 If you want to know more take a look into the [Documentation](https://bitpogo.github.io/kfixture/).
 
-## Requirements
+## Dependencies
 
-* [Kotlin 1.7.0](https://kotlinlang.org/docs/releases.html)
-* [AtomicFu 0.18.2](https://github.com/Kotlin/kotlinx.atomicfu)
+* [Kotlin 1.7.10](https://kotlinlang.org/docs/releases.html)
+* [AtomicFu 0.18.3](https://github.com/Kotlin/kotlinx.atomicfu)
 * [Touchlab's Stately 1.2.3](https://github.com/touchlab/Stately)
-* Android 5.0 (API 21) to Android 12L (API 32)
+* Android 5.0 (API 21) to Android 13 (API 33)
 
 ## Changelog
 

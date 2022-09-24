@@ -18,7 +18,7 @@ object FixtureKtxDateTimeConfiguration {
         val packageConfiguration = PackageConfiguration(
             pom = PomConfiguration(
                 name = "KFixture Ktx DateTime",
-                description = "A tool to generate randomized date-time test values for Kotlin Multiplatform.",
+                description = "A tool to generate randomized kotlinx.date-time test values for Kotlin Multiplatform.",
                 year = 2022,
                 url = "https://$gitHubRepositoryPath",
             ),

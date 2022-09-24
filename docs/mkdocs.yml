@@ -64,7 +64,7 @@ extra:
 
   repo: https://github.com/bitPogo/kfixture
 
-  latest: v0.3.0
+  latest: v0.4.0
 
   social:
     - icon: fontawesome/brands/github
