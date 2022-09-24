@@ -21,7 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Bumped
 
-## [Unreleased](https://github.com/bitPogo/kfixture/compare/v0.3.1...v0.4.0)
+## [0.4.0](https://github.com/bitPogo/kfixture/compare/v0.3.1...v0.4.0)
 
 ### Added
 
