@@ -112,6 +112,8 @@ nav:
       - Basic: usage/basic.md
       - Customization: usage/customization.md
       - Extension: usage/extension.md
+  - Extensions:
+      - DateTime: usage/datetime.md
   - Development:
       - Code of Conduct: development/code-of-conduct.md
       - Contributing: development/contributing.md
