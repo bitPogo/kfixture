@@ -3,7 +3,6 @@
  *
  * Use of this source code is governed by Apache v2.0
  */
-
 pluginManagement {
     repositories {
         val antibytesPlugins = "^tech\\.antibytes\\.[\\.a-z\\-]+"
@@ -27,22 +26,3 @@ pluginManagement {
 plugins {
     id("tech.antibytes.gradle.dependency.settings") version "c189d8a"
 }
-
-includeBuild("setup")
-includeBuild("gradlePlugin/kfixture-dependency")
-
-include(
-    ":core",
-    ":ktx-datetime",
-    ":docs"
-)
-
-buildCache {
-    local {
-        isEnabled = false
-        directory = File(rootDir, "build-cache")
-        removeUnusedEntriesAfterDays = 30
-    }
-}
-
-rootProject.name = "kfixture"
