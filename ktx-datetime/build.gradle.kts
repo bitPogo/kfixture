@@ -17,17 +17,11 @@ import org.jetbrains.dokka.gradle.DokkaTask
 import tech.antibytes.gradle.configuration.ensureIosDeviceCompatibility
 
 plugins {
-    id("org.jetbrains.kotlin.multiplatform")
-
-    // Android
-    id("com.android.library")
-
-    id("tech.antibytes.gradle.configuration")
-
+    alias(antibytesCatalog.plugins.gradle.antibytes.kmpConfiguration)
+    alias(antibytesCatalog.plugins.gradle.antibytes.androidLibraryConfiguration)
     alias(antibytesCatalog.plugins.gradle.antibytes.publishing)
-    id("tech.antibytes.gradle.coverage")
-
-    id("kotlinx-atomicfu")
+    alias(antibytesCatalog.plugins.gradle.antibytes.coverage)
+    id(antibytesCatalog.plugins.kotlinx.atomicfu.get().pluginId)
 
     id("org.jetbrains.dokka") version "1.7.10"
 }
@@ -85,8 +79,8 @@ antiBytesCoverage {
         ),
     )
 
-    configurations["jvm"] = jvmCoverage
-    configurations["android"] = androidCoverage
+    configurations.put("jvm", jvmCoverage)
+    configurations.put("android", androidCoverage)
 }
 
 android {
