@@ -5,7 +5,6 @@
  */
 
 import tech.antibytes.gradle.dependency.Dependency
-import tech.antibytes.gradle.kfixture.config.FixtureCoreConfiguration
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import tech.antibytes.gradle.coverage.api.JvmJacocoConfiguration
 import tech.antibytes.gradle.coverage.api.AndroidJacocoConfiguration
@@ -29,26 +28,23 @@ plugins {
     id("kotlinx-atomicfu")
 
     id("org.jetbrains.dokka") version "1.7.10"
-
-    // Pin API
-    id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.11.1"
 }
 
-group = FixtureCoreConfiguration.group
+group = tech.antibytes.gradle.kfixture.config.publishing.FixtureCoreConfiguration.group
 val dokkaDir = buildDir.resolve("dokka")
 val isIDEA = System.getProperty("idea.fatal.error.notification") != null
 
 antiBytesPublishing {
-    packaging.set(FixtureCoreConfiguration.publishing.packageConfiguration)
-    repositories.set(FixtureCoreConfiguration.publishing.repositories)
-    versioning.set(FixtureCoreConfiguration.publishing.versioning)
+    packaging.set(tech.antibytes.gradle.kfixture.config.publishing.FixtureCoreConfiguration.publishing.packageConfiguration)
+    repositories.set(tech.antibytes.gradle.kfixture.config.publishing.FixtureCoreConfiguration.publishing.repositories)
+    versioning.set(tech.antibytes.gradle.kfixture.config.publishing.FixtureCoreConfiguration.publishing.versioning)
     documentation.set(
         DocumentationConfiguration(
             tasks = setOf("dokkaHtml"),
             outputDir = dokkaDir
         )
     )
-    signing.set(FixtureCoreConfiguration.publishing.signing)
+    signing.set(tech.antibytes.gradle.kfixture.config.publishing.FixtureCoreConfiguration.publishing.signing)
 }
 
 antiBytesCoverage {

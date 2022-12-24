@@ -33,6 +33,7 @@ dependencies {
     api(antibytesCatalog.gradle.antibytes.dependencyHelper)
     implementation(antibytesCatalog.gradle.antibytes.publishing)
     implementation(antibytesCatalog.gradle.antibytes.versioning)
+    implementation(antibytesCatalog.gradle.antibytes.quality)
     implementation(antibytesCatalog.gradle.agp)
     api(antibytesCatalog.gradle.antibytes.runtimeConfig)
 }
@@ -40,6 +41,6 @@ dependencies {
 gradlePlugin {
     plugins.create("tech.antibytes.gradle.setup") {
         id = "tech.antibytes.gradle.setup"
-        implementationClass = "tech.antibytes.gradle.kfixture.SetupPlugin"
+        implementationClass = "tech.antibytes.gradle.kfixture.config.SetupPlugin"
     }
 }

@@ -6,7 +6,6 @@
 
 import tech.antibytes.gradle.dependency.Dependency
 import tech.antibytes.gradle.kfixture.dependency.Dependency as LocalDependency
-import tech.antibytes.gradle.kfixture.config.FixtureKtxDateTimeConfiguration
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import tech.antibytes.gradle.coverage.api.JvmJacocoConfiguration
 import tech.antibytes.gradle.coverage.api.AndroidJacocoConfiguration
@@ -31,26 +30,23 @@ plugins {
     id("kotlinx-atomicfu")
 
     id("org.jetbrains.dokka") version "1.7.10"
-
-    // Pin API
-    id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.11.1"
 }
 
-group = FixtureKtxDateTimeConfiguration.group
+group = tech.antibytes.gradle.kfixture.config.publishing.FixtureKtxDateTimeConfiguration.group
 val dokkaDir = buildDir.resolve("dokka")
 val isIDEA = System.getProperty("idea.fatal.error.notification") != null
 
 antiBytesPublishing {
-    packaging.set(FixtureKtxDateTimeConfiguration.publishing.packageConfiguration)
-    repositories.set(FixtureKtxDateTimeConfiguration.publishing.repositories)
-    versioning.set(FixtureKtxDateTimeConfiguration.publishing.versioning)
+    packaging.set(tech.antibytes.gradle.kfixture.config.publishing.FixtureKtxDateTimeConfiguration.publishing.packageConfiguration)
+    repositories.set(tech.antibytes.gradle.kfixture.config.publishing.FixtureKtxDateTimeConfiguration.publishing.repositories)
+    versioning.set(tech.antibytes.gradle.kfixture.config.publishing.FixtureKtxDateTimeConfiguration.publishing.versioning)
     documentation.set(
         DocumentationConfiguration(
             tasks = setOf("dokkaHtml"),
             outputDir = dokkaDir
         )
     )
-    signing.set(FixtureKtxDateTimeConfiguration.publishing.signing)
+    signing.set(tech.antibytes.gradle.kfixture.config.publishing.FixtureKtxDateTimeConfiguration.publishing.signing)
 }
 
 antiBytesCoverage {
