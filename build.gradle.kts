@@ -12,22 +12,22 @@ import tech.antibytes.gradle.kfixture.dependency.addCustomRepositories
 import tech.antibytes.gradle.kfixture.dependency.ensureKotlinVersion
 
 plugins {
+    id("tech.antibytes.gradle.setup")
+
     id("tech.antibytes.gradle.kfixture.dependency")
 
     id("tech.antibytes.gradle.dependency")
 
-    id("tech.antibytes.gradle.kfixture.script.quality-spotless")
-
     id("org.owasp.dependencycheck")
 
-    id("tech.antibytes.gradle.publishing")
+    alias(antibytesCatalog.plugins.gradle.antibytes.publishing)
 
     id("io.gitlab.arturbosch.detekt") version "1.21.0"
 }
 
 antiBytesPublishing {
-    versioning = FixturePublishingConfiguration.versioning
-    repositoryConfiguration = FixturePublishingConfiguration.repositories
+    versioning.set(FixturePublishingConfiguration.versioning)
+    repositories.set(FixturePublishingConfiguration.repositories)
 }
 
 allprojects {

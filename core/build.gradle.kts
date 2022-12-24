@@ -23,7 +23,7 @@ plugins {
     id("com.android.library")
 
     id("tech.antibytes.gradle.configuration")
-    id("tech.antibytes.gradle.publishing")
+    alias(antibytesCatalog.plugins.gradle.antibytes.publishing)
     id("tech.antibytes.gradle.coverage")
 
     id("kotlinx-atomicfu")
@@ -39,14 +39,16 @@ val dokkaDir = buildDir.resolve("dokka")
 val isIDEA = System.getProperty("idea.fatal.error.notification") != null
 
 antiBytesPublishing {
-    packageConfiguration = FixtureCoreConfiguration.publishing.packageConfiguration
-    repositoryConfiguration = FixtureCoreConfiguration.publishing.repositories
-    versioning = FixtureCoreConfiguration.publishing.versioning
-    documentation = DocumentationConfiguration(
-        tasks = setOf("dokkaHtml"),
-        outputDir = dokkaDir
+    packaging.set(FixtureCoreConfiguration.publishing.packageConfiguration)
+    repositories.set(FixtureCoreConfiguration.publishing.repositories)
+    versioning.set(FixtureCoreConfiguration.publishing.versioning)
+    documentation.set(
+        DocumentationConfiguration(
+            tasks = setOf("dokkaHtml"),
+            outputDir = dokkaDir
+        )
     )
-    signingConfiguration = FixtureCoreConfiguration.publishing.signing
+    signing.set(FixtureCoreConfiguration.publishing.signing)
 }
 
 antiBytesCoverage {

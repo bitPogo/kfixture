@@ -27,12 +27,6 @@ repositories {
             includeGroupByRegex(antibytesPlugins)
         }
     }
-    maven {
-        setUrl("../../gradle-plugins/build")
-        content {
-            includeGroupByRegex(antibytesPlugins)
-        }
-    }
 }
 
 dependencies {
@@ -46,6 +40,6 @@ dependencies {
 gradlePlugin {
     plugins.create("tech.antibytes.gradle.setup") {
         id = "tech.antibytes.gradle.setup"
-        implementationClass = "tech.antibytes.gradle.kfixture.config.SetupPlugin"
+        implementationClass = "tech.antibytes.gradle.kfixture.SetupPlugin"
     }
 }
