@@ -6,8 +6,8 @@
 
 import tech.antibytes.gradle.dependency.helper.addCustomRepositories
 import tech.antibytes.gradle.dependency.helper.customArtifact
-import tech.antibytes.gradle.kfixture.config.publishing.FixturePublishingConfiguration
 import tech.antibytes.gradle.dependency.helper.ensureKotlinVersion
+import tech.antibytes.gradle.kfixture.config.publishing.FixturePublishingConfiguration
 import tech.antibytes.gradle.kfixture.config.repositories.Repositories.pluginRepositories
 import tech.antibytes.gradle.quality.api.CodeAnalysisConfiguration
 import tech.antibytes.gradle.quality.api.StableApiConfiguration

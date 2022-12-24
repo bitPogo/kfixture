@@ -13,8 +13,9 @@ import tech.antibytes.gradle.coverage.api.JacocoVerificationRule
 import tech.antibytes.gradle.coverage.CoverageApiContract.JacocoCounter
 import tech.antibytes.gradle.coverage.CoverageApiContract.JacocoMeasurement
 import tech.antibytes.gradle.publishing.api.DocumentationConfiguration
-import org.jetbrains.dokka.gradle.DokkaTask
 import tech.antibytes.gradle.configuration.ensureIosDeviceCompatibility
+import tech.antibytes.gradle.configuration.isIdea
+import tech.antibytes.gradle.kfixture.config.publishing.FixtureKtxDateTimeConfiguration
 
 plugins {
     alias(antibytesCatalog.plugins.gradle.antibytes.kmpConfiguration)
@@ -22,25 +23,22 @@ plugins {
     alias(antibytesCatalog.plugins.gradle.antibytes.publishing)
     alias(antibytesCatalog.plugins.gradle.antibytes.coverage)
     id(antibytesCatalog.plugins.kotlinx.atomicfu.get().pluginId)
-
-    id("org.jetbrains.dokka") version "1.7.10"
+    alias(antibytesCatalog.plugins.gradle.antibytes.dokkaConfiguration)
 }
 
-group = tech.antibytes.gradle.kfixture.config.publishing.FixtureKtxDateTimeConfiguration.group
-val dokkaDir = buildDir.resolve("dokka")
-val isIDEA = System.getProperty("idea.fatal.error.notification") != null
+group = FixtureKtxDateTimeConfiguration.group
 
 antiBytesPublishing {
-    packaging.set(tech.antibytes.gradle.kfixture.config.publishing.FixtureKtxDateTimeConfiguration.publishing.packageConfiguration)
-    repositories.set(tech.antibytes.gradle.kfixture.config.publishing.FixtureKtxDateTimeConfiguration.publishing.repositories)
-    versioning.set(tech.antibytes.gradle.kfixture.config.publishing.FixtureKtxDateTimeConfiguration.publishing.versioning)
+    packaging.set(FixtureKtxDateTimeConfiguration.publishing.packageConfiguration)
+    repositories.set(FixtureKtxDateTimeConfiguration.publishing.repositories)
+    versioning.set(FixtureKtxDateTimeConfiguration.publishing.versioning)
     documentation.set(
         DocumentationConfiguration(
             tasks = setOf("dokkaHtml"),
-            outputDir = dokkaDir
+            outputDir = buildDir.resolve("dokka")
         )
     )
-    signing.set(tech.antibytes.gradle.kfixture.config.publishing.FixtureKtxDateTimeConfiguration.publishing.signing)
+    signing.set(FixtureKtxDateTimeConfiguration.publishing.signing)
 }
 
 antiBytesCoverage {
@@ -143,7 +141,7 @@ kotlin {
                 implementation(Dependency.multiplatform.kotlin.android)
             }
         }
-        if (!isIDEA) {
+        if (!isIdea()) {
             val androidAndroidTestRelease by getting {
                 dependsOn(noJsTest)
             }
@@ -261,24 +259,5 @@ android {
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
-    }
-}
-
-tasks.withType<DokkaTask>(DokkaTask::class.java).configureEach {
-    outputDirectory.set(buildDir.resolve("dokka"))
-
-    moduleName.set("KFixture-Ktx-DateTime")
-    offlineMode.set(true)
-    suppressObviousFunctions.set(true)
-
-    dokkaSourceSets {
-        configureEach {
-            reportUndocumented.set(true)
-            skipEmptyPackages.set(true)
-            jdkVersion.set(8)
-            noStdlibLink.set(false)
-            noJdkLink.set(false)
-            noAndroidSdkLink.set(false)
-        }
     }
 }

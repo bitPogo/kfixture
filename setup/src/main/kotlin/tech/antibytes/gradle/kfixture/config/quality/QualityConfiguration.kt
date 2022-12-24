@@ -11,7 +11,7 @@ import tech.antibytes.gradle.quality.api.StableApiConfiguration
 object QualityConfiguration {
     val stableApi = StableApiConfiguration(
         excludeProjects = setOf(
-            "docs"
+            "docs",
         ),
     )
 }
