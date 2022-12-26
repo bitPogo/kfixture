@@ -4,7 +4,6 @@
  * Use of this source code is governed by Apache v2.0
  */
 
-import tech.antibytes.gradle.dependency.Dependency
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import tech.antibytes.gradle.coverage.api.JvmJacocoConfiguration
 import tech.antibytes.gradle.coverage.api.AndroidJacocoConfiguration
@@ -12,7 +11,7 @@ import tech.antibytes.gradle.coverage.api.JacocoVerificationRule
 import tech.antibytes.gradle.coverage.CoverageApiContract.JacocoCounter
 import tech.antibytes.gradle.coverage.CoverageApiContract.JacocoMeasurement
 import tech.antibytes.gradle.publishing.api.DocumentationConfiguration
-import tech.antibytes.gradle.configuration.ensureIosDeviceCompatibility
+import tech.antibytes.gradle.configuration.apple.ensureAppleDeviceCompatibility
 import tech.antibytes.gradle.configuration.isIdea
 import tech.antibytes.gradle.kfixture.config.publishing.FixtureCoreConfiguration
 
@@ -27,7 +26,7 @@ plugins {
 
 group = FixtureCoreConfiguration.group
 
-antiBytesPublishing {
+antibytesPublishing {
     packaging.set(FixtureCoreConfiguration.publishing.packageConfiguration)
     repositories.set(FixtureCoreConfiguration.publishing.repositories)
     versioning.set(FixtureCoreConfiguration.publishing.versioning)
@@ -40,7 +39,7 @@ antiBytesPublishing {
     signing.set(FixtureCoreConfiguration.publishing.signing)
 }
 
-antiBytesCoverage {
+antibytesCoverage {
     val branchCoverage = JacocoVerificationRule(
         counter = JacocoCounter.BRANCH,
         measurement = JacocoMeasurement.COVERED_RATIO,
@@ -96,14 +95,14 @@ antiBytesCoverage {
 }
 
 android {
+    namespace = "tech.antibytes.kfixture"
+
     defaultConfig {
-        minSdk = libs.versions.minSdk.get().toInt()
+        minSdk = local.versions.minSdk.get().toInt()
     }
 }
 
 kotlin {
-    explicitApi()
-
     android()
 
     js(IR) {
@@ -115,7 +114,7 @@ kotlin {
 
     ios()
     iosSimulatorArm64()
-    ensureIosDeviceCompatibility()
+    ensureAppleDeviceCompatibility()
 
     linuxX64()
 
@@ -129,17 +128,17 @@ kotlin {
 
         val commonMain by getting {
             dependencies {
-                implementation(Dependency.multiplatform.kotlin.common)
-                implementation(Dependency.multiplatform.stately.isolate)
-                implementation(Dependency.multiplatform.atomicFu.common)
+                implementation(antibytesCatalog.common.kotlin.stdlib)
+                implementation(antibytesCatalog.common.stately.isolate)
+                implementation(antibytesCatalog.common.kotlinx.atomicfu.core)
             }
         }
         val commonTest by getting {
             dependencies {
-                implementation(Dependency.multiplatform.test.common)
-                implementation(Dependency.multiplatform.test.annotations)
-                implementation(Dependency.multiplatform.stately.freeze)
-                implementation(Dependency.multiplatform.stately.collections)
+                implementation(antibytesCatalog.common.test.kotlin.core)
+                implementation(antibytesCatalog.common.test.kotlin.annotations)
+                implementation(antibytesCatalog.common.stately.freeze)
+                implementation(antibytesCatalog.common.stately.collections)
             }
         }
 
@@ -153,7 +152,7 @@ kotlin {
         val androidMain by getting {
             dependsOn(noJsMain)
             dependencies {
-                implementation(Dependency.multiplatform.kotlin.android)
+                implementation(antibytesCatalog.jvm.kotlin.stdlib.jdk8)
             }
         }
 
@@ -186,34 +185,31 @@ kotlin {
             dependsOn(noJsTest)
 
             dependencies {
-                implementation(Dependency.multiplatform.test.jvm)
-                implementation(Dependency.multiplatform.test.junit)
+                implementation(antibytesCatalog.jvm.test.kotlin.core)
+                implementation(antibytesCatalog.jvm.test.kotlin.junit4)
             }
         }
 
         val jsMain by getting {
             dependencies {
-                implementation(Dependency.multiplatform.kotlin.js)
-                implementation(Dependency.js.nodejs)
+                implementation(antibytesCatalog.js.kotlin.stdlib)
+                implementation(antibytesCatalog.js.kotlinx.nodeJs)
             }
         }
         val jsTest by getting {
             dependencies {
-                implementation(Dependency.multiplatform.test.js)
+                implementation(antibytesCatalog.js.test.kotlin.core)
             }
         }
 
         val jvmMain by getting {
             dependsOn(noJsMain)
-            dependencies {
-                implementation(Dependency.multiplatform.kotlin.jdk8)
-            }
         }
         val jvmTest by getting {
             dependsOn(noJsTest)
             dependencies {
-                implementation(Dependency.multiplatform.test.jvm)
-                implementation(Dependency.multiplatform.test.junit)
+                implementation(antibytesCatalog.jvm.test.kotlin.core)
+                implementation(antibytesCatalog.jvm.test.kotlin.junit4)
             }
         }
 
@@ -263,15 +259,5 @@ kotlin {
         val iosSimulatorArm64Test by getting {
             dependsOn(iosTest)
         }
-    }
-}
-
-android {
-    namespace = "tech.antibytes.kfixture"
-}
-
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 }

@@ -27,6 +27,9 @@ repositories {
             includeGroupByRegex(antibytesPlugins)
         }
     }
+    maven {
+        setUrl("/Users/bitpogo/projects/antibytes/gradle-plugins/build")
+    }
 }
 
 dependencies {
@@ -36,6 +39,8 @@ dependencies {
     implementation(antibytesCatalog.gradle.antibytes.quality)
     implementation(antibytesCatalog.gradle.agp)
     api(antibytesCatalog.gradle.antibytes.runtimeConfig)
+    implementation(antibytesCatalog.gradle.kotlinx.atomicfu)
+    implementation("com.google.code.gson:gson:2.10")
 }
 
 gradlePlugin {

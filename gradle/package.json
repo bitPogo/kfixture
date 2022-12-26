@@ -1,0 +1,13 @@
+{
+  "name": "kfixture-versions",
+  "version": "0.1.0",
+  "description": "Package for distribution to individual projects",
+  "scripts": {},
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {},
+  "peerDependencies": {
+    "@js-joda/timezone": "~2.11.1"
+  },
+  "optionalDependencies": {}
+}

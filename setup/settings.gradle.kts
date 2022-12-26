@@ -8,6 +8,7 @@ pluginManagement {
         val antibytesPlugins = "^tech\\.antibytes\\.[\\.a-z\\-]+"
         gradlePluginPortal()
         google()
+        mavenCentral()
         maven {
             setUrl("https://raw.github.com/bitPogo/maven-snapshots/main/snapshots")
             content {
@@ -24,5 +25,5 @@ pluginManagement {
 }
 
 plugins {
-    id("tech.antibytes.gradle.dependency.settings") version "c189d8a"
+    id("tech.antibytes.gradle.dependency.settings") version "89ba0c4"
 }
