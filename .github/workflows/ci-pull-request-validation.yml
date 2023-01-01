@@ -35,12 +35,15 @@ jobs:
           distribution: 'adopt' # See 'Supported distributions' for available options
           java-version: '11'
 
+      - name: Setup gradle
+        uses: gradle/gradle-build-action@v2
+
       - name: Coverage
         run: ./gradlew --no-daemon --stacktrace multiplatformCoverageVerification
 
   validation:
     needs: coverage
-    uses: bitpogo/workflows/.github/workflows/shared-pull-request-validation.yml@main
+    uses: bitpogo/workflows/.github/workflows/shared-pull-request-validation.yml@feature/add-signing
     secrets:
       upload-username: ${{ secrets.PACKAGE_REGISTRY_UPLOAD_USERNAME }}
       upload-token: ${{ secrets.PACKAGE_REGISTRY_UPLOAD_TOKEN }}
