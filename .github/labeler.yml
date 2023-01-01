@@ -1,12 +1,8 @@
-build:
+ci:
   - .github/**/*
 
-scripts:
-  - buildSrc/src/main/kotlin/**/script/**/*.kts
-
 dependencies:
-  - buildSrc/**/*
-  - gradlePlugin/**/*
+  - setup/**/*
 
 documentation:
   - docs/**/*
