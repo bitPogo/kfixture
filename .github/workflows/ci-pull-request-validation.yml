@@ -43,7 +43,7 @@ jobs:
 
   validation:
     needs: coverage
-    uses: bitpogo/workflows/.github/workflows/shared-pull-request-validation.yml@feature/add-signing
+    uses: bitpogo/workflows/.github/workflows/shared-pull-request-validation.yml@main
     secrets:
       upload-username: ${{ secrets.PACKAGE_REGISTRY_UPLOAD_USERNAME }}
       upload-token: ${{ secrets.PACKAGE_REGISTRY_UPLOAD_TOKEN }}
