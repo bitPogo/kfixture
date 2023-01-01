@@ -1,0 +1,28 @@
+name: Antibytes CI - Latest Version
+
+on:
+  push:
+    branches:
+      - main
+      - release/*
+
+jobs:
+  check:
+    uses: bitpogo/workflows/.github/workflows/shared-kmp-check.yml@main
+    with:
+      cleanup: false
+      platforms: "['android', 'ios', 'linux', 'js', 'jvm']"
+
+  docs:
+    uses: bitpogo/workflows/.github/workflows/shared-mkdocs-snapshot.yml@main
+    secrets:
+      github-token: ${{ secrets.GITHUB_TOKEN }}
+
+  snapshot:
+    needs: [check, docs]
+    uses: bitpogo/workflows/.github/workflows/shared-snapshot-validation.yml@main
+    secrets:
+      upload-username: ${{ secrets.PACKAGE_REGISTRY_UPLOAD_USERNAME }}
+      upload-token: ${{ secrets.PACKAGE_REGISTRY_UPLOAD_TOKEN }}
+      maven-key: ${{ secrets.MAVEN_GPG_KEY }}
+      maven-pass: ${{ secrets.MAVEN_GPG_PASS }}

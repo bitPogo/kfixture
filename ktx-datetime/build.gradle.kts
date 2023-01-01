@@ -4,53 +4,43 @@
  * Use of this source code is governed by Apache v2.0
  */
 
-import tech.antibytes.gradle.dependency.Dependency
-import tech.antibytes.gradle.kfixture.dependency.Dependency as LocalDependency
-import tech.antibytes.gradle.kfixture.config.FixtureKtxDateTimeConfiguration
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import tech.antibytes.gradle.coverage.api.JvmJacocoConfiguration
 import tech.antibytes.gradle.coverage.api.AndroidJacocoConfiguration
 import tech.antibytes.gradle.coverage.api.JacocoVerificationRule
 import tech.antibytes.gradle.coverage.CoverageApiContract.JacocoCounter
 import tech.antibytes.gradle.coverage.CoverageApiContract.JacocoMeasurement
 import tech.antibytes.gradle.publishing.api.DocumentationConfiguration
-import org.jetbrains.dokka.gradle.DokkaTask
-import tech.antibytes.gradle.configuration.ensureIosDeviceCompatibility
+import tech.antibytes.gradle.configuration.apple.ensureAppleDeviceCompatibility
+import tech.antibytes.gradle.configuration.isIdea
+import tech.antibytes.gradle.dependency.helper.nodePeerPackage
+import tech.antibytes.gradle.dependency.helper.nodeProductionPackage
+import tech.antibytes.gradle.kfixture.config.publishing.FixtureKtxDateTimeConfiguration
 
 plugins {
-    id("org.jetbrains.kotlin.multiplatform")
-
-    // Android
-    id("com.android.library")
-
-    id("tech.antibytes.gradle.configuration")
-    id("tech.antibytes.gradle.publishing")
-    id("tech.antibytes.gradle.coverage")
-
-    id("kotlinx-atomicfu")
-
-    id("org.jetbrains.dokka") version "1.7.10"
-
-    // Pin API
-    id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.11.1"
+    alias(antibytesCatalog.plugins.gradle.antibytes.kmpConfiguration)
+    alias(antibytesCatalog.plugins.gradle.antibytes.androidLibraryConfiguration)
+    alias(antibytesCatalog.plugins.gradle.antibytes.publishing)
+    alias(antibytesCatalog.plugins.gradle.antibytes.coverage)
+    id(antibytesCatalog.plugins.kotlinx.atomicfu.get().pluginId)
+    alias(antibytesCatalog.plugins.gradle.antibytes.dokkaConfiguration)
 }
 
 group = FixtureKtxDateTimeConfiguration.group
-val dokkaDir = buildDir.resolve("dokka")
-val isIDEA = System.getProperty("idea.fatal.error.notification") != null
 
-antiBytesPublishing {
-    packageConfiguration = FixtureKtxDateTimeConfiguration.publishing.packageConfiguration
-    repositoryConfiguration = FixtureKtxDateTimeConfiguration.publishing.repositories
-    versioning = FixtureKtxDateTimeConfiguration.publishing.versioning
-    documentation = DocumentationConfiguration(
-        tasks = setOf("dokkaHtml"),
-        outputDir = dokkaDir
+antibytesPublishing {
+    packaging.set(FixtureKtxDateTimeConfiguration.publishing.packageConfiguration)
+    repositories.set(FixtureKtxDateTimeConfiguration.publishing.repositories)
+    versioning.set(FixtureKtxDateTimeConfiguration.publishing.versioning)
+    documentation.set(
+        DocumentationConfiguration(
+            tasks = setOf("dokkaHtml"),
+            outputDir = buildDir.resolve("dokka")
+        )
     )
-    signingConfiguration = FixtureKtxDateTimeConfiguration.publishing.signing
+    signing.set(FixtureKtxDateTimeConfiguration.publishing.signing)
 }
 
-antiBytesCoverage {
+antibytesCoverage {
     val branchCoverage = JacocoVerificationRule(
         counter = JacocoCounter.BRANCH,
         measurement = JacocoMeasurement.COVERED_RATIO,
@@ -86,19 +76,19 @@ antiBytesCoverage {
         ),
     )
 
-    configurations["jvm"] = jvmCoverage
-    configurations["android"] = androidCoverage
+    configurations.put("jvm", jvmCoverage)
+    configurations.put("android", androidCoverage)
 }
 
 android {
+    namespace = "tech.antibytes.kfixture.ktx.datetime"
+
     defaultConfig {
-        minSdk = libs.versions.minSdk.get().toInt()
+        minSdk = local.versions.minSdk.get().toInt()
     }
 }
 
 kotlin {
-    explicitApi()
-
     android()
 
     js(IR) {
@@ -110,7 +100,7 @@ kotlin {
 
     ios()
     iosSimulatorArm64()
-    ensureIosDeviceCompatibility()
+    ensureAppleDeviceCompatibility()
 
     linuxX64()
 
@@ -124,16 +114,16 @@ kotlin {
 
         val commonMain by getting {
             dependencies {
-                implementation(Dependency.multiplatform.kotlin.common)
-                implementation(Dependency.multiplatform.dateTime)
+                implementation(antibytesCatalog.common.kotlin.stdlib)
+                implementation(antibytesCatalog.common.kotlinx.dateTime)
                 implementation(project(":core"))
             }
         }
         val commonTest by getting {
             dependencies {
-                implementation(Dependency.multiplatform.test.common)
-                implementation(Dependency.multiplatform.test.annotations)
-                implementation(Dependency.multiplatform.atomicFu.common)
+                implementation(antibytesCatalog.common.test.kotlin.core)
+                implementation(antibytesCatalog.common.test.kotlin.annotations)
+                implementation(antibytesCatalog.common.kotlinx.atomicfu.core)
             }
         }
 
@@ -147,10 +137,10 @@ kotlin {
         val androidMain by getting {
             dependsOn(noJsMain)
             dependencies {
-                implementation(Dependency.multiplatform.kotlin.android)
+                implementation(antibytesCatalog.jvm.kotlin.stdlib.jdk8)
             }
         }
-        if (!isIDEA) {
+        if (!isIdea()) {
             val androidAndroidTestRelease by getting {
                 dependsOn(noJsTest)
             }
@@ -179,36 +169,35 @@ kotlin {
             dependsOn(noJsTest)
 
             dependencies {
-                implementation(Dependency.multiplatform.test.jvm)
-                implementation(Dependency.multiplatform.test.junit)
+                implementation(antibytesCatalog.jvm.test.kotlin.core)
+                implementation(antibytesCatalog.jvm.test.kotlin.junit4)
             }
         }
 
         val jsMain by getting {
             dependencies {
-                implementation(Dependency.multiplatform.kotlin.js)
-                implementation(Dependency.js.nodejs)
-                implementation(peerNpm(LocalDependency.npm.joda.name, LocalDependency.npm.joda.version))
+                implementation(antibytesCatalog.js.kotlin.stdlib)
+                implementation(antibytesCatalog.js.kotlinx.nodeJs)
+
+                nodePeerPackage(local.node.jsJodaTimezone)
             }
         }
         val jsTest by getting {
             dependencies {
-                implementation(Dependency.multiplatform.test.js)
-                implementation(npm(LocalDependency.npm.joda.name, LocalDependency.npm.joda.version))
+                implementation(antibytesCatalog.js.test.kotlin.core)
+
+                nodeProductionPackage(local.node.jsJodaTimezone)
             }
         }
 
         val jvmMain by getting {
             dependsOn(noJsMain)
-            dependencies {
-                implementation(Dependency.multiplatform.kotlin.jdk8)
-            }
         }
         val jvmTest by getting {
             dependsOn(noJsTest)
             dependencies {
-                implementation(Dependency.multiplatform.test.jvm)
-                implementation(Dependency.multiplatform.test.junit)
+                implementation(antibytesCatalog.jvm.test.kotlin.core)
+                implementation(antibytesCatalog.jvm.test.kotlin.junit4)
             }
         }
 
@@ -257,35 +246,6 @@ kotlin {
         }
         val iosSimulatorArm64Test by getting {
             dependsOn(iosTest)
-        }
-    }
-}
-
-android {
-    namespace = "tech.antibytes.kfixture.ktx.datetime"
-}
-
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
-    }
-}
-
-tasks.withType<DokkaTask>(DokkaTask::class.java).configureEach {
-    outputDirectory.set(buildDir.resolve("dokka"))
-
-    moduleName.set("KFixture-Ktx-DateTime")
-    offlineMode.set(true)
-    suppressObviousFunctions.set(true)
-
-    dokkaSourceSets {
-        configureEach {
-            reportUndocumented.set(true)
-            skipEmptyPackages.set(true)
-            jdkVersion.set(8)
-            noStdlibLink.set(false)
-            noJdkLink.set(false)
-            noAndroidSdkLink.set(false)
         }
     }
 }

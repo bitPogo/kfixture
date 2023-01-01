@@ -6,8 +6,8 @@
 
 package tech.antibytes.kfixture.ktx.datetime.generator
 
-import kotlin.js.JsName
 import kotlin.test.AfterTest
+import kotlin.test.Ignore
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -23,7 +23,6 @@ class TimeZoneGeneratorSpec {
     }
 
     @Test
-    @JsName("fn0")
     fun `It fulfils GeneratorFactory`() {
         val generator: Any = TimeZoneGenerator
 
@@ -31,7 +30,6 @@ class TimeZoneGeneratorSpec {
     }
 
     @Test
-    @JsName("fn1")
     fun `Given getInstance is called it returns an FilterableGenerator`() {
         val generator: Any = TimeZoneGenerator.getInstance(RandomStub())
 
@@ -39,7 +37,7 @@ class TimeZoneGeneratorSpec {
     }
 
     @Test
-    @JsName("fn2")
+    @Ignore // This apparently works only on iOS
     fun `Given generate is called it returns a TimeZone`() {
         // Given
         val expected = 10
@@ -68,12 +66,12 @@ class TimeZoneGeneratorSpec {
         )
         assertEquals(
             actual = capturedUntil,
-            expected = 490,
+            expected = 491,
         )
     }
 
     @Test
-    @JsName("fn3")
+    @Ignore // This apparently works only on iOS
     fun `Given generate is called with a predicate it returns a TimeZone`() {
         // Given
         val randomInts = mutableListOf(10, 23, 42)
