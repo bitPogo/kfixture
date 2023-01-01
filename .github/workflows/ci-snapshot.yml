@@ -23,3 +23,5 @@ jobs:
     secrets:
       upload-username: ${{ secrets.PACKAGE_REGISTRY_UPLOAD_USERNAME }}
       upload-token: ${{ secrets.PACKAGE_REGISTRY_UPLOAD_TOKEN }}
+      maven-key: ${{ secrets.MAVEN_GPG_KEY }}
+      maven-pass: ${{ secrets.MAVEN_GPG_PASS }}
