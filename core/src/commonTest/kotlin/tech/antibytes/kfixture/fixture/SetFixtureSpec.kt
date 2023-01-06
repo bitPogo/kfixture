@@ -72,7 +72,7 @@ class SetFixtureSpec {
         val size = 5
         val expected = 23
         val generator = FilterableGeneratorStub<Int, Int>()
-        
+
         var capturedMinimum = -1
         var capturedMaximum = -1
 

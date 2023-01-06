@@ -21,7 +21,6 @@ plugins {
     alias(antibytesCatalog.plugins.gradle.antibytes.androidLibraryConfiguration)
     alias(antibytesCatalog.plugins.gradle.antibytes.publishing)
     alias(antibytesCatalog.plugins.gradle.antibytes.coverage)
-    id(antibytesCatalog.plugins.kotlinx.atomicfu.get().pluginId)
     alias(antibytesCatalog.plugins.gradle.antibytes.dokkaConfiguration)
 }
 
@@ -123,7 +122,6 @@ kotlin {
             dependencies {
                 implementation(antibytesCatalog.common.test.kotlin.core)
                 implementation(antibytesCatalog.common.test.kotlin.annotations)
-                implementation(antibytesCatalog.common.kotlinx.atomicfu.core)
             }
         }
 

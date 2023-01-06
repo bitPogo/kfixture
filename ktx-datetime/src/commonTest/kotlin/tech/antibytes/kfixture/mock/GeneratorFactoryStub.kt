@@ -8,19 +8,14 @@ package tech.antibytes.kfixture.mock
 
 import kotlin.js.JsName
 import kotlin.random.Random
-import kotlinx.atomicfu.AtomicRef
-import kotlinx.atomicfu.atomic
 import tech.antibytes.kfixture.PublicApi
 
 class GeneratorFactoryStub<T : Any>(
     @JsName("generateStub")
     var generate: (() -> T)? = null,
 ) : PublicApi.GeneratorFactory<T> {
-    private val _lastRandom: AtomicRef<Random> = atomic(Random(49))
-    private val _lastInstance: AtomicRef<FilterableGeneratorStub<T, T>?> = atomic(null)
-
-    var lastRandom by _lastRandom
-    var lastInstance by _lastInstance
+    var lastRandom: Random = Random(49)
+    var lastInstance: FilterableGeneratorStub<T, T>? = null
 
     override fun getInstance(random: Random): PublicApi.Generator<T> {
         return FilterableGeneratorStub<T, T>(generate).also {
