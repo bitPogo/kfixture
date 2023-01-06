@@ -8,8 +8,6 @@ package tech.antibytes.kfixture.mock
 
 import kotlin.js.JsName
 import kotlin.random.Random
-import kotlinx.atomicfu.AtomicRef
-import kotlinx.atomicfu.atomic
 import tech.antibytes.kfixture.PublicApi
 
 class DependentGeneratorStub<T : Any>(
@@ -25,13 +23,9 @@ class DependentGeneratorFactoryStub<T : Any>(
     @JsName("dependentGenerateStub")
     var generate: (() -> T)? = null,
 ) : PublicApi.DependentGeneratorFactory<T> {
-    private val _lastRandom: AtomicRef<Random> = atomic(Random(49))
-    private val _lastInstance: AtomicRef<DependentGeneratorStub<T>?> = atomic(null)
-    private val _lastGenerators: AtomicRef<Map<String, PublicApi.Generator<out Any>>?> = atomic(null)
-
-    var lastRandom by _lastRandom
-    var lastInstance by _lastInstance
-    var lastGenerators by _lastGenerators
+    var lastRandom: Random = Random(49)
+    var lastInstance: DependentGeneratorStub<T>? = null
+    var lastGenerators: Map<String, PublicApi.Generator<out Any>>? = null
 
     override fun getInstance(
         random: Random,

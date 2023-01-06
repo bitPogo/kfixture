@@ -13,7 +13,6 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertNull
 import kotlin.test.assertSame
-import kotlinx.atomicfu.atomic
 import kotlinx.datetime.Instant
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.fixture
@@ -35,8 +34,6 @@ private data class TypeDescriptor<RangeType, FixtureType : Any>(
 
 class InstantFixtureSpec {
     private val random = RandomStub()
-    private val capturedMinimum = atomic(-1)
-    private val capturedMaximum = atomic(-1)
 
     private val instantDescriptor = TypeDescriptor(
         from = 0L,
@@ -49,8 +46,6 @@ class InstantFixtureSpec {
     @AfterTest
     fun tearDown() {
         random.clear()
-        capturedMinimum.getAndSet(-1)
-        capturedMaximum.getAndSet(-1)
     }
 
     @Suppress("UNCHECKED_CAST")
