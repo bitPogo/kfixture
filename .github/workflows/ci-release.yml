@@ -10,7 +10,7 @@ jobs:
     uses: bitpogo/workflows/.github/workflows/shared-test-kmp.yml@main
     with:
       cleanup: false
-      platforms: "['android', 'ios', 'linux', 'js', 'jvm']"
+      platforms: "['android', 'ios',  'js', 'jvm', 'linux', 'macos', 'mingw', 'tvos', 'watchos']"
 
   docs:
     uses: bitpogo/workflows/.github/workflows/shared-mkdocs-release.yml@main
