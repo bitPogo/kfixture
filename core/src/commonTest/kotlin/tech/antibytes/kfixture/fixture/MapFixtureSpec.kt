@@ -6,14 +6,12 @@
 
 package tech.antibytes.kfixture.fixture
 
-import co.touchlab.stately.collections.sharedMutableListOf
 import kotlin.js.JsName
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
-import kotlinx.atomicfu.atomic
 import tech.antibytes.kfixture.Fixture
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.fixture
@@ -27,14 +25,10 @@ import tech.antibytes.kfixture.resolveClassName
 
 class MapFixtureSpec {
     private val random = RandomStub()
-    private val capturedMinimum = atomic(-1)
-    private val capturedMaximum = atomic(-1)
 
     @AfterTest
     fun tearDown() {
         random.clear()
-        capturedMinimum.getAndSet(-1)
-        capturedMaximum.getAndSet(-1)
     }
 
     @Test
@@ -80,10 +74,13 @@ class MapFixtureSpec {
         val expected = 23
         val generator = FilterableGeneratorStub<Int, Int>()
 
+        var capturedMinimum = -1
+        var capturedMaximum = -1
+
         generator.generate = { expected }
         random.nextIntRanged = { givenMinimum, givenMaximum ->
-            capturedMinimum.getAndSet(givenMinimum)
-            capturedMaximum.getAndSet(givenMaximum)
+            capturedMinimum = givenMinimum
+            capturedMaximum = givenMaximum
             size
         }
 
@@ -98,11 +95,11 @@ class MapFixtureSpec {
         // Then
         assertTrue(result is Map<*, *>)
         assertEquals(
-            actual = capturedMinimum.value,
+            actual = capturedMinimum,
             expected = 1,
         )
         assertEquals(
-            actual = capturedMaximum.value,
+            actual = capturedMaximum,
             expected = 11,
         )
         assertEquals(
@@ -129,10 +126,13 @@ class MapFixtureSpec {
         val expectedValue = 23
         val generator = FilterableGeneratorStub<Int, Int>()
 
+        var capturedMinimum = -1
+        var capturedMaximum = -1
+
         generator.generate = { expectedValue }
         random.nextIntRanged = { givenMinimum, givenMaximum ->
-            capturedMinimum.getAndSet(givenMinimum)
-            capturedMaximum.getAndSet(givenMaximum)
+            capturedMinimum = givenMinimum
+            capturedMaximum = givenMaximum
             size
         }
 
@@ -149,11 +149,11 @@ class MapFixtureSpec {
         // Then
         assertTrue(result is Map<*, *>)
         assertEquals(
-            actual = capturedMinimum.value,
+            actual = capturedMinimum,
             expected = 1,
         )
         assertEquals(
-            actual = capturedMaximum.value,
+            actual = capturedMaximum,
             expected = 11,
         )
         assertEquals(
@@ -180,10 +180,13 @@ class MapFixtureSpec {
         val expectedValue = 23
         val generator = FilterableGeneratorStub<Int, Int>()
 
+        var capturedMinimum = -1
+        var capturedMaximum = -1
+
         generator.generate = { expectedKey }
         random.nextIntRanged = { givenMinimum, givenMaximum ->
-            capturedMinimum.getAndSet(givenMinimum)
-            capturedMaximum.getAndSet(givenMaximum)
+            capturedMinimum = givenMinimum
+            capturedMaximum = givenMaximum
             size
         }
 
@@ -200,11 +203,11 @@ class MapFixtureSpec {
         // Then
         assertTrue(result is Map<*, *>)
         assertEquals(
-            actual = capturedMinimum.value,
+            actual = capturedMinimum,
             expected = 1,
         )
         assertEquals(
-            actual = capturedMaximum.value,
+            actual = capturedMaximum,
             expected = 11,
         )
         assertEquals(
@@ -231,9 +234,12 @@ class MapFixtureSpec {
         val expectedValue = 23
         val generator = FilterableGeneratorStub<Int, Int>()
 
+        var capturedMinimum = -1
+        var capturedMaximum = -1
+
         random.nextIntRanged = { givenMinimum, givenMaximum ->
-            capturedMinimum.getAndSet(givenMinimum)
-            capturedMaximum.getAndSet(givenMaximum)
+            capturedMinimum = givenMinimum
+            capturedMaximum = givenMaximum
             size
         }
 
@@ -251,11 +257,11 @@ class MapFixtureSpec {
         // Then
         assertTrue(result is Map<*, *>)
         assertEquals(
-            actual = capturedMinimum.value,
+            actual = capturedMinimum,
             expected = 1,
         )
         assertEquals(
-            actual = capturedMaximum.value,
+            actual = capturedMaximum,
             expected = 11,
         )
         assertEquals(
@@ -281,10 +287,13 @@ class MapFixtureSpec {
         val expected = 23
         val generator = FilterableGeneratorStub<Int, Int>()
 
+        var capturedMinimum = -1
+        var capturedMaximum = -1
+
         generator.generate = { expected }
         random.nextIntRanged = { givenMinimum, givenMaximum ->
-            capturedMinimum.getAndSet(givenMinimum)
-            capturedMaximum.getAndSet(givenMaximum)
+            capturedMinimum = givenMinimum
+            capturedMaximum = givenMaximum
             size
         }
         random.nextBoolean = { true }
@@ -299,11 +308,11 @@ class MapFixtureSpec {
 
         // Then
         assertEquals(
-            actual = capturedMinimum.value,
+            actual = capturedMinimum,
             expected = 1,
         )
         assertEquals(
-            actual = capturedMaximum.value,
+            actual = capturedMaximum,
             expected = 11,
         )
         assertEquals(
@@ -538,7 +547,7 @@ class MapFixtureSpec {
         val size = 5
         val generator = FilterableGeneratorStub<Int, Int>()
 
-        val randomValues = sharedMutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+        val randomValues = mutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
         generator.generate = { randomValues.removeFirst() }
         random.nextIntRanged = { _, _ -> 23 }
@@ -568,9 +577,9 @@ class MapFixtureSpec {
         val size = 5
         val generator = FilterableGeneratorStub<Int, Int>()
 
-        val keys = sharedMutableListOf(11, 12, 13, 14, 15)
+        val keys = mutableListOf(11, 12, 13, 14, 15)
         val expectedKeys = keys.toSet()
-        val randomValues = sharedMutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+        val randomValues = mutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
         generator.generate = { randomValues.removeFirst() }
         random.nextIntRanged = { _, _ -> 23 }
@@ -607,9 +616,9 @@ class MapFixtureSpec {
         val size = 5
         val generator = FilterableGeneratorStub<Int, Int>()
 
-        val values = sharedMutableListOf(11, 12, 13, 14, 15)
+        val values = mutableListOf(11, 12, 13, 14, 15)
         val expectedValues = values.toList()
-        val randomValues = sharedMutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+        val randomValues = mutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
         generator.generate = { randomValues.removeFirst() }
         random.nextIntRanged = { _, _ -> 23 }
@@ -646,9 +655,9 @@ class MapFixtureSpec {
         val size = 5
         val generator = FilterableGeneratorStub<Int, Int>()
 
-        val keys = sharedMutableListOf(1, 2, 3, 4, 0)
+        val keys = mutableListOf(1, 2, 3, 4, 0)
         val expectedKeys = keys.toSet()
-        val values = sharedMutableListOf(11, 12, 13, 14, 15)
+        val values = mutableListOf(11, 12, 13, 14, 15)
         val expectedValues = values.toList()
 
         random.nextIntRanged = { _, _ -> 23 }
@@ -690,7 +699,7 @@ class MapFixtureSpec {
         val size = 5
         val generator = FilterableGeneratorStub<Int, Int>()
 
-        val randomValues = sharedMutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+        val randomValues = mutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
         generator.generate = { randomValues.removeFirst() }
         random.nextIntRanged = { _, _ -> 23 }
@@ -723,9 +732,9 @@ class MapFixtureSpec {
         val size = 5
         val generator = FilterableGeneratorStub<Int, Int>()
 
-        val keys = sharedMutableListOf(11, 12, 13, 14, 15)
+        val keys = mutableListOf(11, 12, 13, 14, 15)
         val expectedKeys = keys.toSet()
-        val randomValues = sharedMutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+        val randomValues = mutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
         generator.generate = { randomValues.removeFirst() }
         random.nextIntRanged = { _, _ -> 23 }
@@ -763,9 +772,9 @@ class MapFixtureSpec {
         val size = 5
         val generator = FilterableGeneratorStub<Int, Int>()
 
-        val values = sharedMutableListOf(11, 12, 13, 14, 15)
+        val values = mutableListOf(11, 12, 13, 14, 15)
         val expectedValues = values.toList()
-        val randomValues = sharedMutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+        val randomValues = mutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
         generator.generate = { randomValues.removeFirst() }
         random.nextIntRanged = { _, _ -> 23 }
@@ -803,9 +812,9 @@ class MapFixtureSpec {
         val size = 5
         val generator = FilterableGeneratorStub<Int, Int>()
 
-        val keys = sharedMutableListOf(1, 2, 3, 4, 0)
+        val keys = mutableListOf(1, 2, 3, 4, 0)
         val expectedKeys = keys.toSet()
-        val values = sharedMutableListOf(11, 12, 13, 14, 15)
+        val values = mutableListOf(11, 12, 13, 14, 15)
         val expectedValues = values.toList()
 
         random.nextIntRanged = { _, _ -> 23 }
@@ -876,10 +885,13 @@ class MapFixtureSpec {
         val expected = 23
         val generator = FilterableGeneratorStub<Int, Int>()
 
+        var capturedMinimum = -1
+        var capturedMaximum = -1
+
         generator.generate = { expected }
         random.nextIntRanged = { givenMinimum, givenMaximum ->
-            capturedMinimum.getAndSet(givenMinimum)
-            capturedMaximum.getAndSet(givenMaximum)
+            capturedMinimum = givenMinimum
+            capturedMaximum = givenMaximum
             size
         }
 
@@ -894,11 +906,11 @@ class MapFixtureSpec {
         // Then
         assertTrue(result is MutableMap<*, *>)
         assertEquals(
-            actual = capturedMinimum.value,
+            actual = capturedMinimum,
             expected = 1,
         )
         assertEquals(
-            actual = capturedMaximum.value,
+            actual = capturedMaximum,
             expected = 11,
         )
         assertEquals(
@@ -925,10 +937,13 @@ class MapFixtureSpec {
         val expectedValue = 23
         val generator = FilterableGeneratorStub<Int, Int>()
 
+        var capturedMinimum = -1
+        var capturedMaximum = -1
+
         generator.generate = { expectedValue }
         random.nextIntRanged = { givenMinimum, givenMaximum ->
-            capturedMinimum.getAndSet(givenMinimum)
-            capturedMaximum.getAndSet(givenMaximum)
+            capturedMinimum = givenMinimum
+            capturedMaximum = givenMaximum
             size
         }
 
@@ -945,11 +960,11 @@ class MapFixtureSpec {
         // Then
         assertTrue(result is MutableMap<*, *>)
         assertEquals(
-            actual = capturedMinimum.value,
+            actual = capturedMinimum,
             expected = 1,
         )
         assertEquals(
-            actual = capturedMaximum.value,
+            actual = capturedMaximum,
             expected = 11,
         )
         assertEquals(
@@ -976,10 +991,13 @@ class MapFixtureSpec {
         val expectedValue = 23
         val generator = FilterableGeneratorStub<Int, Int>()
 
+        var capturedMinimum = -1
+        var capturedMaximum = -1
+
         generator.generate = { expectedKey }
         random.nextIntRanged = { givenMinimum, givenMaximum ->
-            capturedMinimum.getAndSet(givenMinimum)
-            capturedMaximum.getAndSet(givenMaximum)
+            capturedMinimum = givenMinimum
+            capturedMaximum = givenMaximum
             size
         }
 
@@ -996,11 +1014,11 @@ class MapFixtureSpec {
         // Then
         assertTrue(result is MutableMap<*, *>)
         assertEquals(
-            actual = capturedMinimum.value,
+            actual = capturedMinimum,
             expected = 1,
         )
         assertEquals(
-            actual = capturedMaximum.value,
+            actual = capturedMaximum,
             expected = 11,
         )
         assertEquals(
@@ -1027,9 +1045,12 @@ class MapFixtureSpec {
         val expectedValue = 23
         val generator = FilterableGeneratorStub<Int, Int>()
 
+        var capturedMinimum = -1
+        var capturedMaximum = -1
+
         random.nextIntRanged = { givenMinimum, givenMaximum ->
-            capturedMinimum.getAndSet(givenMinimum)
-            capturedMaximum.getAndSet(givenMaximum)
+            capturedMinimum = givenMinimum
+            capturedMaximum = givenMaximum
             size
         }
 
@@ -1047,11 +1068,11 @@ class MapFixtureSpec {
         // Then
         assertTrue(result is MutableMap<*, *>)
         assertEquals(
-            actual = capturedMinimum.value,
+            actual = capturedMinimum,
             expected = 1,
         )
         assertEquals(
-            actual = capturedMaximum.value,
+            actual = capturedMaximum,
             expected = 11,
         )
         assertEquals(
@@ -1077,10 +1098,13 @@ class MapFixtureSpec {
         val expected = 23
         val generator = FilterableGeneratorStub<Int, Int>()
 
+        var capturedMinimum = -1
+        var capturedMaximum = -1
+
         generator.generate = { expected }
         random.nextIntRanged = { givenMinimum, givenMaximum ->
-            capturedMinimum.getAndSet(givenMinimum)
-            capturedMaximum.getAndSet(givenMaximum)
+            capturedMinimum = givenMinimum
+            capturedMaximum = givenMaximum
             size
         }
         random.nextBoolean = { true }
@@ -1095,11 +1119,11 @@ class MapFixtureSpec {
 
         // Then
         assertEquals(
-            actual = capturedMinimum.value,
+            actual = capturedMinimum,
             expected = 1,
         )
         assertEquals(
-            actual = capturedMaximum.value,
+            actual = capturedMaximum,
             expected = 11,
         )
         assertEquals(
@@ -1334,7 +1358,7 @@ class MapFixtureSpec {
         val size = 5
         val generator = FilterableGeneratorStub<Int, Int>()
 
-        val randomValues = sharedMutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+        val randomValues = mutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
         generator.generate = { randomValues.removeFirst() }
         random.nextIntRanged = { _, _ -> 23 }
@@ -1364,9 +1388,9 @@ class MapFixtureSpec {
         val size = 5
         val generator = FilterableGeneratorStub<Int, Int>()
 
-        val keys = sharedMutableListOf(11, 12, 13, 14, 15)
+        val keys = mutableListOf(11, 12, 13, 14, 15)
         val expectedKeys = keys.toSet()
-        val randomValues = sharedMutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+        val randomValues = mutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
         generator.generate = { randomValues.removeFirst() }
         random.nextIntRanged = { _, _ -> 23 }
@@ -1403,9 +1427,9 @@ class MapFixtureSpec {
         val size = 5
         val generator = FilterableGeneratorStub<Int, Int>()
 
-        val values = sharedMutableListOf(11, 12, 13, 14, 15)
+        val values = mutableListOf(11, 12, 13, 14, 15)
         val expectedValues = values.toList()
-        val randomValues = sharedMutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+        val randomValues = mutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
         generator.generate = { randomValues.removeFirst() }
         random.nextIntRanged = { _, _ -> 23 }
@@ -1442,9 +1466,9 @@ class MapFixtureSpec {
         val size = 5
         val generator = FilterableGeneratorStub<Int, Int>()
 
-        val keys = sharedMutableListOf(1, 2, 3, 4, 0)
+        val keys = mutableListOf(1, 2, 3, 4, 0)
         val expectedKeys = keys.toSet()
-        val values = sharedMutableListOf(11, 12, 13, 14, 15)
+        val values = mutableListOf(11, 12, 13, 14, 15)
         val expectedValues = values.toList()
 
         random.nextIntRanged = { _, _ -> 23 }
@@ -1486,7 +1510,7 @@ class MapFixtureSpec {
         val size = 5
         val generator = FilterableGeneratorStub<Int, Int>()
 
-        val randomValues = sharedMutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+        val randomValues = mutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
         generator.generate = { randomValues.removeFirst() }
         random.nextIntRanged = { _, _ -> 23 }
@@ -1519,9 +1543,9 @@ class MapFixtureSpec {
         val size = 5
         val generator = FilterableGeneratorStub<Int, Int>()
 
-        val keys = sharedMutableListOf(11, 12, 13, 14, 15)
+        val keys = mutableListOf(11, 12, 13, 14, 15)
         val expectedKeys = keys.toSet()
-        val randomValues = sharedMutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+        val randomValues = mutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
         generator.generate = { randomValues.removeFirst() }
         random.nextIntRanged = { _, _ -> 23 }
@@ -1559,9 +1583,9 @@ class MapFixtureSpec {
         val size = 5
         val generator = FilterableGeneratorStub<Int, Int>()
 
-        val values = sharedMutableListOf(11, 12, 13, 14, 15)
+        val values = mutableListOf(11, 12, 13, 14, 15)
         val expectedValues = values.toList()
-        val randomValues = sharedMutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+        val randomValues = mutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
         generator.generate = { randomValues.removeFirst() }
         random.nextIntRanged = { _, _ -> 23 }
@@ -1599,9 +1623,9 @@ class MapFixtureSpec {
         val size = 5
         val generator = FilterableGeneratorStub<Int, Int>()
 
-        val keys = sharedMutableListOf(1, 2, 3, 4, 0)
+        val keys = mutableListOf(1, 2, 3, 4, 0)
         val expectedKeys = keys.toSet()
-        val values = sharedMutableListOf(11, 12, 13, 14, 15)
+        val values = mutableListOf(11, 12, 13, 14, 15)
         val expectedValues = values.toList()
 
         random.nextIntRanged = { _, _ -> 23 }

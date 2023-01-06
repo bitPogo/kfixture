@@ -13,8 +13,6 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
-import kotlinx.atomicfu.atomic
-import kotlinx.atomicfu.update
 import tech.antibytes.kfixture.Fixture
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.fixture
@@ -27,14 +25,10 @@ import tech.antibytes.kfixture.resolveClassName
 
 class AtomicFixtureSpec {
     private val random = RandomStub()
-    private val capturedMinimum = atomic(-1)
-    private val capturedMaximum = atomic(-1)
 
     @AfterTest
     fun tearDown() {
         random.clear()
-        capturedMinimum.getAndSet(-1)
-        capturedMaximum.getAndSet(-1)
     }
 
     @Test
@@ -384,9 +378,12 @@ class AtomicFixtureSpec {
     @JsName("fn12")
     fun `Given fixture is called with Iterable it returns a random picked item out of it`() {
         // Given
+        var capturedMinimum = -1
+        var capturedMaximum = -1
+
         random.nextIntRanged = { givenLower, givenUpper ->
-            capturedMinimum.update { givenLower }
-            capturedMaximum.update { givenUpper }
+            capturedMinimum = givenLower
+            capturedMaximum = givenUpper
             1
         }
 
@@ -404,11 +401,11 @@ class AtomicFixtureSpec {
             expected = 1,
         )
         assertEquals(
-            actual = capturedMinimum.value,
+            actual = capturedMinimum,
             expected = 0,
         )
         assertEquals(
-            actual = capturedMaximum.value,
+            actual = capturedMaximum,
             expected = 24,
         )
     }

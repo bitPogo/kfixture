@@ -6,16 +6,12 @@
 
 package tech.antibytes.kfixture.generator.array
 
-import co.touchlab.stately.collections.sharedMutableListOf
 import kotlin.js.JsName
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertSame
 import kotlin.test.assertTrue
-import kotlinx.atomicfu.AtomicRef
-import kotlinx.atomicfu.atomic
-import kotlinx.atomicfu.update
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.mock.RandomStub
 import tech.antibytes.kfixture.mock.SignedNumberGeneratorStub
@@ -27,12 +23,10 @@ private data class ByteRange(
 
 class ByteArrayGeneratorSpec {
     private val random = RandomStub()
-    private val range: AtomicRef<Pair<Int, Int>?> = atomic(null)
 
     @AfterTest
     fun tearDown() {
         random.clear()
-        range.getAndSet(null)
     }
 
     @Test
@@ -52,9 +46,11 @@ class ByteArrayGeneratorSpec {
         val expected = ByteArray(size) { expectedValue }
         val auxiliaryGenerator = SignedNumberGeneratorStub<Byte, Byte>()
 
+        var range: Pair<Int, Int>? = null
+
         auxiliaryGenerator.generate = { expectedValue }
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             size
         }
 
@@ -65,7 +61,7 @@ class ByteArrayGeneratorSpec {
         // Then
         assertEquals(
             actual = Pair(1, 11),
-            expected = range.value,
+            expected = range,
         )
         assertTrue(
             expected.contentEquals(result),
@@ -82,6 +78,8 @@ class ByteArrayGeneratorSpec {
 
         val expected = ByteArray(size) { expectedValue }
         val auxiliaryGenerator = SignedNumberGeneratorStub<Byte, Byte>()
+
+        var range: Pair<Int, Int>? = null
         var capturedPredicate: Function<Boolean>? = null
 
         auxiliaryGenerator.generateWithPredicate = { givenPredicate ->
@@ -90,7 +88,7 @@ class ByteArrayGeneratorSpec {
             expectedValue
         }
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             size
         }
 
@@ -101,7 +99,7 @@ class ByteArrayGeneratorSpec {
         // Then
         assertEquals(
             actual = Pair(1, 11),
-            expected = range.value,
+            expected = range,
         )
         assertSame(
             actual = capturedPredicate,
@@ -189,15 +187,17 @@ class ByteArrayGeneratorSpec {
 
         val auxiliaryGenerator = SignedNumberGeneratorStub<Byte, Byte>()
 
+        var range: Pair<Int, Int>? = null
+
         val expected = listOf(
             23.toByte(),
             7.toByte(),
             39.toByte(),
         )
-        val consumableItem = expected.toSharedMutableList()
+        val consumableItem = expected.toMutableList()
 
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             size
         }
 
@@ -215,7 +215,7 @@ class ByteArrayGeneratorSpec {
         // Then
         assertEquals(
             actual = Pair(1, 11),
-            expected = range.value,
+            expected = range,
         )
         assertEquals(
             actual = capturedMin,
@@ -245,15 +245,17 @@ class ByteArrayGeneratorSpec {
 
         val auxiliaryGenerator = SignedNumberGeneratorStub<Byte, Byte>()
 
+        var range: Pair<Int, Int>? = null
+
         val expected = listOf(
             23.toByte(),
             7.toByte(),
             39.toByte(),
         )
-        val consumableItem = expected.toSharedMutableList()
+        val consumableItem = expected.toMutableList()
 
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             size
         }
 
@@ -272,7 +274,7 @@ class ByteArrayGeneratorSpec {
         // Then
         assertEquals(
             actual = Pair(1, 11),
-            expected = range.value,
+            expected = range,
         )
         assertEquals(
             actual = capturedMin,
@@ -309,7 +311,7 @@ class ByteArrayGeneratorSpec {
             7.toByte(),
             39.toByte(),
         )
-        val consumableItem = expected.toSharedMutableList()
+        val consumableItem = expected.toMutableList()
 
         auxiliaryGenerator.generateWithRange = { givenMin, givenMax, _ ->
             capturedMin = givenMin.toInt()
@@ -356,7 +358,7 @@ class ByteArrayGeneratorSpec {
             7.toByte(),
             39.toByte(),
         )
-        val consumableItem = expected.toSharedMutableList()
+        val consumableItem = expected.toMutableList()
 
         auxiliaryGenerator.generateWithRange = { givenMin, givenMax, givenPredicate ->
             capturedMin = givenMin.toInt()
@@ -402,22 +404,24 @@ class ByteArrayGeneratorSpec {
         val expectedMin2 = 3.toByte()
         val expectedMax2 = 41.toByte()
 
-        val capturedMin: MutableList<Int> = sharedMutableListOf()
-        val capturedMax: MutableList<Int> = sharedMutableListOf()
+        val capturedMin: MutableList<Int> = mutableListOf()
+        val capturedMax: MutableList<Int> = mutableListOf()
 
         val auxiliaryGenerator = SignedNumberGeneratorStub<Byte, Byte>()
+
+        var range: Pair<Int, Int>? = null
 
         val expected = listOf(
             23.toByte(),
             7.toByte(),
             39.toByte(),
         )
-        val ranges = sharedMutableListOf(3, 1, 0, 1)
+        val ranges = mutableListOf(3, 1, 0, 1)
 
-        val consumableItem = expected.toSharedMutableList()
+        val consumableItem = expected.toMutableList()
 
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             ranges.removeFirst()
         }
 
@@ -437,7 +441,7 @@ class ByteArrayGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = range.value,
+            actual = range,
             expected = Pair(1, 2),
         )
         assertTrue(
@@ -468,23 +472,25 @@ class ByteArrayGeneratorSpec {
         val expectedMax2 = 41.toByte()
         val expectedPredicate: Function1<Byte?, Boolean> = { true }
 
-        val capturedMin: MutableList<Int> = sharedMutableListOf()
-        val capturedMax: MutableList<Int> = sharedMutableListOf()
-        val capturedPredicate: MutableList<Function<Boolean>> = sharedMutableListOf()
+        val capturedMin: MutableList<Int> = mutableListOf()
+        val capturedMax: MutableList<Int> = mutableListOf()
+        val capturedPredicate: MutableList<Function<Boolean>> = mutableListOf()
 
         val auxiliaryGenerator = SignedNumberGeneratorStub<Byte, Byte>()
+
+        var range: Pair<Int, Int>? = null
 
         val expected = listOf(
             23.toByte(),
             7.toByte(),
             39.toByte(),
         )
-        val ranges = sharedMutableListOf(3, 1, 0, 1)
+        val ranges = mutableListOf(3, 1, 0, 1)
 
-        val consumableItem = expected.toSharedMutableList()
+        val consumableItem = expected.toMutableList()
 
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             ranges.removeFirst()
         }
 
@@ -506,7 +512,7 @@ class ByteArrayGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = range.value,
+            actual = range,
             expected = Pair(1, 2),
         )
         assertTrue(
@@ -544,22 +550,24 @@ class ByteArrayGeneratorSpec {
         val expectedMin2 = 3.toByte()
         val expectedMax2 = 41.toByte()
 
-        val capturedMin: MutableList<Int> = sharedMutableListOf()
-        val capturedMax: MutableList<Int> = sharedMutableListOf()
+        val capturedMin: MutableList<Int> = mutableListOf()
+        val capturedMax: MutableList<Int> = mutableListOf()
 
         val auxiliaryGenerator = SignedNumberGeneratorStub<Byte, Byte>()
+
+        var range: Pair<Int, Int>? = null
 
         val expected = listOf(
             23.toByte(),
             7.toByte(),
             39.toByte(),
         )
-        val ranges = sharedMutableListOf(1, 0, 1)
+        val ranges = mutableListOf(1, 0, 1)
 
-        val consumableItem = expected.toSharedMutableList()
+        val consumableItem = expected.toMutableList()
 
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             ranges.removeFirst()
         }
 
@@ -580,7 +588,7 @@ class ByteArrayGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = range.value,
+            actual = range,
             expected = Pair(1, 2),
         )
         assertTrue(
@@ -612,23 +620,25 @@ class ByteArrayGeneratorSpec {
         val expectedMax2 = 41.toByte()
         val expectedPredicate: Function1<Byte?, Boolean> = { true }
 
-        val capturedMin: MutableList<Int> = sharedMutableListOf()
-        val capturedMax: MutableList<Int> = sharedMutableListOf()
-        val capturedPredicate: MutableList<Function<Boolean>> = sharedMutableListOf()
+        val capturedMin: MutableList<Int> = mutableListOf()
+        val capturedMax: MutableList<Int> = mutableListOf()
+        val capturedPredicate: MutableList<Function<Boolean>> = mutableListOf()
 
         val auxiliaryGenerator = SignedNumberGeneratorStub<Byte, Byte>()
+
+        var range: Pair<Int, Int>? = null
 
         val expected = listOf(
             23.toByte(),
             7.toByte(),
             39.toByte(),
         )
-        val ranges = sharedMutableListOf(1, 0, 1)
+        val ranges = mutableListOf(1, 0, 1)
 
-        val consumableItem = expected.toSharedMutableList()
+        val consumableItem = expected.toMutableList()
 
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             ranges.removeFirst()
         }
 
@@ -651,7 +661,7 @@ class ByteArrayGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = range.value,
+            actual = range,
             expected = Pair(1, 2),
         )
         assertTrue(
@@ -691,6 +701,8 @@ class ByteArrayGeneratorSpec {
 
         val auxiliaryGenerator = SignedNumberGeneratorStub<Byte, Byte>()
 
+        var range: Pair<Int, Int>? = null
+
         val expectedValue = 42.toByte()
         val expected = ByteArray(size) { expectedValue }
 
@@ -700,7 +712,7 @@ class ByteArrayGeneratorSpec {
             expectedValue
         }
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             size
         }
 
@@ -711,7 +723,7 @@ class ByteArrayGeneratorSpec {
         // Then
         assertEquals(
             actual = Pair(1, 11),
-            expected = range.value,
+            expected = range,
         )
         assertEquals(
             actual = capturedSign,
@@ -735,6 +747,8 @@ class ByteArrayGeneratorSpec {
 
         val auxiliaryGenerator = SignedNumberGeneratorStub<Byte, Byte>()
 
+        var range: Pair<Int, Int>? = null
+
         val expectedValue = 42.toByte()
         val expected = ByteArray(size) { expectedValue }
 
@@ -745,7 +759,7 @@ class ByteArrayGeneratorSpec {
             expectedValue
         }
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             size
         }
 
@@ -756,7 +770,7 @@ class ByteArrayGeneratorSpec {
         // Then
         assertEquals(
             actual = Pair(1, 11),
-            expected = range.value,
+            expected = range,
         )
         assertEquals(
             actual = capturedSign,

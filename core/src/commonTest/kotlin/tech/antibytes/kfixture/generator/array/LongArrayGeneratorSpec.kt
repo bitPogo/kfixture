@@ -6,28 +6,22 @@
 
 package tech.antibytes.kfixture.generator.array
 
-import co.touchlab.stately.collections.sharedMutableListOf
 import kotlin.js.JsName
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertSame
 import kotlin.test.assertTrue
-import kotlinx.atomicfu.AtomicRef
-import kotlinx.atomicfu.atomic
-import kotlinx.atomicfu.update
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.mock.RandomStub
 import tech.antibytes.kfixture.mock.SignedNumberGeneratorStub
 
 class LongArrayGeneratorSpec {
     private val random = RandomStub()
-    private val range: AtomicRef<Pair<Int, Int>?> = atomic(null)
 
     @AfterTest
     fun tearDown() {
         random.clear()
-        range.getAndSet(null)
     }
 
     @Test
@@ -47,9 +41,11 @@ class LongArrayGeneratorSpec {
         val expected = LongArray(size) { expectedValue }
         val auxiliaryGenerator = SignedNumberGeneratorStub<Long, Long>()
 
+        var range: Pair<Int, Int>? = null
+
         auxiliaryGenerator.generate = { expectedValue }
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             size
         }
 
@@ -60,7 +56,7 @@ class LongArrayGeneratorSpec {
         // Then
         assertEquals(
             actual = Pair(1, 11),
-            expected = range.value,
+            expected = range,
         )
         assertTrue(
             expected.contentEquals(result),
@@ -79,13 +75,15 @@ class LongArrayGeneratorSpec {
 
         val auxiliaryGenerator = SignedNumberGeneratorStub<Long, Long>()
 
+        var range: Pair<Int, Int>? = null
+
         auxiliaryGenerator.generateWithPredicate = { givenPredicate ->
             capturedPredicate = givenPredicate
 
             expectedValue
         }
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             size
         }
 
@@ -96,7 +94,7 @@ class LongArrayGeneratorSpec {
         // Then
         assertEquals(
             actual = Pair(1, 11),
-            expected = range.value,
+            expected = range,
         )
         assertSame(
             actual = capturedPredicate,
@@ -181,15 +179,17 @@ class LongArrayGeneratorSpec {
 
         val auxiliaryGenerator = SignedNumberGeneratorStub<Long, Long>()
 
+        var range: Pair<Int, Int>? = null
+
         val expected = listOf(
             23.toLong(),
             7.toLong(),
             39.toLong(),
         )
-        val consumableItem = expected.toSharedMutableList()
+        val consumableItem = expected.toMutableList()
 
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             size
         }
 
@@ -207,7 +207,7 @@ class LongArrayGeneratorSpec {
         // Then
         assertEquals(
             actual = Pair(1, 11),
-            expected = range.value,
+            expected = range,
         )
         assertEquals(
             actual = capturedMin,
@@ -237,15 +237,17 @@ class LongArrayGeneratorSpec {
 
         val auxiliaryGenerator = SignedNumberGeneratorStub<Long, Long>()
 
+        var range: Pair<Int, Int>? = null
+
         val expected = listOf(
             23.toLong(),
             7.toLong(),
             39.toLong(),
         )
-        val consumableItem = expected.toSharedMutableList()
+        val consumableItem = expected.toMutableList()
 
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             size
         }
 
@@ -264,7 +266,7 @@ class LongArrayGeneratorSpec {
         // Then
         assertEquals(
             actual = Pair(1, 11),
-            expected = range.value,
+            expected = range,
         )
         assertEquals(
             actual = capturedMin,
@@ -301,7 +303,7 @@ class LongArrayGeneratorSpec {
             7.toLong(),
             39.toLong(),
         )
-        val consumableItem = expected.toSharedMutableList()
+        val consumableItem = expected.toMutableList()
 
         auxiliaryGenerator.generateWithRange = { givenMin, givenMax, _ ->
             capturedMin = givenMin
@@ -347,7 +349,7 @@ class LongArrayGeneratorSpec {
             7.toLong(),
             39.toLong(),
         )
-        val consumableItem = expected.toSharedMutableList()
+        val consumableItem = expected.toMutableList()
 
         auxiliaryGenerator.generateWithRange = { givenMin, givenMax, givenPredicate ->
             capturedMin = givenMin
@@ -393,22 +395,24 @@ class LongArrayGeneratorSpec {
         val expectedMin2 = 3.toLong()
         val expectedMax2 = 41.toLong()
 
-        val capturedMin: MutableList<Long> = sharedMutableListOf()
-        val capturedMax: MutableList<Long> = sharedMutableListOf()
+        val capturedMin: MutableList<Long> = mutableListOf()
+        val capturedMax: MutableList<Long> = mutableListOf()
 
         val auxiliaryGenerator = SignedNumberGeneratorStub<Long, Long>()
+
+        var range: Pair<Int, Int>? = null
 
         val expected = listOf(
             23.toLong(),
             7.toLong(),
             39.toLong(),
         )
-        val ranges = sharedMutableListOf(3, 1, 0, 1)
+        val ranges = mutableListOf(3, 1, 0, 1)
 
-        val consumableItem = expected.toSharedMutableList()
+        val consumableItem = expected.toMutableList()
 
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             ranges.removeFirst()
         }
 
@@ -428,7 +432,7 @@ class LongArrayGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = range.value,
+            actual = range,
             expected = Pair(1, 2),
         )
         assertTrue(
@@ -459,23 +463,25 @@ class LongArrayGeneratorSpec {
         val expectedMax2 = 41.toLong()
         val expectedPredicate: Function1<Long?, Boolean> = { true }
 
-        val capturedMin: MutableList<Long> = sharedMutableListOf()
-        val capturedMax: MutableList<Long> = sharedMutableListOf()
-        val capturedPredicate: MutableList<Function<Boolean>> = sharedMutableListOf()
+        val capturedMin: MutableList<Long> = mutableListOf()
+        val capturedMax: MutableList<Long> = mutableListOf()
+        val capturedPredicate: MutableList<Function<Boolean>> = mutableListOf()
 
         val auxiliaryGenerator = SignedNumberGeneratorStub<Long, Long>()
+
+        var range: Pair<Int, Int>? = null
 
         val expected = listOf(
             23.toLong(),
             7.toLong(),
             39.toLong(),
         )
-        val ranges = sharedMutableListOf(3, 1, 0, 1)
+        val ranges = mutableListOf(3, 1, 0, 1)
 
-        val consumableItem = expected.toSharedMutableList()
+        val consumableItem = expected.toMutableList()
 
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             ranges.removeFirst()
         }
 
@@ -497,7 +503,7 @@ class LongArrayGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = range.value,
+            actual = range,
             expected = Pair(1, 2),
         )
         assertTrue(
@@ -536,22 +542,24 @@ class LongArrayGeneratorSpec {
         val expectedMin2 = 3.toLong()
         val expectedMax2 = 41.toLong()
 
-        val capturedMin: MutableList<Long> = sharedMutableListOf()
-        val capturedMax: MutableList<Long> = sharedMutableListOf()
+        val capturedMin: MutableList<Long> = mutableListOf()
+        val capturedMax: MutableList<Long> = mutableListOf()
 
         val auxiliaryGenerator = SignedNumberGeneratorStub<Long, Long>()
+
+        var range: Pair<Int, Int>? = null
 
         val expected = listOf(
             23.toLong(),
             7.toLong(),
             39.toLong(),
         )
-        val ranges = sharedMutableListOf(1, 0, 1)
+        val ranges = mutableListOf(1, 0, 1)
 
-        val consumableItem = expected.toSharedMutableList()
+        val consumableItem = expected.toMutableList()
 
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             ranges.removeFirst()
         }
 
@@ -572,7 +580,7 @@ class LongArrayGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = range.value,
+            actual = range,
             expected = Pair(1, 2),
         )
         assertTrue(
@@ -604,23 +612,25 @@ class LongArrayGeneratorSpec {
         val expectedMax2 = 41.toLong()
         val expectedPredicate: Function1<Long?, Boolean> = { true }
 
-        val capturedMin: MutableList<Long> = sharedMutableListOf()
-        val capturedMax: MutableList<Long> = sharedMutableListOf()
-        val capturedPredicate: MutableList<Function<Boolean>> = sharedMutableListOf()
+        val capturedMin: MutableList<Long> = mutableListOf()
+        val capturedMax: MutableList<Long> = mutableListOf()
+        val capturedPredicate: MutableList<Function<Boolean>> = mutableListOf()
 
         val auxiliaryGenerator = SignedNumberGeneratorStub<Long, Long>()
+
+        var range: Pair<Int, Int>? = null
 
         val expected = listOf(
             23L,
             7L,
             39L,
         )
-        val ranges = sharedMutableListOf(1, 0, 1)
+        val ranges = mutableListOf(1, 0, 1)
 
-        val consumableItem = expected.toSharedMutableList()
+        val consumableItem = expected.toMutableList()
 
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             ranges.removeFirst()
         }
 
@@ -643,7 +653,7 @@ class LongArrayGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = range.value,
+            actual = range,
             expected = Pair(1, 2),
         )
         assertTrue(
@@ -683,6 +693,8 @@ class LongArrayGeneratorSpec {
 
         val auxiliaryGenerator = SignedNumberGeneratorStub<Long, Long>()
 
+        var range: Pair<Int, Int>? = null
+
         val expectedValue = 42.toLong()
         val expected = LongArray(size) { expectedValue }
 
@@ -692,7 +704,7 @@ class LongArrayGeneratorSpec {
             expectedValue
         }
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             size
         }
 
@@ -703,7 +715,7 @@ class LongArrayGeneratorSpec {
         // Then
         assertEquals(
             actual = Pair(1, 11),
-            expected = range.value,
+            expected = range,
         )
         assertEquals(
             actual = capturedSign,
@@ -727,6 +739,8 @@ class LongArrayGeneratorSpec {
 
         val auxiliaryGenerator = SignedNumberGeneratorStub<Long, Long>()
 
+        var range: Pair<Int, Int>? = null
+
         val expectedValue = 42L
         val expected = LongArray(size) { expectedValue }
 
@@ -737,7 +751,7 @@ class LongArrayGeneratorSpec {
             expectedValue
         }
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             size
         }
 
@@ -748,7 +762,7 @@ class LongArrayGeneratorSpec {
         // Then
         assertEquals(
             actual = Pair(1, 11),
-            expected = range.value,
+            expected = range,
         )
         assertEquals(
             actual = capturedSign,

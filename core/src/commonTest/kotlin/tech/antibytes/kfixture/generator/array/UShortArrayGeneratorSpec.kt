@@ -6,16 +6,12 @@
 
 package tech.antibytes.kfixture.generator.array
 
-import co.touchlab.stately.collections.sharedMutableListOf
 import kotlin.js.JsName
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertSame
 import kotlin.test.assertTrue
-import kotlinx.atomicfu.AtomicRef
-import kotlinx.atomicfu.atomic
-import kotlinx.atomicfu.update
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.mock.RandomStub
 import tech.antibytes.kfixture.mock.RangedGeneratorStub
@@ -27,12 +23,10 @@ private data class UShortRange(
 
 class UShortArrayGeneratorSpec {
     private val random = RandomStub()
-    private val range: AtomicRef<Pair<Int, Int>?> = atomic(null)
 
     @AfterTest
     fun tearDown() {
         random.clear()
-        range.getAndSet(null)
     }
 
     @Test
@@ -53,8 +47,11 @@ class UShortArrayGeneratorSpec {
         val auxiliaryGenerator = RangedGeneratorStub<UShort, UShort>()
 
         auxiliaryGenerator.generate = { expectedValue }
+
+        var range: Pair<Int, Int>? = null
+
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             size
         }
 
@@ -65,7 +62,7 @@ class UShortArrayGeneratorSpec {
         // Then
         assertEquals(
             actual = Pair(1, 11),
-            expected = range.value,
+            expected = range,
         )
         assertTrue(
             expected.contentEquals(result),
@@ -84,13 +81,15 @@ class UShortArrayGeneratorSpec {
 
         val auxiliaryGenerator = RangedGeneratorStub<UShort, UShort>()
 
+        var range: Pair<Int, Int>? = null
+
         auxiliaryGenerator.generateWithPredicate = { givenPredicate ->
             capturedPredicate = givenPredicate
 
             expectedValue
         }
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             size
         }
 
@@ -101,7 +100,7 @@ class UShortArrayGeneratorSpec {
         // Then
         assertEquals(
             actual = Pair(1, 11),
-            expected = range.value,
+            expected = range,
         )
         assertSame(
             actual = capturedPredicate,
@@ -186,15 +185,17 @@ class UShortArrayGeneratorSpec {
 
         val auxiliaryGenerator = RangedGeneratorStub<UShort, UShort>()
 
+        var range: Pair<Int, Int>? = null
+
         val expected = listOf(
             23.toUShort(),
             7.toUShort(),
             39.toUShort(),
         )
-        val consumableItem = expected.toSharedMutableList()
+        val consumableItem = expected.toMutableList()
 
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             size
         }
 
@@ -212,7 +213,7 @@ class UShortArrayGeneratorSpec {
         // Then
         assertEquals(
             actual = Pair(1, 11),
-            expected = range.value,
+            expected = range,
         )
         assertEquals(
             actual = capturedMin,
@@ -242,15 +243,17 @@ class UShortArrayGeneratorSpec {
 
         val auxiliaryGenerator = RangedGeneratorStub<UShort, UShort>()
 
+        var range: Pair<Int, Int>? = null
+
         val expected = listOf(
             23.toUShort(),
             7.toUShort(),
             39.toUShort(),
         )
-        val consumableItem = expected.toSharedMutableList()
+        val consumableItem = expected.toMutableList()
 
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             size
         }
 
@@ -269,7 +272,7 @@ class UShortArrayGeneratorSpec {
         // Then
         assertEquals(
             actual = Pair(1, 11),
-            expected = range.value,
+            expected = range,
         )
         assertEquals(
             actual = capturedMin,
@@ -306,7 +309,7 @@ class UShortArrayGeneratorSpec {
             7.toUShort(),
             39.toUShort(),
         )
-        val consumableItem = expected.toSharedMutableList()
+        val consumableItem = expected.toMutableList()
 
         auxiliaryGenerator.generateWithRange = { givenMin, givenMax, _ ->
             capturedMin = givenMin.toInt()
@@ -353,7 +356,7 @@ class UShortArrayGeneratorSpec {
             7.toUShort(),
             39.toUShort(),
         )
-        val consumableItem = expected.toSharedMutableList()
+        val consumableItem = expected.toMutableList()
 
         auxiliaryGenerator.generateWithRange = { givenMin, givenMax, givenPredicate ->
             capturedMin = givenMin.toInt()
@@ -399,22 +402,24 @@ class UShortArrayGeneratorSpec {
         val expectedMin2 = 3.toUShort()
         val expectedMax2 = 41.toUShort()
 
-        val capturedMin: MutableList<Int> = sharedMutableListOf()
-        val capturedMax: MutableList<Int> = sharedMutableListOf()
+        val capturedMin: MutableList<Int> = mutableListOf()
+        val capturedMax: MutableList<Int> = mutableListOf()
 
         val auxiliaryGenerator = RangedGeneratorStub<UShort, UShort>()
+
+        var range: Pair<Int, Int>? = null
 
         val expected = listOf(
             23.toUShort(),
             7.toUShort(),
             39.toUShort(),
         )
-        val ranges = sharedMutableListOf(3, 1, 0, 1)
+        val ranges = mutableListOf(3, 1, 0, 1)
 
-        val consumableItem = expected.toSharedMutableList()
+        val consumableItem = expected.toMutableList()
 
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             ranges.removeFirst()
         }
 
@@ -434,7 +439,7 @@ class UShortArrayGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = range.value,
+            actual = range,
             expected = Pair(1, 2),
         )
         assertTrue(
@@ -465,23 +470,25 @@ class UShortArrayGeneratorSpec {
         val expectedMax2 = 41.toUShort()
         val expectedPredicate: Function1<UShort?, Boolean> = { true }
 
-        val capturedMin: MutableList<Int> = sharedMutableListOf()
-        val capturedMax: MutableList<Int> = sharedMutableListOf()
-        val capturedPredicate: MutableList<Function<Boolean>> = sharedMutableListOf()
+        val capturedMin: MutableList<Int> = mutableListOf()
+        val capturedMax: MutableList<Int> = mutableListOf()
+        val capturedPredicate: MutableList<Function<Boolean>> = mutableListOf()
 
         val auxiliaryGenerator = RangedGeneratorStub<UShort, UShort>()
+
+        var range: Pair<Int, Int>? = null
 
         val expected = listOf(
             23.toUShort(),
             7.toUShort(),
             39.toUShort(),
         )
-        val ranges = sharedMutableListOf(3, 1, 0, 1)
+        val ranges = mutableListOf(3, 1, 0, 1)
 
-        val consumableItem = expected.toSharedMutableList()
+        val consumableItem = expected.toMutableList()
 
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             ranges.removeFirst()
         }
 
@@ -503,7 +510,7 @@ class UShortArrayGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = range.value,
+            actual = range,
             expected = Pair(1, 2),
         )
         assertTrue(
@@ -542,22 +549,24 @@ class UShortArrayGeneratorSpec {
         val expectedMin2 = 3.toUShort()
         val expectedMax2 = 41.toUShort()
 
-        val capturedMin: MutableList<Int> = sharedMutableListOf()
-        val capturedMax: MutableList<Int> = sharedMutableListOf()
+        val capturedMin: MutableList<Int> = mutableListOf()
+        val capturedMax: MutableList<Int> = mutableListOf()
 
         val auxiliaryGenerator = RangedGeneratorStub<UShort, UShort>()
+
+        var range: Pair<Int, Int>? = null
 
         val expected = listOf(
             23.toUShort(),
             7.toUShort(),
             39.toUShort(),
         )
-        val ranges = sharedMutableListOf(1, 0, 1)
+        val ranges = mutableListOf(1, 0, 1)
 
-        val consumableItem = expected.toSharedMutableList()
+        val consumableItem = expected.toMutableList()
 
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             ranges.removeFirst()
         }
 
@@ -578,7 +587,7 @@ class UShortArrayGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = range.value,
+            actual = range,
             expected = Pair(1, 2),
         )
         assertTrue(
@@ -610,23 +619,25 @@ class UShortArrayGeneratorSpec {
         val expectedMax2 = 41.toUShort()
         val expectedPredicate: Function1<UShort?, Boolean> = { true }
 
-        val capturedMin: MutableList<Int> = sharedMutableListOf()
-        val capturedMax: MutableList<Int> = sharedMutableListOf()
-        val capturedPredicate: MutableList<Function<Boolean>> = sharedMutableListOf()
+        val capturedMin: MutableList<Int> = mutableListOf()
+        val capturedMax: MutableList<Int> = mutableListOf()
+        val capturedPredicate: MutableList<Function<Boolean>> = mutableListOf()
 
         val auxiliaryGenerator = RangedGeneratorStub<UShort, UShort>()
+
+        var range: Pair<Int, Int>? = null
 
         val expected = listOf(
             23.toUShort(),
             7.toUShort(),
             39.toUShort(),
         )
-        val ranges = sharedMutableListOf(1, 0, 1)
+        val ranges = mutableListOf(1, 0, 1)
 
-        val consumableItem = expected.toSharedMutableList()
+        val consumableItem = expected.toMutableList()
 
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             ranges.removeFirst()
         }
 
@@ -649,7 +660,7 @@ class UShortArrayGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = range.value,
+            actual = range,
             expected = Pair(1, 2),
         )
         assertTrue(

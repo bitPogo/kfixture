@@ -8,17 +8,12 @@
 
 package tech.antibytes.kfixture
 
-import co.touchlab.stately.isFrozen
 import kotlin.js.JsName
 import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
-import kotlinx.atomicfu.AtomicRef
-import kotlinx.atomicfu.atomic
-import kotlinx.atomicfu.update
-import tech.antibytes.kfixture.generator.RandomWrapper
 import tech.antibytes.kfixture.generator.array.BooleanArrayGenerator
 import tech.antibytes.kfixture.generator.array.ByteArrayGenerator
 import tech.antibytes.kfixture.generator.array.CharArrayGenerator
@@ -88,7 +83,6 @@ class ConfigurationSpec {
         val fixture = Configuration(seed).build()
 
         // Then
-        assertTrue(fixture.random is RandomWrapper)
         assertEquals(
             actual = fixture.random.nextDouble(),
             expected = Random(seed).nextDouble(),
@@ -176,14 +170,10 @@ class ConfigurationSpec {
                 generators["TestClass"] is TestGenerator,
         )
 
-        if (!TestGenerator.lastRandom.isFrozen) {
-            assertEquals(
-                actual = TestGenerator.lastRandom.nextDouble(),
-                expected = Random(seed).nextDouble(),
-            )
-        }
-
-        assertTrue(TestGenerator.lastRandom is RandomWrapper)
+        assertEquals(
+            actual = TestGenerator.lastRandom.nextDouble(),
+            expected = Random(seed).nextDouble(),
+        )
     }
 
     @Test
@@ -269,7 +259,6 @@ class ConfigurationSpec {
             expected = Random(seed).nextDouble(),
         )
 
-        assertTrue(TestDependentGenerator.lastRandom is RandomWrapper)
         assertEquals(
             actual = TestDependentGenerator.lastGenerators.size,
             expected = 27,
@@ -336,12 +325,12 @@ private class TestGenerator : PublicApi.Generator<TestClass> {
     override fun generate(): TestClass = TestClass()
 
     companion object : PublicApi.GeneratorFactory<TestClass> {
-        private val _lastRandom: AtomicRef<Random?> = atomic(null)
+        private var _lastRandom: Random? = null
 
         var lastRandom: Random
-            get() = _lastRandom.value!!
+            get() = _lastRandom!!
             set(value) {
-                _lastRandom.update { value }
+                _lastRandom = value
             }
 
         override fun getInstance(random: Random): PublicApi.Generator<TestClass> {
@@ -357,19 +346,19 @@ private class TestDependentGenerator : PublicApi.Generator<TestDependentClass> {
     override fun generate(): TestDependentClass = TestDependentClass()
 
     companion object : PublicApi.DependentGeneratorFactory<TestDependentClass> {
-        private val _lastRandom: AtomicRef<Random?> = atomic(null)
-        private val _lastGenerators: AtomicRef<Map<String, PublicApi.Generator<out Any>>?> = atomic(null)
+        private var _lastRandom: Random? = null
+        private var _lastGenerators: Map<String, PublicApi.Generator<out Any>>? = null
 
         var lastRandom: Random
-            get() = _lastRandom.value!!
+            get() = _lastRandom!!
             set(value) {
-                _lastRandom.update { value }
+                _lastRandom = value
             }
 
         var lastGenerators: Map<String, PublicApi.Generator<out Any>>
-            get() = _lastGenerators.value!!
+            get() = _lastGenerators!!
             set(value) {
-                _lastGenerators.update { value }
+                _lastGenerators = value
             }
 
         override fun getInstance(

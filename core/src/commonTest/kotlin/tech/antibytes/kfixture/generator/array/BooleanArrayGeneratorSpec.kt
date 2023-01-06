@@ -11,21 +11,16 @@ import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
-import kotlinx.atomicfu.AtomicRef
-import kotlinx.atomicfu.atomic
-import kotlinx.atomicfu.update
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.mock.FilterableGeneratorStub
 import tech.antibytes.kfixture.mock.RandomStub
 
 class BooleanArrayGeneratorSpec {
     private val random = RandomStub()
-    private val range: AtomicRef<Pair<Int, Int>?> = atomic(null)
 
     @AfterTest
     fun tearDown() {
         random.clear()
-        range.getAndSet(null)
     }
 
     @Test
@@ -47,9 +42,11 @@ class BooleanArrayGeneratorSpec {
         val expected = BooleanArray(size) { expectedValue }
         val auxiliaryGenerator = FilterableGeneratorStub<Boolean, Boolean>()
 
+        var range: Pair<Int, Int>? = null
+
         auxiliaryGenerator.generate = { expectedValue }
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             size
         }
 
@@ -60,7 +57,7 @@ class BooleanArrayGeneratorSpec {
         // Then
         assertEquals(
             actual = Pair(1, 11),
-            expected = range.value,
+            expected = range,
         )
         assertTrue(
             expected.contentEquals(result),

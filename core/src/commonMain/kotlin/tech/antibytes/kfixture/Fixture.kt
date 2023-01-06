@@ -9,16 +9,11 @@
 package tech.antibytes.kfixture
 
 import kotlin.random.Random
-import kotlinx.atomicfu.atomic
 
 internal class Fixture(
     override val random: Random,
-    generators: Map<String, PublicApi.Generator<out Any>>,
-) : PublicApi.Fixture {
-    private val _generators = atomic(generators)
-
-    override val generators: Map<String, PublicApi.Generator<out Any>> by _generators
-}
+    override val generators: Map<String, PublicApi.Generator<out Any>>,
+) : PublicApi.Fixture
 
 /**
  * Factory to instantiate a Fixture Generator.

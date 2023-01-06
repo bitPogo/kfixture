@@ -14,7 +14,6 @@ import kotlin.test.assertFailsWith
 import kotlin.test.assertNull
 import kotlin.test.assertSame
 import kotlin.test.assertTrue
-import kotlinx.atomicfu.atomic
 import tech.antibytes.kfixture.Fixture
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.fixture
@@ -27,14 +26,10 @@ import tech.antibytes.kfixture.resolveClassName
 
 class SignedNumberFixtureSpec {
     private val random = RandomStub()
-    private val capturedMinimum = atomic(-1)
-    private val capturedMaximum = atomic(-1)
 
     @AfterTest
     fun tearDown() {
         random.clear()
-        capturedMinimum.getAndSet(-1)
-        capturedMaximum.getAndSet(-1)
     }
 
     @Test

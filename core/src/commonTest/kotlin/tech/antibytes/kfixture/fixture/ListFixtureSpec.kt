@@ -12,7 +12,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
-import kotlinx.atomicfu.atomic
 import tech.antibytes.kfixture.Fixture
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.fixture
@@ -26,14 +25,10 @@ import tech.antibytes.kfixture.resolveClassName
 
 class ListFixtureSpec {
     private val random = RandomStub()
-    private val capturedMinimum = atomic(-1)
-    private val capturedMaximum = atomic(-1)
 
     @AfterTest
     fun tearDown() {
         random.clear()
-        capturedMinimum.getAndSet(-1)
-        capturedMaximum.getAndSet(-1)
     }
 
     @Test
@@ -78,10 +73,13 @@ class ListFixtureSpec {
         val expected = 23
         val generator = FilterableGeneratorStub<Int, Int>()
 
+        var capturedMinimum = -1
+        var capturedMaximum = -1
+
         generator.generate = { expected }
         random.nextIntRanged = { givenMinimum, givenMaximum ->
-            capturedMinimum.getAndSet(givenMinimum)
-            capturedMaximum.getAndSet(givenMaximum)
+            capturedMinimum = givenMinimum
+            capturedMaximum = givenMaximum
             size
         }
 
@@ -96,11 +94,11 @@ class ListFixtureSpec {
         // Then
         assertTrue(result is List<*>)
         assertEquals(
-            actual = capturedMinimum.value,
+            actual = capturedMinimum,
             expected = 1,
         )
         assertEquals(
-            actual = capturedMaximum.value,
+            actual = capturedMaximum,
             expected = 11,
         )
         assertEquals(
@@ -127,9 +125,12 @@ class ListFixtureSpec {
         val expected = 23
         val generator = FilterableGeneratorStub<Int, Int>()
 
+        var capturedMinimum = -1
+        var capturedMaximum = -1
+
         random.nextIntRanged = { givenMinimum, givenMaximum ->
-            capturedMinimum.getAndSet(givenMinimum)
-            capturedMaximum.getAndSet(givenMaximum)
+            capturedMinimum = givenMinimum
+            capturedMaximum = givenMaximum
             size
         }
 
@@ -144,11 +145,11 @@ class ListFixtureSpec {
         // Then
         assertTrue(result is List<*>)
         assertEquals(
-            actual = capturedMinimum.value,
+            actual = capturedMinimum,
             expected = 1,
         )
         assertEquals(
-            actual = capturedMaximum.value,
+            actual = capturedMaximum,
             expected = 11,
         )
         assertEquals(
@@ -175,10 +176,13 @@ class ListFixtureSpec {
         val expected = 23
         val generator = FilterableGeneratorStub<Int, Int>()
 
+        var capturedMinimum = -1
+        var capturedMaximum = -1
+
         generator.generate = { expected }
         random.nextIntRanged = { givenMinimum, givenMaximum ->
-            capturedMinimum.getAndSet(givenMinimum)
-            capturedMaximum.getAndSet(givenMaximum)
+            capturedMinimum = givenMinimum
+            capturedMaximum = givenMaximum
             size
         }
 
@@ -194,11 +198,11 @@ class ListFixtureSpec {
 
         // Then
         assertEquals(
-            actual = capturedMinimum.value,
+            actual = capturedMinimum,
             expected = 1,
         )
         assertEquals(
-            actual = capturedMaximum.value,
+            actual = capturedMaximum,
             expected = 11,
         )
         assertEquals(
@@ -456,10 +460,13 @@ class ListFixtureSpec {
         val expected = 23
         val generator = FilterableGeneratorStub<Int, Int>()
 
+        var capturedMinimum = -1
+        var capturedMaximum = -1
+
         generator.generate = { expected }
         random.nextIntRanged = { givenMinimum, givenMaximum ->
-            capturedMinimum.getAndSet(givenMinimum)
-            capturedMaximum.getAndSet(givenMaximum)
+            capturedMinimum = givenMinimum
+            capturedMaximum = givenMaximum
             size
         }
 
@@ -474,11 +481,11 @@ class ListFixtureSpec {
         // Then
         assertTrue(result is MutableList<*>)
         assertEquals(
-            actual = capturedMinimum.value,
+            actual = capturedMinimum,
             expected = 1,
         )
         assertEquals(
-            actual = capturedMaximum.value,
+            actual = capturedMaximum,
             expected = 11,
         )
         assertEquals(
@@ -505,9 +512,12 @@ class ListFixtureSpec {
         val expected = 23
         val generator = FilterableGeneratorStub<Int, Int>()
 
+        var capturedMinimum = -1
+        var capturedMaximum = -1
+
         random.nextIntRanged = { givenMinimum, givenMaximum ->
-            capturedMinimum.getAndSet(givenMinimum)
-            capturedMaximum.getAndSet(givenMaximum)
+            capturedMinimum = givenMinimum
+            capturedMaximum = givenMaximum
             size
         }
 
@@ -522,11 +532,11 @@ class ListFixtureSpec {
         // Then
         assertTrue(result is MutableList<*>)
         assertEquals(
-            actual = capturedMinimum.value,
+            actual = capturedMinimum,
             expected = 1,
         )
         assertEquals(
-            actual = capturedMaximum.value,
+            actual = capturedMaximum,
             expected = 11,
         )
         assertEquals(
@@ -553,10 +563,13 @@ class ListFixtureSpec {
         val expected = 23
         val generator = FilterableGeneratorStub<Int, Int>()
 
+        var capturedMinimum = -1
+        var capturedMaximum = -1
+
         generator.generate = { expected }
         random.nextIntRanged = { givenMinimum, givenMaximum ->
-            capturedMinimum.getAndSet(givenMinimum)
-            capturedMaximum.getAndSet(givenMaximum)
+            capturedMinimum = givenMinimum
+            capturedMaximum = givenMaximum
             size
         }
 
@@ -572,11 +585,11 @@ class ListFixtureSpec {
 
         // Then
         assertEquals(
-            actual = capturedMinimum.value,
+            actual = capturedMinimum,
             expected = 1,
         )
         assertEquals(
-            actual = capturedMaximum.value,
+            actual = capturedMaximum,
             expected = 11,
         )
         assertEquals(

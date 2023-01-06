@@ -11,15 +11,11 @@ import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
-import kotlinx.atomicfu.AtomicRef
-import kotlinx.atomicfu.atomic
-import kotlinx.atomicfu.update
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.mock.RandomStub
 
 class CharGeneratorSpec {
     private val random = RandomStub()
-    private val range: AtomicRef<Pair<Int, Int>?> = atomic(null)
 
     @AfterTest
     fun tearDown() {
@@ -39,9 +35,10 @@ class CharGeneratorSpec {
     fun `Given generate is called it returns a Char`() {
         // Given
         val expected = 100
+        var range: Pair<Int, Int>? = null
 
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             expected
         }
 
@@ -52,7 +49,7 @@ class CharGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = range.value,
+            actual = range,
             expected = Pair(32, 127),
         )
         assertEquals(
@@ -67,9 +64,10 @@ class CharGeneratorSpec {
         // Given
         val expected = 100
         val chars = mutableListOf(42, 78, expected)
+        var range: Pair<Int, Int>? = null
 
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
 
             chars.removeFirst()
         }
@@ -81,7 +79,7 @@ class CharGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = range.value,
+            actual = range,
             expected = Pair(32, 127),
         )
         assertEquals(
@@ -97,9 +95,10 @@ class CharGeneratorSpec {
         val expectedMin = 102.toChar()
         val expectedMax = 189.toChar()
         val expected = 100
+        var range: Pair<Int, Int>? = null
 
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             expected
         }
 
@@ -110,7 +109,7 @@ class CharGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = range.value,
+            actual = range,
             expected = Pair(expectedMin.code, expectedMax.code + 1),
         )
         assertEquals(
@@ -127,9 +126,10 @@ class CharGeneratorSpec {
         val expectedMax = 189.toChar()
         val expected = 100
         val chars = mutableListOf(42, 78, expected)
+        var range: Pair<Int, Int>? = null
 
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
 
             chars.removeFirst()
         }
@@ -144,7 +144,7 @@ class CharGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = range.value,
+            actual = range,
             expected = Pair(expectedMin.code, expectedMax.code + 1),
         )
         assertEquals(

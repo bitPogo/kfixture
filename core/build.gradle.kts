@@ -4,7 +4,6 @@
  * Use of this source code is governed by Apache v2.0
  */
 
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import tech.antibytes.gradle.coverage.api.JvmJacocoConfiguration
 import tech.antibytes.gradle.coverage.api.AndroidJacocoConfiguration
 import tech.antibytes.gradle.coverage.api.JacocoVerificationRule
@@ -20,7 +19,6 @@ plugins {
     alias(antibytesCatalog.plugins.gradle.antibytes.androidLibraryConfiguration)
     alias(antibytesCatalog.plugins.gradle.antibytes.publishing)
     alias(antibytesCatalog.plugins.gradle.antibytes.coverage)
-    id(antibytesCatalog.plugins.kotlinx.atomicfu.get().pluginId)
     alias(antibytesCatalog.plugins.gradle.antibytes.dokkaConfiguration)
 }
 
@@ -129,16 +127,12 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(antibytesCatalog.common.kotlin.stdlib)
-                implementation(antibytesCatalog.common.stately.isolate)
-                implementation(antibytesCatalog.common.kotlinx.atomicfu.core)
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(antibytesCatalog.common.test.kotlin.core)
                 implementation(antibytesCatalog.common.test.kotlin.annotations)
-                implementation(antibytesCatalog.common.stately.freeze)
-                implementation(antibytesCatalog.common.stately.collections)
             }
         }
 

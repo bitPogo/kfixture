@@ -14,7 +14,6 @@ import kotlin.test.assertFailsWith
 import kotlin.test.assertNull
 import kotlin.test.assertSame
 import kotlin.test.assertTrue
-import kotlinx.atomicfu.atomic
 import tech.antibytes.kfixture.Fixture
 import tech.antibytes.kfixture.IgnoreAndroid
 import tech.antibytes.kfixture.IgnoreJvm
@@ -69,8 +68,6 @@ private data class UShortRange(
 
 class RangedSpecialArrayFixtureSpec {
     private val random = RandomStub()
-    private val capturedMinimum = atomic(-1)
-    private val capturedMaximum = atomic(-1)
 
     private val charArrayDescriptors = TypeDescriptor(
         from = '0',
@@ -171,8 +168,6 @@ class RangedSpecialArrayFixtureSpec {
     @AfterTest
     fun tearDown() {
         random.clear()
-        capturedMinimum.getAndSet(-1)
-        capturedMaximum.getAndSet(-1)
     }
 
     @Test

@@ -6,28 +6,22 @@
 
 package tech.antibytes.kfixture.generator.array
 
-import co.touchlab.stately.collections.sharedMutableListOf
 import kotlin.js.JsName
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertSame
 import kotlin.test.assertTrue
-import kotlinx.atomicfu.AtomicRef
-import kotlinx.atomicfu.atomic
-import kotlinx.atomicfu.update
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.mock.RandomStub
 import tech.antibytes.kfixture.mock.RangedGeneratorStub
 
 class CharArrayGeneratorSpec {
     private val random = RandomStub()
-    private val range: AtomicRef<Pair<Int, Int>?> = atomic(null)
 
     @AfterTest
     fun tearDown() {
         random.clear()
-        range.getAndSet(null)
     }
 
     @Test
@@ -47,9 +41,11 @@ class CharArrayGeneratorSpec {
         val expected = CharArray(size) { expectedValue }
         val auxiliaryGenerator = RangedGeneratorStub<Char, Char>()
 
+        var range: Pair<Int, Int>? = null
+
         auxiliaryGenerator.generate = { expectedValue }
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             size
         }
 
@@ -60,7 +56,7 @@ class CharArrayGeneratorSpec {
         // Then
         assertEquals(
             actual = Pair(1, 11),
-            expected = range.value,
+            expected = range,
         )
         assertTrue(
             expected.contentEquals(result),
@@ -77,6 +73,8 @@ class CharArrayGeneratorSpec {
 
         val expected = CharArray(size) { expectedValue }
         val auxiliaryGenerator = RangedGeneratorStub<Char, Char>()
+
+        var range: Pair<Int, Int>? = null
         var capturedPredicate: Function<Boolean>? = null
 
         auxiliaryGenerator.generateWithPredicate = { givenPredicate ->
@@ -85,7 +83,7 @@ class CharArrayGeneratorSpec {
             expectedValue
         }
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             size
         }
 
@@ -96,7 +94,7 @@ class CharArrayGeneratorSpec {
         // Then
         assertEquals(
             actual = Pair(1, 11),
-            expected = range.value,
+            expected = range,
         )
         assertSame(
             actual = capturedPredicate,
@@ -181,15 +179,17 @@ class CharArrayGeneratorSpec {
 
         val auxiliaryGenerator = RangedGeneratorStub<Char, Char>()
 
+        var range: Pair<Int, Int>? = null
+
         val expected = listOf(
             23.toChar(),
             7.toChar(),
             39.toChar(),
         )
-        val consumableItem = expected.toSharedMutableList()
+        val consumableItem = expected.toMutableList()
 
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             size
         }
 
@@ -207,7 +207,7 @@ class CharArrayGeneratorSpec {
         // Then
         assertEquals(
             actual = Pair(1, 11),
-            expected = range.value,
+            expected = range,
         )
         assertEquals(
             actual = capturedMin,
@@ -237,15 +237,17 @@ class CharArrayGeneratorSpec {
 
         val auxiliaryGenerator = RangedGeneratorStub<Char, Char>()
 
+        var range: Pair<Int, Int>? = null
+
         val expected = listOf(
             23.toChar(),
             7.toChar(),
             39.toChar(),
         )
-        val consumableItem = expected.toSharedMutableList()
+        val consumableItem = expected.toMutableList()
 
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             size
         }
 
@@ -264,7 +266,7 @@ class CharArrayGeneratorSpec {
         // Then
         assertEquals(
             actual = Pair(1, 11),
-            expected = range.value,
+            expected = range,
         )
         assertEquals(
             actual = capturedMin,
@@ -301,7 +303,7 @@ class CharArrayGeneratorSpec {
             7.toChar(),
             39.toChar(),
         )
-        val consumableItem = expected.toSharedMutableList()
+        val consumableItem = expected.toMutableList()
 
         auxiliaryGenerator.generateWithRange = { givenMin, givenMax, _ ->
             capturedMin = givenMin.code
@@ -348,7 +350,7 @@ class CharArrayGeneratorSpec {
             7.toChar(),
             39.toChar(),
         )
-        val consumableItem = expected.toSharedMutableList()
+        val consumableItem = expected.toMutableList()
 
         auxiliaryGenerator.generateWithRange = { givenMin, givenMax, givenPredicate ->
             capturedMin = givenMin.code
@@ -394,22 +396,24 @@ class CharArrayGeneratorSpec {
         val expectedMin2 = 3.toChar()
         val expectedMax2 = 41.toChar()
 
-        val capturedMin: MutableList<Int> = sharedMutableListOf()
-        val capturedMax: MutableList<Int> = sharedMutableListOf()
+        val capturedMin: MutableList<Int> = mutableListOf()
+        val capturedMax: MutableList<Int> = mutableListOf()
 
         val auxiliaryGenerator = RangedGeneratorStub<Char, Char>()
+
+        var range: Pair<Int, Int>? = null
 
         val expected = listOf(
             23.toChar(),
             7.toChar(),
             39.toChar(),
         )
-        val ranges = sharedMutableListOf(3, 1, 0, 1)
+        val ranges = mutableListOf(3, 1, 0, 1)
 
-        val consumableItem = expected.toSharedMutableList()
+        val consumableItem = expected.toMutableList()
 
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             ranges.removeFirst()
         }
 
@@ -429,7 +433,7 @@ class CharArrayGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = range.value,
+            actual = range,
             expected = Pair(1, 2),
         )
         assertTrue(
@@ -460,23 +464,25 @@ class CharArrayGeneratorSpec {
         val expectedMax2 = 41.toChar()
         val expectedPredicate: Function1<Char?, Boolean> = { true }
 
-        val capturedMin: MutableList<Int> = sharedMutableListOf()
-        val capturedMax: MutableList<Int> = sharedMutableListOf()
-        val capturedPredicate: MutableList<Function<Boolean>> = sharedMutableListOf()
+        val capturedMin: MutableList<Int> = mutableListOf()
+        val capturedMax: MutableList<Int> = mutableListOf()
+        val capturedPredicate: MutableList<Function<Boolean>> = mutableListOf()
 
         val auxiliaryGenerator = RangedGeneratorStub<Char, Char>()
+
+        var range: Pair<Int, Int>? = null
 
         val expected = listOf(
             23.toChar(),
             7.toChar(),
             39.toChar(),
         )
-        val ranges = sharedMutableListOf(3, 1, 0, 1)
+        val ranges = mutableListOf(3, 1, 0, 1)
 
-        val consumableItem = expected.toSharedMutableList()
+        val consumableItem = expected.toMutableList()
 
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             ranges.removeFirst()
         }
 
@@ -498,7 +504,7 @@ class CharArrayGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = range.value,
+            actual = range,
             expected = Pair(1, 2),
         )
         assertTrue(
@@ -537,22 +543,24 @@ class CharArrayGeneratorSpec {
         val expectedMin2 = 3.toChar()
         val expectedMax2 = 41.toChar()
 
-        val capturedMin: MutableList<Int> = sharedMutableListOf()
-        val capturedMax: MutableList<Int> = sharedMutableListOf()
+        val capturedMin: MutableList<Int> = mutableListOf()
+        val capturedMax: MutableList<Int> = mutableListOf()
 
         val auxiliaryGenerator = RangedGeneratorStub<Char, Char>()
+
+        var range: Pair<Int, Int>? = null
 
         val expected = listOf(
             23.toChar(),
             7.toChar(),
             39.toChar(),
         )
-        val ranges = sharedMutableListOf(1, 0, 1)
+        val ranges = mutableListOf(1, 0, 1)
 
-        val consumableItem = expected.toSharedMutableList()
+        val consumableItem = expected.toMutableList()
 
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             ranges.removeFirst()
         }
 
@@ -573,7 +581,7 @@ class CharArrayGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = range.value,
+            actual = range,
             expected = Pair(1, 2),
         )
         assertTrue(
@@ -605,23 +613,25 @@ class CharArrayGeneratorSpec {
         val expectedMax2 = 41.toChar()
         val expectedPredicate: Function1<Char?, Boolean> = { true }
 
-        val capturedMin: MutableList<Int> = sharedMutableListOf()
-        val capturedMax: MutableList<Int> = sharedMutableListOf()
-        val capturedPredicate: MutableList<Function<Boolean>> = sharedMutableListOf()
+        val capturedMin: MutableList<Int> = mutableListOf()
+        val capturedMax: MutableList<Int> = mutableListOf()
+        val capturedPredicate: MutableList<Function<Boolean>> = mutableListOf()
 
         val auxiliaryGenerator = RangedGeneratorStub<Char, Char>()
+
+        var range: Pair<Int, Int>? = null
 
         val expected = listOf(
             23.toChar(),
             7.toChar(),
             39.toChar(),
         )
-        val ranges = sharedMutableListOf(1, 0, 1)
+        val ranges = mutableListOf(1, 0, 1)
 
-        val consumableItem = expected.toSharedMutableList()
+        val consumableItem = expected.toMutableList()
 
         random.nextIntRanged = { from, to ->
-            range.update { Pair(from, to) }
+            range = Pair(from, to)
             ranges.removeFirst()
         }
 
@@ -644,7 +654,7 @@ class CharArrayGeneratorSpec {
 
         // Then
         assertEquals(
-            actual = range.value,
+            actual = range,
             expected = Pair(1, 2),
         )
         assertTrue(

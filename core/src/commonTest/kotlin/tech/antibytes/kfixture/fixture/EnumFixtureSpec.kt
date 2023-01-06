@@ -12,7 +12,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertSame
 import kotlin.test.assertTrue
-import kotlinx.atomicfu.atomic
 import tech.antibytes.kfixture.Fixture
 import tech.antibytes.kfixture.PublicApi
 import tech.antibytes.kfixture.enumFixture
@@ -21,8 +20,6 @@ import tech.antibytes.kfixture.mock.RandomStub
 
 class EnumFixtureSpec {
     private val random = RandomStub()
-    private val capturedMinimum = atomic(-1)
-    private val capturedMaximum = atomic(-1)
 
     enum class TestEnum {
         TEST1,
@@ -33,8 +30,6 @@ class EnumFixtureSpec {
     @AfterTest
     fun tearDown() {
         random.clear()
-        capturedMinimum.getAndSet(-1)
-        capturedMaximum.getAndSet(-1)
     }
 
     @Test
@@ -52,9 +47,12 @@ class EnumFixtureSpec {
         val expected = TestEnum.TEST2
         val index = 1
 
+        var capturedMinimum = -1
+        var capturedMaximum = -1
+
         random.nextIntRanged = { givenMinimum, givenMaximum ->
-            capturedMinimum.getAndSet(givenMinimum)
-            capturedMaximum.getAndSet(givenMaximum)
+            capturedMinimum = givenMinimum
+            capturedMaximum = givenMaximum
 
             index
         }
@@ -66,11 +64,11 @@ class EnumFixtureSpec {
 
         // Then
         assertEquals(
-            actual = capturedMinimum.value,
+            actual = capturedMinimum,
             expected = 0,
         )
         assertEquals(
-            actual = capturedMaximum.value,
+            actual = capturedMaximum,
             expected = 3,
         )
         assertSame(
@@ -109,9 +107,12 @@ class EnumFixtureSpec {
         val expected = TestEnum.TEST2
         val index = 1
 
+        var capturedMinimum = -1
+        var capturedMaximum = -1
+
         random.nextIntRanged = { givenMinimum, givenMaximum ->
-            capturedMinimum.getAndSet(givenMinimum)
-            capturedMaximum.getAndSet(givenMaximum)
+            capturedMinimum = givenMinimum
+            capturedMaximum = givenMaximum
 
             index
         }
@@ -123,11 +124,11 @@ class EnumFixtureSpec {
 
         // Then
         assertEquals(
-            actual = capturedMinimum.value,
+            actual = capturedMinimum,
             expected = 0,
         )
         assertEquals(
-            actual = capturedMaximum.value,
+            actual = capturedMaximum,
             expected = 3,
         )
         assertSame(

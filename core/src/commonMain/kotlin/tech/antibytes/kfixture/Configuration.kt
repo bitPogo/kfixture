@@ -8,7 +8,6 @@
 
 package tech.antibytes.kfixture
 
-import co.touchlab.stately.isolate.IsolateState
 import kotlin.random.Random
 import kotlin.reflect.KClass
 import tech.antibytes.kfixture.PublicApi.DependentGeneratorFactory
@@ -16,7 +15,6 @@ import tech.antibytes.kfixture.PublicApi.Generator
 import tech.antibytes.kfixture.PublicApi.GeneratorFactory
 import tech.antibytes.kfixture.PublicApi.RangedGenerator
 import tech.antibytes.kfixture.PublicApi.SignedNumberGenerator
-import tech.antibytes.kfixture.generator.RandomWrapper
 import tech.antibytes.kfixture.generator.array.BooleanArrayGenerator
 import tech.antibytes.kfixture.generator.array.ByteArrayGenerator
 import tech.antibytes.kfixture.generator.array.CharArrayGenerator
@@ -191,14 +189,13 @@ internal class Configuration @InternalAPI constructor(
     }
 
     override fun build(): PublicApi.Fixture {
-        val random = IsolateState { Random(seed) }
-        val randomWrapper = RandomWrapper(random)
-        val internalGenerators = initializeDefaultsGenerators(randomWrapper)
-            .initializeDefaultDependentGenerators(randomWrapper)
+        val random = Random(seed)
+        val internalGenerators = initializeDefaultsGenerators(random)
+            .initializeDefaultDependentGenerators(random)
         val generators = internalGenerators
-            .initializeCustomGenerators(randomWrapper)
+            .initializeCustomGenerators(random)
             .apply { putAll(internalGenerators) }
 
-        return Fixture(randomWrapper, generators)
+        return Fixture(random, generators)
     }
 }
