@@ -25,18 +25,19 @@ plugins {
 }
 
 group = FixtureKtxDateTimeConfiguration.group
+val publishingConfiguration = FixtureKtxDateTimeConfiguration(project)
 
 antibytesPublishing {
-    packaging.set(FixtureKtxDateTimeConfiguration.publishing.packageConfiguration)
-    repositories.set(FixtureKtxDateTimeConfiguration.publishing.repositories)
-    versioning.set(FixtureKtxDateTimeConfiguration.publishing.versioning)
+    packaging.set(publishingConfiguration.publishing.packageConfiguration)
+    repositories.set(publishingConfiguration.publishing.repositories)
+    versioning.set(publishingConfiguration.publishing.versioning)
     documentation.set(
         DocumentationConfiguration(
             tasks = setOf("dokkaHtml"),
             outputDir = buildDir.resolve("dokka")
         )
     )
-    signing.set(FixtureKtxDateTimeConfiguration.publishing.signing)
+    signing.set(publishingConfiguration.publishing.signing)
 }
 
 antibytesCoverage {

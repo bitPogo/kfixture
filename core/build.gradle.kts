@@ -24,18 +24,19 @@ plugins {
 }
 
 group = FixtureCoreConfiguration.group
+val publishingConfiguration = FixtureCoreConfiguration(project)
 
 antibytesPublishing {
-    packaging.set(FixtureCoreConfiguration.publishing.packageConfiguration)
-    repositories.set(FixtureCoreConfiguration.publishing.repositories)
-    versioning.set(FixtureCoreConfiguration.publishing.versioning)
+    packaging.set(publishingConfiguration.publishing.packageConfiguration)
+    repositories.set(publishingConfiguration.publishing.repositories)
+    versioning.set(publishingConfiguration.publishing.versioning)
     documentation.set(
         DocumentationConfiguration(
             tasks = setOf("dokkaHtml"),
             outputDir = buildDir.resolve("dokka")
         )
     )
-    signing.set(FixtureCoreConfiguration.publishing.signing)
+    signing.set(publishingConfiguration.publishing.signing)
 }
 
 antibytesCoverage {

@@ -1,4 +1,4 @@
-name: Antibytes CI - Label Pull Request Labels
+name: Antibytes CI - Label Pull Request
 
 on:
   pull_request:

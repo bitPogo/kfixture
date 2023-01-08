@@ -6,15 +6,14 @@
 
 package tech.antibytes.gradle.kfixture.config.publishing
 
+import org.gradle.api.Project
 import tech.antibytes.gradle.publishing.api.PackageConfiguration
 import tech.antibytes.gradle.publishing.api.PomConfiguration
 
-object FixtureCoreConfiguration {
-    const val group = "tech.antibytes.kfixture"
+class FixtureCoreConfiguration(project: Project) {
+    val publishing = Publishing(project)
 
-    val publishing = Publishing
-
-    object Publishing : FixturePublishingConfiguration() {
+    class Publishing(project: Project) : FixturePublishingConfiguration(project) {
         val packageConfiguration = PackageConfiguration(
             pom = PomConfiguration(
                 name = "KFixture Core",
@@ -26,5 +25,9 @@ object FixtureCoreConfiguration {
             license = license,
             scm = sourceControl,
         )
+    }
+
+    companion object {
+        const val group = "tech.antibytes.kfixture"
     }
 }
