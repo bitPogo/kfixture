@@ -19,7 +19,7 @@ jobs:
 
   release:
     needs: [check, docs]
-    uses: bitpogo/workflows/.github/workflows/shared-release-validation.yml@main
+    uses: bitpogo/workflows/.github/workflows/shared-release.yml@main
     secrets:
       upload-username: ${{ secrets.PACKAGE_REGISTRY_UPLOAD_USERNAME }}
       upload-token: ${{ secrets.PACKAGE_REGISTRY_UPLOAD_TOKEN }}
@@ -27,3 +27,6 @@ jobs:
       maven-pass: ${{ secrets.MAVEN_GPG_PASS }}
       ossr-username: ${{ secrets.OSSR_USERNAME }}
       ossr-token: ${{ secrets.OSSR_PASSWORD }}
+    concurrency:
+      group: validation-${{ github.head_ref }}
+      cancel-in-progress: true
