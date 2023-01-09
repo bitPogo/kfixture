@@ -12,5 +12,5 @@ plugins {
 }
 
 antibytesDocumentation {
-    versioning.set(FixturePublishingConfiguration().versioning)
+    versioning.set(FixturePublishingConfiguration(project).versioning)
 }

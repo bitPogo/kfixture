@@ -27,9 +27,6 @@ repositories {
             includeGroupByRegex(antibytesPlugins)
         }
     }
-    maven {
-        setUrl("/Users/bitpogo/projects/antibytes/gradle-plugins/build")
-    }
 }
 
 dependencies {

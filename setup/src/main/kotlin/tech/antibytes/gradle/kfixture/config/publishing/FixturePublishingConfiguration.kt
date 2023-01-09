@@ -6,6 +6,7 @@
 
 package tech.antibytes.gradle.kfixture.config.publishing
 
+import org.gradle.api.Project
 import tech.antibytes.gradle.publishing.api.DeveloperConfiguration
 import tech.antibytes.gradle.publishing.api.GitRepositoryConfiguration
 import tech.antibytes.gradle.publishing.api.LicenseConfiguration
@@ -14,7 +15,7 @@ import tech.antibytes.gradle.publishing.api.MemorySigningConfiguration
 import tech.antibytes.gradle.publishing.api.SourceControlConfiguration
 import tech.antibytes.gradle.versioning.api.VersioningConfiguration
 
-open class FixturePublishingConfiguration {
+open class FixturePublishingConfiguration(project: Project) {
     private val username = System.getenv("PACKAGE_REGISTRY_UPLOAD_USERNAME")?.toString() ?: ""
     private val password = System.getenv("PACKAGE_REGISTRY_UPLOAD_TOKEN")?.toString() ?: ""
 
@@ -80,6 +81,10 @@ open class FixturePublishingConfiguration {
             username = username,
             password = password,
         ),
+        MavenRepositoryConfiguration(
+            name = "Local",
+            url = project.uri(project.rootProject.buildDir),
+        ),
     )
 
     val versioning = VersioningConfiguration(
@@ -90,11 +95,4 @@ open class FixturePublishingConfiguration {
         key = key,
         password = passphrase,
     )
-
-    companion object {
-        private val configuration = FixturePublishingConfiguration()
-
-        val repositories = configuration.repositories
-        val versioning = configuration.versioning
-    }
 }

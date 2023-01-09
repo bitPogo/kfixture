@@ -12,6 +12,13 @@ import tech.antibytes.gradle.coverage.CoverageApiContract.JacocoMeasurement
 import tech.antibytes.gradle.publishing.api.DocumentationConfiguration
 import tech.antibytes.gradle.configuration.apple.ensureAppleDeviceCompatibility
 import tech.antibytes.gradle.configuration.isIdea
+import tech.antibytes.gradle.configuration.sourcesets.appleWithLegacy
+import tech.antibytes.gradle.configuration.sourcesets.iosxWithLegacy
+import tech.antibytes.gradle.configuration.sourcesets.linux
+import tech.antibytes.gradle.configuration.sourcesets.macos
+import tech.antibytes.gradle.configuration.sourcesets.nativeWithLegacy
+import tech.antibytes.gradle.configuration.sourcesets.tvosx
+import tech.antibytes.gradle.configuration.sourcesets.watchosxWithLegacy
 import tech.antibytes.gradle.dependency.helper.nodePeerPackage
 import tech.antibytes.gradle.dependency.helper.nodeProductionPackage
 import tech.antibytes.gradle.kfixture.config.publishing.FixtureKtxDateTimeConfiguration
@@ -25,18 +32,19 @@ plugins {
 }
 
 group = FixtureKtxDateTimeConfiguration.group
+val publishingConfiguration = FixtureKtxDateTimeConfiguration(project)
 
 antibytesPublishing {
-    packaging.set(FixtureKtxDateTimeConfiguration.publishing.packageConfiguration)
-    repositories.set(FixtureKtxDateTimeConfiguration.publishing.repositories)
-    versioning.set(FixtureKtxDateTimeConfiguration.publishing.versioning)
+    packaging.set(publishingConfiguration.publishing.packageConfiguration)
+    repositories.set(publishingConfiguration.publishing.repositories)
+    versioning.set(publishingConfiguration.publishing.versioning)
     documentation.set(
         DocumentationConfiguration(
             tasks = setOf("dokkaHtml"),
             outputDir = buildDir.resolve("dokka")
         )
     )
-    signing.set(FixtureKtxDateTimeConfiguration.publishing.signing)
+    signing.set(publishingConfiguration.publishing.signing)
 }
 
 antibytesCoverage {
@@ -97,11 +105,11 @@ kotlin {
 
     jvm()
 
-    ios()
-    iosSimulatorArm64()
-    ensureAppleDeviceCompatibility()
-
     linuxX64()
+    mingwX64()
+
+    appleWithLegacy()
+    ensureAppleDeviceCompatibility()
 
     sourceSets {
         all {
@@ -202,48 +210,31 @@ kotlin {
         val nativeMain by creating {
             dependsOn(noJsMain)
         }
-
         val nativeTest by creating {
             dependsOn(noJsTest)
         }
 
-        val darwinMain by creating {
+        val appleMain by getting {
             dependsOn(nativeMain)
         }
-
-        val darwinTest by creating {
-            dependsOn(nativeTest)
-        }
-
-        val otherMain by creating {
-            dependsOn(nativeMain)
-        }
-
-        val otherTest by creating {
+        val appleTest by getting {
             dependsOn(nativeTest)
         }
 
         val linuxX64Main by getting {
-            dependsOn(otherMain)
+            dependsOn(nativeMain)
         }
 
         val linuxX64Test by getting {
-            dependsOn(otherTest)
+            dependsOn(nativeTest)
         }
 
-        val iosMain by getting {
-            dependsOn(darwinMain)
+        val mingwX64Main by getting {
+            dependsOn(nativeMain)
         }
 
-        val iosTest by getting {
-            dependsOn(darwinTest)
-        }
-
-        val iosSimulatorArm64Main by getting {
-            dependsOn(iosMain)
-        }
-        val iosSimulatorArm64Test by getting {
-            dependsOn(iosTest)
+        val mingwX64Test by getting {
+            dependsOn(nativeTest)
         }
     }
 }

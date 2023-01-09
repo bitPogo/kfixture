@@ -20,8 +20,8 @@ plugins {
 }
 
 antibytesPublishing {
-    versioning.set(FixturePublishingConfiguration.versioning)
-    repositories.set(FixturePublishingConfiguration.repositories)
+    versioning.set(FixturePublishingConfiguration(project).versioning)
+    repositories.set(FixturePublishingConfiguration(project).repositories)
 }
 
 antibytesQuality {
