@@ -28,5 +28,5 @@ jobs:
       ossr-username: ${{ secrets.OSSR_USERNAME }}
       ossr-token: ${{ secrets.OSSR_PASSWORD }}
     concurrency:
-      group: validation-${{ github.head_ref }}
+      group: validation-release
       cancel-in-progress: true
