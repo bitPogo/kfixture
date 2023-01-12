@@ -37,7 +37,6 @@ dependencies {
     implementation(antibytesCatalog.gradle.agp)
     api(antibytesCatalog.gradle.antibytes.runtimeConfig)
     implementation(antibytesCatalog.gradle.kotlinx.atomicfu)
-    implementation("com.google.code.gson:gson:2.10")
 }
 
 gradlePlugin {

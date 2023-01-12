@@ -8,6 +8,7 @@ package tech.antibytes.gradle.kfixture.config.publishing
 
 import org.gradle.api.Project
 import tech.antibytes.gradle.publishing.api.DeveloperConfiguration
+import tech.antibytes.gradle.publishing.api.DocumentationConfiguration
 import tech.antibytes.gradle.publishing.api.GitRepositoryConfiguration
 import tech.antibytes.gradle.publishing.api.LicenseConfiguration
 import tech.antibytes.gradle.publishing.api.MavenRepositoryConfiguration
@@ -47,10 +48,19 @@ open class FixturePublishingConfiguration(project: Project) {
         email = "bitpogo@antibytes.tech",
     )
 
+    val documentation = DocumentationConfiguration(
+        tasks = setOf("dokkaHtml"),
+        outputDir = project.buildDir.resolve("dokka"),
+    )
+
     protected val sourceControl = SourceControlConfiguration(
         url = "git://$gitHubRepositoryPath.git",
         connection = "scm:git://$gitHubRepositoryPath.git",
         developerConnection = "scm:git://$gitHubRepositoryPath.git",
+    )
+
+    val additionalPublishingTasks = mapOf(
+        "linuxMips" to setOf("linuxMips32", "linuxMipsel32"),
     )
 
     val repositories = setOf(

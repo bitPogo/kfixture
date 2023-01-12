@@ -4,6 +4,8 @@
  * Use of this source code is governed by Apache v2.0
  */
 import tech.antibytes.gradle.dependency.node.nodeToDependencyCatalog
+import tech.antibytes.gradle.dependency.settings.gitHubHomeDir
+import tech.antibytes.gradle.dependency.settings.isGitHub
 
 pluginManagement {
     repositories {
@@ -27,13 +29,12 @@ pluginManagement {
 }
 
 plugins {
-    id("tech.antibytes.gradle.dependency.settings") version "42d3d0a"
+    id("tech.antibytes.gradle.dependency.settings") version "b1373c3"
 }
 
 includeBuild("setup")
 
 dependencyResolutionManagement {
-
     versionCatalogs {
         create("local") {
             from(files("./gradle/libs.versions.toml"))
@@ -50,9 +51,12 @@ include(
 
 buildCache {
     local {
-        isEnabled = false
-        directory = File(rootDir, "build-cache")
-        removeUnusedEntriesAfterDays = 30
+        isEnabled = isGitHub()
+        directory = File(
+            "${gitHubHomeDir()}.gradle${File.separator}caches",
+            "build-cache"
+        )
+        removeUnusedEntriesAfterDays = 3
     }
 }
 
