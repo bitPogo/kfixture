@@ -144,33 +144,26 @@ kotlin {
             }
         }
 
-        if (!isIdea()) {
-            val androidAndroidTestRelease by getting {
-                dependsOn(noJsTest)
-            }
-            val androidAndroidTest by getting {
-                dependsOn(noJsTest)
-                dependsOn(androidAndroidTestRelease)
-            }
-            val androidTestFixturesDebug by getting {
-                dependsOn(noJsTest)
-            }
-            val androidTestFixturesRelease by getting {
-                dependsOn(noJsTest)
-            }
-
-            val androidTestFixtures by getting {
-                dependsOn(noJsTest)
-                dependsOn(androidTestFixturesDebug)
-                dependsOn(androidTestFixturesRelease)
-            }
-
-            val androidTest by getting {
-                dependsOn(androidTestFixtures)
-            }
-        }
-        val androidTest by getting {
+        val androidAndroidTestRelease by getting {
             dependsOn(noJsTest)
+        }
+        val androidAndroidTest by getting {
+            dependsOn(androidAndroidTestRelease)
+        }
+        val androidTestFixturesDebug by getting {
+            dependsOn(noJsTest)
+        }
+        val androidTestFixturesRelease by getting {
+            dependsOn(noJsTest)
+        }
+
+        val androidTestFixtures by getting {
+            dependsOn(androidTestFixturesDebug)
+            dependsOn(androidTestFixturesRelease)
+        }
+
+        val androidTest by getting {
+            dependsOn(androidTestFixtures)
 
             dependencies {
                 implementation(antibytesCatalog.jvm.test.kotlin.core)
