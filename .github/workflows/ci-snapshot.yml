@@ -7,28 +7,48 @@ on:
       - release/*
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
 jobs:
+  build-linux:
+    uses: bitpogo/workflows/.github/workflows/shared-build-linux.yml@main
+    concurrency:
+      group: build-linux
+      cancel-in-progress: true
+
+  build-macos:
+    uses: bitpogo/workflows/.github/workflows/shared-build-macos.yml@main
+    concurrency:
+      group: build-macos
+      cancel-in-progress: true
+
   check:
+    needs: [ build-macos, build-linux ]
     uses: bitpogo/workflows/.github/workflows/shared-test-kmp.yml@main
     with:
-      platforms: "['android', 'ios',  'js', 'jvm', 'linux', 'macos', 'mingw', 'tvos', 'watchos']"
+      platforms: "['apple', 'linux-js', 'mingw']"
     concurrency:
-      group: check-snapshot
+      group: check
       cancel-in-progress: true
 
   docs:
     uses: bitpogo/workflows/.github/workflows/shared-mkdocs-snapshot.yml@main
     secrets:
       github-token: ${{ secrets.GITHUB_TOKEN }}
+    concurrency:
+      group: docs
+      cancel-in-progress: true
 
-  snapshot:
+  publish:
     needs: [check, docs]
-    uses: bitpogo/workflows/.github/workflows/shared-snapshot.yml@main
+    uses: bitpogo/workflows/.github/workflows/shared-publish-snapshot.yml@main
     secrets:
       upload-username: ${{ secrets.PACKAGE_REGISTRY_UPLOAD_USERNAME }}
       upload-token: ${{ secrets.PACKAGE_REGISTRY_UPLOAD_TOKEN }}
       maven-key: ${{ secrets.MAVEN_GPG_KEY }}
       maven-pass: ${{ secrets.MAVEN_GPG_PASS }}
     concurrency:
-      group: validation-snapshot
+      group: publish
       cancel-in-progress: true

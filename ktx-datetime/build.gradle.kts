@@ -9,16 +9,9 @@ import tech.antibytes.gradle.coverage.api.AndroidJacocoConfiguration
 import tech.antibytes.gradle.coverage.api.JacocoVerificationRule
 import tech.antibytes.gradle.coverage.CoverageApiContract.JacocoCounter
 import tech.antibytes.gradle.coverage.CoverageApiContract.JacocoMeasurement
-import tech.antibytes.gradle.publishing.api.DocumentationConfiguration
 import tech.antibytes.gradle.configuration.apple.ensureAppleDeviceCompatibility
 import tech.antibytes.gradle.configuration.isIdea
 import tech.antibytes.gradle.configuration.sourcesets.appleWithLegacy
-import tech.antibytes.gradle.configuration.sourcesets.iosxWithLegacy
-import tech.antibytes.gradle.configuration.sourcesets.linux
-import tech.antibytes.gradle.configuration.sourcesets.macos
-import tech.antibytes.gradle.configuration.sourcesets.nativeWithLegacy
-import tech.antibytes.gradle.configuration.sourcesets.tvosx
-import tech.antibytes.gradle.configuration.sourcesets.watchosxWithLegacy
 import tech.antibytes.gradle.dependency.helper.nodePeerPackage
 import tech.antibytes.gradle.dependency.helper.nodeProductionPackage
 import tech.antibytes.gradle.kfixture.config.publishing.FixtureKtxDateTimeConfiguration
@@ -38,12 +31,7 @@ antibytesPublishing {
     packaging.set(publishingConfiguration.publishing.packageConfiguration)
     repositories.set(publishingConfiguration.publishing.repositories)
     versioning.set(publishingConfiguration.publishing.versioning)
-    documentation.set(
-        DocumentationConfiguration(
-            tasks = setOf("dokkaHtml"),
-            outputDir = buildDir.resolve("dokka")
-        )
-    )
+    documentation.set(publishingConfiguration.publishing.documentation)
     signing.set(publishingConfiguration.publishing.signing)
 }
 

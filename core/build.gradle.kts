@@ -30,12 +30,7 @@ antibytesPublishing {
     packaging.set(publishingConfiguration.publishing.packageConfiguration)
     repositories.set(publishingConfiguration.publishing.repositories)
     versioning.set(publishingConfiguration.publishing.versioning)
-    documentation.set(
-        DocumentationConfiguration(
-            tasks = setOf("dokkaHtml"),
-            outputDir = buildDir.resolve("dokka")
-        )
-    )
+    documentation.set(publishingConfiguration.publishing.documentation)
     signing.set(publishingConfiguration.publishing.signing)
 }
 

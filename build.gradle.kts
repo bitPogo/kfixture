@@ -19,9 +19,12 @@ plugins {
     alias(antibytesCatalog.plugins.gradle.antibytes.quality)
 }
 
+val publishing = FixturePublishingConfiguration(project)
+
 antibytesPublishing {
-    versioning.set(FixturePublishingConfiguration(project).versioning)
-    repositories.set(FixturePublishingConfiguration(project).repositories)
+    additionalPublishingTasks.set(publishing.additionalPublishingTasks)
+    versioning.set(publishing.versioning)
+    repositories.set(publishing.repositories)
 }
 
 antibytesQuality {
