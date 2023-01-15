@@ -5,6 +5,7 @@ on:
     types: [opened, synchronize, edited, reopened]
     branches:
       - main
+      - feature/*
       - release/*
       - core/*
       - plugin/*
