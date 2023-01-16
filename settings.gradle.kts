@@ -4,8 +4,7 @@
  * Use of this source code is governed by Apache v2.0
  */
 import tech.antibytes.gradle.dependency.node.nodeToDependencyCatalog
-import tech.antibytes.gradle.dependency.settings.gitHubHomeDir
-import tech.antibytes.gradle.dependency.settings.isGitHub
+import tech.antibytes.gradle.dependency.settings.localGithub
 
 pluginManagement {
     repositories {
@@ -29,7 +28,7 @@ pluginManagement {
 }
 
 plugins {
-    id("tech.antibytes.gradle.dependency.settings") version "b1373c3"
+    id("tech.antibytes.gradle.dependency.settings") version "a821fe5"
 }
 
 includeBuild("setup")
@@ -50,14 +49,7 @@ include(
 )
 
 buildCache {
-    local {
-        isEnabled = isGitHub()
-        directory = File(
-            "${gitHubHomeDir()}.gradle${File.separator}caches",
-            "build-cache"
-        )
-        removeUnusedEntriesAfterDays = 3
-    }
+    localGithub()
 }
 
 rootProject.name = "kfixture"

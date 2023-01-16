@@ -10,8 +10,9 @@ import tech.antibytes.gradle.coverage.api.JacocoVerificationRule
 import tech.antibytes.gradle.coverage.CoverageApiContract.JacocoCounter
 import tech.antibytes.gradle.coverage.CoverageApiContract.JacocoMeasurement
 import tech.antibytes.gradle.configuration.apple.ensureAppleDeviceCompatibility
-import tech.antibytes.gradle.configuration.isIdea
+
 import tech.antibytes.gradle.configuration.sourcesets.appleWithLegacy
+import tech.antibytes.gradle.configuration.sourcesets.setupAndroidTest
 import tech.antibytes.gradle.dependency.helper.nodePeerPackage
 import tech.antibytes.gradle.dependency.helper.nodeProductionPackage
 import tech.antibytes.gradle.kfixture.config.publishing.FixtureKtxDateTimeConfiguration
@@ -135,27 +136,9 @@ kotlin {
             }
         }
 
-        val androidAndroidTestRelease by getting {
-            dependsOn(noJsTest)
-        }
-        val androidAndroidTest by getting {
-            dependsOn(androidAndroidTestRelease)
-        }
-        val androidTestFixturesDebug by getting {
-            dependsOn(noJsTest)
-        }
-        val androidTestFixturesRelease by getting {
-            dependsOn(noJsTest)
-        }
-
-        val androidTestFixtures by getting {
-            dependsOn(androidTestFixturesDebug)
-            dependsOn(androidTestFixturesRelease)
-        }
+        setupAndroidTest()
 
         val androidTest by getting {
-            dependsOn(androidTestFixtures)
-
             dependencies {
                 implementation(antibytesCatalog.jvm.test.kotlin.core)
                 implementation(antibytesCatalog.jvm.test.kotlin.junit4)

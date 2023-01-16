@@ -29,7 +29,7 @@ antibytesPublishing {
 
 antibytesQuality {
     codeAnalysis.set(CodeAnalysisConfiguration(project = project))
-    stableApi.set(StableApiConfiguration(excludeProjects = setOf("docs")))
+    stableApi.set(StableApiConfiguration())
 }
 
 allprojects {
