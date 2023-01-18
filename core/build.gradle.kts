@@ -9,9 +9,7 @@ import tech.antibytes.gradle.coverage.api.AndroidJacocoConfiguration
 import tech.antibytes.gradle.coverage.api.JacocoVerificationRule
 import tech.antibytes.gradle.coverage.CoverageApiContract.JacocoCounter
 import tech.antibytes.gradle.coverage.CoverageApiContract.JacocoMeasurement
-import tech.antibytes.gradle.publishing.api.DocumentationConfiguration
 import tech.antibytes.gradle.configuration.apple.ensureAppleDeviceCompatibility
-import tech.antibytes.gradle.configuration.isIdea
 import tech.antibytes.gradle.configuration.sourcesets.nativeWithLegacy
 import tech.antibytes.gradle.configuration.sourcesets.setupAndroidTest
 import tech.antibytes.gradle.kfixture.config.publishing.FixtureCoreConfiguration

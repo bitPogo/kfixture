@@ -27,7 +27,7 @@ jobs:
 
   coding-conventions:
     needs: build-linux
-    uses: bitpogo/workflows/.github/workflows/shared-coding-conventions.yml@main
+    uses: bitpogo/workflows/.github/workflows/shared-coding-conventions-linux.yml@main
     with:
       cache-results: false
     concurrency:
@@ -45,9 +45,9 @@ jobs:
 
   coverage:
     needs: coding-conventions
-    uses: bitpogo/workflows/.github/workflows/shared-coverage.yml@main
+    uses: bitpogo/workflows/.github/workflows/shared-coverage-linux.yml@main
     with:
-      verifyKmp: true
+      verify-kmp: true
       cache-results: false
     concurrency:
       group: coverage-${{ github.workflow }}-${{ github.head_ref }}
