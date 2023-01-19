@@ -4,7 +4,7 @@ A tool to generate randomized test values for Kotlin Multiplatform.
 [![Latest release](https://raw.githubusercontent.com/bitPogo/kfixture/main/docs/src/assets/badge-release-latest.svg)](https://github.com/bitPogo/kfixture/releases)
 [![License](https://raw.githubusercontent.com/bitPogo/kfixture/main/docs/src/assets/badge-license.svg)](https://github.com/bitPogo/kfixture/blob/main/LICENSE)
 [![Platforms](https://raw.githubusercontent.com/bitPogo/kfixture/main/docs/src/assets/badge-platform-support.svg)](https://github.com/bitPogo/kfixture/blob/main/docs/src/assets/badge-platform-support.svg)
-[![CI - Build Snapshot Version](https://github.com/bitPogo/kfixture/actions/workflows/ci-snapshot.yml/badge.svg)](https://github.com/bitPogo/kfixture/actions/workflows/ci-latest-version.yml/badge.svg)
+[![CI - Build Snapshot Version](https://github.com/bitPogo/kfixture/actions/workflows/ci-snapshot.yml/badge.svg)](https://github.com/bitPogo/kfixture/actions/workflows/ci-snapshot.yml/badge.svg)
 
 ## About The Project
 Tired of writing potato or 42 for your test values? - KFixture is a (limited) extendable test value generator for Kotlin Multiplatform which can help you out there.
