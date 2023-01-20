@@ -46,7 +46,7 @@ jobs:
       maven-key: ${{ secrets.MAVEN_GPG_KEY }}
       maven-pass: ${{ secrets.MAVEN_GPG_PASS }}
       ossr-username: ${{ secrets.OSSR_USERNAME }}
-      ossr-token: ${{ secrets.OSSR_PASSWORD }}
+      ossr-password: ${{ secrets.OSSR_PASSWORD }}
     concurrency:
       group: publish
       cancel-in-progress: true
