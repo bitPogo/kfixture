@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+* Support for all KMP targets for core
+* Support for all Apple targets and mingwX64 for datetime
+
 ### Changed
 
 ### Deprecated
