@@ -29,7 +29,7 @@ jobs:
     needs: build-linux
     uses: bitpogo/workflows/.github/workflows/shared-coding-conventions-linux.yml@main
     with:
-      cache-results: false
+      cache-reports: false
     concurrency:
       group: coding-conventions-${{ github.workflow }}-${{ github.head_ref }}
       cancel-in-progress: true
@@ -38,7 +38,7 @@ jobs:
     needs: [ build-macos, build-linux ]
     uses: bitpogo/workflows/.github/workflows/shared-test-kmp.yml@main
     with:
-      platforms: "['apple', 'linux-js', 'mingw']"
+      platforms: "['ios', 'macos', 'tvos', 'watchos', 'linux-js', 'mingw']"
     concurrency:
       group: check-${{ github.workflow }}-${{ github.head_ref }}
       cancel-in-progress: true
@@ -48,7 +48,7 @@ jobs:
     uses: bitpogo/workflows/.github/workflows/shared-coverage-linux.yml@main
     with:
       verify-kmp: true
-      cache-results: false
+      restore-cached-reports: false
     concurrency:
       group: coverage-${{ github.workflow }}-${{ github.head_ref }}
       cancel-in-progress: true
