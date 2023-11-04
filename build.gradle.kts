@@ -28,7 +28,14 @@ antibytesPublishing {
 }
 
 antibytesQuality {
-    codeAnalysis.set(CodeAnalysisConfiguration(project = project))
+    codeAnalysis.set(
+        CodeAnalysisConfiguration(
+            project = project,
+            /*configurationFiles = project.files("${project.projectDir}/detekt/config.yml"),
+            baselineFile = project.file("${project.projectDir}/detekt/baseline.xml"),
+            sourceFiles = project.files(project.projectDir),*/
+        ),
+    )
     stableApi.set(StableApiConfiguration())
 }
 

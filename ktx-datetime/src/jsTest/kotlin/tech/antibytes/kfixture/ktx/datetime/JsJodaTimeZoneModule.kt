@@ -10,4 +10,5 @@ package tech.antibytes.kfixture.ktx.datetime
 @JsNonModule
 external object JsJodaTimeZoneModule
 
+@Suppress("unused")
 private val jsJodaTz = JsJodaTimeZoneModule

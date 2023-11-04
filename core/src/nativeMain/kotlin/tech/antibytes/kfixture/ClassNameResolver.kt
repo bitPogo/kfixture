@@ -1,12 +1,14 @@
-/* ktlint-disable filename */
 /*
  * Copyright (c) 2022 Matthias Geisler (bitPogo) / All rights reserved.
  *
  * Use of this source code is governed by Apache v2.0
  */
 
+@file:Suppress("ktlint:standard:filename")
+
 package tech.antibytes.kfixture
 
+import kotlin.native.concurrent.ThreadLocal
 import kotlin.reflect.KClass
 
 // Ensure stable names

@@ -1,10 +1,3 @@
-public final class tech/antibytes/kfixture/BuildConfig {
-	public static final field BUILD_TYPE Ljava/lang/String;
-	public static final field DEBUG Z
-	public static final field LIBRARY_PACKAGE_NAME Ljava/lang/String;
-	public fun <init> ()V
-}
-
 public final class tech/antibytes/kfixture/ClassNameResolverKt {
 	public static final fun resolveClassName (Lkotlin/reflect/KClass;)Ljava/lang/String;
 }
@@ -105,6 +98,7 @@ public final class tech/antibytes/kfixture/PublicApi$RangedGenerator$DefaultImpl
 public final class tech/antibytes/kfixture/PublicApi$Sign : java/lang/Enum {
 	public static final field NEGATIVE Ltech/antibytes/kfixture/PublicApi$Sign;
 	public static final field POSITIVE Ltech/antibytes/kfixture/PublicApi$Sign;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Ltech/antibytes/kfixture/PublicApi$Sign;
 	public static fun values ()[Ltech/antibytes/kfixture/PublicApi$Sign;
 }

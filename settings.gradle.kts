@@ -6,6 +6,8 @@
 import tech.antibytes.gradle.dependency.node.nodeToDependencyCatalog
 import tech.antibytes.gradle.dependency.settings.localGithub
 
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 pluginManagement {
     repositories {
         val antibytesPlugins = "^tech\\.antibytes\\.[\\.a-z\\-]+"
@@ -28,7 +30,7 @@ pluginManagement {
 }
 
 plugins {
-    id("tech.antibytes.gradle.dependency.settings") version "0e82305"
+    id("tech.antibytes.gradle.dependency.settings") version "cfd6317"
 }
 
 includeBuild("setup")
@@ -45,7 +47,7 @@ dependencyResolutionManagement {
 include(
     ":core",
     ":ktx-datetime",
-    ":docs"
+    ":docs",
 )
 
 buildCache {
