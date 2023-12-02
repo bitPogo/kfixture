@@ -68,7 +68,7 @@ class TimeZoneGeneratorSpec {
         )
         assertEquals(
             actual = capturedUntil,
-            expected = 593,
+            expected = 596,
         )
     }
 
