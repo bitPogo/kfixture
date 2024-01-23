@@ -14,9 +14,7 @@ class DependentGeneratorStub<T : Any>(
     @JsName("dependentGenerateStub")
     var generate: (() -> T)? = null,
 ) : PublicApi.Generator<T> {
-    override fun generate(): T {
-        return generate?.invoke() ?: throw RuntimeException("Missing sideeffect for generate.")
-    }
+    override fun generate(): T = generate?.invoke() ?: throw RuntimeException("Missing sideeffect for generate.")
 }
 
 class DependentGeneratorFactoryStub<T : Any>(
