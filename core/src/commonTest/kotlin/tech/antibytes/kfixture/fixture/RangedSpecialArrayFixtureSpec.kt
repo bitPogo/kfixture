@@ -185,7 +185,8 @@ class RangedSpecialArrayFixtureSpec {
         RangeType,
         PublicApi.Qualifier?,
         Function1<RangeType?, Boolean>,
-        FixtureType,> {
+        FixtureType,
+        > {
         return when (FixtureType::class) {
             CharArray::class -> { fixture, from, to, qualifier, predicate ->
                 fixture.fixture<Char, CharArray>(
@@ -294,7 +295,8 @@ class RangedSpecialArrayFixtureSpec {
         RangeType,
         PublicApi.Qualifier?,
         Function1<RangeType?, Boolean>,
-        FixtureType?,> {
+        FixtureType?,
+        > {
         return when (FixtureType::class) {
             CharArray::class -> { fixture, from, to, qualifier, predicate ->
                 fixture.fixture<Char, CharArray?>(
@@ -1643,7 +1645,8 @@ class RangedSpecialArrayFixtureSpec {
         ClosedRange<Comparable<Any>>,
         PublicApi.Qualifier?,
         Function1<RangeType?, Boolean>,
-        FixtureType,> {
+        FixtureType,
+        > {
         return when (FixtureType::class) {
             CharArray::class -> { fixture, range, qualifier, predicate ->
                 fixture.fixture<Char, CharArray>(
@@ -1739,7 +1742,8 @@ class RangedSpecialArrayFixtureSpec {
         ClosedRange<Comparable<Any>>,
         PublicApi.Qualifier?,
         Function1<RangeType?, Boolean>,
-        FixtureType?,> {
+        FixtureType?,
+        > {
         return when (FixtureType::class) {
             CharArray::class -> { fixture, range, qualifier, predicate ->
                 fixture.fixture<Char, CharArray?>(

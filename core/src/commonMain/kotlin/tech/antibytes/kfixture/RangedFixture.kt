@@ -1,9 +1,10 @@
-/* ktlint-disable filename */
 /*
  * Copyright (c) 2022 Matthias Geisler (bitPogo) / All rights reserved.
  *
  * Use of this source code is governed by Apache v2.0
  */
+
+@file:Suppress("ktlint:standard:filename")
 
 package tech.antibytes.kfixture
 
@@ -20,12 +21,7 @@ package tech.antibytes.kfixture
  * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
-public inline fun <reified RangeType, reified FixtureType> PublicApi.Fixture.rangedFixture(
-    from: RangeType & Any,
-    to: RangeType & Any,
-    qualifier: PublicApi.Qualifier?,
-    noinline predicate: Function1<RangeType?, Boolean>,
-): FixtureType {
+public inline fun <reified RangeType, reified FixtureType> PublicApi.Fixture.rangedFixture(from: RangeType & Any, to: RangeType & Any, qualifier: PublicApi.Qualifier?, noinline predicate: Function1<RangeType?, Boolean>): FixtureType {
     val returnNull = random.returnNull<FixtureType>()
     val id = resolveIdentifier<FixtureType>(qualifier)
     val generator = generators[id]
@@ -56,12 +52,7 @@ public inline fun <reified RangeType, reified FixtureType> PublicApi.Fixture.ran
  * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
-public inline fun <reified RangeType, reified FixtureType : RangeType?> PublicApi.Fixture.fixture(
-    from: RangeType & Any,
-    to: RangeType & Any,
-    qualifier: PublicApi.Qualifier? = null,
-    noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType = rangedFixture(
+public inline fun <reified RangeType, reified FixtureType : RangeType?> PublicApi.Fixture.fixture(from: RangeType & Any, to: RangeType & Any, qualifier: PublicApi.Qualifier? = null, noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate): FixtureType = rangedFixture(
     from = from,
     to = to,
     qualifier = qualifier,
@@ -78,11 +69,7 @@ public inline fun <reified RangeType, reified FixtureType : RangeType?> PublicAp
  * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
-public inline fun <reified RangeType, reified FixtureType : RangeType?> PublicApi.Fixture.fixture(
-    range: ClosedRange<RangeType>,
-    qualifier: PublicApi.Qualifier? = null,
-    noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType where RangeType : Comparable<RangeType> = fixture(
+public inline fun <reified RangeType, reified FixtureType : RangeType?> PublicApi.Fixture.fixture(range: ClosedRange<RangeType>, qualifier: PublicApi.Qualifier? = null, noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate): FixtureType where RangeType : Comparable<RangeType> = fixture(
     from = range.start,
     to = range.endInclusive,
     predicate = predicate,

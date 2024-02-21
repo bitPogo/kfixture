@@ -1,11 +1,10 @@
-/* ktlint-disable filename */
 /*
  * Copyright (c) 2022 Matthias Geisler (bitPogo) / All rights reserved.
  *
  * Use of this source code is governed by Apache v2.0
  */
 
-@file:Suppress("OPT_IN_USAGE")
+@file:Suppress("OPT_IN_USAGE", "ktlint:standard:filename")
 
 package tech.antibytes.kfixture.ktx.datetime.fixture
 
@@ -26,11 +25,7 @@ import tech.antibytes.kfixture.returnNull
  * @param qualifier a optional qualifier for a special flavour of a type.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
-public inline fun <reified FixtureType : Any?> PublicApi.Fixture.fixture(
-    noinline instantGenerator: Function0<Instant>? = null,
-    noinline timeZoneGenerator: Function0<TimeZone>? = null,
-    qualifier: PublicApi.Qualifier? = null,
-): FixtureType {
+public inline fun <reified FixtureType : Any?> PublicApi.Fixture.fixture(noinline instantGenerator: Function0<Instant>? = null, noinline timeZoneGenerator: Function0<TimeZone>? = null, qualifier: PublicApi.Qualifier? = null): FixtureType {
     val returnNull = random.returnNull<FixtureType>()
     val id = resolveGeneratorId(
         clazz = FixtureType::class as KClass<*>,

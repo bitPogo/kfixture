@@ -58,12 +58,7 @@ public inline fun <reified T> PublicApi.Fixture.mutableCollectionFixture(
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified C : MutableCollection<T>, reified T> PublicApi.Fixture.fixture(
-    type: KClass<MutableCollection<*>>,
-    qualifier: Qualifier? = null,
-    size: Int? = null,
-    nestedGenerator: Function1<Qualifier?, T>,
-): C = mutableCollectionFixture(
+public inline fun <reified C : MutableCollection<T>, reified T> PublicApi.Fixture.fixture(type: KClass<MutableCollection<*>>, qualifier: Qualifier? = null, size: Int? = null, nestedGenerator: Function1<Qualifier?, T>): C = mutableCollectionFixture(
     qualifier = qualifier,
     size = size,
     nestedGenerator = nestedGenerator,
@@ -81,11 +76,7 @@ public inline fun <reified C : MutableCollection<T>, reified T> PublicApi.Fixtur
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified C : MutableCollection<T>, reified T> PublicApi.Fixture.fixture(
-    type: KClass<MutableCollection<*>>,
-    qualifier: Qualifier? = null,
-    size: Int? = null,
-): C = mutableCollectionFixture<T>(
+public inline fun <reified C : MutableCollection<T>, reified T> PublicApi.Fixture.fixture(type: KClass<MutableCollection<*>>, qualifier: Qualifier? = null, size: Int? = null): C = mutableCollectionFixture<T>(
     qualifier = qualifier,
     size = size,
 ) as C
@@ -138,12 +129,7 @@ public inline fun <reified T> PublicApi.Fixture.collectionFixture(
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified C : Collection<T>, reified T> PublicApi.Fixture.fixture(
-    type: KClass<Collection<*>>,
-    qualifier: Qualifier? = null,
-    size: Int? = null,
-    nestedGenerator: Function1<Qualifier?, T>,
-): C = collectionFixture(
+public inline fun <reified C : Collection<T>, reified T> PublicApi.Fixture.fixture(type: KClass<Collection<*>>, qualifier: Qualifier? = null, size: Int? = null, nestedGenerator: Function1<Qualifier?, T>): C = collectionFixture(
     qualifier = qualifier,
     size = size,
     nestedGenerator = nestedGenerator,
@@ -161,11 +147,7 @@ public inline fun <reified C : Collection<T>, reified T> PublicApi.Fixture.fixtu
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified C : Collection<T>, reified T> PublicApi.Fixture.fixture(
-    type: KClass<Collection<*>>,
-    qualifier: Qualifier? = null,
-    size: Int? = null,
-): C = collectionFixture<T>(
+public inline fun <reified C : Collection<T>, reified T> PublicApi.Fixture.fixture(type: KClass<Collection<*>>, qualifier: Qualifier? = null, size: Int? = null): C = collectionFixture<T>(
     qualifier = qualifier,
     size = size,
 ) as C

@@ -4,7 +4,9 @@
  * Use of this source code is governed by Apache v2.0
  */
 import tech.antibytes.gradle.dependency.node.nodeToDependencyCatalog
-import tech.antibytes.gradle.dependency.settings.localGithub
+import tech.antibytes.gradle.dependency.settings.fullCache
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
     repositories {
@@ -45,11 +47,11 @@ dependencyResolutionManagement {
 include(
     ":core",
     ":ktx-datetime",
-    ":docs"
+    ":docs",
 )
 
 buildCache {
-    localGithub()
+    fullCache(rootDir)
 }
 
 rootProject.name = "kfixture"

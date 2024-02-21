@@ -88,12 +88,7 @@ public inline fun <reified First, reified Second> PublicApi.Fixture.pairFixture(
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified C : Pair<First, Second>, reified First, reified Second> PublicApi.Fixture.fixture(
-    type: KClass<Pair<*, *>>,
-    firstQualifier: Qualifier? = null,
-    firstGenerator: Function1<Qualifier?, First>,
-    secondQualifier: Qualifier? = null,
-): C = pairFixture<First, Second>(
+public inline fun <reified C : Pair<First, Second>, reified First, reified Second> PublicApi.Fixture.fixture(type: KClass<Pair<*, *>>, firstQualifier: Qualifier? = null, firstGenerator: Function1<Qualifier?, First>, secondQualifier: Qualifier? = null): C = pairFixture<First, Second>(
     firstQualifier = firstQualifier,
     firstGenerator = firstGenerator,
     secondQualifier = secondQualifier,
@@ -113,12 +108,7 @@ public inline fun <reified C : Pair<First, Second>, reified First, reified Secon
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified C : Pair<First, Second>, reified First, reified Second> PublicApi.Fixture.fixture(
-    type: KClass<Pair<*, *>>,
-    firstQualifier: Qualifier? = null,
-    secondQualifier: Qualifier? = null,
-    secondGenerator: Function1<Qualifier?, Second>,
-): C = pairFixture<First, Second>(
+public inline fun <reified C : Pair<First, Second>, reified First, reified Second> PublicApi.Fixture.fixture(type: KClass<Pair<*, *>>, firstQualifier: Qualifier? = null, secondQualifier: Qualifier? = null, secondGenerator: Function1<Qualifier?, Second>): C = pairFixture<First, Second>(
     firstQualifier = firstQualifier,
     secondQualifier = secondQualifier,
     secondGenerator = secondGenerator,
@@ -139,13 +129,7 @@ public inline fun <reified C : Pair<First, Second>, reified First, reified Secon
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified C : Pair<First, Second>, reified First, reified Second> PublicApi.Fixture.fixture(
-    type: KClass<Pair<*, *>>,
-    firstQualifier: Qualifier? = null,
-    firstGenerator: Function1<Qualifier?, First>,
-    secondQualifier: Qualifier? = null,
-    secondGenerator: Function1<Qualifier?, Second>,
-): C = pairFixture(
+public inline fun <reified C : Pair<First, Second>, reified First, reified Second> PublicApi.Fixture.fixture(type: KClass<Pair<*, *>>, firstQualifier: Qualifier? = null, firstGenerator: Function1<Qualifier?, First>, secondQualifier: Qualifier? = null, secondGenerator: Function1<Qualifier?, Second>): C = pairFixture(
     firstQualifier = firstQualifier,
     firstGenerator = firstGenerator,
     secondQualifier = secondQualifier,
@@ -165,11 +149,7 @@ public inline fun <reified C : Pair<First, Second>, reified First, reified Secon
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified C : Pair<First, Second>, reified First, reified Second> PublicApi.Fixture.fixture(
-    type: KClass<Pair<*, *>>,
-    firstQualifier: Qualifier? = null,
-    secondQualifier: Qualifier? = null,
-): C = pairFixture<First, Second>(
+public inline fun <reified C : Pair<First, Second>, reified First, reified Second> PublicApi.Fixture.fixture(type: KClass<Pair<*, *>>, firstQualifier: Qualifier? = null, secondQualifier: Qualifier? = null): C = pairFixture<First, Second>(
     firstQualifier = firstQualifier,
     secondQualifier = secondQualifier,
 ) as C
@@ -398,13 +378,7 @@ public inline fun <reified First, reified Second, reified Third> PublicApi.Fixtu
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified C : Triple<First, Second, Third>, reified First, reified Second, reified Third> PublicApi.Fixture.fixture(
-    type: KClass<Triple<*, *, *>>,
-    firstQualifier: Qualifier? = null,
-    firstGenerator: Function1<Qualifier?, First>,
-    secondQualifier: Qualifier? = null,
-    thirdQualifier: Qualifier? = null,
-): C = tripleFixture<First, Second, Third>(
+public inline fun <reified C : Triple<First, Second, Third>, reified First, reified Second, reified Third> PublicApi.Fixture.fixture(type: KClass<Triple<*, *, *>>, firstQualifier: Qualifier? = null, firstGenerator: Function1<Qualifier?, First>, secondQualifier: Qualifier? = null, thirdQualifier: Qualifier? = null): C = tripleFixture<First, Second, Third>(
     firstQualifier = firstQualifier,
     firstGenerator = firstGenerator,
     secondQualifier = secondQualifier,
@@ -427,13 +401,7 @@ public inline fun <reified C : Triple<First, Second, Third>, reified First, reif
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified C : Triple<First, Second, Third>, reified First, reified Second, reified Third> PublicApi.Fixture.fixture(
-    type: KClass<Triple<*, *, *>>,
-    firstQualifier: Qualifier? = null,
-    secondQualifier: Qualifier? = null,
-    secondGenerator: Function1<Qualifier?, Second>,
-    thirdQualifier: Qualifier? = null,
-): C = tripleFixture<First, Second, Third>(
+public inline fun <reified C : Triple<First, Second, Third>, reified First, reified Second, reified Third> PublicApi.Fixture.fixture(type: KClass<Triple<*, *, *>>, firstQualifier: Qualifier? = null, secondQualifier: Qualifier? = null, secondGenerator: Function1<Qualifier?, Second>, thirdQualifier: Qualifier? = null): C = tripleFixture<First, Second, Third>(
     firstQualifier = firstQualifier,
     secondQualifier = secondQualifier,
     secondGenerator = secondGenerator,
@@ -456,13 +424,7 @@ public inline fun <reified C : Triple<First, Second, Third>, reified First, reif
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified C : Triple<First, Second, Third>, reified First, reified Second, reified Third> PublicApi.Fixture.fixture(
-    type: KClass<Triple<*, *, *>>,
-    firstQualifier: Qualifier? = null,
-    secondQualifier: Qualifier? = null,
-    thirdQualifier: Qualifier? = null,
-    thirdGenerator: Function1<Qualifier?, Third>,
-): C = tripleFixture<First, Second, Third>(
+public inline fun <reified C : Triple<First, Second, Third>, reified First, reified Second, reified Third> PublicApi.Fixture.fixture(type: KClass<Triple<*, *, *>>, firstQualifier: Qualifier? = null, secondQualifier: Qualifier? = null, thirdQualifier: Qualifier? = null, thirdGenerator: Function1<Qualifier?, Third>): C = tripleFixture<First, Second, Third>(
     firstQualifier = firstQualifier,
     secondQualifier = secondQualifier,
     thirdQualifier = thirdQualifier,
@@ -486,14 +448,7 @@ public inline fun <reified C : Triple<First, Second, Third>, reified First, reif
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified C : Triple<First, Second, Third>, reified First, reified Second, reified Third> PublicApi.Fixture.fixture(
-    type: KClass<Triple<*, *, *>>,
-    firstQualifier: Qualifier? = null,
-    firstGenerator: Function1<Qualifier?, First>,
-    secondQualifier: Qualifier? = null,
-    secondGenerator: Function1<Qualifier?, Second>,
-    thirdQualifier: Qualifier? = null,
-): C = tripleFixture<First, Second, Third>(
+public inline fun <reified C : Triple<First, Second, Third>, reified First, reified Second, reified Third> PublicApi.Fixture.fixture(type: KClass<Triple<*, *, *>>, firstQualifier: Qualifier? = null, firstGenerator: Function1<Qualifier?, First>, secondQualifier: Qualifier? = null, secondGenerator: Function1<Qualifier?, Second>, thirdQualifier: Qualifier? = null): C = tripleFixture<First, Second, Third>(
     firstQualifier = firstQualifier,
     firstGenerator = firstGenerator,
     secondQualifier = secondQualifier,
@@ -518,14 +473,7 @@ public inline fun <reified C : Triple<First, Second, Third>, reified First, reif
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified C : Triple<First, Second, Third>, reified First, reified Second, reified Third> PublicApi.Fixture.fixture(
-    type: KClass<Triple<*, *, *>>,
-    firstQualifier: Qualifier? = null,
-    firstGenerator: Function1<Qualifier?, First>,
-    secondQualifier: Qualifier? = null,
-    thirdQualifier: Qualifier? = null,
-    thirdGenerator: Function1<Qualifier?, Third>,
-): C = tripleFixture<First, Second, Third>(
+public inline fun <reified C : Triple<First, Second, Third>, reified First, reified Second, reified Third> PublicApi.Fixture.fixture(type: KClass<Triple<*, *, *>>, firstQualifier: Qualifier? = null, firstGenerator: Function1<Qualifier?, First>, secondQualifier: Qualifier? = null, thirdQualifier: Qualifier? = null, thirdGenerator: Function1<Qualifier?, Third>): C = tripleFixture<First, Second, Third>(
     firstQualifier = firstQualifier,
     firstGenerator = firstGenerator,
     secondQualifier = secondQualifier,
@@ -550,14 +498,7 @@ public inline fun <reified C : Triple<First, Second, Third>, reified First, reif
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified C : Triple<First, Second, Third>, reified First, reified Second, reified Third> PublicApi.Fixture.fixture(
-    type: KClass<Triple<*, *, *>>,
-    firstQualifier: Qualifier? = null,
-    secondQualifier: Qualifier? = null,
-    secondGenerator: Function1<Qualifier?, Second>,
-    thirdQualifier: Qualifier? = null,
-    thirdGenerator: Function1<Qualifier?, Third>,
-): C = tripleFixture<First, Second, Third>(
+public inline fun <reified C : Triple<First, Second, Third>, reified First, reified Second, reified Third> PublicApi.Fixture.fixture(type: KClass<Triple<*, *, *>>, firstQualifier: Qualifier? = null, secondQualifier: Qualifier? = null, secondGenerator: Function1<Qualifier?, Second>, thirdQualifier: Qualifier? = null, thirdGenerator: Function1<Qualifier?, Third>): C = tripleFixture<First, Second, Third>(
     firstQualifier = firstQualifier,
     secondQualifier = secondQualifier,
     secondGenerator = secondGenerator,
@@ -583,15 +524,7 @@ public inline fun <reified C : Triple<First, Second, Third>, reified First, reif
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified C : Triple<First, Second, Third>, reified First, reified Second, reified Third> PublicApi.Fixture.fixture(
-    type: KClass<Triple<*, *, *>>,
-    firstQualifier: Qualifier? = null,
-    firstGenerator: Function1<Qualifier?, First>,
-    secondQualifier: Qualifier? = null,
-    secondGenerator: Function1<Qualifier?, Second>,
-    thirdQualifier: Qualifier? = null,
-    thirdGenerator: Function1<Qualifier?, Third>,
-): C = tripleFixture(
+public inline fun <reified C : Triple<First, Second, Third>, reified First, reified Second, reified Third> PublicApi.Fixture.fixture(type: KClass<Triple<*, *, *>>, firstQualifier: Qualifier? = null, firstGenerator: Function1<Qualifier?, First>, secondQualifier: Qualifier? = null, secondGenerator: Function1<Qualifier?, Second>, thirdQualifier: Qualifier? = null, thirdGenerator: Function1<Qualifier?, Third>): C = tripleFixture(
     firstQualifier = firstQualifier,
     firstGenerator = firstGenerator,
     secondQualifier = secondQualifier,
@@ -615,12 +548,7 @@ public inline fun <reified C : Triple<First, Second, Third>, reified First, reif
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified C : Triple<First, Second, Third>, reified First, reified Second, reified Third> PublicApi.Fixture.fixture(
-    type: KClass<Triple<*, *, *>>,
-    firstQualifier: Qualifier? = null,
-    secondQualifier: Qualifier? = null,
-    thirdQualifier: Qualifier? = null,
-): C = tripleFixture<First, Second, Third>(
+public inline fun <reified C : Triple<First, Second, Third>, reified First, reified Second, reified Third> PublicApi.Fixture.fixture(type: KClass<Triple<*, *, *>>, firstQualifier: Qualifier? = null, secondQualifier: Qualifier? = null, thirdQualifier: Qualifier? = null): C = tripleFixture<First, Second, Third>(
     firstQualifier = firstQualifier,
     secondQualifier = secondQualifier,
     thirdQualifier = thirdQualifier,

@@ -1,11 +1,10 @@
-/* ktlint-disable filename */
 /*
  * Copyright (c) 2022 Matthias Geisler (bitPogo) / All rights reserved.
  *
  * Use of this source code is governed by Apache v2.0
  */
 
-@file:Suppress("FINAL_UPPER_BOUND", "OPT_IN_USAGE")
+@file:Suppress("FINAL_UPPER_BOUND", "OPT_IN_USAGE", "ktlint:standard:filename")
 
 package tech.antibytes.kfixture
 
@@ -23,12 +22,7 @@ import kotlin.jvm.JvmName
  * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
-public inline fun <reified RangeType : Char, reified FixtureType> PublicApi.Fixture.fixture(
-    from: RangeType,
-    to: RangeType,
-    qualifier: PublicApi.Qualifier? = null,
-    noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType = rangedFixture(
+public inline fun <reified RangeType : Char, reified FixtureType> PublicApi.Fixture.fixture(from: RangeType, to: RangeType, qualifier: PublicApi.Qualifier? = null, noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate): FixtureType = rangedFixture(
     from = from,
     to = to,
     qualifier = qualifier,
@@ -47,12 +41,7 @@ public inline fun <reified RangeType : Char, reified FixtureType> PublicApi.Fixt
  * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
-public inline fun <reified RangeType : Byte, reified FixtureType> PublicApi.Fixture.fixture(
-    from: RangeType,
-    to: RangeType,
-    qualifier: PublicApi.Qualifier? = null,
-    noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType = rangedFixture(
+public inline fun <reified RangeType : Byte, reified FixtureType> PublicApi.Fixture.fixture(from: RangeType, to: RangeType, qualifier: PublicApi.Qualifier? = null, noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate): FixtureType = rangedFixture(
     from = from,
     to = to,
     qualifier = qualifier,
@@ -71,12 +60,7 @@ public inline fun <reified RangeType : Byte, reified FixtureType> PublicApi.Fixt
  * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
-public inline fun <reified RangeType : Short, reified FixtureType> PublicApi.Fixture.fixture(
-    from: RangeType,
-    to: RangeType,
-    qualifier: PublicApi.Qualifier? = null,
-    noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType = rangedFixture(
+public inline fun <reified RangeType : Short, reified FixtureType> PublicApi.Fixture.fixture(from: RangeType, to: RangeType, qualifier: PublicApi.Qualifier? = null, noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate): FixtureType = rangedFixture(
     from = from,
     to = to,
     qualifier = qualifier,
@@ -95,12 +79,7 @@ public inline fun <reified RangeType : Short, reified FixtureType> PublicApi.Fix
  * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
-public inline fun <reified RangeType : Int, reified FixtureType> PublicApi.Fixture.fixture(
-    from: RangeType,
-    to: RangeType,
-    qualifier: PublicApi.Qualifier? = null,
-    noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType = rangedFixture(
+public inline fun <reified RangeType : Int, reified FixtureType> PublicApi.Fixture.fixture(from: RangeType, to: RangeType, qualifier: PublicApi.Qualifier? = null, noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate): FixtureType = rangedFixture(
     from = from,
     to = to,
     qualifier = qualifier,
@@ -119,12 +98,7 @@ public inline fun <reified RangeType : Int, reified FixtureType> PublicApi.Fixtu
  * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
-public inline fun <reified RangeType : Float, reified FixtureType> PublicApi.Fixture.fixture(
-    from: RangeType,
-    to: RangeType,
-    qualifier: PublicApi.Qualifier? = null,
-    noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType = rangedFixture(
+public inline fun <reified RangeType : Float, reified FixtureType> PublicApi.Fixture.fixture(from: RangeType, to: RangeType, qualifier: PublicApi.Qualifier? = null, noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate): FixtureType = rangedFixture(
     from = from,
     to = to,
     qualifier = qualifier,
@@ -143,12 +117,7 @@ public inline fun <reified RangeType : Float, reified FixtureType> PublicApi.Fix
  * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
-public inline fun <reified RangeType : Long, reified FixtureType> PublicApi.Fixture.fixture(
-    from: RangeType,
-    to: RangeType,
-    qualifier: PublicApi.Qualifier? = null,
-    noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType = rangedFixture(
+public inline fun <reified RangeType : Long, reified FixtureType> PublicApi.Fixture.fixture(from: RangeType, to: RangeType, qualifier: PublicApi.Qualifier? = null, noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate): FixtureType = rangedFixture(
     from = from,
     to = to,
     qualifier = qualifier,
@@ -167,12 +136,7 @@ public inline fun <reified RangeType : Long, reified FixtureType> PublicApi.Fixt
  * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
-public inline fun <reified RangeType : Double, reified FixtureType> PublicApi.Fixture.fixture(
-    from: RangeType,
-    to: RangeType,
-    qualifier: PublicApi.Qualifier? = null,
-    noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType = rangedFixture(
+public inline fun <reified RangeType : Double, reified FixtureType> PublicApi.Fixture.fixture(from: RangeType, to: RangeType, qualifier: PublicApi.Qualifier? = null, noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate): FixtureType = rangedFixture(
     from = from,
     to = to,
     qualifier = qualifier,
@@ -191,12 +155,7 @@ public inline fun <reified RangeType : Double, reified FixtureType> PublicApi.Fi
  * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
-public inline fun <reified RangeType : UByte, reified FixtureType> PublicApi.Fixture.fixture(
-    from: RangeType,
-    to: RangeType,
-    qualifier: PublicApi.Qualifier? = null,
-    noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType = rangedFixture(
+public inline fun <reified RangeType : UByte, reified FixtureType> PublicApi.Fixture.fixture(from: RangeType, to: RangeType, qualifier: PublicApi.Qualifier? = null, noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate): FixtureType = rangedFixture(
     from = from,
     to = to,
     qualifier = qualifier,
@@ -215,12 +174,7 @@ public inline fun <reified RangeType : UByte, reified FixtureType> PublicApi.Fix
  * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
-public inline fun <reified RangeType : UShort, reified FixtureType> PublicApi.Fixture.fixture(
-    from: RangeType,
-    to: RangeType,
-    qualifier: PublicApi.Qualifier? = null,
-    noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType = rangedFixture(
+public inline fun <reified RangeType : UShort, reified FixtureType> PublicApi.Fixture.fixture(from: RangeType, to: RangeType, qualifier: PublicApi.Qualifier? = null, noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate): FixtureType = rangedFixture(
     from = from,
     to = to,
     qualifier = qualifier,
@@ -239,12 +193,7 @@ public inline fun <reified RangeType : UShort, reified FixtureType> PublicApi.Fi
  * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
-public inline fun <reified RangeType : UInt, reified FixtureType> PublicApi.Fixture.fixture(
-    from: RangeType,
-    to: RangeType,
-    qualifier: PublicApi.Qualifier? = null,
-    noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType = rangedFixture(
+public inline fun <reified RangeType : UInt, reified FixtureType> PublicApi.Fixture.fixture(from: RangeType, to: RangeType, qualifier: PublicApi.Qualifier? = null, noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate): FixtureType = rangedFixture(
     from = from,
     to = to,
     qualifier = qualifier,
@@ -263,12 +212,7 @@ public inline fun <reified RangeType : UInt, reified FixtureType> PublicApi.Fixt
  * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
-public inline fun <reified RangeType : ULong, reified FixtureType> PublicApi.Fixture.fixture(
-    from: RangeType,
-    to: RangeType,
-    qualifier: PublicApi.Qualifier? = null,
-    noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType = rangedFixture(
+public inline fun <reified RangeType : ULong, reified FixtureType> PublicApi.Fixture.fixture(from: RangeType, to: RangeType, qualifier: PublicApi.Qualifier? = null, noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate): FixtureType = rangedFixture(
     from = from,
     to = to,
     qualifier = qualifier,
@@ -286,11 +230,7 @@ public inline fun <reified RangeType : ULong, reified FixtureType> PublicApi.Fix
  * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
-public inline fun <reified RangeType : Char, reified FixtureType> PublicApi.Fixture.fixture(
-    range: ClosedRange<RangeType>,
-    qualifier: PublicApi.Qualifier? = null,
-    noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType = fixture(
+public inline fun <reified RangeType : Char, reified FixtureType> PublicApi.Fixture.fixture(range: ClosedRange<RangeType>, qualifier: PublicApi.Qualifier? = null, noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate): FixtureType = fixture(
     from = range.start,
     to = range.endInclusive,
     predicate = predicate,
@@ -308,11 +248,7 @@ public inline fun <reified RangeType : Char, reified FixtureType> PublicApi.Fixt
  * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
-public inline fun <reified RangeType : Byte, reified FixtureType> PublicApi.Fixture.fixture(
-    range: ClosedRange<RangeType>,
-    qualifier: PublicApi.Qualifier? = null,
-    noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType = fixture(
+public inline fun <reified RangeType : Byte, reified FixtureType> PublicApi.Fixture.fixture(range: ClosedRange<RangeType>, qualifier: PublicApi.Qualifier? = null, noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate): FixtureType = fixture(
     from = range.start,
     to = range.endInclusive,
     predicate = predicate,
@@ -330,11 +266,7 @@ public inline fun <reified RangeType : Byte, reified FixtureType> PublicApi.Fixt
  * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
-public inline fun <reified RangeType : Short, reified FixtureType> PublicApi.Fixture.fixture(
-    range: ClosedRange<RangeType>,
-    qualifier: PublicApi.Qualifier? = null,
-    noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType = fixture(
+public inline fun <reified RangeType : Short, reified FixtureType> PublicApi.Fixture.fixture(range: ClosedRange<RangeType>, qualifier: PublicApi.Qualifier? = null, noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate): FixtureType = fixture(
     from = range.start,
     to = range.endInclusive,
     predicate = predicate,
@@ -352,11 +284,7 @@ public inline fun <reified RangeType : Short, reified FixtureType> PublicApi.Fix
  * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
-public inline fun <reified RangeType : Int, reified FixtureType> PublicApi.Fixture.fixture(
-    range: ClosedRange<RangeType>,
-    qualifier: PublicApi.Qualifier? = null,
-    noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType = fixture(
+public inline fun <reified RangeType : Int, reified FixtureType> PublicApi.Fixture.fixture(range: ClosedRange<RangeType>, qualifier: PublicApi.Qualifier? = null, noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate): FixtureType = fixture(
     from = range.start,
     to = range.endInclusive,
     predicate = predicate,
@@ -374,11 +302,7 @@ public inline fun <reified RangeType : Int, reified FixtureType> PublicApi.Fixtu
  * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
-public inline fun <reified RangeType : Float, reified FixtureType> PublicApi.Fixture.fixture(
-    range: ClosedRange<RangeType>,
-    qualifier: PublicApi.Qualifier? = null,
-    noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType = fixture(
+public inline fun <reified RangeType : Float, reified FixtureType> PublicApi.Fixture.fixture(range: ClosedRange<RangeType>, qualifier: PublicApi.Qualifier? = null, noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate): FixtureType = fixture(
     from = range.start,
     to = range.endInclusive,
     predicate = predicate,
@@ -396,11 +320,7 @@ public inline fun <reified RangeType : Float, reified FixtureType> PublicApi.Fix
  * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
-public inline fun <reified RangeType : Long, reified FixtureType> PublicApi.Fixture.fixture(
-    range: ClosedRange<RangeType>,
-    qualifier: PublicApi.Qualifier? = null,
-    noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType = fixture(
+public inline fun <reified RangeType : Long, reified FixtureType> PublicApi.Fixture.fixture(range: ClosedRange<RangeType>, qualifier: PublicApi.Qualifier? = null, noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate): FixtureType = fixture(
     from = range.start,
     to = range.endInclusive,
     predicate = predicate,
@@ -418,11 +338,7 @@ public inline fun <reified RangeType : Long, reified FixtureType> PublicApi.Fixt
  * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
-public inline fun <reified RangeType : Double, reified FixtureType> PublicApi.Fixture.fixture(
-    range: ClosedRange<RangeType>,
-    qualifier: PublicApi.Qualifier? = null,
-    noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType = fixture(
+public inline fun <reified RangeType : Double, reified FixtureType> PublicApi.Fixture.fixture(range: ClosedRange<RangeType>, qualifier: PublicApi.Qualifier? = null, noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate): FixtureType = fixture(
     from = range.start,
     to = range.endInclusive,
     predicate = predicate,
@@ -440,11 +356,7 @@ public inline fun <reified RangeType : Double, reified FixtureType> PublicApi.Fi
  * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
-public inline fun <reified RangeType : UByte, reified FixtureType> PublicApi.Fixture.fixture(
-    range: ClosedRange<RangeType>,
-    qualifier: PublicApi.Qualifier? = null,
-    noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType = fixture(
+public inline fun <reified RangeType : UByte, reified FixtureType> PublicApi.Fixture.fixture(range: ClosedRange<RangeType>, qualifier: PublicApi.Qualifier? = null, noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate): FixtureType = fixture(
     from = range.start,
     to = range.endInclusive,
     predicate = predicate,
@@ -462,11 +374,7 @@ public inline fun <reified RangeType : UByte, reified FixtureType> PublicApi.Fix
  * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
-public inline fun <reified RangeType : UShort, reified FixtureType> PublicApi.Fixture.fixture(
-    range: ClosedRange<RangeType>,
-    qualifier: PublicApi.Qualifier? = null,
-    noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType = fixture(
+public inline fun <reified RangeType : UShort, reified FixtureType> PublicApi.Fixture.fixture(range: ClosedRange<RangeType>, qualifier: PublicApi.Qualifier? = null, noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate): FixtureType = fixture(
     from = range.start,
     to = range.endInclusive,
     predicate = predicate,
@@ -484,11 +392,7 @@ public inline fun <reified RangeType : UShort, reified FixtureType> PublicApi.Fi
  * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
-public inline fun <reified RangeType : UInt, reified FixtureType> PublicApi.Fixture.fixture(
-    range: ClosedRange<RangeType>,
-    qualifier: PublicApi.Qualifier? = null,
-    noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType = fixture(
+public inline fun <reified RangeType : UInt, reified FixtureType> PublicApi.Fixture.fixture(range: ClosedRange<RangeType>, qualifier: PublicApi.Qualifier? = null, noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate): FixtureType = fixture(
     from = range.start,
     to = range.endInclusive,
     predicate = predicate,
@@ -506,11 +410,7 @@ public inline fun <reified RangeType : UInt, reified FixtureType> PublicApi.Fixt
  * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
-public inline fun <reified RangeType : ULong, reified FixtureType> PublicApi.Fixture.fixture(
-    range: ClosedRange<RangeType>,
-    qualifier: PublicApi.Qualifier? = null,
-    noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate,
-): FixtureType = fixture(
+public inline fun <reified RangeType : ULong, reified FixtureType> PublicApi.Fixture.fixture(range: ClosedRange<RangeType>, qualifier: PublicApi.Qualifier? = null, noinline predicate: Function1<RangeType?, Boolean> = ::defaultPredicate): FixtureType = fixture(
     from = range.start,
     to = range.endInclusive,
     predicate = predicate,

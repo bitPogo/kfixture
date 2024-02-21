@@ -130,13 +130,7 @@ public inline fun <reified Key, reified Value> PublicApi.Fixture.mapFixture(
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified C : Map<Key, Value>, reified Key, reified Value> PublicApi.Fixture.fixture(
-    type: KClass<Map<*, *>>,
-    keyQualifier: PublicApi.Qualifier? = null,
-    keyGenerator: Function1<PublicApi.Qualifier?, Key>,
-    valueQualifier: PublicApi.Qualifier? = null,
-    size: Int? = null,
-): C = mapFixture<Key, Value>(
+public inline fun <reified C : Map<Key, Value>, reified Key, reified Value> PublicApi.Fixture.fixture(type: KClass<Map<*, *>>, keyQualifier: PublicApi.Qualifier? = null, keyGenerator: Function1<PublicApi.Qualifier?, Key>, valueQualifier: PublicApi.Qualifier? = null, size: Int? = null): C = mapFixture<Key, Value>(
     keyQualifier = keyQualifier,
     keyGenerator = keyGenerator,
     valueQualifier = valueQualifier,
@@ -157,13 +151,7 @@ public inline fun <reified C : Map<Key, Value>, reified Key, reified Value> Publ
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified C : Map<Key, Value>, reified Key, reified Value> PublicApi.Fixture.fixture(
-    type: KClass<Map<*, *>>,
-    keyQualifier: PublicApi.Qualifier? = null,
-    valueQualifier: PublicApi.Qualifier? = null,
-    valueGenerator: Function1<PublicApi.Qualifier?, Value>,
-    size: Int? = null,
-): C = mapFixture<Key, Value>(
+public inline fun <reified C : Map<Key, Value>, reified Key, reified Value> PublicApi.Fixture.fixture(type: KClass<Map<*, *>>, keyQualifier: PublicApi.Qualifier? = null, valueQualifier: PublicApi.Qualifier? = null, valueGenerator: Function1<PublicApi.Qualifier?, Value>, size: Int? = null): C = mapFixture<Key, Value>(
     keyQualifier = keyQualifier,
     valueQualifier = valueQualifier,
     valueGenerator = valueGenerator,
@@ -184,14 +172,7 @@ public inline fun <reified C : Map<Key, Value>, reified Key, reified Value> Publ
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified C : Map<Key, Value>, reified Key, reified Value> PublicApi.Fixture.fixture(
-    type: KClass<Map<*, *>>,
-    keyQualifier: PublicApi.Qualifier? = null,
-    keyGenerator: Function1<PublicApi.Qualifier?, Key>,
-    valueQualifier: PublicApi.Qualifier? = null,
-    valueGenerator: Function1<PublicApi.Qualifier?, Value>,
-    size: Int? = null,
-): C = mapFixture(
+public inline fun <reified C : Map<Key, Value>, reified Key, reified Value> PublicApi.Fixture.fixture(type: KClass<Map<*, *>>, keyQualifier: PublicApi.Qualifier? = null, keyGenerator: Function1<PublicApi.Qualifier?, Key>, valueQualifier: PublicApi.Qualifier? = null, valueGenerator: Function1<PublicApi.Qualifier?, Value>, size: Int? = null): C = mapFixture(
     keyQualifier = keyQualifier,
     keyGenerator = keyGenerator,
     valueQualifier = valueQualifier,
@@ -213,12 +194,7 @@ public inline fun <reified C : Map<Key, Value>, reified Key, reified Value> Publ
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified C : Map<Key, Value>, reified Key, reified Value> PublicApi.Fixture.fixture(
-    type: KClass<Map<*, *>>,
-    keyQualifier: PublicApi.Qualifier? = null,
-    valueQualifier: PublicApi.Qualifier? = null,
-    size: Int? = null,
-): C = mapFixture<Key, Value>(
+public inline fun <reified C : Map<Key, Value>, reified Key, reified Value> PublicApi.Fixture.fixture(type: KClass<Map<*, *>>, keyQualifier: PublicApi.Qualifier? = null, valueQualifier: PublicApi.Qualifier? = null, size: Int? = null): C = mapFixture<Key, Value>(
     keyQualifier = keyQualifier,
     valueQualifier = valueQualifier,
     size = size,
@@ -326,13 +302,7 @@ public inline fun <reified Key, reified Value> PublicApi.Fixture.mutableMapFixtu
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified C : MutableMap<Key, Value>, reified Key, reified Value> PublicApi.Fixture.fixture(
-    type: KClass<MutableMap<*, *>>,
-    keyQualifier: PublicApi.Qualifier? = null,
-    keyGenerator: Function1<PublicApi.Qualifier?, Key>,
-    valueQualifier: PublicApi.Qualifier? = null,
-    size: Int? = null,
-): C = mutableMapFixture<Key, Value>(
+public inline fun <reified C : MutableMap<Key, Value>, reified Key, reified Value> PublicApi.Fixture.fixture(type: KClass<MutableMap<*, *>>, keyQualifier: PublicApi.Qualifier? = null, keyGenerator: Function1<PublicApi.Qualifier?, Key>, valueQualifier: PublicApi.Qualifier? = null, size: Int? = null): C = mutableMapFixture<Key, Value>(
     keyQualifier = keyQualifier,
     keyGenerator = keyGenerator,
     valueQualifier = valueQualifier,
@@ -353,13 +323,7 @@ public inline fun <reified C : MutableMap<Key, Value>, reified Key, reified Valu
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified C : MutableMap<Key, Value>, reified Key, reified Value> PublicApi.Fixture.fixture(
-    type: KClass<MutableMap<*, *>>,
-    keyQualifier: PublicApi.Qualifier? = null,
-    valueQualifier: PublicApi.Qualifier? = null,
-    valueGenerator: Function1<PublicApi.Qualifier?, Value>,
-    size: Int? = null,
-): C = mutableMapFixture<Key, Value>(
+public inline fun <reified C : MutableMap<Key, Value>, reified Key, reified Value> PublicApi.Fixture.fixture(type: KClass<MutableMap<*, *>>, keyQualifier: PublicApi.Qualifier? = null, valueQualifier: PublicApi.Qualifier? = null, valueGenerator: Function1<PublicApi.Qualifier?, Value>, size: Int? = null): C = mutableMapFixture<Key, Value>(
     keyQualifier = keyQualifier,
     valueQualifier = valueQualifier,
     valueGenerator = valueGenerator,
@@ -380,14 +344,7 @@ public inline fun <reified C : MutableMap<Key, Value>, reified Key, reified Valu
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified C : MutableMap<Key, Value>, reified Key, reified Value> PublicApi.Fixture.fixture(
-    type: KClass<MutableMap<*, *>>,
-    keyQualifier: PublicApi.Qualifier? = null,
-    keyGenerator: Function1<PublicApi.Qualifier?, Key>,
-    valueQualifier: PublicApi.Qualifier? = null,
-    valueGenerator: Function1<PublicApi.Qualifier?, Value>,
-    size: Int? = null,
-): C = mutableMapFixture(
+public inline fun <reified C : MutableMap<Key, Value>, reified Key, reified Value> PublicApi.Fixture.fixture(type: KClass<MutableMap<*, *>>, keyQualifier: PublicApi.Qualifier? = null, keyGenerator: Function1<PublicApi.Qualifier?, Key>, valueQualifier: PublicApi.Qualifier? = null, valueGenerator: Function1<PublicApi.Qualifier?, Value>, size: Int? = null): C = mutableMapFixture(
     keyQualifier = keyQualifier,
     keyGenerator = keyGenerator,
     valueQualifier = valueQualifier,
@@ -409,12 +366,7 @@ public inline fun <reified C : MutableMap<Key, Value>, reified Key, reified Valu
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified C : MutableMap<Key, Value>, reified Key, reified Value> PublicApi.Fixture.fixture(
-    type: KClass<MutableMap<*, *>>,
-    keyQualifier: PublicApi.Qualifier? = null,
-    valueQualifier: PublicApi.Qualifier? = null,
-    size: Int? = null,
-): C = mutableMapFixture<Key, Value>(
+public inline fun <reified C : MutableMap<Key, Value>, reified Key, reified Value> PublicApi.Fixture.fixture(type: KClass<MutableMap<*, *>>, keyQualifier: PublicApi.Qualifier? = null, valueQualifier: PublicApi.Qualifier? = null, size: Int? = null): C = mutableMapFixture<Key, Value>(
     keyQualifier = keyQualifier,
     valueQualifier = valueQualifier,
     size = size,

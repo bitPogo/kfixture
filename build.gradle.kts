@@ -47,6 +47,6 @@ repositories {
 }
 
 tasks.named<Wrapper>("wrapper") {
-    gradleVersion = "7.5.1"
+    gradleVersion = antibytesCatalog.versions.gradle.gradle.get()
     distributionType = Wrapper.DistributionType.ALL
 }

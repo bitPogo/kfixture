@@ -1,11 +1,10 @@
-/* ktlint-disable filename */
 /*
  * Copyright (c) 2022 Matthias Geisler (bitPogo) / All rights reserved.
  *
  * Use of this source code is governed by Apache v2.0
  */
 
-@file:Suppress("OPT_IN_USAGE")
+@file:Suppress("OPT_IN_USAGE", "ktlint:standard:filename")
 
 package tech.antibytes.kfixture
 
@@ -21,12 +20,7 @@ import tech.antibytes.kfixture.PublicApi.SignedNumericArrayGenerator
  * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
-public inline fun <reified T> PublicApi.Fixture.fixture(
-    sign: PublicApi.Sign,
-    size: Int,
-    qualifier: PublicApi.Qualifier? = null,
-    noinline predicate: Function1<T?, Boolean> = ::defaultPredicate,
-): T where T : Number? {
+public inline fun <reified T> PublicApi.Fixture.fixture(sign: PublicApi.Sign, size: Int, qualifier: PublicApi.Qualifier? = null, noinline predicate: Function1<T?, Boolean> = ::defaultPredicate): T where T : Number? {
     val returnNull = random.returnNull<T>()
     val id = resolveIdentifier<T>(qualifier)
     val generator = generators[id]
