@@ -8,6 +8,7 @@
 
 package tech.antibytes.kfixture
 
+import kotlin.native.concurrent.ThreadLocal
 import kotlin.reflect.KClass
 
 // Ensure stable names

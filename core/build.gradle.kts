@@ -13,6 +13,7 @@ import tech.antibytes.gradle.configuration.apple.ensureAppleDeviceCompatibility
 import tech.antibytes.gradle.configuration.sourcesets.linux
 import tech.antibytes.gradle.configuration.sourcesets.native
 import tech.antibytes.gradle.configuration.sourcesets.nativeCoroutine
+import tech.antibytes.gradle.configuration.sourcesets.nativeWithoutAndroid
 import tech.antibytes.gradle.kfixture.config.publishing.FixtureCoreConfiguration
 
 plugins {
@@ -107,8 +108,7 @@ kotlin {
 
     jvm()
 
-    nativeCoroutine()
-    linux()
+    nativeWithoutAndroid()
 
     ensureAppleDeviceCompatibility()
 
