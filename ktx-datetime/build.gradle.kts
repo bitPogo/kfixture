@@ -111,7 +111,7 @@ kotlin {
             dependencies {
                 implementation(antibytesCatalog.common.kotlin.stdlib)
                 implementation(antibytesCatalog.common.kotlinx.dateTime)
-                implementation(project(":core"))
+                implementation(projects.core)
             }
         }
         val commonTest by getting {
