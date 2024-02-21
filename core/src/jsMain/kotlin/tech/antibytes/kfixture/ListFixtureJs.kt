@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Matthias Geisler (bitPogo) / All rights reserved.
+ * Copyright (c) 2024 Matthias Geisler (bitPogo) / All rights reserved.
  *
  * Use of this source code is governed by Apache v2.0
  */
@@ -29,7 +29,6 @@ public actual inline fun <reified T> PublicApi.Fixture.mutableListFixture(
     }
 }
 
-@Suppress("UNUSED_PARAMETER")
 /**
  * Creates a MutableList of values for a given type.
  * @param T the type which is supposed to be created.
@@ -53,7 +52,6 @@ public actual inline fun <reified T> PublicApi.Fixture.listFixture(
     size: Int?,
 ): List<T> = mutableListFixture(qualifier, size)
 
-@Suppress("UNUSED_PARAMETER")
 /**
  * Creates a List of values for a given type.
  * @param T the type which is supposed to be created.
