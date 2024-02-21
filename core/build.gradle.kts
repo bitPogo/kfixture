@@ -4,16 +4,13 @@
  * Use of this source code is governed by Apache v2.0
  */
 
-import tech.antibytes.gradle.coverage.api.JvmJacocoConfiguration
-import tech.antibytes.gradle.coverage.api.AndroidJacocoConfiguration
-import tech.antibytes.gradle.coverage.api.JacocoVerificationRule
+import tech.antibytes.gradle.configuration.apple.ensureAppleDeviceCompatibility
+import tech.antibytes.gradle.configuration.sourcesets.native
 import tech.antibytes.gradle.coverage.CoverageApiContract.JacocoCounter
 import tech.antibytes.gradle.coverage.CoverageApiContract.JacocoMeasurement
-import tech.antibytes.gradle.configuration.apple.ensureAppleDeviceCompatibility
-import tech.antibytes.gradle.configuration.sourcesets.linux
-import tech.antibytes.gradle.configuration.sourcesets.native
-import tech.antibytes.gradle.configuration.sourcesets.nativeCoroutine
-import tech.antibytes.gradle.configuration.sourcesets.nativeWithoutAndroid
+import tech.antibytes.gradle.coverage.api.AndroidJacocoConfiguration
+import tech.antibytes.gradle.coverage.api.JacocoVerificationRule
+import tech.antibytes.gradle.coverage.api.JvmJacocoConfiguration
 import tech.antibytes.gradle.kfixture.config.publishing.FixtureCoreConfiguration
 
 plugins {
@@ -108,8 +105,7 @@ kotlin {
 
     jvm()
 
-    nativeWithoutAndroid()
-
+    native()
     ensureAppleDeviceCompatibility()
 
     sourceSets {
