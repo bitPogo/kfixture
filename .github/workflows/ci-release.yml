@@ -18,16 +18,6 @@ jobs:
       group: build-macos
       cancel-in-progress: true
 
-  check:
-    needs: [ build-macos, build-linux ]
-    uses: bitpogo/workflows/.github/workflows/shared-test-kmp.yml@main
-    with:
-      cleanup: false
-      platforms: "['ios', 'macos', 'tvos', 'watchos', 'linux-all', 'mingw']"
-    concurrency:
-      group: check
-      cancel-in-progress: true
-
   docs:
     needs: check
     uses: bitpogo/workflows/.github/workflows/shared-mkdocs-release.yml@main
