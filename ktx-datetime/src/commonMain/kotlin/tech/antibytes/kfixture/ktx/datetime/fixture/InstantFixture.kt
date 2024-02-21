@@ -1,9 +1,10 @@
-/* ktlint-disable filename */
 /*
- * Copyright (c) 2022 Matthias Geisler (bitPogo) / All rights reserved.
+ * Copyright (c) 2024 Matthias Geisler (bitPogo) / All rights reserved.
  *
  * Use of this source code is governed by Apache v2.0
  */
+
+@file:Suppress("ktlint:standard:filename")
 
 package tech.antibytes.kfixture.ktx.datetime.fixture
 
@@ -27,12 +28,7 @@ import tech.antibytes.kfixture.rangedFixture
  * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
-public inline fun <reified RangeType : Long, reified FixtureType : Instant?> PublicApi.Fixture.fixture(
-    from: RangeType,
-    to: RangeType,
-    qualifier: PublicApi.Qualifier?,
-    noinline predicate: Function1<RangeType?, Boolean>,
-): FixtureType = rangedFixture(
+public inline fun <reified RangeType : Long, reified FixtureType : Instant?> PublicApi.Fixture.fixture(from: RangeType, to: RangeType, qualifier: PublicApi.Qualifier?, noinline predicate: Function1<RangeType?, Boolean>): FixtureType = rangedFixture(
     from = from,
     to = to,
     qualifier = qualifier,
@@ -51,11 +47,7 @@ public inline fun <reified RangeType : Long, reified FixtureType : Instant?> Pub
  * @param predicate which filters non matching values.
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
-public inline fun <reified RangeType : Long, reified FixtureType : Instant?> PublicApi.Fixture.fixture(
-    range: ClosedRange<RangeType>,
-    qualifier: PublicApi.Qualifier?,
-    noinline predicate: Function1<RangeType?, Boolean>,
-): FixtureType = fixture(
+public inline fun <reified RangeType : Long, reified FixtureType : Instant?> PublicApi.Fixture.fixture(range: ClosedRange<RangeType>, qualifier: PublicApi.Qualifier?, noinline predicate: Function1<RangeType?, Boolean>): FixtureType = fixture(
     from = range.start,
     to = range.endInclusive,
     qualifier = qualifier,

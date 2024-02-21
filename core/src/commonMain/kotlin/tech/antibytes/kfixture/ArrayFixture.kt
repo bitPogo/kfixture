@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Matthias Geisler (bitPogo) / All rights reserved.
+ * Copyright (c) 2024 Matthias Geisler (bitPogo) / All rights reserved.
  *
  * Use of this source code is governed by Apache v2.0
  */
@@ -57,12 +57,7 @@ public inline fun <reified T> PublicApi.Fixture.arrayFixture(
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified T> PublicApi.Fixture.fixture(
-    type: KClass<Array<*>>,
-    qualifier: Qualifier? = null,
-    size: Int? = null,
-    nestedGenerator: Function1<Qualifier?, T>,
-): Array<T> = arrayFixture(
+public inline fun <reified T> PublicApi.Fixture.fixture(type: KClass<Array<*>>, qualifier: Qualifier? = null, size: Int? = null, nestedGenerator: Function1<Qualifier?, T>): Array<T> = arrayFixture(
     qualifier = qualifier,
     size = size,
     nestedGenerator = nestedGenerator,
@@ -79,11 +74,7 @@ public inline fun <reified T> PublicApi.Fixture.fixture(
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified T> PublicApi.Fixture.fixture(
-    type: KClass<Array<*>>,
-    qualifier: Qualifier? = null,
-    size: Int? = null,
-): Array<T> = arrayFixture(
+public inline fun <reified T> PublicApi.Fixture.fixture(type: KClass<Array<*>>, qualifier: Qualifier? = null, size: Int? = null): Array<T> = arrayFixture(
     qualifier = qualifier,
     size = size,
 )

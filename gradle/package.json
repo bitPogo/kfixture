@@ -7,7 +7,7 @@
   "devDependencies": {},
   "dependencies": {},
   "peerDependencies": {
-    "@js-joda/timezone": "~2.11.1"
+    "@js-joda/timezone": "~2.18.2"
   },
   "optionalDependencies": {}
 }

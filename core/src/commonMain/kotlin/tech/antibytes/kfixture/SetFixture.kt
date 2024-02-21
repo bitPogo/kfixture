@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Matthias Geisler (bitPogo) / All rights reserved.
+ * Copyright (c) 2024 Matthias Geisler (bitPogo) / All rights reserved.
  *
  * Use of this source code is governed by Apache v2.0
  */
@@ -73,12 +73,7 @@ public inline fun <reified T> PublicApi.Fixture.mutableSetFixture(
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified C : MutableSet<T>, reified T> PublicApi.Fixture.fixture(
-    type: KClass<MutableSet<*>>,
-    qualifier: Qualifier? = null,
-    size: Int? = null,
-    nestedGenerator: Function1<Qualifier?, T>,
-): C = mutableSetFixture(
+public inline fun <reified C : MutableSet<T>, reified T> PublicApi.Fixture.fixture(type: KClass<MutableSet<*>>, qualifier: Qualifier? = null, size: Int? = null, nestedGenerator: Function1<Qualifier?, T>): C = mutableSetFixture(
     qualifier = qualifier,
     size = size,
     nestedGenerator = nestedGenerator,
@@ -96,11 +91,7 @@ public inline fun <reified C : MutableSet<T>, reified T> PublicApi.Fixture.fixtu
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified C : MutableSet<T>, reified T> PublicApi.Fixture.fixture(
-    type: KClass<MutableSet<*>>,
-    qualifier: Qualifier? = null,
-    size: Int? = null,
-): C = mutableSetFixture<T>(
+public inline fun <reified C : MutableSet<T>, reified T> PublicApi.Fixture.fixture(type: KClass<MutableSet<*>>, qualifier: Qualifier? = null, size: Int? = null): C = mutableSetFixture<T>(
     qualifier = qualifier,
     size = size,
 ) as C
@@ -153,12 +144,7 @@ public inline fun <reified T> PublicApi.Fixture.setFixture(
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified C : Set<T>, reified T> PublicApi.Fixture.fixture(
-    type: KClass<Set<*>>,
-    qualifier: Qualifier? = null,
-    size: Int? = null,
-    nestedGenerator: Function1<Qualifier?, T>,
-): C = setFixture(
+public inline fun <reified C : Set<T>, reified T> PublicApi.Fixture.fixture(type: KClass<Set<*>>, qualifier: Qualifier? = null, size: Int? = null, nestedGenerator: Function1<Qualifier?, T>): C = setFixture(
     qualifier = qualifier,
     size = size,
     nestedGenerator = nestedGenerator,
@@ -176,11 +162,7 @@ public inline fun <reified C : Set<T>, reified T> PublicApi.Fixture.fixture(
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified C : Set<T>, reified T> PublicApi.Fixture.fixture(
-    type: KClass<Set<*>>,
-    qualifier: Qualifier? = null,
-    size: Int? = null,
-): C = setFixture<T>(
+public inline fun <reified C : Set<T>, reified T> PublicApi.Fixture.fixture(type: KClass<Set<*>>, qualifier: Qualifier? = null, size: Int? = null): C = setFixture<T>(
     qualifier = qualifier,
     size = size,
 ) as C

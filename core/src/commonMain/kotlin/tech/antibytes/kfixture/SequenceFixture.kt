@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Matthias Geisler (bitPogo) / All rights reserved.
+ * Copyright (c) 2024 Matthias Geisler (bitPogo) / All rights reserved.
  *
  * Use of this source code is governed by Apache v2.0
  */
@@ -68,12 +68,7 @@ public inline fun <reified T> PublicApi.Fixture.sequenceFixture(
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified C : Sequence<T>, reified T> PublicApi.Fixture.fixture(
-    type: KClass<Sequence<*>>,
-    qualifier: PublicApi.Qualifier? = null,
-    size: Int? = null,
-    crossinline nestedGenerator: Function1<PublicApi.Qualifier?, T>,
-): C = sequenceFixture(
+public inline fun <reified C : Sequence<T>, reified T> PublicApi.Fixture.fixture(type: KClass<Sequence<*>>, qualifier: PublicApi.Qualifier? = null, size: Int? = null, crossinline nestedGenerator: Function1<PublicApi.Qualifier?, T>): C = sequenceFixture(
     qualifier = qualifier,
     size = size,
     nestedGenerator = nestedGenerator,
@@ -91,11 +86,7 @@ public inline fun <reified C : Sequence<T>, reified T> PublicApi.Fixture.fixture
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified C : Sequence<T>, reified T> PublicApi.Fixture.fixture(
-    type: KClass<Sequence<*>>,
-    qualifier: PublicApi.Qualifier? = null,
-    size: Int? = null,
-): C = sequenceFixture<T>(
+public inline fun <reified C : Sequence<T>, reified T> PublicApi.Fixture.fixture(type: KClass<Sequence<*>>, qualifier: PublicApi.Qualifier? = null, size: Int? = null): C = sequenceFixture<T>(
     qualifier = qualifier,
     size = size,
 ) as C

@@ -1,40 +1,93 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" ?>
 <SmellBaseline>
-  <ManuallySuppressedIssues/>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
   <CurrentIssues>
-    <ID>ArrayPrimitive:ArrayFixtureSpec.kt$ArrayFixtureSpec$Array&lt;Int></ID>
-    <ID>FunctionOnlyReturningConstant:DefaultPredicate.kt$@Suppress("UNUSED_PARAMETER") @PublishedApi internal fun &lt;T> defaultPredicate(value: T): Boolean</ID>
-    <ID>FunctionOnlyReturningConstant:PublicApi.kt$@Suppress("UNUSED_PARAMETER") @PublishedApi internal fun &lt;T> defaultPredicate(value: T): Boolean</ID>
-    <ID>LongParameterList:TupleFixture.kt$( type: KClass&lt;Triple&lt;*, *, *>>, firstQualifier: Qualifier? = null, firstGenerator: Function1&lt;Qualifier?, First>, secondQualifier: Qualifier? = null, secondGenerator: Function1&lt;Qualifier?, Second>, thirdQualifier: Qualifier? = null, thirdGenerator: Function1&lt;Qualifier?, Third>, )</ID>
-    <ID>MagicNumber:Dangerfile.df.kts$1000</ID>
-    <ID>MagicNumber:Dangerfile.df.kts$20</ID>
-    <ID>MagicNumber:Dangerfile.df.kts$2000</ID>
-    <ID>MagicNumber:Dangerfile.df.kts$500</ID>
-    <ID>MagicNumber:build.gradle.kts$0.90</ID>
-    <ID>MagicNumber:build.gradle.kts$0.97</ID>
-    <ID>MagicNumber:build.gradle.kts$8</ID>
-    <ID>MagicNumber:settings.gradle.kts$30</ID>
-    <ID>MaxLineLength:Dangerfile.df.kts$val</ID>
-    <ID>MaxLineLength:DateTimeFixture.kt$generator !is LocalizedDateTimeGenerator&lt;*> -> throw IllegalStateException("Missing Generator for ClassID ($id).")</ID>
-    <ID>MaxLineLength:GradlePlugin.kt$GradlePlugin$const val runtimeConfig = "tech.antibytes.gradle-plugins:antibytes-runtime-configuration:${Version.Gradle.antibytes}"</ID>
+    <ID>BracesOnWhenStatements:DateTimeFixture.kt$-&gt;</ID>
+    <ID>BracesOnWhenStatements:FilterableFixture.kt$-&gt;</ID>
+    <ID>BracesOnWhenStatements:InstantFixtureSpec.kt$InstantFixtureSpec$-&gt;</ID>
+    <ID>BracesOnWhenStatements:RangedFixture.kt$-&gt;</ID>
+    <ID>BracesOnWhenStatements:RangedNumericArrayFixture.kt$-&gt;</ID>
+    <ID>BracesOnWhenStatements:RangedSpecialArrayFixtureSpec.kt$RangedSpecialArrayFixtureSpec$-&gt;</ID>
+    <ID>BracesOnWhenStatements:SignedNumericArrayFixture.kt$-&gt;</ID>
+    <ID>BracesOnWhenStatements:SignedNumericFixture.kt$-&gt;</ID>
+    <ID>CollapsibleIfStatements:Dangerfile.df.kts$if (isFeatureBranch) { if (!isFeatureTitle) { fail( "Title is not following our pattern:\n" + "\nAdd|Change|Remove|Fix|Bump|Security {Feature title}" ) } }</ID>
+    <ID>CollapsibleIfStatements:Dangerfile.df.kts$if (isReleaseBranch) { if (!isReleaseTitle) { fail( "Title is not following our pattern: Prepare Release major.minor.patch (1.2.0)" ) } }</ID>
+    <ID>ConstructorParameterNaming:StringQualifier.kt$StringQualifier$private val _value: String</ID>
+    <ID>ForbiddenComment:ClassNameResolver.kt$// TODO: since JS does not provide a package prefix, think about to make it more unique, while keeping the current behaviour</ID>
+    <ID>FunctionOnlyReturningConstant:DefaultPredicate.kt$@Suppress("UNUSED_PARAMETER") @PublishedApi internal fun &lt;T&gt; defaultPredicate(value: T): Boolean</ID>
+    <ID>FunctionOnlyReturningConstant:PublicApi.kt$@Suppress("UNUSED_PARAMETER") @PublishedApi internal fun &lt;T&gt; defaultPredicate(value: T): Boolean</ID>
+    <ID>LongParameterList:MapFixture.kt$(type: KClass&lt;Map&lt;*, *&gt;&gt;, keyQualifier: PublicApi.Qualifier? = null, keyGenerator: Function1&lt;PublicApi.Qualifier?, Key&gt;, valueQualifier: PublicApi.Qualifier? = null, valueGenerator: Function1&lt;PublicApi.Qualifier?, Value&gt;, size: Int? = null)</ID>
+    <ID>LongParameterList:MapFixture.kt$(type: KClass&lt;MutableMap&lt;*, *&gt;&gt;, keyQualifier: PublicApi.Qualifier? = null, keyGenerator: Function1&lt;PublicApi.Qualifier?, Key&gt;, valueQualifier: PublicApi.Qualifier? = null, valueGenerator: Function1&lt;PublicApi.Qualifier?, Value&gt;, size: Int? = null)</ID>
+    <ID>LongParameterList:TupleFixture.kt$( firstQualifier: Qualifier? = null, firstGenerator: Function1&lt;Qualifier?, First&gt;, secondQualifier: Qualifier? = null, secondGenerator: Function1&lt;Qualifier?, Second&gt;, thirdQualifier: Qualifier? = null, thirdGenerator: Function1&lt;Qualifier?, Third&gt;, )</ID>
+    <ID>LongParameterList:TupleFixture.kt$(type: KClass&lt;Triple&lt;*, *, *&gt;&gt;, firstQualifier: Qualifier? = null, firstGenerator: Function1&lt;Qualifier?, First&gt;, secondQualifier: Qualifier? = null, secondGenerator: Function1&lt;Qualifier?, Second&gt;, thirdQualifier: Qualifier? = null)</ID>
+    <ID>LongParameterList:TupleFixture.kt$(type: KClass&lt;Triple&lt;*, *, *&gt;&gt;, firstQualifier: Qualifier? = null, firstGenerator: Function1&lt;Qualifier?, First&gt;, secondQualifier: Qualifier? = null, secondGenerator: Function1&lt;Qualifier?, Second&gt;, thirdQualifier: Qualifier? = null, thirdGenerator: Function1&lt;Qualifier?, Third&gt;)</ID>
+    <ID>LongParameterList:TupleFixture.kt$(type: KClass&lt;Triple&lt;*, *, *&gt;&gt;, firstQualifier: Qualifier? = null, firstGenerator: Function1&lt;Qualifier?, First&gt;, secondQualifier: Qualifier? = null, thirdQualifier: Qualifier? = null, thirdGenerator: Function1&lt;Qualifier?, Third&gt;)</ID>
+    <ID>LongParameterList:TupleFixture.kt$(type: KClass&lt;Triple&lt;*, *, *&gt;&gt;, firstQualifier: Qualifier? = null, secondQualifier: Qualifier? = null, secondGenerator: Function1&lt;Qualifier?, Second&gt;, thirdQualifier: Qualifier? = null, thirdGenerator: Function1&lt;Qualifier?, Third&gt;)</ID>
+    <ID>MaxLineLength:ArrayFixture.kt$public</ID>
+    <ID>MaxLineLength:CollectionFixture.kt$public</ID>
+    <ID>MaxLineLength:DateTimeFixture.kt$public</ID>
+    <ID>MaxLineLength:EnumFixture.kt$public</ID>
+    <ID>MaxLineLength:InstantFixture.kt$public</ID>
+    <ID>MaxLineLength:ListFixture.kt$public</ID>
+    <ID>MaxLineLength:ListFixtureJs.kt$public</ID>
+    <ID>MaxLineLength:ListFixtureJs.kt$public actual inline</ID>
+    <ID>MaxLineLength:ListFixtureNoJs.kt$public</ID>
+    <ID>MaxLineLength:MapFixture.kt$public</ID>
+    <ID>MaxLineLength:MapFixtureSpec.kt$MapFixtureSpec$fun</ID>
+    <ID>MaxLineLength:RangedFixture.kt$public</ID>
+    <ID>MaxLineLength:RangedNumericArrayFixture.kt$public</ID>
+    <ID>MaxLineLength:RangedSpecialArrayFixture.kt$public</ID>
+    <ID>MaxLineLength:SequenceFixture.kt$public</ID>
+    <ID>MaxLineLength:SetFixture.kt$public</ID>
+    <ID>MaxLineLength:SignedNumericArrayFixture.kt$public</ID>
+    <ID>MaxLineLength:SignedNumericFixture.kt$public</ID>
     <ID>MaxLineLength:TupleFixture.kt$public</ID>
-    <ID>MaxLineLength:build.gradle.kts$config = files("$projectDir/detekt/config.yml")</ID>
+    <ID>StringShouldBeRawString:Dangerfile.df.kts$"(?:(?:Prepare )?Release \\d{1,3}\\.\\d{1,3}\\.\\d{1,3})"</ID>
+    <ID>StringShouldBeRawString:Dangerfile.df.kts$"(?:(?:\\[[A-Z]{2,8}-\\d{1,6}\\]\\s)?(?:Add|Update|Change|Remove|Fix|Bump|Security)\\s.*)"</ID>
+    <ID>StringShouldBeRawString:Dangerfile.df.kts$"(?:release\\/(?:\\d{1,3}\\.\\d{1,3}(?:\\.\\d{1,3})?)(?:\\/prepare-\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})?)"</ID>
+    <ID>StringShouldBeRawString:Dangerfile.df.kts$"Branch name is not following our pattern:\n" + "\nrelease/1.2(.3)(/prepare-1.2.3)\n" + "\nfeature/add|change|remove|fix|bump|security-feature-title\n" + "\n\n" + "\n Current name: $branchName"</ID>
+    <ID>StringShouldBeRawString:build.gradle.kts$"^tech\\.antibytes\\.[\\.a-z\\-]+"</ID>
+    <ID>StringShouldBeRawString:settings.gradle.kts$"^tech\\.antibytes\\.[\\.a-z\\-]+"</ID>
     <ID>ThrowsCount:InstantGenerator.kt$InstantGenerator$private fun guardRange( from: Long, to: Long, )</ID>
     <ID>TooManyFunctions:MapFixture.kt$tech.antibytes.kfixture.MapFixture.kt</ID>
-    <ID>TooManyFunctions:RandomWrapper.kt$RandomWrapper : Random</ID>
     <ID>TooManyFunctions:RangedSpecialArrayFixture.kt$tech.antibytes.kfixture.RangedSpecialArrayFixture.kt</ID>
     <ID>TooManyFunctions:TupleFixture.kt$tech.antibytes.kfixture.TupleFixture.kt</ID>
-    <ID>UnusedPrivateMember:JsJodaTimeZoneModule.kt$private val jsJodaTz = JsJodaTimeZoneModule</ID>
-    <ID>UnusedPrivateMember:build.gradle.kts$val androidMain by getting { dependsOn(noJsMain) dependencies { implementation(Dependency.multiplatform.kotlin.android) } }</ID>
-    <ID>UnusedPrivateMember:build.gradle.kts$val androidTest by getting { dependsOn(noJsTest) dependsOn(androidAndroidTestRelease) dependsOn(androidTestFixtures) dependsOn(androidTestFixturesDebug) dependsOn(androidTestFixturesRelease) dependencies { implementation(Dependency.multiplatform.test.jvm) implementation(Dependency.multiplatform.test.junit) } }</ID>
-    <ID>UnusedPrivateMember:build.gradle.kts$val iosSimulatorArm64Main by getting { dependsOn(iosMain) }</ID>
-    <ID>UnusedPrivateMember:build.gradle.kts$val iosSimulatorArm64Test by getting { dependsOn(iosTest) }</ID>
-    <ID>UnusedPrivateMember:build.gradle.kts$val jsMain by getting { dependencies { implementation(Dependency.multiplatform.kotlin.js) implementation(Dependency.js.nodejs) } }</ID>
-    <ID>UnusedPrivateMember:build.gradle.kts$val jsTest by getting { dependencies { implementation(Dependency.multiplatform.test.js) implementation(npm(LocalDependency.npm.joda.name, LocalDependency.npm.joda.version)) } }</ID>
-    <ID>UnusedPrivateMember:build.gradle.kts$val jsTest by getting { dependencies { implementation(Dependency.multiplatform.test.js) } }</ID>
-    <ID>UnusedPrivateMember:build.gradle.kts$val jvmMain by getting { dependsOn(noJsMain) dependencies { implementation(Dependency.multiplatform.kotlin.jdk8) } }</ID>
-    <ID>UnusedPrivateMember:build.gradle.kts$val jvmTest by getting { dependsOn(noJsTest) dependencies { implementation(Dependency.multiplatform.test.jvm) implementation(Dependency.multiplatform.test.junit) } }</ID>
-    <ID>UnusedPrivateMember:build.gradle.kts$val linuxX64Main by getting { dependsOn(otherMain) }</ID>
-    <ID>UnusedPrivateMember:build.gradle.kts$val linuxX64Test by getting { dependsOn(otherTest) }</ID>
+    <ID>UnnecessaryParentheses:FloatGeneratorSpec.kt$FloatGeneratorSpec$(-expectedFloat)</ID>
+    <ID>UnnecessaryParentheses:FloatGeneratorSpec.kt$FloatGeneratorSpec$(expected + expectedFloat)</ID>
+    <ID>UnnecessaryParentheses:UIntegerGeneratorSpec.kt$UIntegerGeneratorSpec$((expectedMax.toInt() xor Int.MIN_VALUE) + 1)</ID>
+    <ID>UnnecessaryParentheses:ULongGeneratorSpec.kt$ULongGeneratorSpec$((expectedMax.toLong() xor Long.MIN_VALUE) + 1)</ID>
+    <ID>UnusedPrivateProperty:JsJodaTimeZoneModule.kt$private val jsJodaTz = JsJodaTimeZoneModule</ID>
+    <ID>UnusedPrivateProperty:build.gradle.kts$val androidMain by getting { dependsOn(noJsMain) dependencies { implementation(antibytesCatalog.jvm.kotlin.stdlib.jdk8) } }</ID>
+    <ID>UnusedPrivateProperty:build.gradle.kts$val androidUnitTest by getting { dependencies { implementation(antibytesCatalog.jvm.test.kotlin.core) implementation(antibytesCatalog.jvm.test.kotlin.junit4) } }</ID>
+    <ID>UnusedPrivateProperty:build.gradle.kts$val appleMain by getting { dependsOn(nativeMain) }</ID>
+    <ID>UnusedPrivateProperty:build.gradle.kts$val appleTest by getting { dependsOn(nativeTest) }</ID>
+    <ID>UnusedPrivateProperty:build.gradle.kts$val jsMain by getting { dependencies { implementation(antibytesCatalog.js.kotlin.stdlib) implementation(antibytesCatalog.js.kotlinx.nodeJs) nodePeerPackage(local.node.jsJodaTimezone) } }</ID>
+    <ID>UnusedPrivateProperty:build.gradle.kts$val jsMain by getting { dependencies { implementation(antibytesCatalog.js.kotlin.stdlib) implementation(antibytesCatalog.js.kotlinx.nodeJs) } }</ID>
+    <ID>UnusedPrivateProperty:build.gradle.kts$val jsTest by getting { dependencies { implementation(antibytesCatalog.js.test.kotlin.core) nodeProductionPackage(local.node.jsJodaTimezone) } }</ID>
+    <ID>UnusedPrivateProperty:build.gradle.kts$val jsTest by getting { dependencies { implementation(antibytesCatalog.js.test.kotlin.core) } }</ID>
+    <ID>UnusedPrivateProperty:build.gradle.kts$val jvmMain by getting { dependsOn(noJsMain) }</ID>
+    <ID>UnusedPrivateProperty:build.gradle.kts$val jvmTest by getting { dependsOn(noJsTest) dependencies { implementation(antibytesCatalog.jvm.test.kotlin.core) implementation(antibytesCatalog.jvm.test.kotlin.junit4) } }</ID>
+    <ID>UnusedPrivateProperty:build.gradle.kts$val linuxX64Main by getting { dependsOn(nativeMain) }</ID>
+    <ID>UnusedPrivateProperty:build.gradle.kts$val linuxX64Test by getting { dependsOn(nativeTest) }</ID>
+    <ID>UnusedPrivateProperty:build.gradle.kts$val mingwX64Main by getting { dependsOn(nativeMain) }</ID>
+    <ID>UnusedPrivateProperty:build.gradle.kts$val mingwX64Test by getting { dependsOn(nativeTest) }</ID>
+    <ID>UnusedPrivateProperty:build.gradle.kts$val nativeMain by getting { dependsOn(noJsMain) }</ID>
+    <ID>UnusedPrivateProperty:build.gradle.kts$val nativeTest by getting { dependsOn(noJsTest) }</ID>
+    <ID>UseCheckOrError:DateTimeFixture.kt$throw IllegalStateException("Missing Generator for ClassID ($id).")</ID>
+    <ID>UseCheckOrError:FilterableFixture.kt$throw IllegalStateException("Missing Generator for ClassID ($id).")</ID>
+    <ID>UseCheckOrError:Fixture.kt$throw IllegalStateException("Missing Generator for ClassID ($id).")</ID>
+    <ID>UseCheckOrError:RangedFixture.kt$throw IllegalStateException("Missing Generator for ClassID ($id).")</ID>
+    <ID>UseCheckOrError:RangedNumericArrayFixture.kt$throw IllegalStateException("Missing Generator for ClassID ($id).")</ID>
+    <ID>UseCheckOrError:SignedNumericArrayFixture.kt$throw IllegalStateException("Missing Generator for ClassID ($id).")</ID>
+    <ID>UseCheckOrError:SignedNumericFixture.kt$throw IllegalStateException("Missing Generator for ClassID ($id).")</ID>
+    <ID>UseIfInsteadOfWhen:Dangerfile.df.kts$when { pullRequest.body == null -&gt; warn("Please include a description of your PR changes") else -&gt; {/* do nothing*/} }</ID>
+    <ID>UseIfInsteadOfWhen:InstantFixtureSpec.kt$InstantFixtureSpec$when (FixtureType::class) { Instant::class -&gt; { fixture, from, to, qualifier, predicate -&gt; fixture.fixture&lt;Long, Instant&gt;( from = from as Long, to = to as Long, qualifier = qualifier, predicate = predicate as Function1&lt;Long?, Boolean&gt;, ) as FixtureType } else -&gt; throw RuntimeException() }</ID>
+    <ID>UseIfInsteadOfWhen:InstantFixtureSpec.kt$InstantFixtureSpec$when (FixtureType::class) { Instant::class -&gt; { fixture, from, to, qualifier, predicate -&gt; fixture.fixture&lt;Long, Instant?&gt;( from = from as Long, to = to as Long, qualifier = qualifier, predicate = predicate as Function1&lt;Long?, Boolean&gt;, ) as FixtureType? } else -&gt; throw RuntimeException() }</ID>
+    <ID>UseIfInsteadOfWhen:InstantFixtureSpec.kt$InstantFixtureSpec$when (FixtureType::class) { Instant::class -&gt; { fixture, range, qualifier, predicate -&gt; fixture.fixture&lt;Long, Instant&gt;( range = range as ClosedRange&lt;Long&gt;, qualifier = qualifier, predicate = predicate as Function1&lt;Long?, Boolean&gt;, ) as FixtureType } else -&gt; throw RuntimeException() }</ID>
+    <ID>UseIfInsteadOfWhen:InstantFixtureSpec.kt$InstantFixtureSpec$when (FixtureType::class) { Instant::class -&gt; { fixture, range, qualifier, predicate -&gt; fixture.fixture&lt;Long, Instant?&gt;( range = range as ClosedRange&lt;Long&gt;, qualifier = qualifier, predicate = predicate as Function1&lt;Long?, Boolean&gt;, ) as FixtureType? } else -&gt; throw RuntimeException() }</ID>
+    <ID>UseRequire:InstantGenerator.kt$InstantGenerator$throw IllegalArgumentException("The lower bound of an Instant must be greater than $MIN_TIME_STAMP!")</ID>
+    <ID>UseRequire:InstantGenerator.kt$InstantGenerator$throw IllegalArgumentException("The upper bound of an Instant must be greater than lower bound!")</ID>
+    <ID>UseRequire:InstantGenerator.kt$InstantGenerator$throw IllegalArgumentException("The upper bound of an Instant must be smaller than $MAX_TIME_STAMP!")</ID>
+    <ID>UseRequire:SelectorGeneratorFactory.kt$SelectorGeneratorFactory$throw IllegalArgumentException("Missing selectable items!")</ID>
   </CurrentIssues>
 </SmellBaseline>

@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-* Support for all KMP targets for core
+* Support for all stable KMP targets for core
 * Support for all Apple targets and mingwX64 for datetime
 
 ### Changed
@@ -18,11 +18,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 
+* AtomicFu
+
 ### Fixed
 
 ### Security
 
 ### Bumped
+
+* Gradle 7.5 -> 8.6
+* Kotlin 1.7.0 -> 1.9.22
+* Android Target SDK 32 -> 34
+
 
 ## [0.4.0](https://github.com/bitPogo/kfixture/compare/v0.3.1...v0.4.0)
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Matthias Geisler (bitPogo) / All rights reserved.
+ * Copyright (c) 2024 Matthias Geisler (bitPogo) / All rights reserved.
  *
  * Use of this source code is governed by Apache v2.0
  */
@@ -55,7 +55,8 @@ class InstantFixtureSpec {
         RangeType,
         PublicApi.Qualifier?,
         Function1<RangeType?, Boolean>,
-        FixtureType,> {
+        FixtureType,
+        > {
         return when (FixtureType::class) {
             Instant::class -> { fixture, from, to, qualifier, predicate ->
                 fixture.fixture<Long, Instant>(
@@ -76,7 +77,8 @@ class InstantFixtureSpec {
         RangeType,
         PublicApi.Qualifier?,
         Function1<RangeType?, Boolean>,
-        FixtureType?,> {
+        FixtureType?,
+        > {
         return when (FixtureType::class) {
             Instant::class -> { fixture, from, to, qualifier, predicate ->
                 fixture.fixture<Long, Instant?>(
@@ -641,7 +643,8 @@ class InstantFixtureSpec {
         ClosedRange<Comparable<Any>>,
         PublicApi.Qualifier?,
         Function1<RangeType?, Boolean>,
-        FixtureType,> {
+        FixtureType,
+        > {
         return when (FixtureType::class) {
             Instant::class -> { fixture, range, qualifier, predicate ->
                 fixture.fixture<Long, Instant>(
@@ -660,7 +663,8 @@ class InstantFixtureSpec {
         ClosedRange<Comparable<Any>>,
         PublicApi.Qualifier?,
         Function1<RangeType?, Boolean>,
-        FixtureType?,> {
+        FixtureType?,
+        > {
         return when (FixtureType::class) {
             Instant::class -> { fixture, range, qualifier, predicate ->
                 fixture.fixture<Long, Instant?>(

@@ -98,6 +98,7 @@ public final class tech/antibytes/kfixture/PublicApi$RangedGenerator$DefaultImpl
 public final class tech/antibytes/kfixture/PublicApi$Sign : java/lang/Enum {
 	public static final field NEGATIVE Ltech/antibytes/kfixture/PublicApi$Sign;
 	public static final field POSITIVE Ltech/antibytes/kfixture/PublicApi$Sign;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Ltech/antibytes/kfixture/PublicApi$Sign;
 	public static fun values ()[Ltech/antibytes/kfixture/PublicApi$Sign;
 }

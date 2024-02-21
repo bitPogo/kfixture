@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Matthias Geisler (bitPogo) / All rights reserved.
+ * Copyright (c) 2024 Matthias Geisler (bitPogo) / All rights reserved.
  *
  * Use of this source code is governed by Apache v2.0
  */
@@ -25,5 +25,7 @@ pluginManagement {
 }
 
 plugins {
-    id("tech.antibytes.gradle.dependency.settings") version "0e82305"
+    id("tech.antibytes.gradle.dependency.settings") version "a9d047f"
 }
+
+rootProject.name = "fixture-setup"

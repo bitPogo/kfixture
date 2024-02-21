@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Matthias Geisler (bitPogo) / All rights reserved.
+ * Copyright (c) 2024 Matthias Geisler (bitPogo) / All rights reserved.
  *
  * Use of this source code is governed by Apache v2.0
  */
@@ -11,8 +11,7 @@ import tech.antibytes.gradle.coverage.CoverageApiContract.JacocoCounter
 import tech.antibytes.gradle.coverage.CoverageApiContract.JacocoMeasurement
 import tech.antibytes.gradle.configuration.apple.ensureAppleDeviceCompatibility
 
-import tech.antibytes.gradle.configuration.sourcesets.appleWithLegacy
-import tech.antibytes.gradle.configuration.sourcesets.setupAndroidTest
+import tech.antibytes.gradle.configuration.sourcesets.apple
 import tech.antibytes.gradle.dependency.helper.nodePeerPackage
 import tech.antibytes.gradle.dependency.helper.nodeProductionPackage
 import tech.antibytes.gradle.kfixture.config.publishing.FixtureKtxDateTimeConfiguration
@@ -85,7 +84,7 @@ android {
 }
 
 kotlin {
-    android()
+    androidTarget()
 
     js(IR) {
         nodejs()
@@ -97,7 +96,7 @@ kotlin {
     linuxX64()
     mingwX64()
 
-    appleWithLegacy()
+    apple()
     ensureAppleDeviceCompatibility()
 
     sourceSets {
@@ -112,7 +111,7 @@ kotlin {
             dependencies {
                 implementation(antibytesCatalog.common.kotlin.stdlib)
                 implementation(antibytesCatalog.common.kotlinx.dateTime)
-                implementation(project(":core"))
+                implementation(projects.core)
             }
         }
         val commonTest by getting {
@@ -136,9 +135,7 @@ kotlin {
             }
         }
 
-        setupAndroidTest()
-
-        val androidTest by getting {
+        val androidUnitTest by getting {
             dependencies {
                 implementation(antibytesCatalog.jvm.test.kotlin.core)
                 implementation(antibytesCatalog.jvm.test.kotlin.junit4)

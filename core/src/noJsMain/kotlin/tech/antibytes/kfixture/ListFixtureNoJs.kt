@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Matthias Geisler (bitPogo) / All rights reserved.
+ * Copyright (c) 2024 Matthias Geisler (bitPogo) / All rights reserved.
  *
  * Use of this source code is governed by Apache v2.0
  */
@@ -39,11 +39,7 @@ public actual inline fun <reified T> PublicApi.Fixture.mutableListFixture(
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public actual inline fun <reified C : MutableList<T>, reified T> PublicApi.Fixture.fixture(
-    type: KClass<MutableList<*>>,
-    qualifier: Qualifier?,
-    size: Int?,
-): C = mutableListFixture<T>(
+public actual inline fun <reified C : MutableList<T>, reified T> PublicApi.Fixture.fixture(type: KClass<MutableList<*>>, qualifier: Qualifier?, size: Int?): C = mutableListFixture<T>(
     qualifier = qualifier,
     size = size,
 ) as C
@@ -77,11 +73,7 @@ public actual inline fun <reified T> PublicApi.Fixture.listFixture(
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public actual inline fun <reified C : List<T>, reified T> PublicApi.Fixture.fixture(
-    type: KClass<List<*>>,
-    qualifier: Qualifier?,
-    size: Int?,
-): C = listFixture<T>(
+public actual inline fun <reified C : List<T>, reified T> PublicApi.Fixture.fixture(type: KClass<List<*>>, qualifier: Qualifier?, size: Int?): C = listFixture<T>(
     qualifier = qualifier,
     size = size,
 ) as C

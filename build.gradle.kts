@@ -22,7 +22,6 @@ plugins {
 val publishing = FixturePublishingConfiguration(project)
 
 antibytesPublishing {
-    additionalPublishingTasks.set(publishing.additionalPublishingTasks)
     versioning.set(publishing.versioning)
     repositories.set(publishing.repositories)
 }
@@ -47,6 +46,6 @@ repositories {
 }
 
 tasks.named<Wrapper>("wrapper") {
-    gradleVersion = "7.5.1"
+    gradleVersion = antibytesCatalog.versions.gradle.gradle.get()
     distributionType = Wrapper.DistributionType.ALL
 }

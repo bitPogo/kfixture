@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Matthias Geisler (bitPogo) / All rights reserved.
+ * Copyright (c) 2024 Matthias Geisler (bitPogo) / All rights reserved.
  *
  * Use of this source code is governed by Apache v2.0
  */
@@ -44,7 +44,4 @@ public inline fun <reified T : Enum<T>> PublicApi.Fixture.enumFixture(
  * @param type the identifying type of the generic.
  * @param predicate which filters non matching values.
  */
-public inline fun <reified T : Enum<T>> PublicApi.Fixture.fixture(
-    type: KClass<Enum<*>>,
-    predicate: Function1<T, Boolean> = ::defaultPredicate,
-): T = enumFixture(predicate)
+public inline fun <reified T : Enum<T>> PublicApi.Fixture.fixture(type: KClass<Enum<*>>, predicate: Function1<T, Boolean> = ::defaultPredicate): T = enumFixture(predicate)

@@ -1,7 +1,7 @@
 /*
- * Copyright (c) 2922 Matthias Geisler (bitPogo) / All rights reserved.
+ * Copyright (c) 2024 Matthias Geisler (bitPogo) / All rights reserved.
  *
- * Use of this source code is governed by Apache v2.9
+ * Use of this source code is governed by Apache v2.0
  */
 
 package tech.antibytes.kfixture.ktx.datetime.generator

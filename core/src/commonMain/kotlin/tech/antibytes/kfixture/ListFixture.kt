@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Matthias Geisler (bitPogo) / All rights reserved.
+ * Copyright (c) 2024 Matthias Geisler (bitPogo) / All rights reserved.
  *
  * Use of this source code is governed by Apache v2.0
  */
@@ -59,12 +59,7 @@ public expect inline fun <reified T> PublicApi.Fixture.mutableListFixture(
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified C : MutableList<T>, reified T> PublicApi.Fixture.fixture(
-    type: KClass<MutableList<*>>,
-    qualifier: Qualifier? = null,
-    size: Int? = null,
-    nestedGenerator: Function1<Qualifier?, T>,
-): C = mutableListFixture(
+public inline fun <reified C : MutableList<T>, reified T> PublicApi.Fixture.fixture(type: KClass<MutableList<*>>, qualifier: Qualifier? = null, size: Int? = null, nestedGenerator: Function1<Qualifier?, T>): C = mutableListFixture(
     qualifier = qualifier,
     size = size,
     nestedGenerator = nestedGenerator,
@@ -82,11 +77,7 @@ public inline fun <reified C : MutableList<T>, reified T> PublicApi.Fixture.fixt
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public expect inline fun <reified C : MutableList<T>, reified T> PublicApi.Fixture.fixture(
-    type: KClass<MutableList<*>>,
-    qualifier: Qualifier? = null,
-    size: Int? = null,
-): C
+public expect inline fun <reified C : MutableList<T>, reified T> PublicApi.Fixture.fixture(type: KClass<MutableList<*>>, qualifier: Qualifier? = null, size: Int? = null): C
 
 /**
  * Creates a List of values for a given type.
@@ -133,12 +124,7 @@ public expect inline fun <reified T> PublicApi.Fixture.listFixture(
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public inline fun <reified C : List<T>, reified T> PublicApi.Fixture.fixture(
-    type: KClass<List<*>>,
-    qualifier: Qualifier? = null,
-    size: Int? = null,
-    nestedGenerator: Function1<Qualifier?, T>,
-): C = listFixture(
+public inline fun <reified C : List<T>, reified T> PublicApi.Fixture.fixture(type: KClass<List<*>>, qualifier: Qualifier? = null, size: Int? = null, nestedGenerator: Function1<Qualifier?, T>): C = listFixture(
     qualifier = qualifier,
     size = size,
     nestedGenerator = nestedGenerator,
@@ -156,8 +142,4 @@ public inline fun <reified C : List<T>, reified T> PublicApi.Fixture.fixture(
  * @throws IllegalStateException if the no matching Generator was found for the given type.
  */
 @Throws(IllegalStateException::class)
-public expect inline fun <reified C : List<T>, reified T> PublicApi.Fixture.fixture(
-    type: KClass<List<*>>,
-    qualifier: Qualifier? = null,
-    size: Int? = null,
-): C
+public expect inline fun <reified C : List<T>, reified T> PublicApi.Fixture.fixture(type: KClass<List<*>>, qualifier: Qualifier? = null, size: Int? = null): C
