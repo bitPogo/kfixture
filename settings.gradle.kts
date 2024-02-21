@@ -30,7 +30,7 @@ pluginManagement {
 }
 
 plugins {
-    id("tech.antibytes.gradle.dependency.settings") version "dda2add"
+    id("tech.antibytes.gradle.dependency.settings") version "ae101dc"
 }
 
 includeBuild("setup")
