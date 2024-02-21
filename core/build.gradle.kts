@@ -10,7 +10,9 @@ import tech.antibytes.gradle.coverage.api.JacocoVerificationRule
 import tech.antibytes.gradle.coverage.CoverageApiContract.JacocoCounter
 import tech.antibytes.gradle.coverage.CoverageApiContract.JacocoMeasurement
 import tech.antibytes.gradle.configuration.apple.ensureAppleDeviceCompatibility
+import tech.antibytes.gradle.configuration.sourcesets.linux
 import tech.antibytes.gradle.configuration.sourcesets.native
+import tech.antibytes.gradle.configuration.sourcesets.nativeCoroutine
 import tech.antibytes.gradle.kfixture.config.publishing.FixtureCoreConfiguration
 
 plugins {
@@ -105,7 +107,9 @@ kotlin {
 
     jvm()
 
-    native()
+    nativeCoroutine()
+    linux()
+
     ensureAppleDeviceCompatibility()
 
     sourceSets {
@@ -177,14 +181,6 @@ kotlin {
         }
         val nativeTest by getting {
             dependsOn(noJsTest)
-        }
-    }
-}
-
-afterEvaluate {
-    tasks.withType(org.gradle.api.publish.maven.tasks.AbstractPublishToMaven::class.java) {
-        if (name.startsWith("publishAndroidNativeArm32")) {
-            mustRunAfter("signAndroidNativeArm64Publication")
         }
     }
 }

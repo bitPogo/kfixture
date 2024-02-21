@@ -27,3 +27,5 @@ pluginManagement {
 plugins {
     id("tech.antibytes.gradle.dependency.settings") version "ae101dc"
 }
+
+rootProject.name = "fixture-setup"
