@@ -24,7 +24,7 @@ jobs:
     with:
       cache-reports: false
     concurrency:
-      group: coding-conventions-${{ github.workflow }}-${{ github.head_ref }}
+      group: coding-conventions
       cancel-in-progress: true
 
   check:
